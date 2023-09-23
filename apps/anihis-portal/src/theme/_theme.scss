@@ -1,0 +1,149 @@
+$md-primary: (
+  50: #e0e6ee,
+  100: #b3c0d5,
+  200: #8096b9,
+  300: #4d6c9c,
+  400: #264d87,
+  500: #002d72,
+  600: #00286a,
+  700: #00225f,
+  800: #001c55,
+  900: #001142,
+  A100: #778aff,
+  A200: #445eff,
+  A400: #1132ff,
+  A700: #0023f6,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$md-accent: (
+  50: #fefbf1,
+  100: #fdf5dd,
+  200: #fcefc6,
+  300: #fae9af,
+  400: #f9e49e,
+  500: #f8df8d,
+  600: #f7db85,
+  700: #f6d77a,
+  800: #f5d270,
+  900: #f3ca5d,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #fffcf5,
+  A700: #fff5db,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$md-warn: (
+  50: #fde9eb,
+  100: #f9c7ce,
+  200: #f5a2ad,
+  300: #f17c8c,
+  400: #ee6073,
+  500: #eb445a,
+  600: #e93e52,
+  700: #e53548,
+  800: #e22d3f,
+  900: #dd1f2e,
+  A100: #ffffff,
+  A200: #ffe0e2,
+  A400: #ffadb3,
+  A700: #ff949b,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$md-success: (
+  50: #e6faee,
+  100: #c0f2d4,
+  200: #96e9b7,
+  300: #6ce09a,
+  400: #4dda85,
+  500: #2dd36f,
+  600: #28ce67,
+  700: #22c85c,
+  800: #1cc252,
+  900: #11b740,
+  A100: #e6ffec,
+  A200: #b3ffc6,
+  A400: #80ff9f,
+  A700: #67ff8c,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$primary50: map-get($md-primary, 50);
+$primary200: map-get($md-primary, 200);
+$primary300: map-get($md-primary, 300);
+$primary500: map-get($md-primary, 500);
+
+$primary-contrast300: map-get($md-primary, contrast, 300);
+$primary-contrast500: map-get($md-primary, contrast, 500);
+
+$accent500: map-get($md-accent, 500);
+$accent300: map-get($md-accent, 300);
+
+$warn500: map-get($md-warn, 500);
+
+$success500: map-get($md-success, 500);
+
+$accent-contrast300: map-get($md-accent, contrast, 300);
+$accent-contrast500: map-get($md-accent, contrast, 500);

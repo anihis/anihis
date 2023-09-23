@@ -15,10 +15,18 @@
         "main": "apps/anihis-portal/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/anihis-portal/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
+          "apps/anihis-portal/src/web.config",
           "apps/anihis-portal/src/favicon.ico",
           "apps/anihis-portal/src/assets"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "apps/anihis-portal/src/app/shared/styles/breakpoints.scss",
+            "apps/anihis-portal/src/theme"
+          ]
+        },
         "styles": ["apps/anihis-portal/src/styles.scss"],
         "scripts": []
       },
@@ -59,7 +67,10 @@
           "browserTarget": "anihis-portal:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4000
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

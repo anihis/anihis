@@ -1,0 +1,51 @@
+mat-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: unset;
+  .container-mat-list {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    justify-content: space-between;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+      rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    mat-list-item {
+      width: fit-content;
+      cursor: pointer !important;
+      text-align: center;
+      height: fit-content !important;
+      .column-icon {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .container-icon {
+      gap: 4px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .container-category-title {
+    background: #a88661;
+    color: #fff;
+    p {
+      font-size: 1rem !important;
+      font-weight: 700;
+      margin: 8px 0px;
+    }
+  }
+}
+
+.basic {
+  width: 33.3333%;
+}
+.diagnoses {
+  width: 33.3333%;
+}
+
+.administrative {
+  width: 33.3333%;
+}

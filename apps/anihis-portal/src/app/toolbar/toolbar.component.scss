@@ -1,0 +1,18 @@
+mat-toolbar {
+  .container-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .container-menu {
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    .opacity-element {
+      opacity: 0.8;
+    }
+  }
+}
+.chose-language {
+  padding: 16px !important;
+}

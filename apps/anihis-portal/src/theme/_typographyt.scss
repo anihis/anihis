@@ -1,0 +1,77 @@
+@use 'colors';
+
+* {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: colors.$primary;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: Corbel, Helvetica, sans-serif, sans-serif;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  margin: 0;
+}
+
+small {
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+strong {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+.small-content-text {
+  font-size: 12px;
+  line-height: 16px;
+}
+span {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+.bold {
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+input {
+  font-family: Arial, Helvetica, sans-serif, sans-serif !important;
+}
