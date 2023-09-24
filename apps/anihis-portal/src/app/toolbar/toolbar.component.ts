@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslationsService } from '../shared/services/translations.service';
 import { Languages } from '../shared/constants/languages';
 import { ThemeService } from '../shared/services/theme.service';
@@ -7,6 +7,7 @@ import { ThemeService } from '../shared/services/theme.service';
   selector: 'anihis-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
   readonly availableLanguages = Languages.availableLanguages;

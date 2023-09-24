@@ -2,7 +2,6 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
@@ -15,14 +14,7 @@ import {
 } from '@ngneat/transloco';
 import { Languages } from './shared/constants/languages';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { ThemeSwitchDirective } from './shared/directive/theme-switch.directive';
-import { TabGroupsComponent } from './tab-groups/tab-groups.component';
-import { CodersComponent } from './tab-groups/coders/coders.component';
-import { PharmacyComponent } from './tab-groups/pharmacy/pharmacy.component';
-import { ProtocolsComponent } from './tab-groups/protocols/protocols.component';
-import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
@@ -31,22 +23,13 @@ function configureTranslations(translationsService: TranslationsService) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TabGroupsComponent,
-    ToolbarComponent,
-    ThemeSwitchDirective,
-    CodersComponent,
-    PharmacyComponent,
-    ProtocolsComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
-    CommonModule,
+    AppRoutingModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
-    SharedModule,
     TranslocoModule,
     TranslocoLocaleModule.forRoot({
       langToLocaleMapping: {
@@ -55,7 +38,6 @@ function configureTranslations(translationsService: TranslationsService) {
         // Dodajte ostale jezike i odgovarajuće lokalizacije
       },
     }),
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [
     TranslationsService,

@@ -7,9 +7,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { ThemeSwitchDirective } from './directive/theme-switch.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [ThemeSwitchDirective],
   imports: [
     CommonModule,
     MatTabsModule,
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
   ],
   exports: [
+    ThemeSwitchDirective,
     CommonModule,
     MatTabsModule,
     MatToolbarModule,
