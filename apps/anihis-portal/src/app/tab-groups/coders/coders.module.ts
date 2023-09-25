@@ -8,5 +8,6 @@ import { CodersComponent } from './coders.component';
 @NgModule({
   declarations: [CodersComponent],
   imports: [CommonModule, CodersRoutingModule, SharedModule],
+  exports: [CodersComponent]
 })
-export class CodersModule {}
+export class CodersModule { }

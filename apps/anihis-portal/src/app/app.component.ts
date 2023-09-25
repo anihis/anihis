@@ -36,7 +36,7 @@ export class AppComponent implements OnDestroy {
         Breakpoints.XLarge,
       ])
       .pipe(takeUntil(this.destroyed))
-      .subscribe((result) => {
+      .subscribe((result: any) => {
         for (const query of Object.keys(result.breakpoints)) {
           if (result.breakpoints[query]) {
             this.currentScreenSize =

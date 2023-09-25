@@ -6,4 +6,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./protocols.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProtocolsComponent {}
+export class ProtocolsComponent {
+  public tabMenuItems = [
+    { name: 'Cards', action: 'F5', icon: [] }
+  ]
+}

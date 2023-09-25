@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { ThemeSwitchDirective } from './directive/theme-switch.directive';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [ThemeSwitchDirective],
@@ -20,6 +21,8 @@ import { ThemeSwitchDirective } from './directive/theme-switch.directive';
     MatButtonModule,
     FormsModule,
     MatMenuModule,
+    TranslocoModule,
+
   ],
   exports: [
     ThemeSwitchDirective,
@@ -31,6 +34,8 @@ import { ThemeSwitchDirective } from './directive/theme-switch.directive';
     MatButtonModule,
     FormsModule,
     MatMenuModule,
+    TranslocoModule,
+
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

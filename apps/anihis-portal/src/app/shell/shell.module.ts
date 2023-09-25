@@ -6,8 +6,8 @@ import { ToolbarModule } from '../toolbar/toolbar.module';
 
 @NgModule({
   declarations: [ShellComponent],
-  exports: [TabGroupsModule, ToolbarModule],
   imports: [CommonModule, TabGroupsModule, ToolbarModule],
+  exports: [TabGroupsModule, ToolbarModule, ShellComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ShellModule {}

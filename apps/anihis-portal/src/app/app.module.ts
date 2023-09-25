@@ -1,6 +1,5 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -15,6 +14,7 @@ import {
 import { Languages } from './shared/constants/languages';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ShellModule } from './shell/shell.module';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
@@ -31,14 +31,16 @@ function configureTranslations(translationsService: TranslationsService) {
     BrowserAnimationsModule,
     LayoutModule,
     TranslocoModule,
+    ShellModule,
     TranslocoLocaleModule.forRoot({
       langToLocaleMapping: {
         en: 'en-US',
         sr: 'sr-SR',
-        // Dodajte ostale jezike
+        // Dodajte ostale jezike i odgovarajuće lokalizacije
       },
     }),
   ],
+  exports: [ShellModule],
   providers: [
     TranslationsService,
     httpLoader,
@@ -58,6 +60,7 @@ function configureTranslations(translationsService: TranslationsService) {
       deps: [TranslationsService],
     },
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

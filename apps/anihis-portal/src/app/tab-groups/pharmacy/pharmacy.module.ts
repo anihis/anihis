@@ -8,5 +8,6 @@ import { PharmacyComponent } from './pharmacy.component';
 @NgModule({
   declarations: [PharmacyComponent],
   imports: [CommonModule, PharmacyRoutingModule, SharedModule],
+  exports: [PharmacyComponent]
 })
-export class PharmacyModule {}
+export class PharmacyModule { }

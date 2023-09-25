@@ -1,38 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RouteConstants } from './shared/constants/route.constants';
+import { ShellComponent } from './shell/shell.component';
+import { NewCardComponent } from './tab-groups/protocols/new-card/new-card.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./shell/shell.component').then((m) => m.ShellComponent),
+    component: ShellComponent,
+    loadChildren: () =>
+      import('./shell/shell.module').then((m) => m.ShellModule),
     // canActivate: [AuthGuard, RoleGuard],
-    children: [
-      {
-        path: RouteConstants.PROTOCOLS_ROUTE,
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('./tab-groups/tab-groups.module').then(
-                (m) => m.TabGroupsModule
-              ),
-          },
-        ],
-      },
 
-      {
-        path: '**',
-        redirectTo: '/protocols',
-        pathMatch: 'full',
-      },
-    ],
   },
+  {
+    path: 'new-cards',
+    component: NewCardComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
