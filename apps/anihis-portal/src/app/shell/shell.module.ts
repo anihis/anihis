@@ -1,13 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShellComponent } from './shell.component';
+
+import { RouterModule } from '@angular/router';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { SharedModule } from '../shared/shared.module';
 import { TabGroupsModule } from '../tab-groups/tab-groups.module';
-import { ToolbarModule } from '../toolbar/toolbar.module';
 
 @NgModule({
-  declarations: [ShellComponent],
-  imports: [CommonModule, TabGroupsModule, ToolbarModule],
-  exports: [TabGroupsModule, ToolbarModule, ShellComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [ShellComponent, ToolbarComponent],
+  imports: [CommonModule, RouterModule, SharedModule, TabGroupsModule],
 })
 export class ShellModule {}

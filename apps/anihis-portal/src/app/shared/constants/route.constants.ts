@@ -1,5 +1,4 @@
 export class RouteConstants {
-  static readonly CODERS_ROUTE = 'coders';
-  static readonly PHARMACY_ROUTE = 'pharmacy';
-  static readonly PROTOCOLS_ROUTE = 'protocols';
+  static readonly NEW_CARDS_ROUTE = 'protocols/new-cards';
+  static readonly NEW_ANIMAL_ROUTE = 'protocols/new-animal';
 }

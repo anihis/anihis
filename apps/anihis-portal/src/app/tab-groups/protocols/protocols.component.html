@@ -13,7 +13,10 @@
             </div>
           </mat-list-item> -->
           <mat-list-item role="listitem">
-            <div class="column-icon">
+            <div
+              class="column-icon"
+              (click)="redirectTo(routeConstants.NEW_CARDS_ROUTE)"
+            >
               <span class="material-symbols-outlined"> pets </span>
               <span>
                 {{ t('Cards') + ' ' }} <br />
@@ -22,7 +25,10 @@
             </div>
           </mat-list-item>
           <mat-list-item role="listitem">
-            <div class="column-icon">
+            <div
+              class="column-icon"
+              (click)="redirectTo(routeConstants.NEW_ANIMAL_ROUTE)"
+            >
               <span class="material-symbols-outlined"> pets </span>
               <span>
                 {{ t('New') }} <br />
@@ -174,10 +180,8 @@
         </p>
       </div>
     </mat-list>
-
   </div>
   <div class="tab-content">
-
     <div></div>
   </div>
 </ng-container>
