@@ -35,7 +35,7 @@ function configureTranslations(translationsService: TranslationsService) {
       langToLocaleMapping: {
         en: 'en-US',
         sr: 'sr-SR',
-        // Dodajte ostale jezike i odgovarajuće lokalizacije
+        // Dodajte ostale jezike
       },
     }),
   ],
