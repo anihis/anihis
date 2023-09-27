@@ -1,0 +1,34 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodePadding
+    (click)="redirectTo(node.route)"
+  >
+    <button mat-icon-button disabled></button>
+    <span class="material-symbols-outlined"> {{ node.icon }} </span>
+    <p>
+      {{ node.name }}
+      {{ node.action ? '(' + node.action + ')' : '' }}
+    </p>
+  </mat-tree-node>
+  <mat-tree-node
+    *matTreeNodeDef="let node; when: hasChild"
+    matTreeNodePadding
+    (click)="redirectTo(node.route)"
+  >
+    <button
+      mat-icon-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name"
+    >
+      <mat-icon class="material-symbols-outlined">
+        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </button>
+    <span class="material-symbols-outlined"> {{ node.icon }} </span>
+    <p>
+      {{ node.name }}
+      {{ node.action ? '(' + node.action + ')' : '' }}
+    </p>
+  </mat-tree-node>
+</mat-tree>

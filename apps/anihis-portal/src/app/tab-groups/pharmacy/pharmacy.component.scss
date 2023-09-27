@@ -4,11 +4,11 @@ mat-list {
   width: 100%;
   padding: unset;
   .container-mat-list {
-    padding: 16px;
+    padding: 16px 0px;
     display: flex;
     align-items: center;
-    height: 45px;
-    justify-content: space-between;
+    height: 65px;
+    justify-content: center;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
       rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     mat-list-item {
@@ -19,6 +19,10 @@ mat-list {
       .column-icon {
         display: flex;
         flex-direction: column;
+        p {
+          width: fit-content;
+          white-space: normal;
+        }
       }
     }
 
@@ -43,14 +47,14 @@ mat-list {
   }
 }
 
-.price-lists {
+.price {
   width: 10%;
-  .container-mat-list {
-    justify-content: center;
-  }
 }
-.traffic {
-  width: 75%;
+.trafficking {
+  width: 30%;
+}
+.reports {
+  width: 45%;
 }
 .list {
   width: 15%;

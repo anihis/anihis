@@ -1,6 +1,6 @@
 <ng-container *transloco="let t">
   <mat-toolbar>
-    <div class="container-logo-wrapper">
+    <div class="container-logo-wrapper cursor" (click)="redirectTo('/')">
       <span class="material-symbols-outlined"> pet_supplies </span>
       <h1>ANIHIS</h1>
     </div>
@@ -12,7 +12,7 @@
         (menuOpened)="menuOpened()"
         (menuClosed)="menuClosed()"
         #menuTrigger="matMenuTrigger"
-        [ngClass]="isMenuOpen ? 'opacity-element' : ''"
+        [ngClass]="isLangMenuOpen ? 'opacity-element' : ''"
       >
         <img [src]="flagPath" width="24px" height="12px" />
       </button>
@@ -32,6 +32,13 @@
       <mat-slide-toggle anihisThemeSwitch [(ngModel)]="isChecked">
         {{ t('Dark mode') }}
       </mat-slide-toggle>
+      <span
+        *ngIf="currentScreenSize !== 'XLarge'"
+        (click)="openMenu()"
+        class="material-symbols-outlined cursor"
+      >
+        {{ isMenuOpen ? 'close' : 'menu' }}
+      </span>
     </div>
   </mat-toolbar>
 </ng-container>

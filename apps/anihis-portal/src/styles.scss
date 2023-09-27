@@ -126,6 +126,10 @@ mat-list {
       font-size: 0.75rem !important;
     }
   }
+
+  .mdc-list-item {
+    padding: 0px 8px;
+  }
 }
 
 .mat-mdc-menu-content {
@@ -145,3 +149,28 @@ mat-list {
 }
 
 // MATERIAL -END-
+
+// scroll
+body {
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #00142f;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ead6bd;
+    border-radius: 20px;
+    // border: 1px solid #a88661;
+  }
+}
+// scroll -END-
+.cursor {
+  cursor: pointer;
+}
+
+.mat-tab-header-pagination.mat-tab-header-pagination-disabled {
+  display: none !important;
+}
