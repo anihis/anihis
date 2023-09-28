@@ -32,7 +32,12 @@ export class ProtocolsComponent {
           br: this.br,
           route: 'protocols/cards',
         },
-        { name: 'New animal', action: 'F8', icon: 'pets' },
+        {
+          name: 'New animal',
+          action: 'F8',
+          icon: 'pets',
+          route: 'protocols/new-animal',
+        },
         { name: 'Admission form', action: '', icon: 'pets' },
         { name: 'Animal from VetUp-a', action: '', icon: 'pets' },
         { name: 'Reminders', action: '', icon: 'pets' },

@@ -174,3 +174,22 @@ body {
 .mat-tab-header-pagination.mat-tab-header-pagination-disabled {
   display: none !important;
 }
+
+.mat-mdc-table {
+  thead {
+    background: #504e63 !important;
+    th {
+      color: #ead6bd !important;
+    }
+  }
+
+  .mat-mdc-row:hover {
+    background-color: #ead6bd !important;
+    color: #504e63 !important;
+  }
+
+  .mat-mdc-paginator {
+    background: #504e63 !important;
+    color: #ead6bd !important;
+  }
+}

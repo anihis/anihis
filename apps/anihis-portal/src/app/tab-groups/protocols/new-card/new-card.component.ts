@@ -1,31 +1,161 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { DeleteConfirmationDialogComponent } from '../../../shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { EditDataDialogComponent } from '../../../shared/component/edit-data-dialog/edit-data-dialog.component';
 
 export interface PeriodicElement {
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  breed: string;
+  gender: string;
+  numberCard: number;
+  dateOfBirth: Date;
+  warning: string;
+  microchip: number;
+  numberOfPassport: string;
+  owner: string;
+  address: string;
+  tel: string;
+  email: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
 
 @Component({
   selector: 'anihis-new-card',
   templateUrl: './new-card.component.html',
   styleUrls: ['./new-card.component.scss'],
 })
-export class NewCardComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+export class NewCardComponent implements AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  pageSize = 6;
+  pageIndex = 0;
+
+  tableDate: PeriodicElement[] = [
+    {
+      numberCard: 1,
+      name: 'Dusan',
+      breed: 'Zlatni retriver',
+      gender: 'H',
+      dateOfBirth: new Date(),
+      warning: 'Ludilo',
+      microchip: 12345678910234,
+      numberOfPassport: '12as2w231d',
+      owner: 'Marko',
+      address: 'Omladinska',
+      tel: '+381 213546',
+      email: 'vladimir@gmail.com',
+    },
+    {
+      numberCard: 2,
+      name: 'Aleksandar',
+      breed: 'Bison',
+      gender: 'He',
+      dateOfBirth: new Date(),
+      warning: 'Ludilo',
+      microchip: 12345678910234,
+      numberOfPassport: '12as2w231d',
+      owner: 'Marko',
+      address: 'Omladinska',
+      tel: '+381 213546',
+      email: 'vladimir@gmail.com',
+    },
+    {
+      numberCard: 3,
+      name: 'Milos',
+      breed: 'Pudla',
+      gender: 'Li',
+      dateOfBirth: new Date(),
+      warning: 'Ludilo',
+      microchip: 12345678910234,
+      numberOfPassport: '12as2w231d',
+      owner: 'Marko',
+      address: 'Omladinska',
+      tel: '+381 213546',
+      email: 'vladimir@gmail.com',
+    },
+    {
+      numberCard: 4,
+      name: 'Vladimir',
+      breed: '',
+      gender: 'Be',
+      dateOfBirth: new Date(),
+      warning: 'Ludilo',
+      microchip: 12345678910234,
+      numberOfPassport: '12as2w231d',
+      owner: 'Marko',
+      address: 'Omladinska',
+      tel: '+381 213546',
+      email: 'vladimir@gmail.com',
+    },
+  ];
+  dataSource = new MatTableDataSource<any>(this.tableDate);
+
+  displayedColumns: string[] = [
+    'numberCard',
+    'name',
+    'breed',
+    'gender',
+    'dateOfBirth',
+    'warning',
+    'microchip',
+    'numberOfPassport',
+    'owner',
+    'address',
+    'tel',
+    'email',
+    'action',
+  ];
+
+  constructor(private dialog: MatDialog) {}
+
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource<any>(this.tableDate);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  onPageChange(event: any): void {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getObjectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  applyFilter(event: any, column: string) {
+    const filterValue = event.target.value.trim().toLowerCase();
+    this.dataSource.filterPredicate = (data, filter) => {
+      const value = data[column].toString().toLowerCase();
+      return value.includes(filter);
+    };
+
+    this.dataSource.filter = filterValue;
+  }
+
+  openDeleteConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '465px',
+      data: 'Da li ste sigurni da želite da obrišete?',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        console.log('Obrisano');
+      }
+    });
+  }
+
+  openEditDialog(data: any): void {
+    const dialogRef = this.dialog.open(EditDataDialogComponent, {
+      width: '465px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Spremljeno:', result);
+      }
+    });
+  }
 }

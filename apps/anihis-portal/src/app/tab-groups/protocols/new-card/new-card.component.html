@@ -1,35 +1,64 @@
 <section>
   <mat-card>
+    <div class="filter-container">
+      <ng-container
+        *ngFor="let column of displayedColumns"
+        [matColumnDef]="column"
+        class="flex"
+      >
+        <!-- Dodajte provjeru da se ne prikazuje za stupac 'action' -->
+        <ng-container *ngIf="column !== 'action'">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ column | nameColumn | titlecase }} </mat-label>
+            <input
+              matInput
+              autocomplete="on"
+              (keyup)="applyFilter($event, column)"
+            />
+          </mat-form-field>
+        </ng-container>
+      </ng-container>
+    </div>
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef>Weight</th>
-        <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef>Symbol</th>
-        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+      <ng-container
+        *ngFor="let column of displayedColumns"
+        [matColumnDef]="column"
+      >
+        <th mat-header-cell *matHeaderCellDef>{{ column | nameColumn }}</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="column === 'action'; else notActionColumn">
+            <div style="display: flex; gap: 8px">
+              <mat-icon
+                class="material-symbols-outlined cursor"
+                (click)="openEditDialog(element)"
+                >edit</mat-icon
+              >
+              <mat-icon
+                class="material-symbols-outlined cursor"
+                (click)="openDeleteConfirmationDialog()"
+                >clear</mat-icon
+              >
+            </div>
+          </ng-container>
+          <ng-template #notActionColumn>
+            {{
+              column === 'dateOfBirth'
+                ? (element[column] | date : 'd/M/yy')
+                : element[column]
+            }}
+          </ng-template>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[2, 4, 6]"
+      showFirstLastButtons
+    ></mat-paginator>
   </mat-card>
 </section>

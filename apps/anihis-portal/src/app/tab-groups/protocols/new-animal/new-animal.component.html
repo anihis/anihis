@@ -1,1 +1,9 @@
-<p>new-animal works!</p>
+<main>
+  <anihis-form
+    [formData]="formData"
+    [form]="form"
+    (formDataSubmit)="submit($event)"
+  ></anihis-form>
+
+  <anihis-new-owners></anihis-new-owners>
+</main>
