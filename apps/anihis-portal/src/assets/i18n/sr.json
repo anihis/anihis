@@ -68,5 +68,18 @@
   "Rabies certificates": "Potvrde za besnilo",
   "Animal from VetUp-a": "Zivotinje iz VetUp-a",
   "P6679633": "P6679633",
-  "Animal": "Zivotinja"
+  "Animal": "Zivotinja",
+  "Number Card": "Broj Kartona",
+  "Name": "Ime",
+  "Breed": "Rasa",
+  "Gender": "Pol",
+  "Date Of Birth": "Datum rodjenja",
+  "Warning": "Upozorenje",
+  "Microchip": "Mikrocip",
+  "Number Of Passport": "Broj pasosa",
+  "Owner": "Vlasnik",
+  "Address": "Adresa",
+  "Tel": "Telefon",
+  "Email": "Email",
+  "Action": "Izmeni / Obrisi"
 }

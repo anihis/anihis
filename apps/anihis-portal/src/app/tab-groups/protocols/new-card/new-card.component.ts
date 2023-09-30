@@ -35,7 +35,7 @@ export class NewCardComponent implements AfterViewInit {
       numberCard: 1,
       name: 'Dusan',
       breed: 'Zlatni retriver',
-      gender: 'H',
+      gender: 'male',
       dateOfBirth: new Date(),
       warning: 'Ludilo',
       microchip: 12345678910234,
@@ -49,7 +49,7 @@ export class NewCardComponent implements AfterViewInit {
       numberCard: 2,
       name: 'Aleksandar',
       breed: 'Bison',
-      gender: 'He',
+      gender: 'Male',
       dateOfBirth: new Date(),
       warning: 'Ludilo',
       microchip: 12345678910234,
@@ -148,7 +148,7 @@ export class NewCardComponent implements AfterViewInit {
 
   openEditDialog(data: any): void {
     const dialogRef = this.dialog.open(EditDataDialogComponent, {
-      width: '465px',
+      width: '600px',
       data: { ...data },
     });
 

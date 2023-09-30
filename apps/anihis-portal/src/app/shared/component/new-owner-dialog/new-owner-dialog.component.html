@@ -1,0 +1,79 @@
+<ng-container *transloco="let t">
+  <h2 mat-dialog-title>{{ t('Add new owner') }}</h2>
+
+  <form [formGroup]="form">
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Last Name') }} </mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('First Name') }} </mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('City') }} </mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Address') }} </mat-label>
+        <input matInput formControlName="address" />
+      </mat-form-field>
+    </div>
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Tel') }} </mat-label>
+        <input matInput formControlName="tel" />
+      </mat-form-field>
+    </div>
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Mob') }} </mat-label>
+        <input matInput formControlName="mob" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('JMBG') }} </mat-label>
+        <input matInput formControlName="jmbg" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Number Of Passport') }} </mat-label>
+        <input matInput formControlName="numberOfPassport" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('ID Card Number') }} </mat-label>
+        <input matInput formControlName="idCardNumber" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Email') }} </mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+
+    <div class="btn-save-wrapper">
+      <button mat-raised-button (click)="saveChanges()">
+        {{ t('Save') }}
+      </button>
+    </div>
+  </form>
+</ng-container>

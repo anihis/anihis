@@ -70,5 +70,18 @@
   "Rabies certificates": "Rabies certificates",
   "Animal from VetUp-a": "Animal from VetUp-a",
   "P6679633": "P6679633",
-  "Animal": "Animal"
+  "Animal": "Animal",
+  "Number Card": "Number Card",
+  "Name": "Name",
+  "Breed": "Breed",
+  "Gender": "Gender",
+  "Date Of Birth": "Date Of Birth",
+  "Warning": "Warning",
+  "Microchip": "Microchip",
+  "Number Of Passport": "Number Of Passport",
+  "Owner": "Owner",
+  "Address": "Address",
+  "Tel": "Tel",
+  "Email": "Email",
+  "Action": "Action"
 }

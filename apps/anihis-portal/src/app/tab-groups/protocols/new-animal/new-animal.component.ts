@@ -196,7 +196,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       type: 'string',
       readonly: false,
       value: '',
-      inputType: 'input',
+      inputType: 'date',
       placeholder: 'Enter your',
       required: false,
     },

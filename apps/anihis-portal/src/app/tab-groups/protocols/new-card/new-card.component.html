@@ -4,12 +4,12 @@
       <ng-container
         *ngFor="let column of displayedColumns"
         [matColumnDef]="column"
-        class="flex"
       >
-        <!-- Dodajte provjeru da se ne prikazuje za stupac 'action' -->
         <ng-container *ngIf="column !== 'action'">
           <mat-form-field appearance="outline">
-            <mat-label>{{ column | nameColumn | titlecase }} </mat-label>
+            <mat-label
+              >{{ column | nameColumn | titlecase | transloco }}
+            </mat-label>
             <input
               matInput
               autocomplete="on"
@@ -25,10 +25,12 @@
         *ngFor="let column of displayedColumns"
         [matColumnDef]="column"
       >
-        <th mat-header-cell *matHeaderCellDef>{{ column | nameColumn }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ column | nameColumn | titlecase | transloco }}
+        </th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngIf="column === 'action'; else notActionColumn">
-            <div style="display: flex; gap: 8px">
+            <div style="display: flex; gap: 8px; justify-content: space-evenly">
               <mat-icon
                 class="material-symbols-outlined cursor"
                 (click)="openEditDialog(element)"

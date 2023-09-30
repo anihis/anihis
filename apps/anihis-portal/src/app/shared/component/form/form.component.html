@@ -7,7 +7,7 @@
         style="font-size: 14px"
       >
         <mat-form-field appearance="outline">
-          <mat-label>{{ field.label }} </mat-label>
+          <mat-label>{{ t(field.label) }} </mat-label>
           <input
             matInput
             autocomplete="on"
@@ -20,7 +20,7 @@
       </div>
       <div class="div-left" *ngIf="field.inputType === 'select'">
         <mat-form-field appearance="outline">
-          <mat-label>{{ field.label }} </mat-label>
+          <mat-label>{{ t(field.label) }} </mat-label>
 
           <mat-select
             autocomplete="on"
@@ -37,7 +37,7 @@
       </div>
       <div class="div-left" *ngIf="field.inputType === 'date'">
         <mat-form-field appearance="outline">
-          <mat-label>{{ field.label }} </mat-label>
+          <mat-label>{{ t(field.label) }} </mat-label>
 
           <input
             matInput
@@ -55,7 +55,7 @@
 
       <div class="div-left" *ngIf="field.inputType === 'checkbox'">
         <mat-label style="display: flex; align-items: center; height: 56px"
-          >{{ field.label }}
+          >{{ t(field.label) }}
 
           <mat-checkbox
             formControlName="{{ field.formControlName }}"
