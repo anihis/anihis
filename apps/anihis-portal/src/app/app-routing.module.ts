@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShellComponent } from './shell/shell.component';
 import { RouteConstants } from './shared/constants/route.constants';
+import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: RouteConstants.NEW_CARDS_ROUTE,
@@ -23,11 +26,6 @@ const routes: Routes = [
           ),
       },
     ],
-  },
-  {
-    path: '**',
-    redirectTo: '/' + RouteConstants.NEW_CARDS_ROUTE,
-    pathMatch: 'full',
   },
 ];
 
