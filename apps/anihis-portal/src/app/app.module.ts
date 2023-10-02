@@ -16,11 +16,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ShellModule } from './shell/shell.module';
 import { MatMenuModule } from '@angular/material/menu';
+import { AuthenticationService } from './shared/services/auth-lib.service';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from '../environments/environment';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
     translationsService.initializeTranslation();
   };
+}
+function configureAuth(authenticationService: AuthenticationService) {
+  return () => authenticationService.configureAuth(environment.portalUrl);
 }
 
 @NgModule({
@@ -41,6 +47,12 @@ function configureTranslations(translationsService: TranslationsService) {
         // Dodajte ostale jezike i odgovarajuće lokalizacije
       },
     }),
+    OAuthModule.forRoot({
+      resourceServer: {
+        // allowedUrls: [environment.apiUrl],
+        sendAccessToken: true,
+      },
+    }),
   ],
   providers: [
     TranslationsService,
@@ -59,6 +71,12 @@ function configureTranslations(translationsService: TranslationsService) {
       useFactory: configureTranslations,
       multi: true,
       deps: [TranslationsService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configureAuth,
+      multi: true,
+      deps: [AuthenticationService],
     },
   ],
   bootstrap: [AppComponent],
