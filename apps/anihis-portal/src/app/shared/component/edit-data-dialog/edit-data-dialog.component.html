@@ -1,0 +1,103 @@
+<ng-container *transloco="let t">
+  <h2 mat-dialog-title>{{ t('Edit') }}</h2>
+
+  <form [formGroup]="form">
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Number Card') }} </mat-label>
+        <input matInput formControlName="numberCard" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Name') }} </mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Breed') }} </mat-label>
+        <input matInput formControlName="breed" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'Gender' }} </mat-label>
+        <mat-select autocomplete="on" formControlName="gender">
+          <mat-option
+            *ngFor="let option of genderOptions"
+            [value]="option.value"
+            >{{ option.viewValue }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Date Of Birth') }} </mat-label>
+
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dateOfBirth"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Warning') }} </mat-label>
+        <input matInput formControlName="warning" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Microchip') }} </mat-label>
+        <input matInput formControlName="microchip" />
+      </mat-form-field>
+    </div>
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Number Of Passport') }} </mat-label>
+        <input matInput formControlName="numberOfPassport" />
+      </mat-form-field>
+    </div>
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Owner') }} </mat-label>
+        <input matInput formControlName="owner" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Email') }} </mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+
+    <div class="div-left" style="font-size: 14px">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Address') }} </mat-label>
+        <input matInput formControlName="address" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Tel') }} </mat-label>
+        <input matInput formControlName="tel" />
+      </mat-form-field>
+    </div>
+
+    <div class="btn-save-wrapper">
+      <button mat-raised-button (click)="saveChanges()">{{ t('Save') }}</button>
+    </div>
+  </form>
+</ng-container>

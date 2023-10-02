@@ -1,183 +1,38 @@
 <ng-container *transloco="let t">
-  <div class="flex justify-content-space-between">
-    <mat-list role="list" class="clinic">
+  <div class="flex justify-content-space-between" *ngIf="lang$ | async">
+    <mat-list
+      role="list"
+      *ngFor="let category of categoryMenu"
+      [class]="category.categoryName | lowercase"
+    >
       <div class="container-mat-list">
         <div class="flex">
-          <!-- <mat-list-item *ngFor="let item of tabMenuItems">
-             
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t(item.name)  }}
-              </span>
-            </div>
-          </mat-list-item> -->
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Cards') + ' ' }} <br />
-                (F5)
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('New') }} <br />
-                {{ t('animal') + ' ' }} (F8)
-              </span>
-            </div>
-          </mat-list-item>
+          <mat-list-item *ngFor="let item of category.data">
+            <div
+              class="column-icon"
+              (click)="redirectTo(item.route ? item.route : '/')"
+            >
+              <span class="material-symbols-outlined"> {{ item.icon }} </span>
+              <p>
+                {{ t(item.name) }}
+                <span *ngIf="item.action" style="white-space: nowrap">
+                  {{ '(' + item.action + ')' }}
+                </span>
+              </p>
 
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Admission') }} <br />
-                {{ t('form') }}
-              </span>
-            </div>
-          </mat-list-item>
-
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Animal') }} <br />
-                {{ t('from') + ' VetUp-a' }}
-              </span>
-            </div>
-          </mat-list-item>
-
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span> {{ t('Reminders') }} <br /> </span>
-            </div>
-          </mat-list-item>
-
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Anticipated') }} <br />
-                {{ t('controls') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Excellent') }} <br />
-                {{ t('vaccinations') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Black') }} <br />
-                {{ t('list') }}
-              </span>
+              <span *ngIf="item.br">&nbsp;</span>
             </div>
           </mat-list-item>
         </div>
       </div>
       <div class="container-category-title">
         <p class="text-center">
-          {{ t('Clinic') }}
+          {{ t(category.categoryName) }}
         </p>
       </div>
     </mat-list>
-    <mat-list role="list" class="reports">
-      <div class="container-mat-list">
-        <div class="flex">
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Daily') }} <br />
-                {{ t('reports') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Debtors') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Card') }} <br />
-                {{ t('owner') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Health record') }} <br />
-                {{ t('animals') }}
-              </span>
-            </div>
-          </mat-list-item>
-        </div>
-      </div>
-      <div class="container-category-title">
-        <p class="text-center">
-          {{ t('Reports') }}
-        </p>
-      </div>
-    </mat-list>
-    <mat-list role="list" class="confirmations">
-      <div class="container-mat-list">
-        <div class="flex">
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Serial number') }} <br />
-                {{ t('confirmation') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Prices at') }} <br />
-                {{ t('confirmations') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span> P6679633 </span>
-            </div>
-          </mat-list-item>
-        </div>
-      </div>
-      <div class="container-category-title">
-        <p class="text-center">
-          {{ t('Rabies certificates') }}
-        </p>
-      </div>
-    </mat-list>
-
   </div>
   <div class="tab-content">
-
     <div></div>
   </div>
 </ng-container>

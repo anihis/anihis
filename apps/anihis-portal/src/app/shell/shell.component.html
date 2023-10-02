@@ -1,4 +1,11 @@
-<anihis-toolbar></anihis-toolbar>
-<anihis-tab-groups></anihis-tab-groups>
-<router-outlet></router-outlet>
-
+<anihis-toolbar [currentScreenSize]="currentScreenSize"></anihis-toolbar>
+<anihis-tab-groups
+  *ngIf="currentScreenSize === 'XLarge'; else smallView"
+></anihis-tab-groups>
+<ng-template #smallView>
+  <div style="display: flex">
+    <anihis-nav-tree *ngIf="isMenuOpen$ | async"></anihis-nav-tree>
+    <router-outlet style="width: 80%"></router-outlet>
+  </div>
+</ng-template>
+<router-outlet *ngIf="currentScreenSize === 'XLarge'"></router-outlet>

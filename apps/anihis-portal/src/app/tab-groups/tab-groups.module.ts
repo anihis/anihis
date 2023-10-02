@@ -3,19 +3,18 @@ import { CommonModule } from '@angular/common';
 import { TabGroupsComponent } from './tab-groups.component';
 import { SharedModule } from '../shared/shared.module';
 
-import { PharmacyModule } from './pharmacy/pharmacy.module';
-import { CodersModule } from './coders/coders.module';
-import { ProtocolsModule } from './protocols/protocols.module';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { CodersComponent } from './coders/coders.component';
+import { ProtocolsComponent } from './protocols/protocols.component';
 
 @NgModule({
-  declarations: [TabGroupsComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    PharmacyModule,
-    CodersModule,
-    ProtocolsModule,
+  declarations: [
+    TabGroupsComponent,
+    PharmacyComponent,
+    CodersComponent,
+    ProtocolsComponent,
   ],
-  exports: [TabGroupsComponent],
+  imports: [CommonModule, SharedModule],
+  exports: [TabGroupsComponent, ProtocolsComponent],
 })
 export class TabGroupsModule {}

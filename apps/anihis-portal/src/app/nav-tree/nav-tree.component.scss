@@ -1,0 +1,22 @@
+h1,
+h3 {
+  color: green;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.mat-tree {
+  background: #00142f;
+  height: calc(100vh - 88px);
+  overflow: auto;
+  padding-bottom: 24px;
+}
+
+.mat-tree-node {
+  color: #a88661;
+  cursor: pointer;
+}
+
+span {
+  margin-right: 8px;
+}

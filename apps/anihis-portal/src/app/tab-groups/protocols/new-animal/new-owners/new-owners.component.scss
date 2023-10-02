@@ -1,0 +1,15 @@
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-new-owner-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+  button {
+    background: #00142f;
+    color: #fff;
+  }
+}

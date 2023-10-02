@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 241px);
+  anihis-form {
+    display: block;
+    padding: 16px;
+    width: 20%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+  }
+  anihis-new-owners {
+    margin: 24px;
+    width: 80%;
+  }
+}

@@ -1,0 +1,35 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    width: 50%;
+  }
+  .div-left:nth-child(odd) {
+    width: calc(50% - 16px);
+    margin-right: 16px;
+  }
+}
+
+.mat-datepicker {
+  width: 50%;
+}
+
+.mat-mdc-form-field {
+  display: unset !important;
+}
+
+.button-submit-wrapper {
+  display: flex;
+  width: 100%;
+  margin-top: 36px;
+  button {
+    background: #00142f !important;
+    color: #fff !important;
+    width: 100%;
+    padding: 24px 0px !important;
+  }
+}
+
+.text {
+  display: flex;
+}

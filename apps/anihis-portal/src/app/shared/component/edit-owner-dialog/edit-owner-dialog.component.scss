@@ -1,0 +1,33 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 24px;
+  div {
+    width: 50%;
+  }
+  .div-left:nth-child(odd) {
+    width: calc(50% - 16px);
+    margin-right: 16px;
+  }
+}
+
+.div-left {
+  font-size: 14px;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.btn-save-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+
+  button {
+    padding: 24px;
+    width: 100% !important;
+    background: #00142f;
+    color: #fff;
+    font-weight: 700;
+  }
+}

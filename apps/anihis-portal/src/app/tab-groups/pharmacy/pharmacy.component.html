@@ -1,147 +1,35 @@
 <ng-container *transloco="let t">
-  <div class="flex justify-content-space-between">
-    <mat-list role="list" class="price-lists">
+  <div class="flex justify-content-space-between" *ngIf="lang$ | async">
+    <mat-list
+      role="list"
+      *ngFor="let category of categoryMenu"
+      [class]="category.categoryName | lowercase"
+    >
       <div class="container-mat-list">
         <div class="flex">
-          <mat-list-item role="listitem">
+          <mat-list-item *ngFor="let item of category.data">
             <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Price list') }} <br />
-                {{ t('medicaments') }}
-              </span>
+              <span class="material-symbols-outlined"> {{ item.icon }} </span>
+              <p>
+                {{ t(item.name) }}
+                <span *ngIf="item.action" style="white-space: nowrap">
+                  {{ '(' + item.action + ')' }}
+                </span>
+              </p>
+
+              <span *ngIf="item.br">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
           </mat-list-item>
         </div>
       </div>
       <div class="container-category-title">
         <p class="text-center">
-          {{ t('Price lists') }}
+          {{ t(category.categoryName) }}
         </p>
       </div>
     </mat-list>
-
-    <mat-list role="list" class="traffic">
-      <div class="container-mat-list">
-        <div class="flex">
-          <mat-list-item role="listitem">
-            <div>
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Procurement') }}
-              </span>
-            </div>
-          </mat-list-item>
-        </div>
-        <div class="flex flex-column">
-          <mat-list-item role="listitem">
-            <span class="material-symbols-outlined"> pets </span
-            >{{ t('Medicaments output') }}</mat-list-item
-          >
-          <mat-list-item role="listitem">
-            <span class="material-symbols-outlined"> pets </span
-            >{{ t('Obligation of the pharmacy') }}</mat-list-item
-          >
-          <mat-list-item role="listitem">
-            <span class="material-symbols-outlined"> pets </span
-            >{{ t('Dissolution of the pharmacy') }}</mat-list-item
-          >
-        </div>
-
-        <div class="flex">
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('State') }} <br />
-                {{ t('pharmacy') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Spending') }} <br />
-                {{ t('medicaments groups') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Spending') }} <br />
-                {{ t('medicaments') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Card') }} <br />
-                {{ t('medicament') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Minimal') }} <br />
-                {{ t('lager') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Optimal') }} <br />
-                {{ t('lager') }}
-              </span>
-            </div>
-          </mat-list-item>
-        </div>
-      </div>
-      <div class="container-category-title more-title">
-        <p class="text-center">
-          {{ t('Medicaments trafficking') }}
-        </p>
-
-        <p class="text-center">
-          {{ t('Reports from the pharmacy') }}
-        </p>
-      </div>
-    </mat-list>
-
-    <mat-list role="list" class="list">
-      <div>
-        <div class="container-mat-list">
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('List') }} <br />
-                {{ t('medicaments') }}
-              </span>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div class="column-icon">
-              <span class="material-symbols-outlined"> pets </span>
-              <span>
-                {{ t('Census differences') }} <br />
-                {{ t('and bookkeeping') }}
-              </span>
-            </div>
-          </mat-list-item>
-        </div>
-      </div>
-      <div class="container-category-title">
-        <p class="text-center">{{ t('List of medicaments') }}</p>
-      </div>
-    </mat-list>
+  </div>
+  <div class="tab-content">
+    <div></div>
   </div>
 </ng-container>
