@@ -39,7 +39,7 @@ export class AuthenticationService {
       requireHttps: false,
 
       // URL of the SPA to redirect the user to after login
-      redirectUri: location.origin,
+      redirectUri: environment.portalUrl,
       postLogoutRedirectUri: environment.portalUrl,
 
       // The SPA's id. The SPA is registerd with this id at the auth-server

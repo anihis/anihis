@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ShellModule } from './shell/shell.module';
 import { MatMenuModule } from '@angular/material/menu';
-import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './shared/services/auth-lib.service';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
@@ -31,7 +30,7 @@ function configureAuth(authenticationService: AuthenticationService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
