@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 .angular
+/anihis/src/WebAPI/app.db
