@@ -3,11 +3,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBaseComponent } from '../../base-components/form-base.component';
 import { DateAdapter } from '@angular/material/core';
 import { Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'anihis-new-owner-dialog',
   templateUrl: './new-owner-dialog.component.html',
   styleUrls: ['./new-owner-dialog.component.scss'],
+  standalone: true,
+  imports: [CommonModule, SharedModule],
 })
 export class NewOwnerDialogComponent extends FormBaseComponent {
   constructor(

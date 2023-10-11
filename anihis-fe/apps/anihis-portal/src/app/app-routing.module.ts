@@ -9,22 +9,6 @@ const routes: Routes = [
     path: '',
     component: ShellComponent,
     // canActivate: [AuthGuard],
-    children: [
-      {
-        path: RouteConstants.NEW_CARDS_ROUTE,
-        loadChildren: () =>
-          import('./tab-groups/protocols/new-card/new-card.module').then(
-            (m) => m.NewCardModule
-          ),
-      },
-      {
-        path: RouteConstants.NEW_ANIMAL_ROUTE,
-        loadChildren: () =>
-          import('./tab-groups/protocols/new-animal/new-animal.module').then(
-            (m) => m.NewAnimalModule
-          ),
-      },
-    ],
   },
   {
     path: '**',
@@ -37,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

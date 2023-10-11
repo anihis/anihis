@@ -10,7 +10,7 @@
           <mat-list-item *ngFor="let item of category.data">
             <div
               class="column-icon"
-              (click)="redirectTo(item.route ? item.route : '/')"
+              (click)="redirectTo(item.name ? item.name : '/')"
             >
               <span class="material-symbols-outlined"> {{ item.icon }} </span>
               <p>

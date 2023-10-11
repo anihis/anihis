@@ -1,11 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { FormBaseComponent } from '../../base-components/form-base.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'anihis-edit-owner-dialog',
   templateUrl: './edit-owner-dialog.component.html',
   styleUrls: ['./edit-owner-dialog.component.scss'],
+  standalone: true,
+  imports: [CommonModule, SharedModule],
 })
 export class EditOwnerDialogComponent extends FormBaseComponent {
   column = [

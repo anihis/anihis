@@ -112,6 +112,15 @@ anihis-toolbar {
   }
 }
 
+.mdc-tab__text-label {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+.mdc-tab__content {
+  width: 100% !important;
+}
+
 mat-list {
   div {
     p {
@@ -196,20 +205,11 @@ body {
 
 mat-card {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+  .mat-mdc-tab-body-wrapper {
+    height: 67.8vh !important;
+  }
 }
 
 div.mat-mdc-select-panel {
   padding: unset !important;
-}
-
-cdk-row,
-cdk-header-row,
-cdk-footer-row {
-  display: flex !important;
-}
-
-cdk-cell,
-cdk-header-cell,
-cdk-footer-cell {
-  flex: 1 !important;
 }

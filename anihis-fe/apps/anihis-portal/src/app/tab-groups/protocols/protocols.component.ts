@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouteConstants } from '../../shared/constants/route.constants';
-import { NavigationService } from '../../shared/services/navigation.service';
 import { MenuItem } from '../../shared/interface/menu-item';
 import { TranslocoService } from '@ngneat/transloco';
 import { tap } from 'rxjs';
+import { TabsComponentService } from '../../shared/services/tabs-component.service';
 
 @Component({
   selector: 'anihis-protocols',
@@ -30,13 +30,11 @@ export class ProtocolsComponent {
           action: 'F5',
           icon: 'pets',
           br: this.br,
-          route: 'protocols/cards',
         },
         {
           name: 'New animal',
           action: 'F8',
           icon: 'pets',
-          route: 'protocols/new-animal',
         },
         { name: 'Admission form', action: '', icon: 'pets' },
         { name: 'Animal from VetUp-a', action: '', icon: 'pets' },
@@ -66,7 +64,7 @@ export class ProtocolsComponent {
   ];
 
   constructor(
-    private navigationService: NavigationService,
+    private tabsComponentService: TabsComponentService,
     private translocoService: TranslocoService
   ) {}
 
@@ -79,6 +77,8 @@ export class ProtocolsComponent {
   }
 
   redirectTo(route: string) {
-    this.navigationService.navigateTo(route);
+    console.log(route);
+    this.tabsComponentService.createOpenTabs(route);
+    // this.navigationService.navigateTo(route);
   }
 }

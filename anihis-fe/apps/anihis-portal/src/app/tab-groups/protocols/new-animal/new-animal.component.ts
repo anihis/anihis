@@ -3,11 +3,24 @@ import { FormBaseComponent } from '../../../shared/base-components/form-base.com
 import { NewAnimal } from '../../../shared/interface/new-animal';
 import { Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../shared/shared.module';
+import { NewOwnersComponent } from './new-owners/new-owners.component';
 
+import { NewOwnerDialogComponent } from '../../../shared/component/new-owner-dialog/new-owner-dialog.component';
+import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
 @Component({
   selector: 'anihis-new-animal',
   templateUrl: './new-animal.component.html',
   styleUrls: ['./new-animal.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    SharedModule,
+    NewOwnerDialogComponent,
+    EditOwnerDialogComponent,
+    NewOwnersComponent,
+  ],
 })
 export class NewAnimalComponent extends FormBaseComponent {
   formData: NewAnimal[] = [

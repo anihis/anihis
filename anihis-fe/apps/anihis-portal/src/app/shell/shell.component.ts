@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
 import { ApplicationStateService } from '../shared/services/application-state.service';
+import { TabsComponentService } from '../shared/services/tabs-component.service';
 
 @Component({
   selector: 'anihis-shell',
@@ -20,9 +21,12 @@ export class ShellComponent implements OnDestroy {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
+  tabsName$ = this.tabsComponentService.openTabs$;
+
   constructor(
     breakpointObserver: BreakpointObserver,
-    private applicationStateService: ApplicationStateService
+    private applicationStateService: ApplicationStateService,
+    private tabsComponentService: TabsComponentService
   ) {
     breakpointObserver
       .observe([

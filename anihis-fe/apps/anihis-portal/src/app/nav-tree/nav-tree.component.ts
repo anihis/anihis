@@ -5,6 +5,7 @@ import {
   MatTreeFlattener,
 } from '@angular/material/tree';
 import { NavigationService } from '../shared/services/navigation.service';
+import { TabsComponentService } from '../shared/services/tabs-component.service';
 
 interface Category {
   name: string;
@@ -52,12 +53,11 @@ export class NavTreeComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private navigationService: NavigationService) {
+  constructor(
+    private navigationService: NavigationService,
+    private tabsComponentService: TabsComponentService
+  ) {
     const CATEGORY_TREE: Category[] = [
-      {
-        name: 'File',
-        children: [],
-      },
       {
         name: 'Protocols',
         children: [
@@ -68,9 +68,8 @@ export class NavTreeComponent {
                 name: 'Cards',
                 action: 'F5',
                 icon: 'pets',
-                route: '/protocols/new-cards',
               },
-              { name: 'New animal', action: 'F8', icon: 'pets', route: '/' },
+              { name: 'New animal', action: 'F8', icon: 'pets' },
               { name: 'Admission form', action: '', icon: 'pets' },
               { name: 'Animal from VetUp-a', action: '', icon: 'pets' },
               { name: 'Reminders', action: '', icon: 'pets' },
@@ -247,7 +246,7 @@ export class NavTreeComponent {
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
-  redirectTo(route: string) {
-    this.navigationService.navigateTo(route);
+  redirectTo(tabName: string) {
+    this.tabsComponentService.createOpenTabs(tabName);
   }
 }

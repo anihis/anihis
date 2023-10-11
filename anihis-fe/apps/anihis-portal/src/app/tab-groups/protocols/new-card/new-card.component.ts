@@ -1,9 +1,20 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DeleteConfirmationDialogComponent } from '../../../shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { EditDataDialogComponent } from '../../../shared/component/edit-data-dialog/edit-data-dialog.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { NameColumnPipe } from '../../../shared/pipe/name-column.pipe';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface PeriodicElement {
   name: string;
@@ -21,9 +32,26 @@ export interface PeriodicElement {
 }
 
 @Component({
+  standalone: true,
   selector: 'anihis-new-card',
   templateUrl: './new-card.component.html',
   styleUrls: ['./new-card.component.scss'],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatCardModule,
+    NameColumnPipe,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatTableModule,
+  ],
 })
 export class NewCardComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

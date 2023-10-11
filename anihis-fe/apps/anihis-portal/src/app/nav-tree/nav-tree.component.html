@@ -2,7 +2,7 @@
   <mat-tree-node
     *matTreeNodeDef="let node"
     matTreeNodePadding
-    (click)="redirectTo(node?.route)"
+    (click)="redirectTo(node?.name)"
   >
     <button mat-icon-button disabled></button>
     <span class="material-symbols-outlined"> {{ node?.icon }} </span>
@@ -14,7 +14,7 @@
   <mat-tree-node
     *matTreeNodeDef="let node; when: hasChild"
     matTreeNodePadding
-    (click)="redirectTo(node?.route)"
+    (click)="redirectTo(node?.name)"
   >
     <button
       mat-icon-button

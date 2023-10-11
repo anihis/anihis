@@ -6,6 +6,8 @@ import { DeleteConfirmationDialogComponent } from '../../../../shared/component/
 import { EditDataDialogComponent } from '../../../../shared/component/edit-data-dialog/edit-data-dialog.component';
 import { NewOwnerDialogComponent } from '../../../../shared/component/new-owner-dialog/new-owner-dialog.component';
 import { EditOwnerDialogComponent } from '../../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from 'apps/anihis-portal/src/app/shared/shared.module';
 
 export interface Owner {
   lastName: string;
@@ -25,6 +27,8 @@ export interface Owner {
   selector: 'anihis-new-owners',
   templateUrl: './new-owners.component.html',
   styleUrls: ['./new-owners.component.scss'],
+  standalone: true,
+  imports: [CommonModule, SharedModule],
 })
 export class NewOwnersComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

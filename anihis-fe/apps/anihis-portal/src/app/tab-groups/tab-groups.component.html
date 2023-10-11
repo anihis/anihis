@@ -1,13 +1,30 @@
 <ng-container *transloco="let t">
-  <mat-tab-group selectedIndex="1" color="accent" [disablePagination]="true">
-    <mat-tab [label]="t('Protocols')">
-      <anihis-protocols></anihis-protocols>
-    </mat-tab>
-    <mat-tab [label]="t('Pharmacy')">
-      <anihis-pharmacy></anihis-pharmacy>
-    </mat-tab>
-    <mat-tab [label]="t('Coders')">
-      <anihis-coders></anihis-coders>
+  <mat-tab-group
+    [selectedIndex]="!isShall && tabs.length ? tabs.length : 0"
+    color="accent"
+    [disablePagination]="true"
+  >
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>
+        <div></div>
+        {{ tab }}
+        <button
+          mat-icon-button
+          class="material-symbols-outlined"
+          (click)="deleteTab(tab)"
+          *ngIf="!isShall; else isShallDiv"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <ng-template #isShallDiv>
+          <div></div>
+        </ng-template>
+      </ng-template>
+      <anihis-protocols *ngIf="tab === 'Protocols'"></anihis-protocols>
+      <anihis-pharmacy *ngIf="tab === 'Pharmacy'"></anihis-pharmacy>
+      <anihis-coders *ngIf="tab === 'Coders'"> </anihis-coders>
+      <anihis-new-card *ngIf="tab === 'Cards'"></anihis-new-card>
+      <anihis-new-animal *ngIf="tab === 'New animal'"></anihis-new-animal>
     </mat-tab>
   </mat-tab-group>
 </ng-container>
