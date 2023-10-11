@@ -66,4 +66,8 @@ export class ToolbarComponent {
   redirectTo(route: string) {
     this.navigationService.navigateTo(route);
   }
+
+  logOut() {
+    console.log('LOG OUT');
+  }
 }

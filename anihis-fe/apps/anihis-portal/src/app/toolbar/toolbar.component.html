@@ -39,6 +39,13 @@
       >
         {{ isMenuOpen ? 'close' : 'menu' }}
       </span>
+      <button
+        mat-raised-button
+        style="background-color: #a88661"
+        (click)="logOut()"
+      >
+        {{ t('Log out') }}
+      </button>
     </div>
   </mat-toolbar>
 </ng-container>
