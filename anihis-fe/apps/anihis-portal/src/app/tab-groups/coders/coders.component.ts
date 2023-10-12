@@ -3,6 +3,7 @@ import { MenuItem } from '../../shared/interface/menu-item';
 import { RouteConstants } from '../../shared/constants/route.constants';
 import { TranslocoService } from '@ngneat/transloco';
 import { tap } from 'rxjs';
+import { TabsComponentService } from '../../shared/services/tabs-component.service';
 
 @Component({
   selector: 'anihis-coders',
@@ -82,7 +83,10 @@ export class CodersComponent {
     },
   ];
 
-  constructor(private translocoService: TranslocoService) {}
+  constructor(
+    private translocoService: TranslocoService,
+    private tabsComponentService: TabsComponentService
+  ) {}
 
   updateMenuItemBr(): void {
     this.categoryMenu.forEach((category) => {
@@ -90,5 +94,9 @@ export class CodersComponent {
         item.br = this.br;
       });
     });
+  }
+
+  redirectTo(route: string) {
+    this.tabsComponentService.createOpenTabs(route);
   }
 }

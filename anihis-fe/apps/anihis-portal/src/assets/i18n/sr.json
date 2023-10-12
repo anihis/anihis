@@ -81,5 +81,7 @@
   "Address": "Adresa",
   "Tel": "Telefon",
   "Email": "Email",
-  "Action": "Izmeni / Obrisi"
+  "Action": "Izmeni / Obrisi",
+  "Add new owner": "Dodaj novog vlasnika",
+  "Save": "Sacuvaj"
 }

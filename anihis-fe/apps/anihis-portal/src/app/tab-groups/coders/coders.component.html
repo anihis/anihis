@@ -8,7 +8,10 @@
       <div class="container-mat-list">
         <div class="flex">
           <mat-list-item *ngFor="let item of category.data">
-            <div class="column-icon">
+            <div
+              class="column-icon"
+              (click)="redirectTo(item.name ? item.name : '/')"
+            >
               <span class="material-symbols-outlined"> {{ item.icon }} </span>
               <p>
                 {{ t(item.name) }}

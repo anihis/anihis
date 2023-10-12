@@ -12,19 +12,20 @@
           mat-icon-button
           class="material-symbols-outlined"
           (click)="deleteTab(tab)"
-          *ngIf="!isShall; else isShallDiv"
         >
           <mat-icon>close</mat-icon>
         </button>
         <ng-template #isShallDiv>
-          <div></div>
-        </ng-template>
+          <div></div> </ng-template
+        >-
       </ng-template>
-      <anihis-protocols *ngIf="tab === 'Protocols'"></anihis-protocols>
-      <anihis-pharmacy *ngIf="tab === 'Pharmacy'"></anihis-pharmacy>
-      <anihis-coders *ngIf="tab === 'Coders'"> </anihis-coders>
-      <anihis-new-card *ngIf="tab === 'Cards'"></anihis-new-card>
-      <anihis-new-animal *ngIf="tab === 'New animal'"></anihis-new-animal>
+      <ng-container [ngSwitch]="tab">
+        <anihis-protocols *ngSwitchCase="'Protocols'"></anihis-protocols>
+        <anihis-pharmacy *ngSwitchCase="'Pharmacy'"></anihis-pharmacy>
+        <anihis-coders *ngSwitchCase="'Coders'"></anihis-coders>
+        <anihis-new-card *ngSwitchCase="'Cards'"></anihis-new-card>
+        <anihis-new-animal *ngSwitchCase="'New animal'"></anihis-new-animal>
+      </ng-container>
     </mat-tab>
   </mat-tab-group>
 </ng-container>

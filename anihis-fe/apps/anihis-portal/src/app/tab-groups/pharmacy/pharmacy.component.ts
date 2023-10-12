@@ -3,6 +3,7 @@ import { MenuItem } from '../../shared/interface/menu-item';
 import { RouteConstants } from '../../shared/constants/route.constants';
 import { tap } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
+import { TabsComponentService } from '../../shared/services/tabs-component.service';
 
 @Component({
   selector: 'anihis-pharmacy',
@@ -78,7 +79,10 @@ export class PharmacyComponent {
     },
   ];
 
-  constructor(private translocoService: TranslocoService) {}
+  constructor(
+    private translocoService: TranslocoService,
+    private tabsComponentService: TabsComponentService
+  ) {}
 
   updateMenuItemBr(): void {
     this.categoryMenu.forEach((category) => {
@@ -86,5 +90,9 @@ export class PharmacyComponent {
         item.br = this.br;
       });
     });
+  }
+
+  redirectTo(route: string) {
+    this.tabsComponentService.createOpenTabs(route);
   }
 }

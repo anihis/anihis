@@ -77,8 +77,6 @@ export class ProtocolsComponent {
   }
 
   redirectTo(route: string) {
-    console.log(route);
     this.tabsComponentService.createOpenTabs(route);
-    // this.navigationService.navigateTo(route);
   }
 }
