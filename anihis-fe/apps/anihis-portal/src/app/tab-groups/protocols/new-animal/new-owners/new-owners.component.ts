@@ -3,24 +3,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeleteConfirmationDialogComponent } from '../../../../shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { EditDataDialogComponent } from '../../../../shared/component/edit-data-dialog/edit-data-dialog.component';
 import { NewOwnerDialogComponent } from '../../../../shared/component/new-owner-dialog/new-owner-dialog.component';
 import { EditOwnerDialogComponent } from '../../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'apps/anihis-portal/src/app/shared/shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
+import { FeNewOwnerService } from './fe-new-owner.service';
 
 export interface Owner {
   lastName: string;
   firstName: string;
   city: string;
   address: string;
-  tel: string;
-  mob: string;
-  jmbg: number;
-  idCardNumber?: number;
+  phoneNumber: string;
+  mobileNumber: string;
+  personalNumber: string;
+  idCardNumber?: string;
   email: string;
   warning: string;
-  uid: string;
+  postalCode?: string;
+  country?: string;
+  passportNumber: string;
 }
 
 @Component({
@@ -29,6 +31,7 @@ export interface Owner {
   styleUrls: ['./new-owners.component.scss'],
   standalone: true,
   imports: [CommonModule, SharedModule],
+  providers: [FeNewOwnerService],
 })
 export class NewOwnersComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,26 +44,30 @@ export class NewOwnersComponent {
       firstName: 'Dusan',
       city: 'Nis',
       address: 'Komren',
-      tel: '0364456',
-      mob: '23163546',
-      jmbg: 45464658,
-      idCardNumber: 123456,
+      phoneNumber: '0364456',
+      mobileNumber: '23163546',
+      personalNumber: '45464658',
+      idCardNumber: '123456',
       email: 'oisdahodiasjho@gmail.com',
       warning: 'Upozorenje !!!!',
-      uid: 'oidjsaoidjsao',
+      postalCode: '18000',
+      country: 'Serbia',
+      passportNumber: '123456',
     },
     {
-      lastName: 'Todorovic',
-      firstName: 'Vlada',
-      city: 'Nis',
-      address: 'Komren',
-      tel: '0364456',
-      mob: '23163546',
-      jmbg: 45464658,
-      idCardNumber: undefined,
+      lastName: 'MIlosevic',
+      firstName: 'Vladimir',
+      city: 'Svrljig',
+      address: 'Omladinska',
+      phoneNumber: '0364456',
+      mobileNumber: '23163546',
+      personalNumber: '45464658',
+      idCardNumber: '123456',
       email: 'oisdahodiasjho@gmail.com',
-      warning: 'Upozorenje3213213 !!!!',
-      uid: 'oidjsaoidjsao',
+      warning: 'Upozorenje !!!!',
+      postalCode: '18000',
+      country: 'Serbia',
+      passportNumber: '123456',
     },
   ];
   dataSource = new MatTableDataSource<any>(this.tableDate);
@@ -79,7 +86,10 @@ export class NewOwnersComponent {
     'action',
   ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private feNewOwnerService: FeNewOwnerService
+  ) {}
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource<any>(this.tableDate);
@@ -138,8 +148,8 @@ export class NewOwnersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'yes') {
-        console.log('Obrisano');
+      if (result) {
+        this.feNewOwnerService.createNewOwner(result);
       }
     });
   }

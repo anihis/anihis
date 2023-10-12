@@ -30,10 +30,10 @@ export class NewOwnerDialogComponent extends FormBaseComponent {
       firstName: ['', Validators.required],
       city: ['', Validators.required],
       address: ['', Validators.required],
-      tel: [''],
-      mob: [''],
-      jmbg: [''],
-      numberOfPassport: [''],
+      phoneNumber: [''],
+      mobileNumber: [''],
+      personalNumber: [''],
+      passportNumber: [''],
       idCardNumber: [0],
       email: [''],
     });
@@ -41,7 +41,7 @@ export class NewOwnerDialogComponent extends FormBaseComponent {
 
   saveChanges() {
     console.log(this.form);
-    this.dialogRef.close(this.form);
+    this.dialogRef.close(this.form.getRawValue());
     // this.dialogRef.close(this.data);
   }
 
