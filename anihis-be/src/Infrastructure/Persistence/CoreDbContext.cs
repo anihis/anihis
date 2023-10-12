@@ -23,6 +23,7 @@ public class CoreDbContext : DbContext, ICoreDbContext
     }
 
     public DbSet<User> Users => Set<User>();
+    public DbSet<Owner> Owners => Set<Owner>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

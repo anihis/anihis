@@ -12,6 +12,7 @@ builder.Services.AddWebAPIServices();
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
+builder.Services.AddScoped<IBaseRepository<Owner>, BaseRepository<ICoreDbContext, Owner>>();
 
 var app = builder.Build();
 

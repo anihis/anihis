@@ -4,6 +4,8 @@ dotnet tool install --global dotnet-ef
 
 ##  CORE
 
-dotnet ef migrations remove --context CoreDbContext --project src\Core.Infrastructure\Core.Infrastructure.csproj --startup-project src\Core.WebAPI\Core.WebAPI.csproj
+dotnet ef migrations remove --context CoreDbContext --project src\Infrastructure\CInfrastructure.csproj --startup-project src\WebAPI\WebAPI.csproj
 
-dotnet ef migrations add Initial --context CoreDbContext --output-dir Persistence\Migrations --project src\Core.Infrastructure\Core.Infrastructure.csproj --startup-project src\Core.WebAPI\Core.WebAPI.csproj
+dotnet ef migrations add Initial --context CoreDbContext --output-dir Persistence\Migrations --project src\Infrastructure\Infrastructure.csproj --startup-project src\WebAPI\WebAPI.csproj
+
+dotnet ef migrations add Owner --context CoreDbContext --output-dir Persistence\Migrations --project src\Infrastructure\Infrastructure.csproj --startup-project src\WebAPI\WebAPI.csproj
