@@ -12,6 +12,10 @@
           mat-icon-button
           class="material-symbols-outlined"
           (click)="deleteTab(tab)"
+          *ngIf="
+            tab !== 'Protocols' && tab !== 'Pharmacy' && tab !== 'Coders';
+            else isShallDiv
+          "
         >
           <mat-icon>close</mat-icon>
         </button>
