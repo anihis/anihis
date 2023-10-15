@@ -7,13 +7,15 @@
     <mat-tab *ngFor="let tab of tabs">
       <ng-template mat-tab-label>
         <div></div>
-        {{ tab }}
+        {{ t(tab) }}
         <button
           mat-icon-button
           class="material-symbols-outlined"
           (click)="deleteTab(tab)"
           *ngIf="
-            tab !== 'Protocols' && tab !== 'Pharmacy' && tab !== 'Coders';
+            tab !== t('Protocols') &&
+              tab !== t('Pharmacy') &&
+              tab !== t('Coders');
             else isShallDiv
           "
         >
@@ -22,9 +24,9 @@
         <ng-template #isShallDiv> <div></div> </ng-template>
       </ng-template>
       <ng-container [ngSwitch]="tab">
-        <anihis-protocols *ngSwitchCase="'Protocols'"></anihis-protocols>
-        <anihis-pharmacy *ngSwitchCase="'Pharmacy'"></anihis-pharmacy>
-        <anihis-coders *ngSwitchCase="'Coders'"></anihis-coders>
+        <anihis-protocols *ngSwitchCase="t('Protocols')"></anihis-protocols>
+        <anihis-pharmacy *ngSwitchCase="t('Pharmacy')"></anihis-pharmacy>
+        <anihis-coders *ngSwitchCase="t('Coders')"></anihis-coders>
         <anihis-new-card *ngSwitchCase="'Cards'"></anihis-new-card>
         <anihis-new-animal *ngSwitchCase="'New animal'"></anihis-new-animal>
       </ng-container>

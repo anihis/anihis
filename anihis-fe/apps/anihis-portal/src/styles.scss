@@ -208,6 +208,7 @@ mat-card {
   .mat-mdc-tab-body-wrapper {
     height: 67.8vh !important;
   }
+  border-radius: 8px !important;
 }
 
 div.mat-mdc-select-panel {
@@ -217,4 +218,17 @@ div.mat-mdc-select-panel {
 mat-paginator,
 table {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 24px;
+  border-top-left-radius: 9px;
+}
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 24px;
+  border-top-right-radius: 9px;
 }

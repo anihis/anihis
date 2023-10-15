@@ -6,7 +6,8 @@ form {
   }
   .div-left:nth-child(odd) {
     width: calc(50% - 16px);
-    margin-right: 16px;
+    margin-right: 8px;
+    margin-bottom: 8px;
   }
 }
 
@@ -21,15 +22,22 @@ form {
 .button-submit-wrapper {
   display: flex;
   width: 100%;
-  margin-top: 36px;
+  margin-top: 72px;
   button {
     background: #00142f !important;
     color: #fff !important;
     width: 100%;
     padding: 24px 0px !important;
+    margin-right: 8px !important;
   }
 }
 
 .text {
   display: flex;
+}
+
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align {
+  display: none !important
+  ;
 }
