@@ -6,6 +6,7 @@ import {
 } from '@angular/material/tree';
 import { NavigationService } from '../shared/services/navigation.service';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
+import { ApplicationStateService } from '../shared/services/application-state.service';
 
 interface Category {
   name: string;
@@ -39,6 +40,7 @@ export class NavTreeComponent {
     };
   };
 
+  isMenuOpen$ = this.applicationStateService.isOpenMenu$;
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     (node) => node.level,
     (node) => node.expandable
@@ -55,7 +57,8 @@ export class NavTreeComponent {
 
   constructor(
     private navigationService: NavigationService,
-    private tabsComponentService: TabsComponentService
+    private tabsComponentService: TabsComponentService,
+    private applicationStateService: ApplicationStateService
   ) {
     const CATEGORY_TREE: Category[] = [
       {

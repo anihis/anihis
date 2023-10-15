@@ -213,3 +213,8 @@ mat-card {
 div.mat-mdc-select-panel {
   padding: unset !important;
 }
+
+mat-paginator,
+table {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+}

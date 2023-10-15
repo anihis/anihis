@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TranslationsService } from '../shared/services/translations.service';
 import { Languages } from '../shared/constants/languages';
 import { ThemeService } from '../shared/services/theme.service';
