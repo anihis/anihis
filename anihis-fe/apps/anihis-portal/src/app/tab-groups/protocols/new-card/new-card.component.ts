@@ -1,8 +1,12 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { DeleteConfirmationDialogComponent } from '../../../shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { EditDataDialogComponent } from '../../../shared/component/edit-data-dialog/edit-data-dialog.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
@@ -15,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { CardHistoryComponent } from './card-history/card-history.component';
+import { NewCardService } from './new-card.service';
 
 export interface PeriodicElement {
   name: string;
@@ -29,6 +35,10 @@ export interface PeriodicElement {
   address: string;
   tel: string;
   email: string;
+  dateOfEdit?: Date;
+  veterinarian?: string;
+  nameOfClinic?: string;
+  licenseNumber?: number;
 }
 
 @Component({
@@ -51,13 +61,16 @@ export interface PeriodicElement {
     MatDatepickerModule,
     MatButtonModule,
     MatTableModule,
+    CardHistoryComponent,
   ],
+  providers: [NewCardService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NewCardComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageSize = 6;
   pageIndex = 0;
-
+  isDisplayHistoryCard$ = this.newCardService.isOpenHistoryCard$;
   tableDate: PeriodicElement[] = [
     {
       numberCard: 1,
@@ -73,6 +86,7 @@ export class NewCardComponent implements AfterViewInit {
       tel: '+381 213546',
       email: 'vladimir@gmail.com',
     },
+
     {
       numberCard: 2,
       name: 'Aleksandar',
@@ -134,7 +148,10 @@ export class NewCardComponent implements AfterViewInit {
     'action',
   ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private newCardService: NewCardService
+  ) {}
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource<any>(this.tableDate);
@@ -161,17 +178,21 @@ export class NewCardComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
-  openDeleteConfirmationDialog(): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-      width: '465px',
-      data: 'Da li ste sigurni da želite da obrišete?',
-    });
+  // openDeleteConfirmationDialog(): void {
+  //   const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+  //     width: '465px',
+  //     data: 'Da li ste sigurni da želite da obrišete?',
+  //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'yes') {
-        console.log('Obrisano');
-      }
-    });
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result === 'yes') {
+  //       console.log('Obrisano');
+  //     }
+  //   });
+  // }
+
+  toggleHistoryCard() {
+    this.newCardService.isOpenHistory(true);
   }
 
   openEditDialog(data: any): void {

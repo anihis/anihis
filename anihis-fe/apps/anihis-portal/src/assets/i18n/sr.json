@@ -81,7 +81,13 @@
   "Address": "Adresa",
   "Tel": "Telefon",
   "Email": "Email",
-  "Action": "Izmeni / Obrisi",
+  "Action": "Izmeni / Pregled istorije",
   "Add new owner": "Dodaj novog vlasnika",
-  "Save": "Sacuvaj"
+  "Save": "Sacuvaj",
+  "Breeds from VetUp": "Rase iz VetUp",
+  "Log out": "Odjavi se ",
+  "Date Of Edit": "Datum izmene",
+  "Name Of Clinic": "Ime Ambulante",
+  "License Number": "Broj licence",
+  "Overview of card history": "Pregled istorije kartona"
 }

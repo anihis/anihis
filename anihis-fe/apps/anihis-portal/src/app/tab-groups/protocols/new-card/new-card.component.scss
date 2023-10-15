@@ -2,8 +2,10 @@ section {
   display: flex;
   justify-content: center;
   mat-card {
-    width: 90%;
+    width: calc(100% - 48px);
     margin: 40px;
+    background: #fff !important;
+
     .mat-mdc-table {
       box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
     }
@@ -14,4 +16,19 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.action-icons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-evenly;
+}
+mat-card {
+  background: #fff !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.card-animal {
+  padding: 16px;
 }
