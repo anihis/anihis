@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { OwnersService } from 'libs/api/owners.service';
-import { CreateOwnerCommand } from 'libs/model/createOwnerCommand';
+import { OwnersService } from 'libs/portal-data/api/owners.service';
+import { CreateOwnerCommand } from 'libs/portal-data/model/createOwnerCommand';
 
 @Injectable()
 export class FeNewOwnerService {
