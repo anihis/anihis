@@ -4,6 +4,7 @@ import { Languages } from '../shared/constants/languages';
 import { ThemeService } from '../shared/services/theme.service';
 import { ApplicationStateService } from '../shared/services/application-state.service';
 import { NavigationService } from '../shared/services/navigation.service';
+import { AuthenticationService } from '../shared/services/auth-lib.service';
 
 @Component({
   selector: 'anihis-toolbar',
@@ -23,7 +24,8 @@ export class ToolbarComponent {
     private translationsService: TranslationsService,
     private themeService: ThemeService,
     private applicationStateService: ApplicationStateService,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private authenticationService: AuthenticationService
   ) {}
 
   menuOpened() {
@@ -61,7 +63,7 @@ export class ToolbarComponent {
     this.navigationService.navigateTo(route);
   }
 
-  logOut() {
-    console.log('LOG OUT');
+  async logOut() {
+    await this.authenticationService.logout();
   }
 }
