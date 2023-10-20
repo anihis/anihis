@@ -1,5 +1,11 @@
 <ng-container *transloco="let t">
-  <h2 mat-dialog-title>{{ t('Edit') }}</h2>
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Edit') }}</h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
 
   <form [formGroup]="form">
     <div class="div-left" style="font-size: 14px">
@@ -77,7 +83,8 @@
         <mat-label>{{ t('Owner') }} </mat-label>
         <input matInput formControlName="owner" />
       </mat-form-field>
-
+    </div>
+    <div class="div-left" style="font-size: 14px">
       <mat-form-field appearance="outline">
         <mat-label>{{ t('Email') }} </mat-label>
         <input matInput formControlName="email" />
@@ -89,7 +96,8 @@
         <mat-label>{{ t('Address') }} </mat-label>
         <input matInput formControlName="address" />
       </mat-form-field>
-
+    </div>
+    <div class="div-left" style="font-size: 14px">
       <mat-form-field appearance="outline">
         <mat-label>{{ t('Tel') }} </mat-label>
         <input matInput formControlName="tel" />

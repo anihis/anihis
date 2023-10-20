@@ -23,4 +23,8 @@ export class DeleteConfirmationDialogComponent {
   onYesClick(): void {
     this.dialogRef.close('yes');
   }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

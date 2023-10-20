@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { ApplicationStateService } from '../shared/services/application-state.service';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
 
@@ -36,7 +36,12 @@ export class ShellComponent implements OnDestroy {
         Breakpoints.Large,
         Breakpoints.XLarge,
       ])
-      .pipe(takeUntil(this.destroyed))
+      .pipe(
+        tap(() => {
+          this.tabsComponentService.closeAllTab();
+        }),
+        takeUntil(this.destroyed)
+      )
       .subscribe((result: any) => {
         for (const query of Object.keys(result.breakpoints)) {
           if (result.breakpoints[query]) {

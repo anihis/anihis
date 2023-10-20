@@ -4,7 +4,6 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
-import { NavigationService } from '../shared/services/navigation.service';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
 import { ApplicationStateService } from '../shared/services/application-state.service';
 
@@ -56,7 +55,6 @@ export class NavTreeComponent {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor(
-    private navigationService: NavigationService,
     private tabsComponentService: TabsComponentService,
     private applicationStateService: ApplicationStateService
   ) {

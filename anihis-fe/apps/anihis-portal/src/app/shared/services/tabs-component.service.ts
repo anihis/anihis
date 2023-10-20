@@ -15,6 +15,11 @@ export class TabsComponentService {
     this._openTabs.next(this.openTabsArray);
   }
 
+  closeAllTab() {
+    this._openTabs.next([]);
+    this.openTabsArray = [];
+  }
+
   createOpenTabs(value: string) {
     if (!this.openTabsArray.includes(value)) {
       this.openTabsArray.push(value);

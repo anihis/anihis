@@ -1,6 +1,13 @@
-<h2 mat-dialog-title>Obriši</h2>
-<mat-dialog-content>{{ data }}</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Ne</button>
-  <button mat-button (click)="onYesClick()">Da</button>
-</mat-dialog-actions>
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Delete') }}</h2>
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+  <mat-dialog-content>{{ data }}</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">{{ t('No') }}</button>
+    <button mat-button (click)="onYesClick()">{{ t('Yes') }}</button>
+  </mat-dialog-actions>
+</ng-container>

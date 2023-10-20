@@ -1,5 +1,11 @@
 <ng-container *transloco="let t">
-  <h2 mat-dialog-title>{{ t('Add new owner') }}</h2>
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Add new owner') }}</h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
 
   <form [formGroup]="form">
     <div class="div-left">
