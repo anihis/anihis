@@ -22,8 +22,14 @@ public class CoreDbContext : DbContext, ICoreDbContext
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
     }
 
-    public DbSet<User> Users => Set<User>();
+    public DbSet<Animal> Animals => Set<Animal>();
+    public DbSet<Breed> Breeds => Set<Breed>();
+    public DbSet<HealthRecord> HealthRecords => Set<HealthRecord>();
     public DbSet<Owner> Owners => Set<Owner>();
+    public DbSet<Species> Species => Set<Species>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<Veterinarian> Veterinarians => Set<Veterinarian>();
+    public DbSet<VeterinaryClinic> VeterinaryClinics => Set<VeterinaryClinic>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

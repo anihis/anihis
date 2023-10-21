@@ -6,19 +6,16 @@ namespace anihis.Application.Owners.Commands.Create;
 public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
 {
     private readonly ICoreDbContext _context;
-    private readonly ICurrentUserService _currentUserService;
     private readonly IBaseRepository<Owner> _ownerRepository;
 
     public CreateOwnerCommandHandler
     (
         ICoreDbContext context,
-        ICurrentUserService currentUserService,
-        IBaseRepository<Owner> userRepository
+        IBaseRepository<Owner> ownerRepository
     )
     {
         _context = context;
-        _currentUserService = currentUserService;
-        _ownerRepository = userRepository;
+        _ownerRepository = ownerRepository;
     }
 
     public async Task Handle(CreateOwnerCommand request, CancellationToken cancellationToken)

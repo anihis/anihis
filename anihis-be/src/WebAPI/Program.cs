@@ -11,8 +11,14 @@ builder.Services.AddInfrastructureServices(builder.Configuration, builder.Enviro
 builder.Services.AddWebAPIServices();
 builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
+builder.Services.AddScoped<IBaseRepository<Animal>, BaseRepository<ICoreDbContext, Animal>>();
+builder.Services.AddScoped<IBaseRepository<Breed>, BaseRepository<ICoreDbContext, Breed>>();
+builder.Services.AddScoped<IBaseRepository<HealthRecord>, BaseRepository<ICoreDbContext, HealthRecord>>();
 builder.Services.AddScoped<IBaseRepository<Owner>, BaseRepository<ICoreDbContext, Owner>>();
+builder.Services.AddScoped<IBaseRepository<Species>, BaseRepository<ICoreDbContext, Species>>();
+builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
+builder.Services.AddScoped<IBaseRepository<Veterinarian>, BaseRepository<ICoreDbContext, Veterinarian>>();
+builder.Services.AddScoped<IBaseRepository<VeterinaryClinic>, BaseRepository<ICoreDbContext, VeterinaryClinic>>();
 
 //builder.Services.AddCors(options =>
 //{

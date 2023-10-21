@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace anihis.Domain.Entities;
+﻿namespace anihis.Domain.Entities;
 public class Owner : BaseEntity
 {
     public string FirstName { get; set; }
@@ -19,4 +13,5 @@ public class Owner : BaseEntity
     public string? PersonalNumber { get; set; }
     public string? PassportNumber { get; set; }
     public string? IdCardNumber { get; set; }
+    public DateTime? DeleteDateTimeUtc { get; set; }
 }
