@@ -14,6 +14,27 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
 builder.Services.AddScoped<IBaseRepository<Owner>, BaseRepository<ICoreDbContext, Owner>>();
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("CorsPolicy", builder => builder
+//        .AllowAnyMethod()
+//        .AllowAnyHeader()
+//        .SetIsOriginAllowed(origin => true)
+//        .AllowCredentials());
+//});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4000")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+                      });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +57,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 

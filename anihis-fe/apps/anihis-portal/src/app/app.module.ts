@@ -19,6 +19,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AuthenticationService } from './shared/services/auth-lib.service';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
+import {
+  ApiModule as CoreApiModule,
+  Configuration as CoreConfiguration,
+} from 'libs/portal-data/data-access/src';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
@@ -40,6 +44,12 @@ function configureAuth(authenticationService: AuthenticationService) {
     MatMenuModule,
     TranslocoModule,
     ShellModule,
+    CoreApiModule.forRoot(
+      () =>
+        new CoreConfiguration({
+          basePath: environment.apiUrl,
+        })
+    ),
     TranslocoLocaleModule.forRoot({
       langToLocaleMapping: {
         en: 'en-US',

@@ -9,6 +9,7 @@ import { NewOwnersComponent } from './new-owners/new-owners.component';
 
 import { NewOwnerDialogComponent } from '../../../shared/component/new-owner-dialog/new-owner-dialog.component';
 import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
+import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
 @Component({
   selector: 'anihis-new-animal',
   templateUrl: './new-animal.component.html',
@@ -21,6 +22,7 @@ import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-d
     EditOwnerDialogComponent,
     NewOwnersComponent,
   ],
+  providers: [OwnersService],
 })
 export class NewAnimalComponent extends FormBaseComponent {
   formData: NewAnimal[] = [

@@ -9,7 +9,7 @@ export const environment = {
   // apiUrl: 'https://portal-geekywiki-qa.azurewebsites.net/api',
   authorityUrl: 'http://localhost:8080/realms/Anihis',
   portalUrl: 'http://localhost:4000',
-  // apiUrl: 'https://core-api.geekywiki.local',
+  apiUrl: 'https://localhost:5101',
   sentryDSN: '',
   //WITHOUT LOCAL BACKEND UNCOMMENT LINE BELOW
   // authorityUrl: 'https://authority-geekywiki-qa.azurewebsites.net/auth/realms/GeekyWiki'

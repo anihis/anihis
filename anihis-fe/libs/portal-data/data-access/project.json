@@ -1,0 +1,43 @@
+{
+  "name": "portal-data-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/portal-data/data-access/src",
+  "prefix": "goatsports",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/libs/portal-data/data-access"],
+      "options": {
+        "project": "libs/portal-data/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/portal-data/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/portal-data/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/portal-data/data-access"],
+      "options": {
+        "jestConfig": "libs/portal-data/data-access/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/portal-data/data-access/**/*.ts",
+          "libs/portal-data/data-access/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

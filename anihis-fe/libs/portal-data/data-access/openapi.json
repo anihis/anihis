@@ -7,9 +7,7 @@
   "paths": {
     "/Owners": {
       "get": {
-        "tags": [
-          "Owners"
-        ],
+        "tags": ["Owners"],
         "responses": {
           "200": {
             "description": "Success",
@@ -43,9 +41,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Owners"
-        ],
+        "tags": ["Owners"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -74,9 +70,7 @@
     },
     "/Owners/{uid}": {
       "get": {
-        "tags": [
-          "Owners"
-        ],
+        "tags": ["Owners"],
         "parameters": [
           {
             "name": "uid",
@@ -113,9 +107,7 @@
     },
     "/Users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "Success",
@@ -149,9 +141,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,9 +170,7 @@
     },
     "/Users/{uid}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "uid",
