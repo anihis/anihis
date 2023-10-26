@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,9 @@ import { EditOwnerDialogComponent } from '../../../../shared/component/edit-owne
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { FeNewOwnerService } from './fe-new-owner.service';
+import { tap } from 'rxjs';
+import { GetOwnersResult } from 'libs/portal-data/data-access/src';
+import { ApplicationStateService } from '../../../../shared/services/application-state.service';
 
 export interface Owner {
   lastName: string;
@@ -33,53 +36,26 @@ export interface Owner {
   imports: [CommonModule, SharedModule],
   providers: [FeNewOwnerService],
 })
-export class NewOwnersComponent {
+export class NewOwnersComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageSize = 6;
   pageIndex = 0;
-
-  tableDate: Owner[] = [
-    {
-      lastName: 'Todorovic',
-      firstName: 'Dusan',
-      city: 'Nis',
-      address: 'Komren',
-      phoneNumber: '0364456',
-      mobileNumber: '23163546',
-      personalNumber: '45464658',
-      idCardNumber: '123456',
-      email: 'oisdahodiasjho@gmail.com',
-      warning: 'Upozorenje !!!!',
-      postalCode: '18000',
-      country: 'Serbia',
-      passportNumber: '123456',
-    },
-    {
-      lastName: 'MIlosevic',
-      firstName: 'Vladimir',
-      city: 'Svrljig',
-      address: 'Omladinska',
-      phoneNumber: '0364456',
-      mobileNumber: '23163546',
-      personalNumber: '45464658',
-      idCardNumber: '123456',
-      email: 'oisdahodiasjho@gmail.com',
-      warning: 'Upozorenje !!!!',
-      postalCode: '18000',
-      country: 'Serbia',
-      passportNumber: '123456',
-    },
-  ];
-  dataSource = new MatTableDataSource<any>(this.tableDate);
+  dataSource: MatTableDataSource<GetOwnersResult> =
+    new MatTableDataSource<GetOwnersResult>([]);
+  data$ = this.feNewOwnerService.fetchData().pipe(
+    tap((results: GetOwnersResult[]) => {
+      this.dataSource.data = results;
+    })
+  );
 
   displayedColumns: string[] = [
     'lastName',
     'firstName',
     'city',
     'address',
-    'tel',
-    'mob',
-    'jmbg',
+    'phoneNumber',
+    'mobileNumber',
+    'personalNumber',
     'idCardNumber',
     'email',
     'warning',
@@ -88,11 +64,11 @@ export class NewOwnersComponent {
 
   constructor(
     private dialog: MatDialog,
-    private feNewOwnerService: FeNewOwnerService
+    private feNewOwnerService: FeNewOwnerService,
+    private applicationStateService: ApplicationStateService
   ) {}
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource<any>(this.tableDate);
     this.dataSource.paginator = this.paginator;
   }
 
@@ -108,10 +84,11 @@ export class NewOwnersComponent {
 
   applyFilter(event: any, column: string) {
     const filterValue = event.target.value.trim().toLowerCase();
-    this.dataSource.filterPredicate = (data, filter) => {
-      const value = data[column].toString().toLowerCase();
-      return value.includes(filter);
-    };
+    console.log(this.dataSource);
+    // this.dataSource.filterPredicate = (data, filter) => {
+    //   // const value = data[column].toString().toLowerCase();
+    //   return value.includes(filter);
+    // };
 
     this.dataSource.filter = filterValue;
   }
@@ -129,7 +106,11 @@ export class NewOwnersComponent {
     });
   }
 
-  openEditDialog(data: any): void {
+  selectedRow(rowData: any) {
+    this.applicationStateService.setSelectedRowData(rowData);
+  }
+
+  openEditDialog(data: Owner): void {
     const dialogRef = this.dialog.open(EditOwnerDialogComponent, {
       width: '600px',
       data: { ...data },

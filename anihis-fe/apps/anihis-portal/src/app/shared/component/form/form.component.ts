@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -15,6 +16,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
+import { FormBaseComponent } from '../../base-components/form-base.component';
+import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({
   selector: 'anihis-form',
@@ -36,10 +39,24 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   @Input() formData!: any;
   @Input() form!: any;
   @Output() formDataSubmit = new EventEmitter<any>();
+
+  constructor(private applicationStateService: ApplicationStateService) {}
+
+  ngOnInit(): void {
+    this.form.valueChanges.subscribe((formValue: any) => {
+      formValue.owner.length === 0
+        ? this.applicationStateService.setSelectedRowData([])
+        : null;
+    });
+  }
+
+  clear() {
+    this.form.reset();
+  }
 
   submit() {
     this.formDataSubmit.emit(this.form);

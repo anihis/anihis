@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { SubSink } from 'subsink/dist/subsink';
-// import { RoleType } from '@goatsports/core/data-access';
 
 @Component({
   template: '',

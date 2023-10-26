@@ -1,11 +1,11 @@
 <ng-container *transloco="let t">
-  <section>
-    <div class="add-new-owner-wrapper">
-      <button mat-raised-button (click)="openAddNewOwnerDialog()">
-        {{ t('Add new owner') }}
-      </button>
-    </div>
-    <mat-card>
+  <ng-container *ngIf="data$ | async as data">
+    <section>
+      <div class="add-new-owner-wrapper">
+        <button mat-raised-button (click)="openAddNewOwnerDialog()">
+          {{ t('Add new owner') }}
+        </button>
+      </div>
       <div class="filter-container">
         <ng-container
           *ngFor="let column of displayedColumns"
@@ -34,7 +34,12 @@
           <th mat-header-cell *matHeaderCellDef>
             {{ column | nameColumn | titlecase | transloco }}
           </th>
-          <td mat-cell *matCellDef="let element">
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="selectedRow(element)"
+            style="cursor: pointer"
+          >
             <ng-container *ngIf="column === 'action'; else notActionColumn">
               <div
                 style="display: flex; gap: 8px; justify-content: space-evenly"
@@ -56,7 +61,12 @@
                 {{ element[column] | date : 'd/M/yy' }}
               </div>
               <ng-template #idCardNumberBlock>
-                <div *ngIf="element[column] !== undefined; else defaultBlock">
+                <div
+                  *ngIf="
+                    element[column] !== undefined && element[column] !== null;
+                    else defaultBlock
+                  "
+                >
                   {{ element[column] }}
                 </div>
                 <ng-template #defaultBlock>
@@ -76,6 +86,6 @@
         [pageSizeOptions]="[2, 4, 6]"
         showFirstLastButtons
       ></mat-paginator>
-    </mat-card>
-  </section>
+    </section>
+  </ng-container>
 </ng-container>

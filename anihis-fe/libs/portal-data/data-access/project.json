@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/portal-data/data-access/src",
-  "prefix": "goatsports",
+  "prefix": "anihis",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",

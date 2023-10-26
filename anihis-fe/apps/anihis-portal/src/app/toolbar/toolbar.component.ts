@@ -17,9 +17,9 @@ export class ToolbarComponent {
   readonly availableLanguages = Languages.availableLanguages;
   isChecked = false;
   isLangMenuOpen = false;
-  isMenuOpen = false;
+  isMenuOpen$ = this.applicationStateService.isOpenMenu$;
   flagPath = '../assets/icons/flag/serbia.png';
-
+  isOpen = false;
   constructor(
     private translationsService: TranslationsService,
     private themeService: ThemeService,
@@ -36,27 +36,26 @@ export class ToolbarComponent {
     this.isLangMenuOpen = false;
   }
 
-  changeFlag(activeLanguage: string) {
-    if (!activeLanguage) {
-      return '../assets/icons/flag/serbia.png';
-    }
-    return activeLanguage === 'en'
-      ? '../assets/icons/flag/united-kingdom.png'
-      : '../assets/icons/flag/serbia.png';
-  }
+  // changeFlag(activeLanguage: string) {
+  //   if (!activeLanguage) {
+  //     return '../assets/icons/flag/serbia.png';
+  //   }
+  //   return activeLanguage === 'en'
+  //     ? '../assets/icons/flag/united-kingdom.png'
+  //     : '../assets/icons/flag/serbia.png';
+  // }
 
   getCurrentTheme() {
     return this.themeService.getCurrentTheme();
   }
 
-  openMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-    this.applicationStateService.isOpenMenu(this.isMenuOpen);
+  openMenu(isOpen: boolean) {
+    this.applicationStateService.isOpenMenu(isOpen);
   }
 
   async changeLanguage(language: string) {
     this.translationsService.changeLanguage(language);
-    this.flagPath = this.changeFlag(language);
+    // this.flagPath = this.changeFlag(language);
   }
 
   redirectTo(route: string) {

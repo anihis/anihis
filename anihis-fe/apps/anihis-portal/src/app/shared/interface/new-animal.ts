@@ -13,4 +13,5 @@ export interface NewAnimal {
   placeholder: string;
   required: boolean;
   options?: SelectFieldOption[];
+  page: string;
 }

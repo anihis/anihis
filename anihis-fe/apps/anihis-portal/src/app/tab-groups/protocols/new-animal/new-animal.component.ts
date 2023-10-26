@@ -10,6 +10,9 @@ import { NewOwnersComponent } from './new-owners/new-owners.component';
 import { NewOwnerDialogComponent } from '../../../shared/component/new-owner-dialog/new-owner-dialog.component';
 import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
 import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
+import { NewAnimalService } from './new-animal.service';
+import { tap } from 'rxjs';
+import { ApplicationStateService } from '../../../shared/services/application-state.service';
 @Component({
   selector: 'anihis-new-animal',
   templateUrl: './new-animal.component.html',
@@ -25,6 +28,15 @@ import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.servi
   providers: [OwnersService],
 })
 export class NewAnimalComponent extends FormBaseComponent {
+  selectedRowData$ = this.applicationStateService.selectedRowData$.pipe(
+    tap((x) => {
+      if (x.length != 0 && x.length == undefined) {
+        this.form.controls.owner.patchValue(x.firstName + ' ' + x.lastName);
+        this.form.controls.ownerUid.patchValue(x.uid);
+      }
+    })
+  );
+
   formData: NewAnimal[] = [
     {
       label: 'Card',
@@ -35,6 +47,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: '',
       required: false,
+      page: 'NewAnimal',
     },
     {
       label: 'Name',
@@ -45,6 +58,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: true,
+      page: 'NewAnimal',
     },
     {
       label: 'Gender',
@@ -59,6 +73,7 @@ export class NewAnimalComponent extends FormBaseComponent {
         { value: 'male', viewValue: 'Male' },
         { value: 'female', viewValue: 'Female' },
       ],
+      page: 'NewAnimal',
     },
     {
       label: 'Type',
@@ -73,6 +88,7 @@ export class NewAnimalComponent extends FormBaseComponent {
         { value: 'male', viewValue: 'Male' },
         { value: 'female', viewValue: 'Female' },
       ],
+      page: 'NewAnimal',
     },
     {
       label: 'Breed',
@@ -87,6 +103,7 @@ export class NewAnimalComponent extends FormBaseComponent {
         { value: 'test', viewValue: 'Test' },
         { value: 'test2', viewValue: 'Test2' },
       ],
+      page: 'NewAnimal',
     },
     {
       label: 'Color',
@@ -97,6 +114,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
     {
       label: 'Date of Birth',
@@ -107,6 +125,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'date',
       placeholder: 'Enter your Date of Birth',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -118,6 +137,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -129,17 +149,19 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
       label: 'Owner',
       formControlName: 'owner',
       type: 'string',
-      readonly: true,
+      readonly: false,
       value: '',
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -151,6 +173,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'date',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
     {
       label: 'Microchip',
@@ -161,6 +184,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
     {
       label: 'Pedigree',
@@ -171,6 +195,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
     {
       label: 'Passport Date',
@@ -181,6 +206,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -192,6 +218,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -203,6 +230,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'checkbox',
       placeholder: '',
       required: false,
+      page: 'NewAnimal',
     },
 
     {
@@ -214,6 +242,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       inputType: 'date',
       placeholder: 'Enter your',
       required: false,
+      page: 'NewAnimal',
     },
   ];
 
@@ -228,6 +257,7 @@ export class NewAnimalComponent extends FormBaseComponent {
     warning: [''],
     identification: [''],
     owner: [''],
+    ownerUid: [''],
     markingDate: [''],
     microchip: [''],
     pedigree: [''],
@@ -237,15 +267,17 @@ export class NewAnimalComponent extends FormBaseComponent {
     dateOfSterilization: [''],
   });
 
-  constructor(private dateAdapter: DateAdapter<Date>) {
+  constructor(
+    private dateAdapter: DateAdapter<Date>,
+    private applicationStateService: ApplicationStateService
+  ) {
     super();
     this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY
   }
 
   submit(event: any) {
     this.form = event;
-    console.log(this.form);
     if (this.checkFormValidity()) return;
-    console.log(this.form);
+    console.log(this.form.value);
   }
 }

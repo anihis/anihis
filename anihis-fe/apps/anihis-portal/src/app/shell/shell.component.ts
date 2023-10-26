@@ -1,6 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { ApplicationStateService } from '../shared/services/application-state.service';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
 
@@ -9,10 +9,11 @@ import { TabsComponentService } from '../shared/services/tabs-component.service'
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
 })
-export class ShellComponent implements OnDestroy {
+export class ShellComponent implements OnDestroy, OnInit {
   destroyed = new Subject<void>();
   currentScreenSize!: string;
-  isMenuOpen$ = this.applicationStateService.isOpenMenu$;
+  isMenuOpen$!: any;
+  isMenuOpenData!: any;
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
@@ -24,11 +25,13 @@ export class ShellComponent implements OnDestroy {
   tabsName$ = this.tabsComponentService.openTabs$;
 
   constructor(
-    breakpointObserver: BreakpointObserver,
+    private breakpointObserver: BreakpointObserver,
     private applicationStateService: ApplicationStateService,
     private tabsComponentService: TabsComponentService
-  ) {
-    breakpointObserver
+  ) {}
+
+  ngOnInit() {
+    this.breakpointObserver
       .observe([
         Breakpoints.XSmall,
         Breakpoints.Small,
@@ -37,19 +40,25 @@ export class ShellComponent implements OnDestroy {
         Breakpoints.XLarge,
       ])
       .pipe(
-        tap(() => {
+        tap((result: any) => {
           this.tabsComponentService.closeAllTab();
+          for (const query of Object.keys(result.breakpoints)) {
+            if (result.breakpoints[query]) {
+              this.currentScreenSize =
+                this.displayNameMap.get(query) ?? 'Unknown';
+              console.log(this.currentScreenSize);
+            }
+          }
         }),
         takeUntil(this.destroyed)
       )
-      .subscribe((result: any) => {
-        for (const query of Object.keys(result.breakpoints)) {
-          if (result.breakpoints[query]) {
-            this.currentScreenSize =
-              this.displayNameMap.get(query) ?? 'Unknown';
-            console.log(this.currentScreenSize);
-          }
-        }
+      .subscribe();
+
+    this.applicationStateService.isOpenMenu$
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((isMenuOpen: any) => {
+        console.log(isMenuOpen);
+        this.isMenuOpenData = isMenuOpen;
       });
   }
 

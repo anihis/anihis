@@ -7,6 +7,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [ToolbarComponent],
 
   imports: [CommonModule, SharedModule],
-  exports: [ToolbarComponent, SharedModule]
+  exports: [ToolbarComponent, SharedModule],
 })
-export class ToolbarModule { }
+export class ToolbarModule {}

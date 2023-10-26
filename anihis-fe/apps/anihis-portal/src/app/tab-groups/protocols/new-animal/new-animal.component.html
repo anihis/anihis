@@ -1,9 +1,13 @@
-<main>
-  <anihis-form
-    [formData]="formData"
-    [form]="form"
-    (formDataSubmit)="submit($event)"
-  ></anihis-form>
+<ng-container *transloco="let t">
+  <main *ngIf="selectedRowData$ | async as selectedRowData">
+    <mat-card *ngIf="selectedRowData.length !== 0">
+      <anihis-form
+        [formData]="formData"
+        [form]="form"
+        (formDataSubmit)="submit($event)"
+      ></anihis-form>
+    </mat-card>
 
-  <anihis-new-owners></anihis-new-owners>
-</main>
+    <anihis-new-owners *ngIf="selectedRowData.length === 0"></anihis-new-owners>
+  </main>
+</ng-container>

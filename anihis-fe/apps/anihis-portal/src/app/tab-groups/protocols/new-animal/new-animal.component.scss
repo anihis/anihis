@@ -2,13 +2,18 @@ main {
   display: flex;
   width: 100%;
   height: 100%;
-  anihis-form {
-    display: block;
-    padding: 8px 0px 8px 8px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+  justify-content: center;
+  mat-card {
+    width: 40%;
+    margin: 24px 0px;
+    anihis-form {
+      display: block;
+      padding: 8px 0px 8px 8px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+    }
   }
+
   anihis-new-owners {
-    margin: 24px;
-    width: 80%;
+    width: 100%;
   }
 }

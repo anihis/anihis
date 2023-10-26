@@ -1,18 +1,18 @@
 <ng-container *transloco="let t">
   <mat-toolbar>
     <div class="container-logo-wrapper cursor" (click)="redirectTo('/')">
-      <span class="material-symbols-outlined"> pet_supplies </span>
+      <span class="material-symbols-outlined">pet_supplies</span>
       <h1>ANIHIS</h1>
     </div>
 
     <div class="container-menu">
-      <button
+      <!-- <button
         mat-button
         [matMenuTriggerFor]="menu"
         (menuOpened)="menuOpened()"
         (menuClosed)="menuClosed()"
         #menuTrigger="matMenuTrigger"
-        [ngClass]="isLangMenuOpen ? 'opacity-element' : ''"
+        [ngClass]="{ 'opacity-element': isLangMenuOpen }"
       >
         <img [src]="flagPath" width="24px" height="12px" />
       </button>
@@ -27,25 +27,54 @@
         >
           {{ t(language.label) }}
         </button>
-      </mat-menu>
+      </mat-menu> -->
 
       <mat-slide-toggle anihisThemeSwitch [(ngModel)]="isChecked">
         {{ t('Dark mode') }}
       </mat-slide-toggle>
-      <span
-        *ngIf="currentScreenSize !== 'XLarge'"
-        (click)="openMenu()"
-        class="material-symbols-outlined cursor"
-      >
-        {{ isMenuOpen ? 'close' : 'menu' }}
-      </span>
-      <button
-        mat-raised-button
-        style="background-color: #a88661"
-        (click)="logOut()"
-      >
-        {{ t('Log out') }}
-      </button>
+      <ng-container>
+        <span
+          *ngIf="currentScreenSize !== 'XLarge'"
+          (click)="openMenu((isOpen = !isOpen))"
+          class="material-symbols-outlined cursor"
+        >
+          {{ (isMenuOpen$ | async) ? 'close' : 'menu' }}
+        </span>
+      </ng-container>
+
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="language">
+          {{ t('Choose Language') }}
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="theme">
+          {{ t('Theme') }}
+        </button>
+
+        <button
+          mat-menu-item
+          style="background-color: #a88661; color: #fff"
+          (click)="logOut()"
+        >
+          {{ t('Log out') }}
+        </button>
+      </mat-menu>
+
+      <mat-menu #language="matMenu">
+        <button
+          *ngFor="let language of availableLanguages"
+          mat-menu-item
+          (click)="changeLanguage(language.id)"
+        >
+          {{ t(language.label) }}
+        </button>
+      </mat-menu>
+
+      <mat-menu #theme="matMenu">
+        <button mat-menu-item>
+          {{ t('Dark mode') }}
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 </ng-container>
