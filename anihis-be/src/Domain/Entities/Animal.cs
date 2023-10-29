@@ -10,5 +10,6 @@ public class Animal : BaseEntity
     public string? PassportNumber { get; set; }
     public Owner Owner { get; set; }
     public DateTime? DeleteDateTimeUtc { get; set; }
+    public DateTime? LastModifiedDateTimeUtc { get; set; }
     public string? Warning { get; set; }
 }

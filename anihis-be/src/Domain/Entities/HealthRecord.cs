@@ -4,4 +4,5 @@ public class HealthRecord : BaseEntity
     public Animal Animal { get; set; }
     public Veterinarian Veterinarian { get; set; }
     public string? Report { get; set; }
+    public DateTime? LastModifiedDateTimeUtc { get; set; }
 }

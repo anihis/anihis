@@ -9,7 +9,7 @@ public interface ICoreDbContext
     DbSet<Breed> Breeds { get; }
     DbSet<HealthRecord> HealthRecords { get; }
     DbSet<Owner> Owners { get; }
-    DbSet<Species> Species { get; }
+    DbSet<Domain.Entities.Species> Species { get; }
     DbSet<User> Users { get; }
     DbSet<Veterinarian> Veterinarians { get; }
     DbSet<VeterinaryClinic> VeterinaryClinics { get; }

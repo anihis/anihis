@@ -28,9 +28,9 @@ public class HealthRecordsController : ApiControllerBase
     //    return await Mediator.Send(new GetOwnerQuery { Uid = uid });
     //}
 
-    [HttpPost]
-    public async Task Create(CreateHealthRecordCommand command)
-    {
-        await Mediator.Send(command);
-    }
+    //[HttpPost]
+    //public async Task Create(CreateHealthRecordCommand command)
+    //{
+    //    await Mediator.Send(command);
+    //}
 }

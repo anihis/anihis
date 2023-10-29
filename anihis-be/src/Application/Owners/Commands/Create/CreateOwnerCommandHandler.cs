@@ -1,25 +1,43 @@
 ﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
+using FluentValidation;
 using MediatR;
 
 namespace anihis.Application.Owners.Commands.Create;
 public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
 {
     private readonly ICoreDbContext _context;
+    private readonly ICurrentUserService _currentUserService;
     private readonly IBaseRepository<Owner> _ownerRepository;
+    private readonly IBaseRepository<User> _userRepository;
+    private readonly IValidator<CreateOwnerCommand> _validator;
 
     public CreateOwnerCommandHandler
     (
         ICoreDbContext context,
-        IBaseRepository<Owner> ownerRepository
+        ICurrentUserService currentUserService,
+        IBaseRepository<Owner> ownerRepository,
+        IBaseRepository<User> userRepository,
+        IValidator<CreateOwnerCommand> validator
     )
     {
         _context = context;
+        _currentUserService = currentUserService;
         _ownerRepository = ownerRepository;
+        _userRepository = userRepository;
+        _validator = validator;
     }
 
     public async Task Handle(CreateOwnerCommand request, CancellationToken cancellationToken)
     {
+        var result = await _validator.ValidateAsync(request);
+        if (!result.IsValid)
+        {
+            throw new Common.Exceptions.ValidationException(result.Errors);
+        }
+
+        //var user = _userRepository.GetByUidOrThrowAsync(_currentUserService.UserId, cancellationToken);
+
         _ownerRepository.Insert(new Owner
         {
             Uid = Guid.NewGuid().ToString(),
@@ -34,7 +52,8 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
             PassportNumber = request.PassportNumber,
             PersonalNumber = request.PersonalNumber,
             PhoneNumber = request.PhoneNumber,
-            PostalCode = request.PostalCode
+            PostalCode = request.PostalCode,
+            LastModifiedDateTimeUtc = DateTime.UtcNow
         });
 
         await _context.SaveChangesAsync(cancellationToken);

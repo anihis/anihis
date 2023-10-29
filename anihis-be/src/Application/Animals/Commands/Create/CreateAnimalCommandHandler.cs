@@ -9,29 +9,29 @@ public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
     private readonly IBaseRepository<Animal> _animalRepository;
     private readonly IBaseRepository<Owner> _ownerRepository;
     private readonly IBaseRepository<Breed> _breedRepository;
-    private readonly IBaseRepository<Species> _speciesRepository;
+    //private readonly IBaseRepository<Domain.Entities.Species> _speciesRepository;
 
     public CreateAnimalCommandHandler
     (
         ICoreDbContext context,
         IBaseRepository<Animal> animalRepository,
         IBaseRepository<Owner> ownerRepository,
-        IBaseRepository<Breed> breedRepository,
-        IBaseRepository<Species> speciesRepository
+        IBaseRepository<Breed> breedRepository
+        //IBaseRepository<Domain.Entities.Species> speciesRepository
     )
     {
         _context = context;
         _animalRepository = animalRepository;
         _ownerRepository = ownerRepository;
         _breedRepository = breedRepository;
-        _speciesRepository = speciesRepository;
+        //_speciesRepository = speciesRepository;
     }
 
     public async Task Handle(CreateAnimalCommand request, CancellationToken cancellationToken)
     {
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
         var breed = await _breedRepository.GetByUidOrThrowAsync(request.BreedUid, cancellationToken);
-        var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
+        //var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
 
         _animalRepository.Insert(new Animal
         {
@@ -43,8 +43,9 @@ public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
             Owner = owner,
             PassportNumber = request.PassportNumber,
             PersonalNumber = request.PersonalNumber,
-            Species = species,
-            Warning = request.Warning
+            Species = breed.Species,
+            Warning = request.Warning,
+            LastModifiedDateTimeUtc = DateTime.UtcNow
         });
 
         await _context.SaveChangesAsync(cancellationToken);

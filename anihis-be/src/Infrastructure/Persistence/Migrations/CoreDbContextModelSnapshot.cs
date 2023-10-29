@@ -35,6 +35,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("LastModifiedDateTimeUtc")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -78,10 +81,15 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SpeciesId");
 
                     b.ToTable("Breeds");
                 });
@@ -94,6 +102,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
 
                     b.Property<int>("AnimalId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("LastModifiedDateTimeUtc")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Report")
                         .HasColumnType("TEXT");
@@ -141,6 +152,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IdCardNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LastModifiedDateTimeUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -284,6 +298,17 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Navigation("Breed");
 
                     b.Navigation("Owner");
+
+                    b.Navigation("Species");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Breed", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.Species", "Species")
+                        .WithMany()
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Species");
                 });

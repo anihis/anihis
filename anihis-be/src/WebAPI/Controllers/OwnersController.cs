@@ -1,5 +1,6 @@
 ﻿using anihis.Application.Common.Interfaces;
 using anihis.Application.Owners.Commands.Create;
+using anihis.Application.Owners.Commands.Update;
 using anihis.Application.Owners.Queries.Get;
 using anihis.Application.Owners.Queries.GetSingle;
 using MediatR;
@@ -32,6 +33,12 @@ public class OwnersController : ApiControllerBase
 
     [HttpPost]
     public async Task Create(CreateOwnerCommand command)
+    {
+        await Mediator.Send(command);
+    }
+
+    [HttpPut]
+    public async Task Update(UpdateOwnerCommand command)
     {
         await Mediator.Send(command);
     }

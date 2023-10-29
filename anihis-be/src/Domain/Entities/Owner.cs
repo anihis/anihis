@@ -13,5 +13,6 @@ public class Owner : BaseEntity
     public string? PersonalNumber { get; set; }
     public string? PassportNumber { get; set; }
     public string? IdCardNumber { get; set; }
+    public DateTime? LastModifiedDateTimeUtc { get; set; }
     public DateTime? DeleteDateTimeUtc { get; set; }
 }

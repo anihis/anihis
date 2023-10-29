@@ -6,7 +6,7 @@ public class CreateAnimalCommand : IRequest
 {
     public string? PersonalNumber { get; set; }
     public string Name { get; set; }
-    public string SpeciesUid { get; set; }
+    //public string SpeciesUid { get; set; }
     public string? BreedUid { get; set; }
     public Gender Gender { get; set; }
     public DateTime? BirthDateTime { get; set; }
