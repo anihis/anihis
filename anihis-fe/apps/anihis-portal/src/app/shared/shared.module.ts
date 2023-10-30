@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [ThemeSwitchDirective],
@@ -47,6 +48,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatNativeDateModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     ThemeSwitchDirective,
@@ -72,6 +74,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatNativeDateModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class SharedModule {}

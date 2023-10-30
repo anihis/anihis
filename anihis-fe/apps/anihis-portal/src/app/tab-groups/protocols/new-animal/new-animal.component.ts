@@ -13,6 +13,8 @@ import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.servi
 import { NewAnimalService } from './new-animal.service';
 import { tap } from 'rxjs';
 import { ApplicationStateService } from '../../../shared/services/application-state.service';
+import { LoadingService } from 'libs/shared/util/src/services/loading.service';
+
 @Component({
   selector: 'anihis-new-animal',
   templateUrl: './new-animal.component.html',
@@ -28,6 +30,7 @@ import { ApplicationStateService } from '../../../shared/services/application-st
   providers: [OwnersService],
 })
 export class NewAnimalComponent extends FormBaseComponent {
+  loadingService$ = this.loadingService.isLoading$;
   selectedRowData$ = this.applicationStateService.selectedRowData$.pipe(
     tap((x) => {
       if (x.length != 0 && x.length == undefined) {
@@ -269,7 +272,8 @@ export class NewAnimalComponent extends FormBaseComponent {
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
-    private applicationStateService: ApplicationStateService
+    private applicationStateService: ApplicationStateService,
+    public loadingService: LoadingService
   ) {
     super();
     this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY

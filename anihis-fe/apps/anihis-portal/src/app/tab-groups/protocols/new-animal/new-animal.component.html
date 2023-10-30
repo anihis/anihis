@@ -7,7 +7,17 @@
         (formDataSubmit)="submit($event)"
       ></anihis-form>
     </mat-card>
-
-    <anihis-new-owners *ngIf="selectedRowData.length === 0"></anihis-new-owners>
+    <ng-container
+      *ngIf="(loadingService.isLoading$ | async) === false; else loading"
+    >
+      <anihis-new-owners
+        *ngIf="selectedRowData.length === 0"
+      ></anihis-new-owners>
+    </ng-container>
   </main>
 </ng-container>
+<ng-template #loading>
+  <div class="loading-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
