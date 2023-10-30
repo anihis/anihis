@@ -46,12 +46,14 @@
               >
                 <mat-icon
                   class="material-symbols-outlined cursor"
-                  (click)="openEditDialog(element)"
+                  (click)="$event.stopPropagation(); openEditDialog(element)"
                   >edit</mat-icon
                 >
                 <mat-icon
                   class="material-symbols-outlined cursor"
-                  (click)="openDeleteConfirmationDialog()"
+                  (click)="
+                    $event.stopPropagation(); openDeleteConfirmationDialog()
+                  "
                   >clear</mat-icon
                 >
               </div>
