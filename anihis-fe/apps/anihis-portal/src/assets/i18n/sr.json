@@ -52,7 +52,6 @@
   "List of medicaments": "Popis lekova",
   "Cards": "Kartoni",
   "animal": "zivotinja",
-  "Admission form": "Prijemni formular",
   "from": "iz",
   "Reminders": "Podsetnici",
   "Anticipated controls": "Predvidjanje kontrole",
@@ -81,7 +80,7 @@
   "Address": "Adresa",
   "Tel": "Telefon",
   "Email": "Email",
-  "Action": "Izmeni / Pregled istorije",
+  "Action": "Dodaj izvestaj / Izmeni / Pregled istorije",
   "Add new owner": "Dodaj novog vlasnika",
   "Save": "Sacuvaj",
   "Breeds from VetUp": "Rase iz VetUp",
@@ -108,5 +107,6 @@
   "Jmbg": "JMBG",
   "Id Card Number": "Broj licne karte",
   "ID Card Number": "Broj licne karte",
-  "Clear": "Obrisi"
+  "Clear": "Obrisi",
+  "Theme": "Teme"
 }

@@ -1,0 +1,203 @@
+<ng-container *transloco="let t">
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>{{ t('Izvestaj') }}</ng-template>
+        <div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Time</mat-label>
+              <input matInput formControlName="time" readonly />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Date') }}</mat-label>
+              <input matInput [matDatepicker]="date" formControlName="date" />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="date"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Control') }}</mat-label>
+              <input
+                matInput
+                [matDatepicker]="control"
+                formControlName="control"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="control"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #control></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Temp') }}</mat-label>
+              <input matInput placeholder="Temp" formControlName="temp" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('Weight') }}</mat-label>
+              <input matInput placeholder="Weight" formControlName="weight" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('Vet') }}</mat-label>
+              <input
+                matInput
+                placeholder="Vet"
+                formControlName="vet"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Anamnesis') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="anamnesis"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Clinical Examination') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="clinicalExamination"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Recommendation') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="recommendation"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Other Findings') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="otherFindings"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Note') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="note"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Therapy') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="therapy"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" label="Dijagnoze, Usluge, Lekovi">
+      <form [formGroup]="secondFormGroup">
+        <!-- TODO treba da se ispravi forma  -->
+        <ng-select
+          [items]="yourOptions"
+          formArrayName="diagnoses"
+          placeholder="Dijagnoze"
+          (change)="updateSelectedOptions($event)"
+        >
+        </ng-select>
+        <div *ngIf="secondFormGroup">
+          <div
+            *ngFor="let test of diagnoses.controls; let i = index; last as l"
+          >
+            <mat-form-field>
+              <mat-label>{{ t('Diagnosis') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                [formControl]="diagnosis"
+                placeholder="diagnosis"
+                readonly
+              ></textarea>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('Note') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                [formControl]="note"
+                (change)="updateDiagnosis($event, i)"
+              ></textarea>
+            </mat-form-field>
+            <button (click)="testForm(diagnoses.controls[i]?.value?.diagnosis)">
+              sdad
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext (click)="displayForm()">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Troskovi i sacuvaj</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+      </div>
+    </mat-step>
+  </mat-stepper>
+</ng-container>

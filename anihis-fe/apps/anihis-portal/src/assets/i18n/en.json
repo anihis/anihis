@@ -52,7 +52,6 @@
   "List of medicaments": "List of medicaments",
   "Cards": "Cards",
   "animal": "animal",
-  "Admission form": "Admission form",
   "from": "from",
   "Reminders": "Reminders",
   "Anticipated controls": "Anticipated controls",
@@ -111,5 +110,6 @@
   "ID Card Number": "ID Card Number",
   "Health record animals": "Health record animals",
   "Excellent vaccinations": "Excellent vaccinations",
-  "Clear": "Clear"
+  "Clear": "Clear",
+  "Theme": "Theme"
 }

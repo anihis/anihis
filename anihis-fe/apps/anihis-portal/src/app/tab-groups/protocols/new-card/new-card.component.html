@@ -32,9 +32,21 @@
           <th mat-header-cell *matHeaderCellDef>
             {{ column | nameColumn | titlecase | transloco }}
           </th>
-          <td mat-cell *matCellDef="let element">
+          <td
+            mat-cell
+            *matCellDef="let element"
+            [ngClass]="{
+              tel: column === 'email/tel',
+              'action-column': column === 'action'
+            }"
+          >
             <ng-container *ngIf="column === 'action'; else notActionColumn">
               <div class="action-icons">
+                <mat-icon
+                  class="material-symbols-outlined cursor"
+                  (click)="openAddReportDialog(element)"
+                  >add</mat-icon
+                >
                 <mat-icon
                   class="material-symbols-outlined cursor"
                   (click)="openEditDialog(element)"
@@ -49,8 +61,14 @@
             </ng-container>
             <ng-template #notActionColumn>
               {{
-                column === 'dateOfBirth'
-                  ? (element[column] | date : 'd/M/yy')
+                column === 'gender/dateOfBirth'
+                  ? element['gender'] +
+                    ', ' +
+                    (element['dateOfBirth'] | date : 'd/M/yy')
+                  : column === 'owner/address'
+                  ? element['owner'] + ', ' + element['address']
+                  : column === 'email/tel'
+                  ? element['email'] + ', ' + element['tel']
                   : element[column]
               }}
             </ng-template>

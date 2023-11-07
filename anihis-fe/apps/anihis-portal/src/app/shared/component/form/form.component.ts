@@ -16,7 +16,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
-import { FormBaseComponent } from '../../base-components/form-base.component';
 import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({
@@ -42,20 +41,35 @@ import { ApplicationStateService } from '../../services/application-state.servic
 export class FormComponent implements OnInit {
   @Input() formData!: any;
   @Input() form!: any;
+  @Input() buttons!: any;
   @Output() formDataSubmit = new EventEmitter<any>();
 
   constructor(private applicationStateService: ApplicationStateService) {}
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((formValue: any) => {
-      formValue.owner.length === 0
+      formValue?.owner?.length === 0
         ? this.applicationStateService.setSelectedRowData([])
         : null;
     });
   }
 
+  performAction(action: string) {
+    if (action === 'clear') {
+      this.clear();
+    } else if (action === 'submit') {
+      this.submit();
+    } else if (action === 'clearOwner') {
+      this.form.controls.owner.reset();
+    }
+  }
+
   clear() {
-    this.form.reset();
+    Object.keys(this.form.controls).forEach((controlName) => {
+      if (controlName !== 'owner') {
+        this.form.controls[controlName].reset();
+      }
+    });
   }
 
   submit() {

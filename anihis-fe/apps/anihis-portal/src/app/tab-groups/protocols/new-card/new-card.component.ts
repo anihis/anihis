@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { CardHistoryComponent } from './card-history/card-history.component';
 import { NewCardService } from './new-card.service';
+import { AddReportDialogComponent } from './add-report-dialog/add-report-dialog.component';
 
 export interface PeriodicElement {
   name: string;
@@ -86,7 +87,6 @@ export class NewCardComponent implements AfterViewInit {
       tel: '+381 213546',
       email: 'vladimir@gmail.com',
     },
-
     {
       numberCard: 2,
       name: 'Aleksandar',
@@ -136,15 +136,13 @@ export class NewCardComponent implements AfterViewInit {
     'numberCard',
     'name',
     'breed',
-    'gender',
-    'dateOfBirth',
+    'gender/dateOfBirth',
     'warning',
     'microchip',
     'numberOfPassport',
-    'owner',
-    'address',
-    'tel',
-    'email',
+    'owner/address',
+    // 'address',
+    'email/tel',
     'action',
   ];
 
@@ -195,7 +193,21 @@ export class NewCardComponent implements AfterViewInit {
     this.newCardService.isOpenHistory(true);
   }
 
-  openEditDialog(data: any): void {
+  openAddReportDialog(data: any) {
+    const dialogRef = this.dialog.open(AddReportDialogComponent, {
+      width: '900px',
+      height: '710px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Spremljeno:', result);
+      }
+    });
+  }
+
+  openEditDialog(data: any) {
     const dialogRef = this.dialog.open(EditDataDialogComponent, {
       width: '600px',
       data: { ...data },

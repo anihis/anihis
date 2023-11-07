@@ -65,12 +65,20 @@
       </div>
     </ng-container>
     <div class="button-submit-wrapper">
-      <button mat-button (click)="clear()">{{ t('Clear') }}</button>
-
-      <button mat-raised-button>
-        {{ t('Save new animal') }}
-      </button>
+      <ng-container *ngFor="let button of buttons">
+        <ng-container *ngIf="button.functionBtn === 'clear'; else submitBtn">
+          <button mat-button (click)="performAction(button.functionBtn)">
+            {{ t(button.text) }}
+          </button>
+        </ng-container>
+        <ng-template #submitBtn>
+          <button mat-raised-button (click)="performAction(button.functionBtn)">
+            {{ t(button.text) }}
+          </button>
+        </ng-template>
+      </ng-container>
     </div>
+
     <div></div>
   </form>
 </ng-container>
