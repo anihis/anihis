@@ -28,10 +28,7 @@ public class CreateBreedCommandHandler : IRequestHandler<CreateBreedCommand>
     public async Task Handle(CreateBreedCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
 

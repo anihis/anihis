@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
+using anihis.Application.Breeds.Commands.Create;
 using anihis.Application.Common.Interfaces;
 using anihis.Infrastructure.Persistence;
 using anihis.WebAPI.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Logging;
 using WebAPI;
@@ -22,6 +24,8 @@ public static class ConfigureServices
             .AddDbContextCheck<CoreDbContext>();
 
         services.AddControllersWithViews();
+
+        services.AddValidatorsFromAssemblyContaining<CreateBreedCommandValidator>();
 
         services.AddRazorPages();
 

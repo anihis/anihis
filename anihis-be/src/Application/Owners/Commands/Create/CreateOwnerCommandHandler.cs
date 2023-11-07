@@ -31,10 +31,7 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
     public async Task Handle(CreateOwnerCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         //var user = _userRepository.GetByUidOrThrowAsync(_currentUserService.UserId, cancellationToken);
 

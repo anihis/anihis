@@ -25,10 +25,7 @@ public class UpdateSpeciesCommandHandler : IRequestHandler<UpdateSpeciesCommand>
     public async Task Handle(UpdateSpeciesCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
         if (species is null)

@@ -25,10 +25,7 @@ public class UpdateOwnerCommandHandler : IRequestHandler<UpdateOwnerCommand>
     public async Task Handle(UpdateOwnerCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
         if (owner is null)

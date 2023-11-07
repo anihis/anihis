@@ -48,6 +48,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
+
+    // Initialise and seed database
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<CoreDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+    }
 }
 else
 {

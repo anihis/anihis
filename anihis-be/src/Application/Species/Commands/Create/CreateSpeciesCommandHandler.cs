@@ -24,10 +24,7 @@ public class CreateSpeciesCommandHandler : IRequestHandler<CreateSpeciesCommand>
     public async Task Handle(CreateSpeciesCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         _speciesRepository.Insert(new Domain.Entities.Species
         {

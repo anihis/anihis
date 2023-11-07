@@ -26,10 +26,7 @@ public class UpdateBreedCommandHandler : IRequestHandler<UpdateBreedCommand>
     public async Task Handle(UpdateBreedCommand request, CancellationToken cancellationToken)
     {
         var result = await _validator.ValidateAsync(request);
-        if (!result.IsValid)
-        {
-            throw new Common.Exceptions.ValidationException(result.Errors);
-        }
+        result.ThrowIfNotValid();
 
         var breed = await _breedRepository.GetByUidOrThrowAsync(request.BreedUid, cancellationToken);
         if (breed is null)
