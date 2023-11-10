@@ -32,7 +32,7 @@
     <div class="div-left" style="font-size: 14px">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'Gender' }} </mat-label>
-        <mat-select autocomplete="on" formControlName="gender">
+        <mat-select formControlName="gender">
           <mat-option
             *ngFor="let option of genderOptions"
             [value]="option.value"

@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormArray, FormsModule, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CreateGroupForm } from './diagnoses-group-form';
@@ -14,13 +13,7 @@ import { CreateGroupForm } from './diagnoses-group-form';
   templateUrl: './add-report-dialog.component.html',
   styleUrls: ['./add-report-dialog.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    SharedModule,
-    MatSelectModule,
-    NgSelectModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, SharedModule, MatSelectModule, FormsModule],
 })
 export class AddReportDialogComponent
   extends FormBaseComponent<CreateGroupForm>
