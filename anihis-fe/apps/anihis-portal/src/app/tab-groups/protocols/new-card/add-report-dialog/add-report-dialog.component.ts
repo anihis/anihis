@@ -50,20 +50,26 @@ export class AddReportDialogComponent
   });
 
   secondFormGroup = this.fb.group({
-    diagnoses: this.fb.array([]),
-    service: ['', Validators.required],
-    medicaments: ['', Validators.required],
+    selectedDiagnoses: [''],
+    diagnosesList: this.fb.array([]),
+    selectedServices: [''],
+    servicesList: this.fb.array([]),
+    selectedMedicaments: [''],
+    medicamentsList: this.fb.array([]),
   });
+
+  diagnoses = ['Diagnosis 1', 'Diagnosis 2', 'Diagnosis 3'];
+  services = ['Services 1', 'Services 2', 'Services 3'];
+  medicaments = ['Medicaments 1', 'Medicaments 2', 'Medicaments 3'];
 
   thirdFormGroup = this.fb.group({
-    name: ['', Validators.required],
+    totalForServices: [0],
+    totalForMedicaments: [0],
+    otherCosts: [0],
+    percentageForOtherCosts: [0],
+    total: [0],
   });
   isLinear = true;
-  selectedOptions: string[] = [];
-  yourOptions = ['Opcija 1', 'Opcija 2', 'Opcija 3', 'Opcija 4', 'Opcija 5'];
-
-  diagnosis = this.fb.control('', Validators.required);
-  note = this.fb.control('');
 
   constructor(
     public dialogRef: MatDialogRef<AddReportDialogComponent>,
@@ -75,46 +81,149 @@ export class AddReportDialogComponent
     this.dateAdapter.setLocale('en-GB');
   }
 
-  get diagnoses() {
-    return this.secondFormGroup.controls.diagnoses as FormArray;
+  override ngOnInit() {
+    this.thirdFormGroup.controls.totalForServices.setValue(50);
+    this.thirdFormGroup.controls.totalForMedicaments.setValue(50);
+    const totalForServices = this.thirdFormGroup.controls.totalForServices
+      .value as number;
+    const totalForMedicaments = this.thirdFormGroup.controls.totalForMedicaments
+      .value as number;
+
+    this.thirdFormGroup.controls.total.setValue(
+      totalForServices + totalForMedicaments
+    );
   }
 
-  updateSelectedOptions(event: any) {
-    if (event) {
-      this.selectedOptions = event;
-      const selectedDiagnosis = this.diagnoses.controls.find((control: any) => {
-        return this.diagnosis.value === event;
-      });
+  get diagnosesList(): FormArray {
+    return this.secondFormGroup.get('diagnosesList') as FormArray;
+  }
 
-      if (!selectedDiagnosis) {
-        const newDiagnosis = this.fb.group({
-          diagnosis: event,
-          note: '',
-        });
-        this.diagnoses.push(newDiagnosis);
-      }
-      console.log(this.secondFormGroup);
+  get servicesList(): FormArray {
+    return this.secondFormGroup.get('servicesList') as FormArray;
+  }
+
+  get medicamentsList(): FormArray {
+    return this.secondFormGroup.get('medicamentsList') as FormArray;
+  }
+
+  onSelectDiagnosis() {
+    const currentValues = new Map(
+      this.diagnosesList.controls.map((control) => [
+        control.value.diagnosis,
+        control.value.note,
+      ])
+    );
+    this.diagnosesList.clear();
+
+    if (
+      this.secondFormGroup.value.selectedDiagnoses &&
+      Array.isArray(this.secondFormGroup.value.selectedDiagnoses)
+    ) {
+      this.secondFormGroup.value.selectedDiagnoses.forEach((diagnosis) => {
+        const noteValue = currentValues.get(diagnosis) || '';
+        this.diagnosesList.push(this.fb.group({ diagnosis, note: noteValue }));
+      });
     }
   }
 
-  updateDiagnosis(event: any, index: number) {
-    const noteValue = event.target.value;
-    const noteControl = this.diagnoses.controls[index].get('note');
-    noteControl?.setValue(noteValue);
+  onSelectService() {
+    const currentValues = new Map(
+      this.servicesList.controls.map((control) => [
+        control.value.service,
+        {
+          quantity: control.value.quantity,
+          price: control.value.price,
+          vat: control.value.vat,
+          amount: control.value.amount,
+        },
+      ])
+    );
+    this.servicesList.clear();
+
+    if (
+      this.secondFormGroup.value.selectedServices &&
+      Array.isArray(this.secondFormGroup.value.selectedServices)
+    ) {
+      this.secondFormGroup.value.selectedServices.forEach((service) => {
+        const serviceData = currentValues.get(service) || {
+          quantity: '',
+          price: '',
+          vat: '',
+          amount: '',
+        };
+
+        this.servicesList.push(
+          this.fb.group({
+            service,
+            quantity: serviceData.quantity,
+            price: serviceData.price,
+            vat: serviceData.vat,
+            amount: serviceData.amount,
+          })
+        );
+      });
+    }
   }
 
-  testForm(test: any) {
-    console.log(test);
+  onSelectMedicament() {
+    const currentValues = new Map(
+      this.medicamentsList.controls.map((control) => [
+        control.value.diagnosis,
+        control.value.note,
+      ])
+    );
+    this.medicamentsList.clear();
+
+    if (
+      this.secondFormGroup.value.selectedMedicaments &&
+      Array.isArray(this.secondFormGroup.value.selectedMedicaments)
+    ) {
+      this.secondFormGroup.value.selectedMedicaments.forEach((medicament) => {
+        const medicamentData = currentValues.get(medicament) || {
+          serialNumber: '',
+          quantity: '',
+          price: '',
+          vat: '',
+          amount: '',
+        };
+
+        this.medicamentsList.push(
+          this.fb.group({
+            medicament,
+            serialNumber: medicamentData.serialNumber,
+            note: medicamentData.note,
+            quantity: medicamentData.quantity,
+            price: medicamentData.price,
+            vat: medicamentData.vat,
+            amount: medicamentData.amount,
+          })
+        );
+      });
+    }
+  }
+
+  servicesCalc(event: any) {
+    const totalForServices = this.thirdFormGroup.controls.totalForServices
+      .value as number;
+    const totalForMedicaments = this.thirdFormGroup.controls.totalForMedicaments
+      .value as number;
+    const inputValue = parseInt(event.target.value);
+    const calc = totalForServices + totalForMedicaments;
+    const percentage = (inputValue / calc) * 100;
+
+    this.thirdFormGroup.controls.otherCosts.setValue(percentage);
+
+    const otherCosts = this.thirdFormGroup.controls.otherCosts.value as number;
+
+    this.thirdFormGroup.controls.total.setValue(
+      totalForMedicaments + totalForMedicaments + otherCosts
+    );
   }
 
   saveChanges() {
     console.log(this.form);
     this.dialogRef.close(this.form);
     // this.dialogRef.close(this.data);
-  }
-
-  displayForm() {
-    console.log(this.secondFormGroup);
   }
 
   closeDialog(): void {

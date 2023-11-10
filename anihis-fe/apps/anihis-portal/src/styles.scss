@@ -258,3 +258,9 @@ td.mat-footer-cell:last-of-type {
   display: flex;
   align-items: center;
 }
+
+anihis-add-report-dialog {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+}

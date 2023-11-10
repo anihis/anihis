@@ -15,3 +15,23 @@
     width: 100%;
   }
 }
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.thirdFormGroup {
+  display: flex;
+  flex-direction: column;
+}
+.diagnosesList {
+  max-height: 144px;
+  overflow: auto;
+  .diagnoses-row {
+    display: flex;
+    gap: 16px;
+  }
+}

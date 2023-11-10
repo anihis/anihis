@@ -195,8 +195,8 @@ export class NewCardComponent implements AfterViewInit {
 
   openAddReportDialog(data: any) {
     const dialogRef = this.dialog.open(AddReportDialogComponent, {
-      width: '900px',
-      height: '710px',
+      width: '1286px',
+      height: '728px',
       data: { ...data },
     });
 
