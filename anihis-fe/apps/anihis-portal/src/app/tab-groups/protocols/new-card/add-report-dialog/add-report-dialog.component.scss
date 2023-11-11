@@ -1,0 +1,37 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.thirdFormGroup {
+  display: flex;
+  flex-direction: column;
+}
+.diagnosesList {
+  max-height: 144px;
+  overflow: auto;
+  .diagnoses-row {
+    display: flex;
+    gap: 16px;
+  }
+}

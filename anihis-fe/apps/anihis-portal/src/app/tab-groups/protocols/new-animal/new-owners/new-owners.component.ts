@@ -11,6 +11,7 @@ import { FeNewOwnerService } from './fe-new-owner.service';
 import { tap } from 'rxjs';
 import { GetOwnersResult } from 'libs/portal-data/data-access/src';
 import { ApplicationStateService } from '../../../../shared/services/application-state.service';
+import { LoadingService } from 'libs/shared/util/src/services/loading.service';
 
 export interface Owner {
   lastName: string;
@@ -65,7 +66,8 @@ export class NewOwnersComponent implements AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private feNewOwnerService: FeNewOwnerService,
-    private applicationStateService: ApplicationStateService
+    private applicationStateService: ApplicationStateService,
+    public loadingService: LoadingService
   ) {}
 
   ngAfterViewInit() {

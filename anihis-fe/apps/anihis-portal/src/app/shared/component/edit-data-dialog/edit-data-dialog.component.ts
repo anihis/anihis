@@ -4,18 +4,19 @@ import { FormBaseComponent } from '../../base-components/form-base.component';
 import { DateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'anihis-edit-data-dialog',
   templateUrl: './edit-data-dialog.component.html',
   styleUrls: ['./edit-data-dialog.component.scss'],
   standalone: true,
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, MatSelectModule],
 })
 export class EditDataDialogComponent extends FormBaseComponent {
-  genderOptions!: [
-    { value: 'male'; viewValue: 'Male' },
-    { value: 'female'; viewValue: 'Female' }
+  genderOptions = [
+    { value: 'male', viewValue: 'Male' },
+    { value: 'female', viewValue: 'Female' },
   ];
 
   constructor(

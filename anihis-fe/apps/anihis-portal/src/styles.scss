@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use './theme/font';
 @use './theme/theme';
+@import '~@ng-select/ng-select/themes/material.theme.css';
 
 //  The following line adds:
 //    1. Default typography styles for all components
@@ -256,4 +257,10 @@ td.mat-footer-cell:last-of-type {
 .loading-wrapper {
   display: flex;
   align-items: center;
+}
+
+anihis-add-report-dialog {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
 }

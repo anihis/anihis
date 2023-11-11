@@ -71,7 +71,7 @@ export class NavTreeComponent {
                 icon: 'pets',
               },
               { name: 'New animal', action: 'F8', icon: 'pets' },
-              { name: 'Admission form', action: '', icon: 'pets' },
+              // { name: 'Admission form', action: '', icon: 'pets' },
               { name: 'Animal from VetUp-a', action: '', icon: 'pets' },
               { name: 'Reminders', action: '', icon: 'pets' },
               { name: 'Anticipated controls', action: '', icon: 'pets' },

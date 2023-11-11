@@ -1,0 +1,14 @@
+main {
+  display: flex;
+  justify-content: center;
+  .wrapper {
+    width: 70%;
+    section {
+      display: flex;
+      justify-content: center;
+      anihis-form {
+        width: 50%;
+      }
+    }
+  }
+}

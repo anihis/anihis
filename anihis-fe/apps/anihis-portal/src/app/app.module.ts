@@ -12,7 +12,7 @@ import {
   TranslocoModule,
 } from '@ngneat/transloco';
 import { Languages } from './shared/constants/languages';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ShellModule } from './shell/shell.module';
 import { MatMenuModule } from '@angular/material/menu';
@@ -23,6 +23,9 @@ import {
   ApiModule as CoreApiModule,
   Configuration as CoreConfiguration,
 } from 'libs/portal-data/data-access/src';
+import { ErrorService } from 'libs/shared/util/src/services/error.service';
+import { ServerHttpInterceptor } from 'libs/shared/util/src/interceptors/server-http.interceptor';
+import { LoadingInterceptor } from 'libs/shared/util/src/interceptors/loading.interceptor';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
@@ -81,6 +84,18 @@ function configureAuth(authenticationService: AuthenticationService) {
       useFactory: configureTranslations,
       multi: true,
       deps: [TranslationsService],
+    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ServerHttpInterceptor,
+    //   multi: true,
+    //   deps: [ErrorService, AuthenticationService],
+    // },
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
     },
     {
       provide: APP_INITIALIZER,

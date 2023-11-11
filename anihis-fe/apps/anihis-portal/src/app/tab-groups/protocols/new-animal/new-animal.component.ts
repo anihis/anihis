@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { NewAnimal } from '../../../shared/interface/new-animal';
 import { Validators } from '@angular/forms';
@@ -10,9 +10,9 @@ import { NewOwnersComponent } from './new-owners/new-owners.component';
 import { NewOwnerDialogComponent } from '../../../shared/component/new-owner-dialog/new-owner-dialog.component';
 import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
 import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
-import { NewAnimalService } from './new-animal.service';
 import { tap } from 'rxjs';
 import { ApplicationStateService } from '../../../shared/services/application-state.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingService } from 'libs/shared/util/src/services/loading.service';
 
 @Component({
@@ -26,11 +26,12 @@ import { LoadingService } from 'libs/shared/util/src/services/loading.service';
     NewOwnerDialogComponent,
     EditOwnerDialogComponent,
     NewOwnersComponent,
+    MatProgressSpinnerModule,
   ],
-  providers: [OwnersService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [OwnersService, LoadingService],
 })
 export class NewAnimalComponent extends FormBaseComponent {
-  loadingService$ = this.loadingService.isLoading$;
   selectedRowData$ = this.applicationStateService.selectedRowData$.pipe(
     tap((x) => {
       if (x.length != 0 && x.length == undefined) {
@@ -159,7 +160,7 @@ export class NewAnimalComponent extends FormBaseComponent {
       label: 'Owner',
       formControlName: 'owner',
       type: 'string',
-      readonly: false,
+      readonly: true,
       value: '',
       inputType: 'input',
       placeholder: 'Enter your',
@@ -249,6 +250,15 @@ export class NewAnimalComponent extends FormBaseComponent {
     },
   ];
 
+  buttons = [
+    { text: 'Clear', functionBtn: 'clear', type: 'mat-button' },
+    { text: 'Clear Owner', functionBtn: 'clearOwner', type: 'mat-button' },
+    {
+      text: 'Add new animal',
+      functionBtn: 'submit',
+    },
+  ];
+
   override form = this.fb.nonNullable.group({
     card: [''],
     name: ['', [Validators.required]],
@@ -277,6 +287,10 @@ export class NewAnimalComponent extends FormBaseComponent {
   ) {
     super();
     this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY
+  }
+
+  back() {
+    this.applicationStateService.setSelectedRowData([]);
   }
 
   submit(event: any) {

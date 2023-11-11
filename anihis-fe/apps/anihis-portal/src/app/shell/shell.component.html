@@ -10,7 +10,7 @@
     <ng-template #smallView>
       <div style="display: flex">
         <div style="display: flex">
-          <anihis-nav-tree></anihis-nav-tree>
+          <anihis-nav-tree *ngIf="isMenuOpen$ | async"></anihis-nav-tree>
         </div>
         <ng-container *ngIf="tabsName$ | async as tab">
           <div
@@ -31,7 +31,7 @@
       </div>
     </ng-template>
 
-    <ng-container *ngIf="currentScreenSize === 'XLarge'">
+    <ng-container *ngIf="currentScreenSize === 'XLarge'; else smallView">
       <ng-container *ngIf="tabsName$ | async as tab">
         <div
           *ngIf="tab.length > 0"
@@ -47,23 +47,6 @@
           </mat-card>
         </div>
       </ng-container>
-    </ng-container>
-    <ng-container *ngIf="currentScreenSize !== 'XLarge'">
-      <div style="width: 100%; display: flex">
-        <anihis-nav-tree style="display: flex; width: 25%"></anihis-nav-tree>
-        <div style="width: 80%">
-          <ng-container *ngIf="tabsName$ | async as tab">
-            <div
-              *ngIf="tab.length > 0"
-              style="display: flex; justify-content: center; margin: 24px"
-            >
-              <mat-card style="width: 100% !important">
-                <anihis-tab-groups [tabs]="tab"></anihis-tab-groups>
-              </mat-card>
-            </div>
-          </ng-container>
-        </div>
-      </div>
     </ng-container>
   </ng-container>
 </ng-container>

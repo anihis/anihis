@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [ThemeSwitchDirective],
@@ -49,6 +51,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
+    MatMomentDateModule,
   ],
   exports: [
     ThemeSwitchDirective,
@@ -75,6 +79,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
+    MatMomentDateModule,
   ],
 })
 export class SharedModule {}

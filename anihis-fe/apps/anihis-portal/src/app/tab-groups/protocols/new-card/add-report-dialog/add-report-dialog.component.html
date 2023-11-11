@@ -1,0 +1,336 @@
+<ng-container *transloco="let t">
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>{{ t('Izvestaj') }}</ng-template>
+        <div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Time</mat-label>
+              <input matInput formControlName="time" readonly />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Date') }}</mat-label>
+              <input matInput [matDatepicker]="date" formControlName="date" />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="date"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Control') }}</mat-label>
+              <input
+                matInput
+                [matDatepicker]="control"
+                formControlName="control"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="control"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #control></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Temp') }}</mat-label>
+              <input matInput placeholder="Temp" formControlName="temp" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('Weight') }}</mat-label>
+              <input matInput placeholder="Weight" formControlName="weight" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ t('Vet') }}</mat-label>
+              <input
+                matInput
+                placeholder="Vet"
+                formControlName="vet"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Anamnesis') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="anamnesis"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Clinical Examination') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="clinicalExamination"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Recommendation') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="recommendation"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Other Findings') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="otherFindings"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Note') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="note"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ t('Therapy') }}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                formControlName="therapy"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" label="Dijagnoze, Usluge, Lekovi">
+      <div [formGroup]="secondFormGroup">
+        <h2>Diagnoses</h2>
+        <mat-form-field>
+          <mat-label>Select Diagnoses</mat-label>
+          <mat-select
+            formControlName="selectedDiagnoses"
+            multiple
+            (selectionChange)="onSelectDiagnosis()"
+          >
+            <mat-option
+              *ngFor="let diagnosis of diagnoses"
+              [value]="diagnosis"
+              >{{ diagnosis }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <div class="diagnosesList" formArrayName="diagnosesList">
+          <div
+            *ngFor="let diagnosisCtrl of diagnosesList.controls; let i = index"
+            [formGroupName]="i"
+            class="diagnoses-row"
+          >
+            <mat-form-field>
+              <mat-label>Diagnosis</mat-label>
+              <input matInput formControlName="diagnosis" readonly />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Note</mat-label>
+              <input matInput formControlName="note" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <h2>Services</h2>
+        <mat-form-field>
+          <mat-label>Select Services</mat-label>
+          <mat-select
+            formControlName="selectedServices"
+            multiple
+            (selectionChange)="onSelectService()"
+          >
+            <mat-option *ngFor="let service of services" [value]="service">{{
+              service
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="diagnosesList" formArrayName="servicesList">
+          <div
+            *ngFor="let serviceCtrl of servicesList.controls; let i = index"
+            [formGroupName]="i"
+            class="diagnoses-row"
+          >
+            <mat-form-field>
+              <mat-label>Service</mat-label>
+              <input matInput formControlName="service" readonly />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Quantity</mat-label>
+              <input matInput formControlName="quantity" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input matInput formControlName="price" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Vat</mat-label>
+              <input matInput formControlName="vat" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="amount" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <h2>Medicaments</h2>
+        <mat-form-field>
+          <mat-label>Select Medicaments</mat-label>
+          <mat-select
+            formControlName="selectedMedicaments"
+            multiple
+            (selectionChange)="onSelectMedicament()"
+          >
+            <mat-option
+              *ngFor="let medicament of medicaments"
+              [value]="medicament"
+              >{{ medicament }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <div class="diagnosesList" formArrayName="medicamentsList">
+          <div
+            *ngFor="
+              let medicamentsCtrl of medicamentsList.controls;
+              let i = index
+            "
+            [formGroupName]="i"
+            class="diagnoses-row"
+          >
+            <mat-form-field>
+              <mat-label>Medicament</mat-label>
+              <input matInput formControlName="medicament" readonly />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Serial Number</mat-label>
+              <input matInput formControlName="serialNumber" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Note</mat-label>
+              <input matInput formControlName="note" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Quantity</mat-label>
+              <input matInput formControlName="quantity" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input matInput formControlName="price" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Vat</mat-label>
+              <input matInput formControlName="vat" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="amount" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <mat-card>
+        <mat-card-header>Troskovi</mat-card-header>
+
+        <mat-card-content>
+          <form class="thirdFormGroup" [formGroup]="thirdFormGroup">
+            <b
+              >Ukupno za usluge:
+              <span>{{
+                thirdFormGroup.controls.totalForServices.value ?? 0
+              }}</span></b
+            >
+            <b
+              >Ukupno za lekove:
+              <span>{{
+                thirdFormGroup.controls.totalForMedicaments.value ?? 0
+              }}</span></b
+            >
+            <div style="display: flex; align-items: center; gap: 16px">
+              <b
+                >Ostali troskovi:
+                <span>{{
+                  thirdFormGroup.controls.otherCosts.value ?? 0
+                }}</span></b
+              >
+              <mat-form-field class="example-full-width">
+                <mat-label>{{ t('Procenat za ostale troskove') }}</mat-label>
+                <input
+                  matInput
+                  placeholder="Unesite procenat"
+                  formControlName="percentageForOtherCosts"
+                  (change)="servicesCalc($event)"
+                />
+              </mat-form-field>
+            </div>
+
+            <b
+              >Ukupno: <span>{{ thirdFormGroup.controls.total.value }}</span></b
+            >
+          </form>
+        </mat-card-content>
+      </mat-card>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</ng-container>

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { ApplicationStateService } from '../shared/services/application-state.service';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
 
@@ -12,7 +12,7 @@ import { TabsComponentService } from '../shared/services/tabs-component.service'
 export class ShellComponent implements OnDestroy, OnInit {
   destroyed = new Subject<void>();
   currentScreenSize!: string;
-  isMenuOpen$!: any;
+  isMenuOpen$ = this.applicationStateService.isOpenMenu$;
   isMenuOpenData!: any;
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
@@ -53,13 +53,6 @@ export class ShellComponent implements OnDestroy, OnInit {
         takeUntil(this.destroyed)
       )
       .subscribe();
-
-    this.applicationStateService.isOpenMenu$
-      .pipe(takeUntil(this.destroyed))
-      .subscribe((isMenuOpen: any) => {
-        console.log(isMenuOpen);
-        this.isMenuOpenData = isMenuOpen;
-      });
   }
 
   ngOnDestroy() {
