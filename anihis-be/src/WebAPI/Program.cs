@@ -52,11 +52,11 @@ if (app.Environment.IsDevelopment())
     app.UseMigrationsEndPoint();
 
     // Initialise and seed database
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var initialiser = scope.ServiceProvider.GetRequiredService<CoreDbContextInitialiser>();
-    //    await initialiser.InitialiseAsync();
-    //}
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<CoreDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+    }
 }
 else
 {
