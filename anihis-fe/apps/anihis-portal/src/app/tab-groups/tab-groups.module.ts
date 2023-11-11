@@ -8,6 +8,7 @@ import { CodersComponent } from './coders/coders.component';
 import { ProtocolsComponent } from './protocols/protocols.component';
 import { NewCardComponent } from './protocols/new-card/new-card.component';
 import { NewAnimalComponent } from './protocols/new-animal/new-animal.component';
+import { TypesOfDiagnosisComponent } from './coders/types-of-diagnosis/types-of-diagnosis.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,13 @@ import { NewAnimalComponent } from './protocols/new-animal/new-animal.component'
     ProtocolsComponent,
   ],
 
-  imports: [CommonModule, SharedModule, NewCardComponent, NewAnimalComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
+    NewCardComponent,
+    NewAnimalComponent,
+    TypesOfDiagnosisComponent,
+  ],
   exports: [TabGroupsComponent, ProtocolsComponent],
 })
 export class TabGroupsModule {}

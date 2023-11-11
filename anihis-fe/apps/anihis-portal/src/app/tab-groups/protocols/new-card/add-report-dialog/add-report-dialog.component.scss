@@ -28,8 +28,6 @@ mat-card-content {
   flex-direction: column;
 }
 .diagnosesList {
-  max-height: 144px;
-  overflow: auto;
   .diagnoses-row {
     display: flex;
     gap: 16px;

@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <mat-accordion *ngFor="let type of typesOfDiagnosis">
+    <mat-expansion-panel
+      (opened)="
+        isEmptyArray(type) ? addItem(type) : null; panelOpenState = true
+      "
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ type }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-container *ngIf="panelOpenState">
+        <div>
+          <form [formGroup]="myForm">
+            <table formArrayName="items">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Diagnosis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container
+                  *ngFor="
+                    let item of items.controls;
+                    let i = index;
+                    let l = last
+                  "
+                  [formGroupName]="i"
+                >
+                  <ng-container
+                    formArrayName="data"
+                    *ngIf="item.value.type === type"
+                  >
+                    <tr
+                      *ngFor="
+                        let dataItem of getFormData(i).controls;
+                        let j = index
+                      "
+                      [formGroupName]="j"
+                    >
+                      <td>
+                        {{ dataItem.get('code')?.value }}
+                      </td>
+                      <td>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Diagnosis</mat-label>
+                          <textarea
+                            matInput
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="5"
+                            cdkAutosizeMaxRows="5"
+                            formControlName="diagnosis"
+                          ></textarea>
+                        </mat-form-field>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
+              </tbody>
+            </table>
+            <div class="btn-add-wrapper">
+              <button
+                [disabled]="isAddButtonDisabled(type)"
+                mat-raised-button
+                color="primary"
+                (click)="addItem(type)"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
