@@ -26,8 +26,10 @@ public class CoreDbContext : DbContext, ICoreDbContext
     public DbSet<Breed> Breeds => Set<Breed>();
     public DbSet<HealthRecord> HealthRecords => Set<HealthRecord>();
     public DbSet<Owner> Owners => Set<Owner>();
+    public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<Species> Species => Set<Species>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<Vaccination> Vaccinations => Set<Vaccination>();
     public DbSet<Veterinarian> Veterinarians => Set<Veterinarian>();
     public DbSet<VeterinaryClinic> VeterinaryClinics => Set<VeterinaryClinic>();
 

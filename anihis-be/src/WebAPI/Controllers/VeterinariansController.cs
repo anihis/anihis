@@ -1,5 +1,7 @@
 ﻿using anihis.Application.Common.Interfaces;
+using anihis.Application.Veterinarians.Commands.Create;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace anihis.WebAPI.Controllers;
 
@@ -15,20 +17,14 @@ public class VeterinariansController : ApiControllerBase
     }
 
     //[HttpGet]
-    //public async Task<ActionResult<List<GetOwnersResult>>> Get()
+    //public async Task<ActionResult<List<GetVeterinaryClinicsResult>>> Get()
     //{
-    //    return await Mediator.Send(new GetOwnersQuery());
+    //    return await Mediator.Send(new GetVeterinaryClinicsQuery());
     //}
 
-    //[HttpGet("{uid}")]
-    //public async Task<ActionResult<GetOwnerResult>> Get(string uid)
-    //{
-    //    return await Mediator.Send(new GetOwnerQuery { Uid = uid });
-    //}
-
-    //[HttpPost]
-    //public async Task Create(CreateOwnerCommand command)
-    //{
-    //    await Mediator.Send(command);
-    //}
+    [HttpPost]
+    public async Task Create(CreateVeterinarianCommand command)
+    {
+        await Mediator.Send(command);
+    }
 }

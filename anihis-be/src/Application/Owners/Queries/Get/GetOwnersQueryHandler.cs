@@ -14,7 +14,7 @@ public class GetOwnersQueryHandler : IRequestHandler<GetOwnersQuery, List<GetOwn
 
     public async Task<List<GetOwnersResult>> Handle(GetOwnersQuery request, CancellationToken cancellationToken)
     {
-        var owners = _ownerRepository.GetQuery();
+        var owners = _ownerRepository.StartQuery();
         return owners.Select(owner => new GetOwnersResult
         {
             Address = owner.Address,

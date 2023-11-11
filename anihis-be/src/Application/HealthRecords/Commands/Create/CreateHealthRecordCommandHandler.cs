@@ -32,7 +32,7 @@ public class CreateHealthRecordCommandHandler : IRequestHandler<CreateHealthReco
 
     public async Task Handle(CreateHealthRecordCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByUidOrThrowAsync(_currentUserService.UserId, cancellationToken);
+        var user = await _userRepository.GetByUidOrThrowAsync(_currentUserService.UserUid, cancellationToken);
         var animal = await _animalRepository.GetByUidOrThrowAsync(request.AnimalUid, cancellationToken);
         //var veterinarian = await _veterinarianRepository.GetByUidOrThrowAsync(request.VeterinarianUid, cancellationToken);
         //var veterinarian = await _veterinarianRepository.GetByUidOrThrowAsync(_currentUserService.UserId, cancellationToken);

@@ -11,8 +11,8 @@ using anihis.Infrastructure.Persistence;
 namespace anihis.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20231028105812_LastModifiedDateTimeUtcColumn")]
-    partial class LastModifiedDateTimeUtcColumn
+    [Migration("20231111125651_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,10 +84,15 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SpeciesId");
 
                     b.ToTable("Breeds");
                 });
@@ -247,10 +252,15 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("VeterinaryClinicId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VeterinaryClinicId");
 
@@ -300,6 +310,17 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Navigation("Species");
                 });
 
+            modelBuilder.Entity("anihis.Domain.Entities.Breed", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.Species", "Species")
+                        .WithMany()
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Species");
+                });
+
             modelBuilder.Entity("anihis.Domain.Entities.HealthRecord", b =>
                 {
                     b.HasOne("anihis.Domain.Entities.Animal", "Animal")
@@ -321,11 +342,19 @@ namespace anihis.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("anihis.Domain.Entities.Veterinarian", b =>
                 {
+                    b.HasOne("anihis.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
                         .WithMany()
                         .HasForeignKey("VeterinaryClinicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
 
                     b.Navigation("VeterinaryClinic");
                 });

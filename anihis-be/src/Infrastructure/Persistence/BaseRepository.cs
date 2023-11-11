@@ -23,7 +23,7 @@ public class BaseRepository<TDbContextType, TEntity> : IBaseRepository<TEntity>
         DbSet = DbContext.Set<TEntity>();
     }
 
-    public virtual IQueryable<TEntity> GetQuery()
+    public virtual IQueryable<TEntity> StartQuery()
     {
         return DbContext.Set<TEntity>();
     }
@@ -40,12 +40,12 @@ public class BaseRepository<TDbContextType, TEntity> : IBaseRepository<TEntity>
 
     public async Task<IEnumerable<TEntity>> FindByConditionAync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
     {
-        return await GetQuery().Where(predicate).ToArrayAsync(cancellationToken);
+        return await StartQuery().Where(predicate).ToArrayAsync(cancellationToken);
     }
 
     public async Task<TEntity> GetByUidAsync(string uid, CancellationToken cancellationToken)
     {
-        return await GetQuery().Where(x => x.Uid == uid).SingleOrDefaultAsync(cancellationToken);
+        return await StartQuery().Where(x => x.Uid == uid).SingleOrDefaultAsync(cancellationToken);
     }
 
     public async Task<TEntity> GetByUidOrThrowAsync(string uid, CancellationToken cancellationToken)

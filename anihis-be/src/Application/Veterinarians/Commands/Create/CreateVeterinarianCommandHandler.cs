@@ -8,22 +8,26 @@ public class CreateVeterinarianCommandHandler : IRequestHandler<CreateVeterinari
     private readonly ICoreDbContext _context;
     private readonly IBaseRepository<Veterinarian> _veterinarianRepository;
     private readonly IBaseRepository<VeterinaryClinic> _veterinaryClinicRepository;
+    private readonly IBaseRepository<User> _userRepository;
 
     public CreateVeterinarianCommandHandler
     (
         ICoreDbContext context,
         IBaseRepository<Veterinarian> veterinarianRepository,
-        IBaseRepository<VeterinaryClinic> veterinaryClinicRepository
+        IBaseRepository<VeterinaryClinic> veterinaryClinicRepository,
+        IBaseRepository<User> userRepository
     )
     {
         _context = context;
         _veterinarianRepository = veterinarianRepository;
         _veterinaryClinicRepository = veterinaryClinicRepository;
+        _userRepository = userRepository;
     }
 
     public async Task Handle(CreateVeterinarianCommand request, CancellationToken cancellationToken)
     {
         var veterinaryClinic = await _veterinaryClinicRepository.GetByUidOrThrowAsync(request.VeterinaryClinicUid, cancellationToken);
+        var user = await _userRepository.GetByUidOrThrowAsync(request.UserUid, cancellationToken);
 
         _veterinarianRepository.Insert(new Veterinarian
         {
@@ -34,7 +38,8 @@ public class CreateVeterinarianCommandHandler : IRequestHandler<CreateVeterinari
             LicenceNumber = request.LicenceNumber,
             MobileNumber = request.MobileNumber,
             PhoneNumber = request.PhoneNumber,
-            VeterinaryClinic = veterinaryClinic
+            VeterinaryClinic = veterinaryClinic,
+            User = user
         });
 
         await _context.SaveChangesAsync(cancellationToken);

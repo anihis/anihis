@@ -19,7 +19,7 @@ public class GetBreedQueryHandler : IRequestHandler<GetBreedQuery, GetBreedResul
 
     public async Task<GetBreedResult> Handle(GetBreedQuery request, CancellationToken cancellationToken)
     {
-        var breed = await _breedRepository.GetQuery()
+        var breed = await _breedRepository.StartQuery()
             .Include(x => x.Species)
             .Where(x => x.Uid == request.BreedUid)
             .SingleOrDefaultAsync(cancellationToken);
