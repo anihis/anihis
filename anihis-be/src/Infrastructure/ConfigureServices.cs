@@ -4,6 +4,7 @@ using anihis.Infrastructure.Persistence;
 using anihis.Infrastructure.Persistence.Interceptors;
 using anihis.Infrastructure.Services;
 using Keycloak.AuthServices.Authentication;
+using Keycloak.AuthServices.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,8 @@ public static class ConfigureServices
         services.AddDbContext<CoreDbContext>(coreDbContextOptionsBuilder)
                 .AddScoped<ICoreDbContext, CoreDbContext>();
 
+        services.AddScoped<CoreDbContextInitialiser>();
+
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
 
@@ -28,7 +31,11 @@ public static class ConfigureServices
 
         //TODO: Keyclock Authorization
         services.AddAuthorization(options =>
-            options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
+        {
+            options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+            options.AddPolicy("VeterinarianPolicy", policy => policy.RequireRole("Veterinarian"));
+        });
+        services.AddKeycloakAuthorization(configuration);
 
         return services;
     }

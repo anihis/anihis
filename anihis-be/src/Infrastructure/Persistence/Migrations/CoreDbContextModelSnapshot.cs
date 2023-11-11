@@ -184,6 +184,42 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.ToTable("Owners");
                 });
 
+            modelBuilder.Entity("anihis.Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("PaymentDateTimeUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VeterinarianId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VeterinaryClinicId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("VeterinarianId");
+
+                    b.HasIndex("VeterinaryClinicId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("anihis.Domain.Entities.Species", b =>
                 {
                     b.Property<int>("Id")
@@ -219,6 +255,50 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("anihis.Domain.Entities.Vaccination", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("VaccinationDateTimeUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VaccineName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VaccineSerialNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VeterinarianId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("VeterinarianId");
+
+                    b.ToTable("Vaccinations");
+                });
+
             modelBuilder.Entity("anihis.Domain.Entities.Veterinarian", b =>
                 {
                     b.Property<int>("Id")
@@ -249,10 +329,15 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("VeterinaryClinicId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VeterinaryClinicId");
 
@@ -332,13 +417,75 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Navigation("Veterinarian");
                 });
 
-            modelBuilder.Entity("anihis.Domain.Entities.Veterinarian", b =>
+            modelBuilder.Entity("anihis.Domain.Entities.Payment", b =>
                 {
+                    b.HasOne("anihis.Domain.Entities.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.Veterinarian", "Veterinarian")
+                        .WithMany()
+                        .HasForeignKey("VeterinarianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
                         .WithMany()
                         .HasForeignKey("VeterinaryClinicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("Veterinarian");
+
+                    b.Navigation("VeterinaryClinic");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Vaccination", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.Animal", "Animal")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.Veterinarian", "Veterinarian")
+                        .WithMany()
+                        .HasForeignKey("VeterinarianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("Veterinarian");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Veterinarian", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
+                        .WithMany()
+                        .HasForeignKey("VeterinaryClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
 
                     b.Navigation("VeterinaryClinic");
                 });

@@ -16,7 +16,7 @@ public class GetSpeciesQueryHandler : IRequestHandler<GetSpeciesQuery, List<GetS
 
     public async Task<List<GetSpeciesResult>> Handle(GetSpeciesQuery request, CancellationToken cancellationToken)
     {
-        var species = _speciesRepository.GetQuery();
+        var species = _speciesRepository.StartQuery();
 
         return species.Select(s => new GetSpeciesResult
         {

@@ -19,7 +19,7 @@ public class GetAnimalQueryHandler : IRequestHandler<GetAnimalQuery, GetAnimalRe
 
     public async Task<GetAnimalResult> Handle(GetAnimalQuery request, CancellationToken cancellationToken)
     {
-        var animal = await _animalRepository.GetQuery()
+        var animal = await _animalRepository.StartQuery()
             .Include(x => x.Owner)
             .Include(x => x.Breed)
             .Include(x => x.Species)

@@ -15,8 +15,10 @@ builder.Services.AddScoped<IBaseRepository<Animal>, BaseRepository<ICoreDbContex
 builder.Services.AddScoped<IBaseRepository<Breed>, BaseRepository<ICoreDbContext, Breed>>();
 builder.Services.AddScoped<IBaseRepository<HealthRecord>, BaseRepository<ICoreDbContext, HealthRecord>>();
 builder.Services.AddScoped<IBaseRepository<Owner>, BaseRepository<ICoreDbContext, Owner>>();
+builder.Services.AddScoped<IBaseRepository<Payment>, BaseRepository<ICoreDbContext, Payment>>();
 builder.Services.AddScoped<IBaseRepository<Species>, BaseRepository<ICoreDbContext, Species>>();
 builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
+builder.Services.AddScoped<IBaseRepository<Vaccination>, BaseRepository<ICoreDbContext, Vaccination>>();
 builder.Services.AddScoped<IBaseRepository<Veterinarian>, BaseRepository<ICoreDbContext, Veterinarian>>();
 builder.Services.AddScoped<IBaseRepository<VeterinaryClinic>, BaseRepository<ICoreDbContext, VeterinaryClinic>>();
 

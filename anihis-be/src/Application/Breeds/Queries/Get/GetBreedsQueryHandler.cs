@@ -17,7 +17,7 @@ public class GetBreedsQueryHandler : IRequestHandler<GetBreedsQuery, List<GetBre
 
     public async Task<List<GetBreedsResult>> Handle(GetBreedsQuery request, CancellationToken cancellationToken)
     {
-        var breeds = _breedRepository.GetQuery();
+        var breeds = _breedRepository.StartQuery();
 
         return breeds.Select(breed => new GetBreedsResult
         {

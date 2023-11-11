@@ -10,6 +10,6 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     void Insert(TEntity entity);
     void Update(TEntity entity);
     void Delete(TEntity entity);
-    IQueryable<TEntity> GetQuery(); //REVIEW: rename to StartQuery
+    IQueryable<TEntity> StartQuery();
     Task<TEntity> GetByUidOrThrowAsync(string uid, CancellationToken cancellationToken);
 }

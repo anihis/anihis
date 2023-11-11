@@ -33,7 +33,7 @@ public class UpdateAnimalCommandHandler : IRequestHandler<UpdateAnimalCommand>
     {
         //Owner owner;
 
-        var animal = await _animalRepository.GetQuery()
+        var animal = await _animalRepository.StartQuery()
             .Include(x => x.Owner)
             .Include(x => x.Breed)
             .Include(x => x.Species)

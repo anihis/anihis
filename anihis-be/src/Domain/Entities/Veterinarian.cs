@@ -8,4 +8,5 @@ public class Veterinarian : BaseEntity
     public string? PhoneNumber { get; set; }
     public string? MobileNumber { get; set; }
     public VeterinaryClinic VeterinaryClinic { get; set; }
+    public User User { get; set; }
 }
