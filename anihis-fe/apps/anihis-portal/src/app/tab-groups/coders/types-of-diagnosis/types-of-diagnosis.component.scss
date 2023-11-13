@@ -4,29 +4,36 @@
   justify-content: center;
   align-items: center;
   padding: 24px;
-  mat-accordion {
+  .print-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .typesOfDiagnosis {
     width: 50%;
-    table {
-      width: 100%;
-      margin: 16px 0;
-      th {
-        text-align: start;
-        background: #ead6bd;
-        color: #504e63;
-      }
+    mat-accordion {
+      table {
+        width: 100%;
+        margin: 16px 0;
+        th {
+          text-align: start;
+          background: #ead6bd;
+          color: #504e63;
+        }
 
-      th:last-child {
-        padding-left: 24px;
-        padding-right: 24px;
-        width: 80% !important;
-      }
+        th:last-child {
+          padding-left: 24px;
+          padding-right: 24px;
+          width: 80% !important;
+        }
 
-      td:last-child {
-        width: 80% !important;
-        padding-left: 24px;
-        padding-right: 24px;
-        mat-form-field {
-          width: 100%;
+        td:last-child {
+          width: 80% !important;
+          padding-left: 24px;
+          padding-right: 24px;
+          mat-form-field {
+            width: 100%;
+          }
         }
       }
     }
@@ -37,4 +44,8 @@
   display: flex;
   justify-content: flex-end;
   padding: 24px;
+}
+
+.table-for-print {
+  display: none;
 }

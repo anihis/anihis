@@ -1,78 +1,111 @@
 <div class="wrapper">
-  <mat-accordion *ngFor="let type of typesOfDiagnosis">
-    <mat-expansion-panel
-      (opened)="
-        isEmptyArray(type) ? addItem(type) : null; panelOpenState = true
-      "
-      (closed)="panelOpenState = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{ type }}</mat-panel-title>
-      </mat-expansion-panel-header>
-      <ng-container *ngIf="panelOpenState">
-        <div>
-          <form [formGroup]="myForm">
-            <table formArrayName="items">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Diagnosis</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container
-                  *ngFor="
-                    let item of items.controls;
-                    let i = index;
-                    let l = last
-                  "
-                  [formGroupName]="i"
-                >
+  <div class="print-wrapper">
+    <button mat-raised-button (click)="printPage()">Print Page</button>
+  </div>
+  <div class="typesOfDiagnosis">
+    <mat-accordion *ngFor="let type of typesOfDiagnosis; let i = index">
+      <mat-expansion-panel
+        (opened)="
+          isEmptyArray(type) ? addItem(type) : null; panelOpenStates[i] = true
+        "
+        (closed)="panelOpenStates[i] = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ type }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="panelOpenStates[i]">
+          <div>
+            <form [formGroup]="myForm">
+              <table formArrayName="items">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Diagnosis</th>
+                  </tr>
+                </thead>
+                <tbody>
                   <ng-container
-                    formArrayName="data"
-                    *ngIf="item.value.type === type"
+                    *ngFor="
+                      let item of items.controls;
+                      let i = index;
+                      let l = last
+                    "
+                    [formGroupName]="i"
                   >
-                    <tr
-                      *ngFor="
-                        let dataItem of getFormData(i).controls;
-                        let j = index
-                      "
-                      [formGroupName]="j"
+                    <ng-container
+                      formArrayName="data"
+                      *ngIf="item.value.type === type"
                     >
-                      <td>
-                        {{ dataItem.get('code')?.value }}
-                      </td>
-                      <td>
-                        <mat-form-field class="example-full-width">
-                          <mat-label>Diagnosis</mat-label>
-                          <textarea
-                            matInput
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="5"
-                            cdkAutosizeMaxRows="5"
-                            formControlName="diagnosis"
-                          ></textarea>
-                        </mat-form-field>
-                      </td>
-                    </tr>
+                      <tr
+                        *ngFor="
+                          let dataItem of getFormData(i).controls;
+                          let j = index
+                        "
+                        [formGroupName]="j"
+                      >
+                        <td>
+                          {{ dataItem.get('code')?.value }}
+                        </td>
+                        <td>
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Diagnosis</mat-label>
+                            <textarea
+                              matInput
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="5"
+                              cdkAutosizeMaxRows="5"
+                              formControlName="diagnosis"
+                            ></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </ng-container>
                   </ng-container>
-                </ng-container>
-              </tbody>
-            </table>
-            <div class="btn-add-wrapper">
-              <button
-                [disabled]="isAddButtonDisabled(type)"
-                mat-raised-button
-                color="primary"
-                (click)="addItem(type)"
-              >
-                Add
-              </button>
-            </div>
-          </form>
-        </div>
+                </tbody>
+              </table>
+              <div class="btn-add-wrapper">
+                <button
+                  [disabled]="isAddButtonDisabled(type)"
+                  mat-raised-button
+                  color="primary"
+                  (click)="addItem(type)"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+<div class="table-for-print">
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Code</th>
+        <th>Diagnosis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngFor="
+          let itemType of myForm.controls.items.value as FormArray;
+          let i = index
+        "
+      >
+        <ng-container *ngFor="let dataItem of getFormData(i).controls">
+          <tr *ngIf="dataItem.value.diagnosis">
+            <td>{{ getFormType(i).value }}</td>
+            <td>{{ dataItem.value.code }}</td>
+            <td>{{ dataItem.value.diagnosis }}</td>
+          </tr>
+        </ng-container>
       </ng-container>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </tbody>
+  </table>
 </div>

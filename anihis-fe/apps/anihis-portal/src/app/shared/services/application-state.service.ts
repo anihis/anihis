@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
+import { BehaviorSubject, Subject, distinctUntilChanged } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,9 @@ export class ApplicationStateService {
   private _selectedRowData = new BehaviorSubject<any>([]);
   selectedRowData$ = this._selectedRowData.asObservable();
 
+  private _printPage = new Subject<void>();
+  printPage$ = this._printPage.asObservable();
+
   set languageChanged(language: string) {
     this._languageChanged.next(language);
   }
@@ -26,5 +29,9 @@ export class ApplicationStateService {
 
   setSelectedRowData(value: any) {
     this._selectedRowData.next(value);
+  }
+
+  printPage() {
+    this._printPage.next();
   }
 }

@@ -5,10 +5,12 @@ import { SharedModule } from '../../../shared/shared.module';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { FormArray, FormGroup } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { ApplicationStateService } from '../../../shared/services/application-state.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 interface ItemType {
   type: string;
-  data: { diagnosis: string }[];
+  data: { diagnosis: string; code?: number }[];
 }
 
 @Component({
@@ -16,11 +18,18 @@ interface ItemType {
   templateUrl: './types-of-diagnosis.component.html',
   styleUrls: ['./types-of-diagnosis.component.scss'],
   standalone: true,
-  imports: [CommonModule, SharedModule, MatTableModule, MatExpansionModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatMenuModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TypesOfDiagnosisComponent extends FormBaseComponent {
-  panelOpenState = false;
+  panelOpenStates: boolean[] = [];
+  menu = [];
   typesOfDiagnosis = [
     'otology',
     'ophthalmology',
@@ -47,8 +56,21 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
     items: this.fb.array([]),
   });
 
+  constructor(private applicationStateService: ApplicationStateService) {
+    super();
+    this.panelOpenStates = this.typesOfDiagnosis.map(() => false);
+  }
+
   get items(): FormArray {
     return this.myForm.get('items') as FormArray;
+  }
+
+  expandAll() {
+    this.panelOpenStates = this.panelOpenStates.map(() => true);
+  }
+
+  collapseAll() {
+    this.panelOpenStates = this.panelOpenStates.map(() => false);
   }
 
   newItem(type: string): FormGroup {
@@ -67,6 +89,10 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
     return this.items.at(i).get('data') as FormArray;
   }
 
+  getFormType(i: number): FormArray {
+    return this.items.at(i).get('type') as FormArray;
+  }
+
   addItem(type: string): void {
     this.items.push(this.newItem(type));
   }
@@ -80,6 +106,10 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
   isEmptyArray(type: any): boolean {
     const itemsOfType = this.getItemsOfType(type);
     return itemsOfType.length === 0;
+  }
+
+  printPage() {
+    this.applicationStateService.printPage();
   }
 
   isAddButtonDisabled(type: string): boolean {

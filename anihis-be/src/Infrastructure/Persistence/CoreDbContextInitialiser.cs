@@ -15,18 +15,18 @@ public class CoreDbContextInitialiser
 
     public async Task InitialiseAsync()
     {
-        try
-        {
-            if (_context.Database.IsSqlite())
-            {
-                await _context.Database.MigrateAsync();
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while initialising the database.");
-            throw;
-        }
+        //try
+        //{
+        //    if (_context.Database.IsSqlite())
+        //    {
+        //        await _context.Database.MigrateAsync();
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    _logger.LogError(ex, "An error occurred while initialising the database.");
+        //    throw;
+        //}
     }
 
     public async Task SeedAsync()

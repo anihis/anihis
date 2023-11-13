@@ -264,3 +264,58 @@ anihis-add-report-dialog {
     display: none !important;
   }
 }
+
+@media print {
+  .container-menu,
+  .shell-tab,
+  .print-wrapper,
+  .typesOfDiagnosis {
+    display: none !important;
+  }
+
+  mat-card .mat-mdc-tab-body-wrapper {
+    height: unset !important;
+  }
+  .table-for-print {
+    display: block !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    table {
+      width: 100%;
+      margin: 16px 0;
+      border-collapse: collapse !important;
+
+      th {
+        text-align: start;
+        background: #ead6bd;
+        color: #504e63;
+      }
+
+      tr {
+        border-bottom: 1px solid #ddd !important;
+      }
+
+      th:first-child {
+        width: 15% !important;
+      }
+
+      th:last-child {
+        padding-left: 24px;
+        padding-right: 24px;
+        width: 80% !important;
+      }
+
+      td:last-child {
+        width: 80% !important;
+        padding-left: 24px;
+        padding-right: 24px;
+        mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

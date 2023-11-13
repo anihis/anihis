@@ -7,7 +7,10 @@ import { TabsComponentService } from '../shared/services/tabs-component.service'
 @Component({
   selector: 'anihis-shell',
   templateUrl: './shell.component.html',
-  styleUrls: ['./shell.component.scss'],
+  styleUrls: [
+    './shell.component.scss',
+    './print-types-of-diagnosis.component.scss',
+  ],
 })
 export class ShellComponent implements OnDestroy, OnInit {
   destroyed = new Subject<void>();
@@ -23,6 +26,10 @@ export class ShellComponent implements OnDestroy, OnInit {
   ]);
 
   tabsName$ = this.tabsComponentService.openTabs$;
+
+  printPage$ = this.applicationStateService.printPage$.subscribe((res) => {
+    this.printPage();
+  });
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -46,7 +53,6 @@ export class ShellComponent implements OnDestroy, OnInit {
             if (result.breakpoints[query]) {
               this.currentScreenSize =
                 this.displayNameMap.get(query) ?? 'Unknown';
-              console.log(this.currentScreenSize);
             }
           }
         }),
@@ -58,5 +64,9 @@ export class ShellComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.destroyed.next();
     this.destroyed.complete();
+  }
+
+  printPage() {
+    window.print();
   }
 }
