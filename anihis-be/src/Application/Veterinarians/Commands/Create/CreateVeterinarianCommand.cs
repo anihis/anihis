@@ -10,5 +10,5 @@ public class CreateVeterinarianCommand : IRequest
     public string? PhoneNumber { get; set; }
     public string? MobileNumber { get; set; }
     public string VeterinaryClinicUid { get; set; }
-    public string UserUid { get; set; }
+    public string Username { get; set; }
 }

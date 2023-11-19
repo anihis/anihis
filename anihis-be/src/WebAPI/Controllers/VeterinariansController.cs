@@ -1,5 +1,8 @@
 ﻿using anihis.Application.Common.Interfaces;
 using anihis.Application.Veterinarians.Commands.Create;
+using anihis.Application.Veterinarians.Commands.Update;
+using anihis.Application.Veterinarians.Queries.Get;
+using anihis.Application.Veterinarians.Queries.GetSingle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +19,26 @@ public class VeterinariansController : ApiControllerBase
     {
     }
 
-    //[HttpGet]
-    //public async Task<ActionResult<List<GetVeterinaryClinicsResult>>> Get()
-    //{
-    //    return await Mediator.Send(new GetVeterinaryClinicsQuery());
-    //}
+    [HttpGet]
+    public async Task<ActionResult<GetVeterinariansResult>> Get()
+    {
+        return await Mediator.Send(new GetVeterinariansQuery());
+    }
+
+    [HttpGet("{uid}")]
+    public async Task<ActionResult<GetVeterinarianResult>> GetSingle(string uid)
+    {
+        return await Mediator.Send(new GetVeterinarianQuery { Uid = uid });
+    }
 
     [HttpPost]
     public async Task Create(CreateVeterinarianCommand command)
+    {
+        await Mediator.Send(command);
+    }
+
+    [HttpPut]
+    public async Task Update(UpdateVeterinarianCommand command)
     {
         await Mediator.Send(command);
     }

@@ -27,7 +27,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {
             Uid = Guid.NewGuid().ToString(),
             //Uid = "test",
-            Name = request.Name
         });
 
         await _context.SaveChangesAsync(cancellationToken);

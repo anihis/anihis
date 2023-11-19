@@ -17,7 +17,6 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<GetUsers
         var users = _userRepository.StartQuery();
         return users.Select(user => new GetUsersResult
         {
-            Name = user.Name,
             Uid = user.Uid
         }).ToList();
     }

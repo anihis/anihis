@@ -18,21 +18,21 @@ public class UsersController : ApiControllerBase
     {
     }
 
-    [HttpGet]
-    public async Task<ActionResult<List<GetUsersResult>>> Get()
-    {
-        return await Mediator.Send(new GetUsersQuery());
-    }
+    //[HttpGet]
+    //public async Task<ActionResult<List<GetUsersResult>>> Get()
+    //{
+    //    return await Mediator.Send(new GetUsersQuery());
+    //}
 
-    [HttpGet("{uid}")]
-    public async Task<ActionResult<GetUserResult>> Get(string uid)
-    {
-        return await Mediator.Send(new GetUserQuery { Uid = uid });
-    }
+    //[HttpGet("{uid}")]
+    //public async Task<ActionResult<GetUserResult>> Get(string uid)
+    //{
+    //    return await Mediator.Send(new GetUserQuery { Uid = uid });
+    //}
 
-    [HttpPost]
-    public async Task Create(CreateUserCommand command)
-    {
-        await Mediator.Send(command);
-    }
+    //[HttpPost]
+    //public async Task Create(CreateUserCommand command)
+    //{
+    //    await Mediator.Send(command);
+    //}
 }

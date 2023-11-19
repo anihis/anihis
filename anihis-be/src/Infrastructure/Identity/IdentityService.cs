@@ -19,7 +19,8 @@ public class IdentityService : IIdentityService
     {
         var user = await _baseRepository.GetByUidAsync(userId, CancellationToken.None);
 
-        return user.Name;
+        //return user.Name;
+        return user.Username;   //TODO: check this
     }
 
     public async Task<bool> IsInRoleAsync(string userId, string role)

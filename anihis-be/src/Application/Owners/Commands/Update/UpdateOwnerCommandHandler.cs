@@ -1,6 +1,5 @@
 ﻿using anihis.Application.Common.Exceptions;
 using anihis.Application.Common.Interfaces;
-using anihis.Application.Owners.Commands.Create;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -33,12 +32,12 @@ public class UpdateOwnerCommandHandler : IRequestHandler<UpdateOwnerCommand>
             throw new NotFoundException();
         }
 
-        owner.Address = request.Address;
-        owner.City = request.City;
+        owner.Address = string.IsNullOrEmpty(request.Address) ? owner.Address : request.Address;
+        owner.City = string.IsNullOrEmpty(request.City) ? owner.City : request.City;
         owner.Country = request.Country;
         owner.Email = request.Email;
-        owner.FirstName = request.FirstName;
-        owner.LastName = request.LastName;
+        owner.FirstName = string.IsNullOrEmpty(request.FirstName) ? owner.FirstName : request.FirstName;
+        owner.LastName = string.IsNullOrEmpty(request.LastName) ? owner.LastName : request.LastName;
         owner.IdCardNumber = request.IdCardNumber;
         owner.MobileNumber = request.MobileNumber;
         owner.PassportNumber = request.PassportNumber;

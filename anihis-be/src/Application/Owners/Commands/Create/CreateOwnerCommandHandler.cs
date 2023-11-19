@@ -9,7 +9,6 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
     private readonly ICoreDbContext _context;
     private readonly ICurrentUserService _currentUserService;
     private readonly IBaseRepository<Owner> _ownerRepository;
-    private readonly IBaseRepository<User> _userRepository;
     private readonly IValidator<CreateOwnerCommand> _validator;
 
     public CreateOwnerCommandHandler
@@ -17,14 +16,12 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
         ICoreDbContext context,
         ICurrentUserService currentUserService,
         IBaseRepository<Owner> ownerRepository,
-        IBaseRepository<User> userRepository,
         IValidator<CreateOwnerCommand> validator
     )
     {
         _context = context;
         _currentUserService = currentUserService;
         _ownerRepository = ownerRepository;
-        _userRepository = userRepository;
         _validator = validator;
     }
 
@@ -33,11 +30,10 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        //var user = _userRepository.GetByUidOrThrowAsync(_currentUserService.UserId, cancellationToken);
-
         _ownerRepository.Insert(new Owner
         {
             Uid = Guid.NewGuid().ToString(),
+            Username = request.Username,
             Address = request.Address,
             City = request.City,
             Country = request.Country,

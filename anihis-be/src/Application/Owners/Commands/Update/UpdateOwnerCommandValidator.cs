@@ -11,14 +11,14 @@ public class UpdateOwnerCommandValidator : AbstractValidator<UpdateOwnerCommand>
 
         RuleFor(x => x.LastName)
             .NotEmpty()
-            .WithMessage("The last name cannot be null or empty.");
+            .WithMessage("The last name cannot be empty.");
 
         RuleFor(x => x.City)
             .NotEmpty()
-            .WithMessage("The last name cannot be null or empty.");
+            .WithMessage("The city cannot be empty.");
 
         RuleFor(x => x.Address)
             .NotEmpty()
-            .WithMessage("The last name cannot be null or empty.");
+            .WithMessage("The address cannot be empty.");
     }
 }
