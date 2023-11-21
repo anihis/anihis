@@ -1,28 +1,45 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../../shared/shared.module';
-import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
-import { ApplicationStateService } from '../../../shared/services/application-state.service';
+import { FormBaseComponent } from 'apps/anihis-portal/src/app/shared/base-components/form-base.component';
+import { ApplicationStateService } from 'apps/anihis-portal/src/app/shared/services/application-state.service';
+import { SharedModule } from 'apps/anihis-portal/src/app/shared/shared.module';
 
 interface ItemType {
   type: string;
-  data: { diagnosis: string; code?: number }[];
+  data: {
+    code?: number;
+    medicament?: string;
+    onlyMeasure: string;
+    warehouse: string;
+    price: string;
+    vat: string;
+    purchasePrice: string;
+    purchaseVat: string;
+    minAmount: string;
+    noPrint: boolean;
+  }[];
 }
 
 @Component({
-  selector: 'anihis-types-of-diagnosis',
-  templateUrl: './types-of-diagnosis.component.html',
-  styleUrls: ['./types-of-diagnosis.component.scss'],
+  selector: 'anihis-by-species',
+  templateUrl: './by-species.component.html',
+  styleUrls: ['./by-species.component.scss'],
   standalone: true,
-  imports: [CommonModule, SharedModule, MatTableModule, MatExpansionModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TypesOfDiagnosisComponent extends FormBaseComponent {
+export class BySpeciesComponent extends FormBaseComponent {
   panelOpenStates: boolean[] = [];
-  menu = [];
   typesOfDiagnosis = [
     'otology',
     'ophthalmology',
@@ -44,7 +61,6 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
     'muscle diseases',
     'allergies',
   ];
-  displayedColumns: string[] = ['code', 'diagnosis', 'action'];
   myForm = this.fb.group({
     items: this.fb.array([]),
   });
@@ -62,8 +78,16 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
       type: type,
       data: this.fb.array([
         this.fb.group({
-          diagnosis: '',
           code: this.items.length + 1,
+          medicament: '',
+          onlyMeasure: '',
+          warehouse: '',
+          price: '',
+          vat: '',
+          purchasePrice: '',
+          purchaseVat: '',
+          minAmount: '',
+          noPrint: false,
         }),
       ]),
     });
@@ -103,6 +127,6 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
       return true;
     }
 
-    return itemsOfType[itemsOfType.length - 1].data[0].diagnosis === '';
+    return itemsOfType[itemsOfType.length - 1].data[0].medicament === '';
   }
 }

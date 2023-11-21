@@ -1,0 +1,39 @@
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Medicament</th>
+      <th class="jm">Only measure</th>
+      <th>Warehouse</th>
+      <th>Price</th>
+      <th>Vat</th>
+      <th>Purchase Price</th>
+      <th>Purchase Vat</th>
+      <th>Min Amount</th>
+      <th>No Print</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container
+      *ngFor="
+        let itemType of myForm.controls.items.value as FormArray;
+        let i = index
+      "
+    >
+      <ng-container *ngFor="let dataItem of getFormData(i).controls">
+        <tr *ngIf="dataItem.value.service">
+          <td>{{ dataItem.value.code }}</td>
+          <td>{{ dataItem.value.medicament }}</td>
+          <td>{{ dataItem.value.onlyMeasure }}</td>
+          <td>{{ dataItem.value.warehouse }}</td>
+          <td>{{ dataItem.value.price }}</td>
+          <td>{{ dataItem.value.vat }}</td>
+          <td>{{ dataItem.value.purchasePrice }}</td>
+          <td>{{ dataItem.value.purchaseVat }}</td>
+          <td>{{ dataItem.value.minAmount }}</td>
+          <td>{{ dataItem.value.noPrint }}</td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

@@ -49,8 +49,14 @@ $text-color-dark: #ffffff;
   color: $text-color-dark;
 }
 
+// @use '@angular/material' as mat;
+// @use './theme/font';
+// @use './theme/theme';
+// @use './theme/palette';
+
 body {
   margin: 0;
+  background: var(--primary);
 }
 
 .flex {
@@ -317,5 +323,11 @@ anihis-add-report-dialog {
         }
       }
     }
+  }
+}
+
+anihis-types-of-medicaments {
+  mat-tab-header {
+    width: 20% !important;
   }
 }

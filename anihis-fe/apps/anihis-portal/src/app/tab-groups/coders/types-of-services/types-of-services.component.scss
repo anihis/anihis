@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  .print-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .typesOfDiagnosis {
+    width: 100%;
+    margin-top: 16px !important;
+    mat-accordion {
+      table {
+        width: 100%;
+        margin: 16px 0;
+        th {
+          text-align: start;
+          background: #ead6bd;
+          color: #504e63;
+        }
+        td {
+          background: whitesmoke !important;
+          mat-form-field {
+            width: calc(100% - 16px) !important;
+            padding: 0px 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-add-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+.table-for-print {
+  display: none;
+}
+
+.jm,
+.pdv {
+  width: 50px !important;
+}
+
+.price,
+.prak {
+  width: 100px !important;
+}
+
+.example-section {
+  display: flex;
+  justify-content: center;
+}

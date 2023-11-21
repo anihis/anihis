@@ -1,0 +1,125 @@
+@use '@angular/material' as mat;
+@use '@angular/material/theming' as theming;
+
+$primary-palette: (
+  50: #e0e3e6,
+  100: #b3b9c1,
+  200: #808a97,
+  300: #4d5b6d,
+  400: #26374e,
+  500: #00142f,
+  600: #00122a,
+  700: #000e23,
+  800: #000b1d,
+  900: #000612,
+  A100: #536dff,
+  A200: #2041ff,
+  A400: #0023ec,
+  A700: #001fd3,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$secondary-palette: (
+  50: #fcf4e4,
+  100: #f7e3bb,
+  200: #f2d08d,
+  300: #ecbd5f,
+  400: #e8af3d,
+  500: #e4a11b,
+  600: #e19918,
+  700: #dd8f14,
+  800: #d98510,
+  900: #d17408,
+  A100: #fffdfb,
+  A200: #ffe3c8,
+  A400: #ffc995,
+  A700: #ffbc7b,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$danger-palette: (
+  50: #f7e7e9,
+  100: #ecc2c9,
+  200: #df9aa5,
+  300: #d27181,
+  400: #c95266,
+  500: #bf344b,
+  600: #b92f44,
+  700: #b1273b,
+  800: #a92133,
+  900: #9b1523,
+  A100: #ffcfd3,
+  A200: #ff9ca5,
+  A400: #ff6976,
+  A700: #ff4f5f,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$text-primary-color: #003246;
+$text-primary-high: #003246;
+
+$theme: mat.define-light-theme(
+  $primary-palette,
+  $secondary-palette,
+  $danger-palette
+);
+
+$foreground: map-get($theme, foreground);
+$new-foreground: map-merge(
+  $foreground,
+  (
+    text: $text-primary-high,
+  )
+);
+
+$custom-theme: map-merge(
+  $theme,
+  (
+    foreground: $new-foreground,
+  )
+);

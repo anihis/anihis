@@ -1,26 +1,43 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ApplicationStateService } from '../../../shared/services/application-state.service';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { FormArray, FormGroup } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { ApplicationStateService } from '../../../shared/services/application-state.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 interface ItemType {
   type: string;
-  data: { diagnosis: string; code?: number }[];
+  data: {
+    code?: number;
+    service?: string;
+    species: string;
+    JM: string;
+    price: string;
+    PDV: string;
+    costs: string;
+    neStan: boolean;
+    prak: string;
+  }[];
 }
 
 @Component({
-  selector: 'anihis-types-of-diagnosis',
-  templateUrl: './types-of-diagnosis.component.html',
-  styleUrls: ['./types-of-diagnosis.component.scss'],
+  selector: 'anihis-types-of-services',
+  templateUrl: './types-of-services.component.html',
+  styleUrls: ['./types-of-services.component.scss'],
   standalone: true,
-  imports: [CommonModule, SharedModule, MatTableModule, MatExpansionModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TypesOfDiagnosisComponent extends FormBaseComponent {
+export class TypesOfServicesComponent extends FormBaseComponent {
   panelOpenStates: boolean[] = [];
   menu = [];
   typesOfDiagnosis = [
@@ -44,7 +61,6 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
     'muscle diseases',
     'allergies',
   ];
-  displayedColumns: string[] = ['code', 'diagnosis', 'action'];
   myForm = this.fb.group({
     items: this.fb.array([]),
   });
@@ -62,8 +78,15 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
       type: type,
       data: this.fb.array([
         this.fb.group({
-          diagnosis: '',
           code: this.items.length + 1,
+          service: '',
+          species: '',
+          onlyMeasure: '',
+          price: '',
+          pdv: '',
+          costs: '',
+          noPrint: false,
+          prak: '',
         }),
       ]),
     });
@@ -79,6 +102,7 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
 
   addItem(type: string): void {
     this.items.push(this.newItem(type));
+    console.log(this.items);
   }
 
   private getItemsOfType(type: string): ItemType[] {
@@ -103,6 +127,6 @@ export class TypesOfDiagnosisComponent extends FormBaseComponent {
       return true;
     }
 
-    return itemsOfType[itemsOfType.length - 1].data[0].diagnosis === '';
+    return itemsOfType[itemsOfType.length - 1].data[0].service === '';
   }
 }

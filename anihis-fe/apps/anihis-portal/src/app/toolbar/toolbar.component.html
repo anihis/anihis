@@ -1,34 +1,11 @@
 <ng-container *transloco="let t">
-  <mat-toolbar>
+  <mat-toolbar class="toolbarCustom">
     <div class="container-logo-wrapper cursor" (click)="redirectTo('/')">
       <span class="material-symbols-outlined">pet_supplies</span>
       <h1>ANIHIS</h1>
     </div>
 
     <div class="container-menu">
-      <!-- <button
-        mat-button
-        [matMenuTriggerFor]="menu"
-        (menuOpened)="menuOpened()"
-        (menuClosed)="menuClosed()"
-        #menuTrigger="matMenuTrigger"
-        [ngClass]="{ 'opacity-element': isLangMenuOpen }"
-      >
-        <img [src]="flagPath" width="24px" height="12px" />
-      </button>
-
-      <mat-menu #menu="matMenu">
-        <span class="chose-language">{{ t('Choose Language') }}</span>
-        <hr />
-        <button
-          *ngFor="let language of availableLanguages"
-          mat-menu-item
-          (click)="changeLanguage(language.id)"
-        >
-          {{ t(language.label) }}
-        </button>
-      </mat-menu> -->
-
       <mat-slide-toggle anihisThemeSwitch [(ngModel)]="isChecked">
         {{ t('Dark mode') }}
       </mat-slide-toggle>
