@@ -1,5 +1,7 @@
 ﻿using anihis.Application.Common.Interfaces;
+using anihis.Application.Owners.Commands.Create;
 using anihis.Domain.Entities;
+using FluentValidation;
 using MediatR;
 
 namespace anihis.Application.Veterinarians.Commands.Create;
@@ -8,26 +10,28 @@ public class CreateVeterinarianCommandHandler : IRequestHandler<CreateVeterinari
     private readonly ICoreDbContext _context;
     private readonly IBaseRepository<Veterinarian> _veterinarianRepository;
     private readonly IBaseRepository<VeterinaryClinic> _veterinaryClinicRepository;
-    private readonly IBaseRepository<User> _userRepository;
+    private readonly IValidator<CreateVeterinarianCommand> _validator;
 
     public CreateVeterinarianCommandHandler
     (
         ICoreDbContext context,
         IBaseRepository<Veterinarian> veterinarianRepository,
         IBaseRepository<VeterinaryClinic> veterinaryClinicRepository,
-        IBaseRepository<User> userRepository
+        IValidator<CreateVeterinarianCommand> validator
     )
     {
         _context = context;
         _veterinarianRepository = veterinarianRepository;
         _veterinaryClinicRepository = veterinaryClinicRepository;
-        _userRepository = userRepository;
+        _validator = validator;
     }
 
     public async Task Handle(CreateVeterinarianCommand request, CancellationToken cancellationToken)
     {
+        var result = await _validator.ValidateAsync(request);
+        result.ThrowIfNotValid();
+
         var veterinaryClinic = await _veterinaryClinicRepository.GetByUidOrThrowAsync(request.VeterinaryClinicUid, cancellationToken);
-        var user = await _userRepository.GetByUidOrThrowAsync(request.UserUid, cancellationToken);
 
         _veterinarianRepository.Insert(new Veterinarian
         {
@@ -38,8 +42,8 @@ public class CreateVeterinarianCommandHandler : IRequestHandler<CreateVeterinari
             LicenceNumber = request.LicenceNumber,
             MobileNumber = request.MobileNumber,
             PhoneNumber = request.PhoneNumber,
-            VeterinaryClinic = veterinaryClinic,
-            User = user
+            Username = request.Username,
+            VeterinaryClinic = veterinaryClinic
         });
 
         await _context.SaveChangesAsync(cancellationToken);

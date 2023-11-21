@@ -1,6 +1,9 @@
 ﻿using anihis.Application.Common.Interfaces;
+using anihis.Application.Veterinarians.Commands.Create;
 using anihis.Domain.Entities;
+using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace anihis.Application.Animals.Commands.Create;
 public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
@@ -9,29 +12,34 @@ public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
     private readonly IBaseRepository<Animal> _animalRepository;
     private readonly IBaseRepository<Owner> _ownerRepository;
     private readonly IBaseRepository<Breed> _breedRepository;
-    //private readonly IBaseRepository<Domain.Entities.Species> _speciesRepository;
+    private readonly IValidator<CreateAnimalCommand> _validator;
 
     public CreateAnimalCommandHandler
     (
         ICoreDbContext context,
         IBaseRepository<Animal> animalRepository,
         IBaseRepository<Owner> ownerRepository,
-        IBaseRepository<Breed> breedRepository
-        //IBaseRepository<Domain.Entities.Species> speciesRepository
+        IBaseRepository<Breed> breedRepository,
+        IValidator<CreateAnimalCommand> validator
     )
     {
         _context = context;
         _animalRepository = animalRepository;
         _ownerRepository = ownerRepository;
         _breedRepository = breedRepository;
-        //_speciesRepository = speciesRepository;
+        _validator = validator;
     }
 
     public async Task Handle(CreateAnimalCommand request, CancellationToken cancellationToken)
     {
+        var result = await _validator.ValidateAsync(request);
+        result.ThrowIfNotValid();
+
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
-        var breed = await _breedRepository.GetByUidOrThrowAsync(request.BreedUid, cancellationToken);
-        //var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
+        var breed = await _breedRepository.StartQuery()
+            .Include(x => x.Species)
+            .Where(x => x.Uid == request.BreedUid)
+            .SingleOrDefaultAsync(cancellationToken);
 
         _animalRepository.Insert(new Animal
         {

@@ -12,33 +12,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Owners",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    City = table.Column<string>(type: "TEXT", nullable: false),
-                    Address = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    MobileNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
-                    Country = table.Column<string>(type: "TEXT", nullable: true),
-                    PersonalNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PassportNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    IdCardNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    LastModifiedDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    DeleteDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Owners", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Species",
                 columns: table => new
                 {
@@ -50,20 +23,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Species", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,32 +61,36 @@ namespace anihis.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Veterinarians",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    LicenceNumber = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     MobileNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    VeterinaryClinicId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
+                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
+                    Country = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PassportNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    IdCardNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    LastModifiedDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DeleteDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    LicenceNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    VeterinaryClinicId = table.Column<int>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Veterinarians", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Veterinarians_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Veterinarians_VeterinaryClinics_VeterinaryClinicId",
+                        name: "FK_Users_VeterinaryClinics_VeterinaryClinicId",
                         column: x => x.VeterinaryClinicId,
                         principalTable: "VeterinaryClinics",
                         principalColumn: "Id",
@@ -162,15 +125,51 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         principalTable: "Breeds",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Animals_Owners_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Owners",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Animals_Species_SpeciesId",
                         column: x => x.SpeciesId,
                         principalTable: "Species",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Animals_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OwnerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VeterinarianId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VeterinaryClinicId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PaymentDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payments_Users_VeterinarianId",
+                        column: x => x.VeterinarianId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payments_VeterinaryClinics_VeterinaryClinicId",
+                        column: x => x.VeterinaryClinicId,
+                        principalTable: "VeterinaryClinics",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -197,9 +196,47 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HealthRecords_Veterinarians_VeterinarianId",
+                        name: "FK_HealthRecords_Users_VeterinarianId",
                         column: x => x.VeterinarianId,
-                        principalTable: "Veterinarians",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vaccinations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    VeterinarianId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AnimalId = table.Column<int>(type: "INTEGER", nullable: false),
+                    OwnerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VaccineName = table.Column<string>(type: "TEXT", nullable: false),
+                    VaccineSerialNumber = table.Column<string>(type: "TEXT", nullable: false),
+                    VaccinationDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Price = table.Column<string>(type: "TEXT", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vaccinations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vaccinations_Animals_AnimalId",
+                        column: x => x.AnimalId,
+                        principalTable: "Animals",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vaccinations_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vaccinations_Users_VeterinarianId",
+                        column: x => x.VeterinarianId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -235,14 +272,39 @@ namespace anihis.Infrastructure.Persistence.Migrations
                 column: "VeterinarianId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Veterinarians_UserId",
-                table: "Veterinarians",
-                column: "UserId");
+                name: "IX_Payments_OwnerId",
+                table: "Payments",
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Veterinarians_VeterinaryClinicId",
-                table: "Veterinarians",
+                name: "IX_Payments_VeterinarianId",
+                table: "Payments",
+                column: "VeterinarianId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_VeterinaryClinicId",
+                table: "Payments",
                 column: "VeterinaryClinicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_VeterinaryClinicId",
+                table: "Users",
+                column: "VeterinaryClinicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vaccinations_AnimalId",
+                table: "Vaccinations",
+                column: "AnimalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vaccinations_OwnerId",
+                table: "Vaccinations",
+                column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vaccinations_VeterinarianId",
+                table: "Vaccinations",
+                column: "VeterinarianId");
         }
 
         /// <inheritdoc />
@@ -252,25 +314,25 @@ namespace anihis.Infrastructure.Persistence.Migrations
                 name: "HealthRecords");
 
             migrationBuilder.DropTable(
-                name: "Animals");
+                name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Veterinarians");
+                name: "Vaccinations");
+
+            migrationBuilder.DropTable(
+                name: "Animals");
 
             migrationBuilder.DropTable(
                 name: "Breeds");
 
             migrationBuilder.DropTable(
-                name: "Owners");
-
-            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "VeterinaryClinics");
+                name: "Species");
 
             migrationBuilder.DropTable(
-                name: "Species");
+                name: "VeterinaryClinics");
         }
     }
 }

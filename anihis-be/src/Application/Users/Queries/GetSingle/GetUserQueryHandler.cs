@@ -17,7 +17,6 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, GetUserResult>
         var user = await _userRepository.GetByUidOrThrowAsync(request.Uid, cancellationToken);
         return new GetUserResult
         {
-            Name = user.Name,
             Uid = user.Uid
         };
     }
