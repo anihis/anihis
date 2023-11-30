@@ -21,21 +21,22 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { CardHistoryComponent } from './card-history/card-history.component';
 import { NewCardService } from './new-card.service';
-import { AddReportDialogComponent } from './add-report-dialog/add-report-dialog.component';
+import { AddEditReportDialogComponent } from './add-edit-report-dialog/add-edit-report-dialog.component';
 
 export interface PeriodicElement {
-  name: string;
-  breed: string;
-  gender: string;
+  uid: string;
+  name?: string;
+  breed?: string;
+  gender?: string;
   numberCard: number;
-  dateOfBirth: Date;
-  warning: string;
-  microchip: number;
-  numberOfPassport: string;
-  owner: string;
-  address: string;
-  tel: string;
-  email: string;
+  dateOfBirth?: Date;
+  warning?: string;
+  microchip?: number;
+  numberOfPassport?: string;
+  owner?: string;
+  address?: string;
+  tel?: string;
+  email?: string;
   dateOfEdit?: Date;
   veterinarian?: string;
   nameOfClinic?: string;
@@ -74,6 +75,7 @@ export class NewCardComponent implements AfterViewInit {
   isDisplayHistoryCard$ = this.newCardService.isOpenHistoryCard$;
   tableDate: PeriodicElement[] = [
     {
+      uid: '1',
       numberCard: 1,
       name: 'Dusan',
       breed: 'Zlatni retriver',
@@ -88,6 +90,7 @@ export class NewCardComponent implements AfterViewInit {
       email: 'vladimir@gmail.com',
     },
     {
+      uid: '2',
       numberCard: 2,
       name: 'Aleksandar',
       breed: 'Bison',
@@ -102,6 +105,7 @@ export class NewCardComponent implements AfterViewInit {
       email: 'vladimir@gmail.com',
     },
     {
+      uid: '3',
       numberCard: 3,
       name: 'Milos',
       breed: 'Pudla',
@@ -116,6 +120,7 @@ export class NewCardComponent implements AfterViewInit {
       email: 'vladimir@gmail.com',
     },
     {
+      uid: '4',
       numberCard: 4,
       name: 'Vladimir',
       breed: '',
@@ -136,13 +141,13 @@ export class NewCardComponent implements AfterViewInit {
     'numberCard',
     'name',
     'breed',
-    'gender/dateOfBirth',
+    'Gender / Date Of Birth',
     'warning',
     'microchip',
     'numberOfPassport',
-    'owner/address',
+    'Owner / Address',
     // 'address',
-    'email/tel',
+    'Email / Tel',
     'action',
   ];
 
@@ -164,6 +169,12 @@ export class NewCardComponent implements AfterViewInit {
 
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
+  }
+
+  getType(column: string): string {
+    return column === 'numberCard' || column === 'microchip'
+      ? 'number'
+      : 'string';
   }
 
   applyFilter(event: any, column: string) {
@@ -194,7 +205,7 @@ export class NewCardComponent implements AfterViewInit {
   }
 
   openAddReportDialog(data: any) {
-    const dialogRef = this.dialog.open(AddReportDialogComponent, {
+    const dialogRef = this.dialog.open(AddEditReportDialogComponent, {
       width: '1286px',
       height: '728px',
       data: { ...data },

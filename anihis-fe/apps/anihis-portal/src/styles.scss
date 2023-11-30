@@ -331,3 +331,23 @@ anihis-types-of-medicaments {
     width: 20% !important;
   }
 }
+
+.row,
+.btn-save-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  button,
+  mat-form-field {
+    width: 95%;
+  }
+}
+
+.btn-save-wrapper {
+  margin-bottom: 16px;
+}
+
+.mat-mdc-button-touch-target {
+  height: unset !important;
+}

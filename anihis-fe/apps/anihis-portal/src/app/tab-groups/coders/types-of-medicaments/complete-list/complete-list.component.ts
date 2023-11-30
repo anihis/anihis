@@ -3,6 +3,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { ApplicationStateService } from '../../../../shared/services/application-state.service';
+import { TranslocoModule } from '@ngneat/transloco';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { AddNewMedicamentComponent } from './add-new-medicament/add-new-medicament.component';
 
 interface ItemType {
   type: string;
@@ -26,14 +30,17 @@ interface ItemType {
   templateUrl: './complete-list.component.html',
   styleUrls: ['./complete-list.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompleteListComponent extends FormBaseComponent {
   myForm = this.fb.group({
     items: this.fb.array([]),
   });
-  constructor(private applicationStateService: ApplicationStateService) {
+  constructor(
+    private applicationStateService: ApplicationStateService,
+    private dialog: MatDialog
+  ) {
     super();
   }
 
@@ -86,6 +93,18 @@ export class CompleteListComponent extends FormBaseComponent {
 
   printPage() {
     this.applicationStateService.printPage();
+  }
+
+  addNewMedicament() {
+    const dialogRef = this.dialog.open(AddNewMedicamentComponent, {
+      width: '465px',
+    });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.feNewOwnerService.createNewOwner(result);
+    //   }
+    // });
   }
 
   isAddButtonDisabled(type: string): boolean {

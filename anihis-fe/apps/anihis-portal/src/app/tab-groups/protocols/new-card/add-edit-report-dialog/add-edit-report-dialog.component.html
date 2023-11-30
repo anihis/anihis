@@ -2,11 +2,11 @@
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>{{ t('Izvestaj') }}</ng-template>
+        <ng-template matStepLabel>{{ t('Report') }}</ng-template>
         <div>
           <div class="row">
             <mat-form-field>
-              <mat-label>Time</mat-label>
+              <mat-label>{{ t('Time') }}</mat-label>
               <input matInput formControlName="time" readonly />
             </mat-form-field>
 
@@ -133,16 +133,19 @@
           </div>
         </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext>{{ t('Next') }}</button>
         </div>
       </form>
     </mat-step>
 
-    <mat-step [stepControl]="secondFormGroup" label="Dijagnoze, Usluge, Lekovi">
+    <mat-step
+      [stepControl]="secondFormGroup"
+      [label]="t('Diagnosis, Services, Medicaments')"
+    >
       <div [formGroup]="secondFormGroup">
-        <h2>Diagnoses</h2>
+        <h2>{{ t('Diagnoses') }}</h2>
         <mat-form-field>
-          <mat-label>Select Diagnoses</mat-label>
+          <mat-label>{{ t('Select Diagnoses') }}</mat-label>
           <mat-select
             formControlName="selectedDiagnoses"
             multiple
@@ -163,19 +166,19 @@
             class="diagnoses-row"
           >
             <mat-form-field>
-              <mat-label>Diagnosis</mat-label>
+              <mat-label>{{ t('Diagnosis') }}</mat-label>
               <input matInput formControlName="diagnosis" readonly />
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Note</mat-label>
+              <mat-label>{{ t('Note') }}</mat-label>
               <input matInput formControlName="note" />
             </mat-form-field>
           </div>
         </div>
 
-        <h2>Services</h2>
+        <h2>{{ t('Services') }}</h2>
         <mat-form-field>
-          <mat-label>Select Services</mat-label>
+          <mat-label>{{ t('Select Services') }}</mat-label>
           <mat-select
             formControlName="selectedServices"
             multiple
@@ -194,33 +197,33 @@
             class="diagnoses-row"
           >
             <mat-form-field>
-              <mat-label>Service</mat-label>
+              <mat-label>{{ t('Service') }}</mat-label>
               <input matInput formControlName="service" readonly />
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Quantity</mat-label>
+              <mat-label>{{ t('Quantity') }}</mat-label>
               <input matInput formControlName="quantity" />
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Price</mat-label>
+              <mat-label>{{ t('Price') }}</mat-label>
               <input matInput formControlName="price" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Vat</mat-label>
+              <mat-label>{{ t('Vat') }}</mat-label>
               <input matInput formControlName="vat" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Amount</mat-label>
+              <mat-label>{{ t('Amount') }}</mat-label>
               <input matInput formControlName="amount" />
             </mat-form-field>
           </div>
         </div>
 
-        <h2>Medicaments</h2>
+        <h2>{{ t('Medicaments') }}</h2>
         <mat-form-field>
-          <mat-label>Select Medicaments</mat-label>
+          <mat-label>{{ t('Select Medicaments') }}</mat-label>
           <mat-select
             formControlName="selectedMedicaments"
             multiple
@@ -244,92 +247,94 @@
             class="diagnoses-row"
           >
             <mat-form-field>
-              <mat-label>Medicament</mat-label>
+              <mat-label>{{ t('Medicament') }}</mat-label>
               <input matInput formControlName="medicament" readonly />
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Serial Number</mat-label>
+              <mat-label>{{ t('Serial Number') }}</mat-label>
               <input matInput formControlName="serialNumber" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Note</mat-label>
+              <mat-label>{{ t('Note') }}</mat-label>
               <input matInput formControlName="note" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Quantity</mat-label>
+              <mat-label>{{ t('Quantity') }}</mat-label>
               <input matInput formControlName="quantity" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Price</mat-label>
+              <mat-label>{{ t('Price') }}</mat-label>
               <input matInput formControlName="price" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Vat</mat-label>
+              <mat-label>{{ t('Vat') }}</mat-label>
               <input matInput formControlName="vat" />
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Amount</mat-label>
+              <mat-label>{{ t('Amount') }}</mat-label>
               <input matInput formControlName="amount" />
             </mat-form-field>
           </div>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>{{ t('Back') }}</button>
+          <button mat-button matStepperNext>{{ t('Next') }}</button>
         </div>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>{{ t('Done') }}</ng-template>
       <mat-card>
-        <mat-card-header>Troskovi</mat-card-header>
+        <mat-card-header>{{ t('Costs') }}</mat-card-header>
 
         <mat-card-content>
           <form class="thirdFormGroup" [formGroup]="thirdFormGroup">
             <b
-              >Ukupno za usluge:
+              >{{ t('Total Services') }}:
               <span>{{
                 thirdFormGroup.controls.totalForServices.value ?? 0
               }}</span></b
             >
             <b
-              >Ukupno za lekove:
+              >{{ t('Total Medicaments') }}:
               <span>{{
                 thirdFormGroup.controls.totalForMedicaments.value ?? 0
               }}</span></b
             >
             <div style="display: flex; align-items: center; gap: 16px">
               <b
-                >Ostali troskovi:
+                >{{ t('Other expenses') }}:
                 <span>{{
                   thirdFormGroup.controls.otherCosts.value ?? 0
                 }}</span></b
               >
               <mat-form-field class="example-full-width">
-                <mat-label>{{ t('Procenat za ostale troskove') }}</mat-label>
+                <mat-label>{{ t('Percent for other expenses') }}</mat-label>
                 <input
                   matInput
-                  placeholder="Unesite procenat"
+                  [placeholder]="t('Enter percent')"
                   formControlName="percentageForOtherCosts"
                   (change)="servicesCalc($event)"
+                  type="number"
                 />
               </mat-form-field>
             </div>
 
             <b
-              >Ukupno: <span>{{ thirdFormGroup.controls.total.value }}</span></b
+              >{{ t('Total') }}:
+              <span>{{ thirdFormGroup.controls.total.value }}</span></b
             >
           </form>
         </mat-card-content>
       </mat-card>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button matStepperPrevious>{{ t('Back') }}</button>
+        <button mat-button (click)="stepper.reset()">{{ t('Reset') }}</button>
       </div>
     </mat-step>
   </mat-stepper>

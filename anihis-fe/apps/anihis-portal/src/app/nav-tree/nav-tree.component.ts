@@ -185,26 +185,26 @@ export class NavTreeComponent {
                 action: '',
                 icon: 'pets',
               },
-              {
-                name: 'Diagnoses',
-                action: '',
-                icon: 'pets',
-              },
-              {
-                name: 'Services',
-                action: '',
-                icon: 'pets',
-              },
-              {
-                name: 'Medicaments',
-                action: '',
-                icon: 'pets',
-              },
-              {
-                name: 'Export of medicaments and Service',
-                action: '',
-                icon: 'pets',
-              },
+              // {
+              //   name: 'Diagnoses',
+              //   action: '',
+              //   icon: 'pets',
+              // },
+              // {
+              //   name: 'Services',
+              //   action: '',
+              //   icon: 'pets',
+              // },
+              // {
+              //   name: 'Medicaments',
+              //   action: '',
+              //   icon: 'pets',
+              // },
+              // {
+              //   name: 'Export of medicaments and Service',
+              //   action: '',
+              //   icon: 'pets',
+              // },
             ],
           },
           {

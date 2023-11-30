@@ -33,7 +33,7 @@ export class CodersComponent {
         { name: 'Places', action: '', icon: 'pets' },
         { name: 'Owners', action: '', icon: 'pets' },
         { name: 'Manufacturers of medicaments', action: '', icon: 'pets' },
-        { name: 'Press documents', action: '', icon: 'pets' },
+        // { name: 'Press documents', action: '', icon: 'pets' },
       ],
     },
     {
@@ -46,39 +46,39 @@ export class CodersComponent {
           action: '',
           icon: 'pets',
         },
-        {
-          name: 'Diagnoses',
-          action: '',
-          icon: 'pets',
-        },
-        {
-          name: 'Services',
-          action: '',
-          icon: 'pets',
-        },
-        {
-          name: 'Medicaments',
-          action: '',
-          icon: 'pets',
-        },
-        {
-          name: 'Export of medicaments and Service',
-          action: '',
-          icon: 'pets',
-        },
+        // {
+        //   name: 'Diagnoses',
+        //   action: '',
+        //   icon: 'pets',
+        // },
+        // {
+        //   name: 'Services',
+        //   action: '',
+        //   icon: 'pets',
+        // },
+        // {
+        //   name: 'Medicaments',
+        //   action: '',
+        //   icon: 'pets',
+        // },
+        // {
+        //   name: 'Export of medicaments and Service',
+        //   action: '',
+        //   icon: 'pets',
+        // },
       ],
     },
     {
       categoryName: 'Administrative',
       data: [
         { name: 'Administration user', action: '', icon: 'pets', br: this.br },
-        {
-          name: 'Veterinarians',
-          action: '',
-          icon: 'pets',
-        },
+        // {
+        //   name: 'Veterinarians',
+        //   action: '',
+        //   icon: 'pets',
+        // },
         { name: 'Pharmacies', action: '', icon: 'pets' },
-        { name: 'Infirmaries', action: '', icon: 'pets' },
+        // { name: 'Infirmaries', action: '', icon: 'pets' },
       ],
     },
   ];
