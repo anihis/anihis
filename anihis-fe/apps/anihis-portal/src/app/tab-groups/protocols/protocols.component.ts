@@ -77,7 +77,8 @@ export class ProtocolsComponent {
   }
 
   redirectTo(route: string) {
-    console.log(route);
-    this.tabsComponentService.createOpenTabs(route);
+    if (route !== 'P6679633') {
+      this.tabsComponentService.createOpenTabs(route);
+    }
   }
 }

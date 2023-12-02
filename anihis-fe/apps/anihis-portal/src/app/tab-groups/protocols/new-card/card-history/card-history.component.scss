@@ -7,3 +7,8 @@
 main {
   padding: 16px;
 }
+
+th:last-child,
+td:last-child {
+  width: 150px;
+}

@@ -6,6 +6,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from '../../../../shared/shared.module';
 import { PeriodicElement } from '../new-card.component';
+import { CardHistoryService } from './card-history.service';
+import { PreviewCardHistoryComponent } from './preview-card-history/preview-card-history.component';
+import { ApplicationStateService } from 'apps/anihis-portal/src/app/shared/services/application-state.service';
+import { AddEditReportDialogComponent } from '../add-edit-report-dialog/add-edit-report-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'anihis-card-history',
@@ -18,7 +23,9 @@ import { PeriodicElement } from '../new-card.component';
     SharedModule,
     MatPaginatorModule,
     MatTableModule,
+    PreviewCardHistoryComponent,
   ],
+  providers: [CardHistoryService],
 })
 export class CardHistoryComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,249 +34,58 @@ export class CardHistoryComponent implements AfterViewInit {
 
   tableDate: PeriodicElement[] = [
     {
+      uid: '1',
       numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
       nameOfClinic: 'RasaVet',
       licenseNumber: 123574,
       dateOfEdit: new Date(),
     },
     {
+      uid: '2',
       numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
       nameOfClinic: 'RasaVet',
       licenseNumber: 123574,
       dateOfEdit: new Date(),
     },
     {
+      uid: '3',
       numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
       nameOfClinic: 'RasaVet',
       licenseNumber: 123574,
       dateOfEdit: new Date(),
     },
     {
+      uid: '4',
       numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
       nameOfClinic: 'RasaVet',
       licenseNumber: 123574,
       dateOfEdit: new Date(),
     },
     {
+      uid: '5',
       numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
-      nameOfClinic: 'RasaVet',
-      licenseNumber: 123574,
-      dateOfEdit: new Date(),
-    },
-    {
-      numberCard: 1,
-      name: 'Dusan',
-      breed: 'Zlatni retriver',
-      gender: 'male',
-      dateOfBirth: new Date(),
-      warning: 'Ludilo',
-      microchip: 12345678910234,
-      numberOfPassport: '12as2w231d',
-      owner: 'Marko',
-      address: 'Omladinska',
-      tel: '+381 213546',
-      email: 'vladimir@gmail.com',
       nameOfClinic: 'RasaVet',
       licenseNumber: 123574,
       dateOfEdit: new Date(),
     },
   ];
   dataSource = new MatTableDataSource<any>(this.tableDate);
+  isPreviewCard$ = this.cardHistoryService.isPreviewCard$;
 
   displayedColumns: string[] = [
     'numberCard',
-    'name',
-    'breed',
-    'gender',
-    'dateOfBirth',
-    'warning',
-    'microchip',
-    'numberOfPassport',
-    'owner',
-    'address',
-    'tel',
-    'email',
-    // 'veterinarian',
     'nameOfClinic',
     'licenseNumber',
     'dateOfEdit',
+    'actionHistoryCard',
   ];
 
-  constructor(private newCardService: NewCardService) {}
+  constructor(
+    private newCardService: NewCardService,
+    private cardHistoryService: CardHistoryService,
+    private applicationStateService: ApplicationStateService,
+    private dialog: MatDialog
+  ) {}
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource<any>(this.tableDate);
@@ -294,6 +110,32 @@ export class CardHistoryComponent implements AfterViewInit {
     };
 
     this.dataSource.filter = filterValue;
+  }
+
+  openEditDialog(element: any) {
+    const dialogRef = this.dialog.open(AddEditReportDialogComponent, {
+      width: '1286px',
+      height: '728px',
+      data: { ...element },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Spremljeno:', result);
+      }
+    });
+  }
+
+  togglePreviewCard(element: any) {
+    this.cardHistoryService.isPreviewCard(true);
+  }
+
+  backToHistoryCard() {
+    this.cardHistoryService.isPreviewCard(false);
+  }
+
+  print() {
+    this.applicationStateService.printPage();
   }
 
   back() {

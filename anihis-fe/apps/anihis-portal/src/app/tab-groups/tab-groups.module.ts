@@ -9,6 +9,8 @@ import { ProtocolsComponent } from './protocols/protocols.component';
 import { NewCardComponent } from './protocols/new-card/new-card.component';
 import { NewAnimalComponent } from './protocols/new-animal/new-animal.component';
 import { TypesOfDiagnosisComponent } from './coders/types-of-diagnosis/types-of-diagnosis.component';
+import { TypesOfServicesComponent } from './coders/types-of-services/types-of-services.component';
+import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types-of-medicaments.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { TypesOfDiagnosisComponent } from './coders/types-of-diagnosis/types-of-
     NewCardComponent,
     NewAnimalComponent,
     TypesOfDiagnosisComponent,
+    TypesOfServicesComponent,
+    TypesOfMedicamentsComponent,
   ],
   exports: [TabGroupsComponent, ProtocolsComponent],
 })

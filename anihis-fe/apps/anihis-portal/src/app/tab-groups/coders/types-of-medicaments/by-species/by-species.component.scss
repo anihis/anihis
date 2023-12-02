@@ -11,7 +11,7 @@
   }
   .typesOfDiagnosis {
     width: 100%;
-    margin-top: 16px;
+    margin-top: 16px !important;
     mat-accordion {
       table {
         width: 100%;
@@ -21,20 +21,8 @@
           background: #ead6bd;
           color: #504e63;
         }
-
-        th:last-child {
-          padding-left: 24px;
-          padding-right: 24px;
-          width: 80% !important;
-        }
-
-        td:last-child {
-          width: 80% !important;
-          padding-left: 24px;
-          padding-right: 24px;
-          mat-form-field {
-            width: 100%;
-          }
+        td {
+          background: whitesmoke !important;
         }
       }
     }
@@ -49,4 +37,31 @@
 
 .table-for-print {
   display: none;
+}
+
+.pdv {
+  width: 50px !important;
+  mat-form-field {
+    width: 50px !important;
+  }
+}
+.onlyMeasure {
+  mat-form-field {
+    width: 50px !important;
+  }
+}
+
+.price,
+.prak {
+  width: 100px !important;
+}
+
+.example-section {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: calc(100% - 16px) !important;
+  padding: 0px 8px;
 }

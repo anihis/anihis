@@ -40,3 +40,39 @@ mat-card {
 .action-column {
   width: 180px;
 }
+
+td {
+  word-break: break-all;
+}
+
+.numberCard {
+  width: 5% !important;
+}
+.name {
+  width: 10% !important;
+}
+.breed {
+  width: 8% !important;
+}
+.warning {
+  width: 10% !important;
+}
+.microchip {
+  width: 8% !important;
+}
+.numberOfPassport {
+  width: 8% !important;
+}
+.Gender {
+  width: 9% !important;
+}
+.Owner {
+  width: 16% !important;
+}
+.Email {
+  width: 17% !important;
+}
+
+.action {
+  width: 10% !important;
+}

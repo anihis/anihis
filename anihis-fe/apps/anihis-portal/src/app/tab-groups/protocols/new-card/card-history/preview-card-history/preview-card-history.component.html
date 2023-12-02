@@ -1,0 +1,127 @@
+<main *transloco="let t">
+  <div class="header">
+    <div>
+      <span>
+        {{ t('Number of card') + ': ' + data.numberCard }}
+      </span>
+      <span>
+        {{ data.dateOfEdit | date : 'dd MMM, YYYY, HH:mm:ss' }}
+      </span>
+      <b>{{
+        data.nameOfClinic + ' / ' + data.vet + ' / ' + data.licenseNumber
+      }}</b>
+
+      <mat-icon class="material-symbols-outlined cursor" (click)="print()"
+        >print</mat-icon
+      >
+    </div>
+
+    <div class="costs">
+      <div class="costs-list">
+        <p>
+          {{ t('Total for services') + ':' }}
+          <span> {{ data.totalForServices }}</span>
+        </p>
+        <p>
+          {{ t('Total for medicaments') + ':' }}
+          <span> {{ data.totalForMedicaments }}</span>
+        </p>
+        <p>
+          {{ t('Total for other costs') + ':' }}
+          <span> {{ data.otherCosts }}</span>
+        </p>
+        <b
+          >{{ t('Total') + ':' }} <span> {{ data.total }}</span>
+        </b>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <span>{{ t('Control') }}</span>
+      {{ data.control }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Temp') }}</span>
+      {{ data.temp }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Weight') }}</span>
+
+      {{ data.weight }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Anamnesis') }}</span>
+      {{ data.anamnesis }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Clinical Examination') }}</span>
+
+      {{ data.clinicalExamination }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Recommendation') }}</span>
+
+      {{ data.recommendation }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Other Findings') }}</span>
+
+      {{ data.otherFindings }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Note') }}</span>
+
+      {{ data.note }}
+    </div>
+    <div class="grid-item">
+      <span>{{ t('Therapy') }}</span>
+
+      {{ data.therapy }}
+    </div>
+
+    <div class="grid-item">
+      <div class="column" *ngFor="let diagnosis of data.diagnoses">
+        <span>{{ t('Diagnoses') }}</span>
+
+        {{ diagnosis }}
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="column" *ngFor="let service of data.services">
+        <span>{{ t('Services') }}</span>
+
+        {{ service }}
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="column" *ngFor="let medicament of data.medicaments">
+        <span>{{ t('Medicaments') }}</span>
+
+        {{ medicament }}
+      </div>
+    </div>
+  </div>
+  <!-- 
+  <div style="margin-top: 24px">
+    <h2>{{ 'Costs' }}</h2>
+    <div class="costs-list">
+      <p>
+        {{ 'Total for services:' }} <span> {{ data.totalForServices }}</span>
+      </p>
+      <p>
+        {{ 'Total for medicaments:' }}
+        <span> {{ data.totalForMedicaments }}</span>
+      </p>
+      <p>
+        {{ 'Total for other costs:' }} <span> {{ data.otherCosts }}</span>
+      </p>
+      <b
+        >{{ 'Total for total:' }} <span> {{ data.total }}</span>
+      </b>
+    </div>
+  </div> -->
+</main>

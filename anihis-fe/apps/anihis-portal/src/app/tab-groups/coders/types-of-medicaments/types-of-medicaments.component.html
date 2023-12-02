@@ -1,0 +1,12 @@
+<ng-container *transloco="let t">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab [label]="t('Complete list')" class="complete-list">
+      <div style="padding: 16px">
+        <anihis-complete-list></anihis-complete-list>
+      </div>
+    </mat-tab>
+    <mat-tab [label]="t('By species')"
+      ><anihis-by-species></anihis-by-species
+    ></mat-tab>
+  </mat-tab-group>
+</ng-container>

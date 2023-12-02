@@ -9,8 +9,8 @@
           *ngFor="let column of displayedColumns"
           [matColumnDef]="column"
         >
-          <ng-container *ngIf="column !== 'action'">
-            <mat-form-field appearance="outline">
+          <ng-container *ngIf="column !== 'action'; else actionDiv">
+            <mat-form-field appearance="outline" [class]="column">
               <mat-label>{{
                 column | nameColumn | titlecase | transloco
               }}</mat-label>
@@ -18,9 +18,13 @@
                 matInput
                 autocomplete="on"
                 (keyup)="applyFilter($event, column)"
+                [type]="getType(column)"
               />
             </mat-form-field>
           </ng-container>
+          <ng-template #actionDiv>
+            <div class="action"></div>
+          </ng-template>
         </ng-container>
       </div>
 
@@ -29,7 +33,7 @@
           *ngFor="let column of displayedColumns"
           [matColumnDef]="column"
         >
-          <th mat-header-cell *matHeaderCellDef>
+          <th [class]="column" mat-header-cell *matHeaderCellDef>
             {{ column | nameColumn | titlecase | transloco }}
           </th>
           <td
@@ -61,13 +65,13 @@
             </ng-container>
             <ng-template #notActionColumn>
               {{
-                column === 'gender/dateOfBirth'
+                column === 'Gender / Date Of Birth'
                   ? element['gender'] +
                     ', ' +
                     (element['dateOfBirth'] | date : 'd/M/yy')
-                  : column === 'owner/address'
+                  : column === 'Owner / Address'
                   ? element['owner'] + ', ' + element['address']
-                  : column === 'email/tel'
+                  : column === 'Email / Tel'
                   ? element['email'] + ', ' + element['tel']
                   : element[column]
               }}

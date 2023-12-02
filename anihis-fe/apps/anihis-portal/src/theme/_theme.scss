@@ -1,3 +1,25 @@
+// @use '@angular/material' as mat;
+// @use './palette' as palette;
+// @include mat.core(); // only once in project
+// // Override the typography in the core CSS.
+// // @include mat-core($typography);
+
+// // Override typography for all Angular Material, including mat-base-typography and all components.
+// // @include angular-material-typography($typography);
+
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include mat.all-component-themes(
+//   $custom-theme
+// ); // here both the colours and typography should be included but they're not
+
+// // .mat-body-strong,
+// // .mat-body-2,
+// // .mat-typography strong {
+// //   @include mat-typography-level-to-styles($typography, body-2);
+// // }
+
 $md-primary: (
   50: #e0e6ee,
   100: #b3c0d5,

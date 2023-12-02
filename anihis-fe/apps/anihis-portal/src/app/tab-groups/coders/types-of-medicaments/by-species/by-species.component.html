@@ -1,0 +1,221 @@
+<ng-container *transloco="let t">
+  <div class="wrapper">
+    <div class="print-wrapper">
+      <button mat-raised-button (click)="printPage()">
+        {{ t('Print Page') }}
+      </button>
+    </div>
+    <div class="typesOfDiagnosis">
+      <mat-accordion *ngFor="let type of typesOfDiagnosis; let i = index">
+        <mat-expansion-panel
+          (opened)="
+            isEmptyArray(type) ? addItem(type) : null; panelOpenStates[i] = true
+          "
+          (closed)="panelOpenStates[i] = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ type }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-container *ngIf="panelOpenStates[i]">
+            <div>
+              <form [formGroup]="myForm">
+                <table formArrayName="items">
+                  <thead>
+                    <tr>
+                      <th>{{ t('Code') }}</th>
+                      <th>{{ t('Medicament') }}</th>
+                      <th>{{ t('Only measure') }}</th>
+                      <th>{{ t('Warehouse') }}</th>
+                      <th>{{ t('Price') }}</th>
+                      <th>{{ t('VAT') }}</th>
+                      <th>{{ t('Purchase Price') }}</th>
+                      <th>{{ t('Purchase Vat') }}</th>
+                      <th>{{ t('Min Amount') }}</th>
+                      <th>{{ t('No Print') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngFor="
+                        let item of items.controls;
+                        let i = index;
+                        let l = last
+                      "
+                      [formGroupName]="i"
+                    >
+                      <ng-container
+                        formArrayName="data"
+                        *ngIf="item.value.type === type"
+                      >
+                        <tr
+                          *ngFor="
+                            let dataItem of getFormData(i).controls;
+                            let j = index
+                          "
+                          [formGroupName]="j"
+                        >
+                          <td>
+                            {{ dataItem.get('code')?.value }}
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <mat-label>{{ t('Medicament') }}</mat-label>
+                              <textarea
+                                matInput
+                                cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize"
+                                formControlName="medicament"
+                                [placeholder]="t('Medicament')"
+                              ></textarea>
+                            </mat-form-field>
+                          </td>
+
+                          <td class="onlyMeasure">
+                            <mat-form-field>
+                              <mat-label>{{ t('Only Measure') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Only Measure')"
+                                formControlName="onlyMeasure"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <mat-label>{{ t('Warehouse') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Warehouse')"
+                                formControlName="warehouse"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td class="price">
+                            <mat-form-field>
+                              <mat-label>{{ t('Price') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Price')"
+                                formControlName="price"
+                                type="number"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td class="pdv">
+                            <mat-form-field>
+                              <mat-label>{{ t('VAT') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('VAT')"
+                                formControlName="vat"
+                                type="number"
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td class="price">
+                            <mat-form-field>
+                              <mat-label>{{ t('Purchase Price') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Purchase Price')"
+                                formControlName="purchasePrice"
+                                type="number"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td class="pdv">
+                            <mat-form-field>
+                              <mat-label>{{ t('Purchase Vat') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Purchase Vat')"
+                                formControlName="purchaseVat"
+                                type="number"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <mat-label>{{ t('Min Amount') }}</mat-label>
+                              <input
+                                matInput
+                                [placeholder]="t('Min Amount')"
+                                formControlName="minAmount"
+                                type="number"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <section class="example-section">
+                              <mat-checkbox
+                                class="example-margin"
+                                formControlName="noPrint"
+                              ></mat-checkbox>
+                            </section>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </tbody>
+                </table>
+                <div class="btn-add-wrapper">
+                  <button
+                    [disabled]="isAddButtonDisabled(type)"
+                    mat-raised-button
+                    color="primary"
+                    (click)="addItem(type)"
+                  >
+                    {{ t('Add') }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <div class="table-for-print">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ t('Code') }}</th>
+          <th>Medicament</th>
+          <th class="jm">Only measure</th>
+          <th>Warehouse</th>
+          <th>Price</th>
+          <th>Vat</th>
+          <th>Purchase Price</th>
+          <th>Purchase Vat</th>
+          <th>Min Amount</th>
+          <th>No Print</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container
+          *ngFor="
+            let itemType of myForm.controls.items.value as FormArray;
+            let i = index
+          "
+        >
+          <ng-container *ngFor="let dataItem of getFormData(i).controls">
+            <tr *ngIf="dataItem.value.service">
+              <td>{{ dataItem.value.code }}</td>
+              <td>{{ dataItem.value.medicament }}</td>
+              <td>{{ dataItem.value.onlyMeasure }}</td>
+              <td>{{ dataItem.value.warehouse }}</td>
+              <td>{{ dataItem.value.price }}</td>
+              <td>{{ dataItem.value.vat }}</td>
+              <td>{{ dataItem.value.purchasePrice }}</td>
+              <td>{{ dataItem.value.purchaseVat }}</td>
+              <td>{{ dataItem.value.minAmount }}</td>
+              <td>{{ dataItem.value.noPrint }}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

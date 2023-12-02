@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormArray, FormsModule, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -7,15 +7,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CreateGroupForm } from './diagnoses-group-form';
+import { minArrayLength } from '../../../../../../../../libs/shared/util/src/validators/minArrayLength';
 
 @Component({
-  selector: 'anihis-add-report-dialog',
-  templateUrl: './add-report-dialog.component.html',
-  styleUrls: ['./add-report-dialog.component.scss'],
+  selector: 'anihis-add-edit-report-dialog',
+  templateUrl: './add-edit-report-dialog.component.html',
+  styleUrls: ['./add-edit-report-dialog.component.scss'],
   standalone: true,
   imports: [CommonModule, SharedModule, MatSelectModule, FormsModule],
 })
-export class AddReportDialogComponent
+export class AddEditReportDialogComponent
   extends FormBaseComponent<CreateGroupForm>
   implements OnInit
 {
@@ -44,7 +45,7 @@ export class AddReportDialogComponent
 
   secondFormGroup = this.fb.group({
     selectedDiagnoses: [''],
-    diagnosesList: this.fb.array([]),
+    diagnosesList: this.fb.array([], minArrayLength(1)),
     selectedServices: [''],
     servicesList: this.fb.array([]),
     selectedMedicaments: [''],
@@ -65,7 +66,7 @@ export class AddReportDialogComponent
   isLinear = true;
 
   constructor(
-    public dialogRef: MatDialogRef<AddReportDialogComponent>,
+    public dialogRef: MatDialogRef<AddEditReportDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dateAdapter: DateAdapter<Date>
   ) {
