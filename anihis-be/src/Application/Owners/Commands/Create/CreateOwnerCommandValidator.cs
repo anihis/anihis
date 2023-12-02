@@ -5,9 +5,9 @@ public class CreateOwnerCommandValidator : AbstractValidator<CreateOwnerCommand>
 {
     public CreateOwnerCommandValidator()
     {
-        RuleFor(x => x.Username)
-            .NotEmpty()
-            .WithMessage("The username cannot be empty.");
+        //RuleFor(x => x.Username)
+        //    .NotEmpty()
+        //    .WithMessage("The username cannot be empty.");
 
         RuleFor(x => x.FirstName)
             .NotEmpty()
