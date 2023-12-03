@@ -13,9 +13,6 @@ export class ApplicationStateService {
     .asObservable()
     .pipe(distinctUntilChanged());
 
-  private _selectedRowData = new BehaviorSubject<any>([]);
-  selectedRowData$ = this._selectedRowData.asObservable();
-
   private _printPage = new Subject<void>();
   printPage$ = this._printPage.asObservable();
 
@@ -25,10 +22,6 @@ export class ApplicationStateService {
 
   isOpenMenu(value: boolean) {
     this._isOpenMenu.next(value);
-  }
-
-  setSelectedRowData(value: any) {
-    this._selectedRowData.next(value);
   }
 
   printPage() {

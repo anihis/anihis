@@ -25,10 +25,10 @@
         *ngFor="let column of displayedColumns"
         [matColumnDef]="column"
       >
-        <th mat-header-cell *matHeaderCellDef>
+        <th [class]="column" mat-header-cell *matHeaderCellDef>
           {{ column | nameColumn | titlecase | transloco }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td [class]="column" mat-cell *matCellDef="let element">
           <ng-container
             *ngIf="column === 'actionHistoryCard'; else notActionColumn"
           >

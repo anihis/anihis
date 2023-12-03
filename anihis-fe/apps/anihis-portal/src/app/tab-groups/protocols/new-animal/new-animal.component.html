@@ -1,25 +1,98 @@
-<ng-container *transloco="let t">
-  <ng-container
-    *ngIf="(loadingService.isLoading$ | async) === false; else loading"
-  >
-    <main *ngIf="selectedRowData$ | async as selectedRowData">
-      <div *ngIf="selectedRowData.length !== 0">
-        <p class="cursor back-btn" (click)="back()">{{ t('Back') }}</p>
-      </div>
+<main>
+  <ng-container *transloco="let t">
+    <ng-container *ngIf="data$ | async as data">
+      <section>
+        <div class="add-new-owner-wrapper">
+          <button mat-raised-button (click)="openAddNewOwnerDialog()">
+            {{ t('Add new owner') }}
+          </button>
+        </div>
+        <div class="filter-container">
+          <ng-container
+            *ngFor="let column of displayedColumns"
+            [matColumnDef]="column"
+          >
+            <ng-container *ngIf="column !== 'actionOwner'; else action">
+              <mat-form-field [class]="column" appearance="outline">
+                <mat-label
+                  >{{ column | nameColumn | titlecase | transloco }}
+                </mat-label>
+                <input
+                  matInput
+                  autocomplete="on"
+                  (keyup)="applyFilter($event, column)"
+                />
+              </mat-form-field>
+            </ng-container>
+            <ng-template #action>
+              <div class="actionOwner"></div>
+            </ng-template>
+          </ng-container>
+        </div>
 
-      <mat-card *ngIf="selectedRowData.length !== 0">
-        <anihis-form
-          [formData]="formData"
-          [form]="form"
-          [buttons]="buttons"
-          (formDataSubmit)="submit($event)"
-        ></anihis-form>
-      </mat-card>
-      <div *ngIf="selectedRowData.length !== 0" class="back-btn"></div>
-      <anihis-new-owners
-        *ngIf="selectedRowData.length === 0"
-      ></anihis-new-owners>
-    </main>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container
+            *ngFor="let column of displayedColumns"
+            [matColumnDef]="column"
+          >
+            <th [class]="column" mat-header-cell *matHeaderCellDef>
+              {{ column | nameColumn | titlecase | transloco }}
+            </th>
+            <td
+              [class]="column"
+              mat-cell
+              *matCellDef="let element"
+              style="cursor: pointer"
+            >
+              <ng-container
+                *ngIf="column === 'actionOwner'; else notActionColumn"
+              >
+                <div
+                  style="display: flex; gap: 8px; justify-content: space-evenly"
+                >
+                  <mat-icon
+                    class="material-symbols-outlined cursor"
+                    (click)="$event.stopPropagation(); selectedRow(element)"
+                    >add</mat-icon
+                  >
+                  <mat-icon
+                    class="material-symbols-outlined cursor"
+                    (click)="$event.stopPropagation(); openEditDialog(element)"
+                    >edit</mat-icon
+                  >
+                </div>
+              </ng-container>
+              <ng-template #notActionColumn>
+                <div *ngIf="column === 'dateOfBirth'; else idCardNumberBlock">
+                  {{ element[column] | date : 'd/M/yy' }}
+                </div>
+                <ng-template #idCardNumberBlock>
+                  <div
+                    *ngIf="
+                      element[column] !== undefined && element[column] !== null;
+                      else defaultBlock
+                    "
+                  >
+                    {{ element[column] }}
+                  </div>
+                  <ng-template #defaultBlock>
+                    {{ '/' }}
+                  </ng-template>
+                </ng-template>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[2, 4, 6]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </section>
+    </ng-container>
   </ng-container>
-  <ng-template #loading> <mat-spinner></mat-spinner> </ng-template
-></ng-container>
+</main>

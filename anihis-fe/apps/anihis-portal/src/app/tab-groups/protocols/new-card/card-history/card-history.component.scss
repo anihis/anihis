@@ -8,7 +8,18 @@ main {
   padding: 16px;
 }
 
-th:last-child,
-td:last-child {
-  width: 150px;
+.numberCard,
+.nameOfClinic,
+.licenseNumber,
+.dateOfEdit {
+  width: 22%;
+}
+
+.actionHistoryCard {
+  text-align: center;
+  width: 10%;
+  div {
+    display: flex;
+    justify-content: space-around;
+  }
 }

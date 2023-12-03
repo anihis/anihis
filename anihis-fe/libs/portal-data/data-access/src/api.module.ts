@@ -7,14 +7,27 @@ import {
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { AnimalsService } from './api/animals.service';
+import { BreedsService } from './api/breeds.service';
 import { OwnersService } from './api/owners.service';
-import { UsersService } from './api/users.service';
+import { PaymentsService } from './api/payments.service';
+import { SpeciesService } from './api/species.service';
+import { VeterinariansService } from './api/veterinarians.service';
+import { VeterinaryClinicsControllersService } from './api/veterinaryClinicsControllers.service';
 
 @NgModule({
   imports: [],
   declarations: [],
   exports: [],
-  providers: [OwnersService, UsersService],
+  providers: [
+    AnimalsService,
+    BreedsService,
+    OwnersService,
+    PaymentsService,
+    SpeciesService,
+    VeterinariansService,
+    VeterinaryClinicsControllersService,
+  ],
 })
 export class ApiModule {
   public static forRoot(

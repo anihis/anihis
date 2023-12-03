@@ -1,34 +1,28 @@
-form {
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 16px;
+  margin: 24px 24px 0px 24px;
+}
+
+.full-row {
+  margin: 0px 24px;
   display: flex;
-  flex-wrap: wrap;
-  div {
-    width: 50%;
+  flex-direction: column;
+  mat-form-field {
+    width: 100%;
   }
-  .div-left:nth-child(odd) {
-    width: calc(50% - 16px);
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-}
-
-.mat-datepicker {
-  width: 50%;
-}
-
-.mat-mdc-form-field {
-  display: unset !important;
 }
 
 .button-submit-wrapper {
   display: flex;
-  width: 100%;
-  margin-top: 40px;
+  margin: 40px 24px 24px 24px;
+  gap: 16px;
   button {
     background: #00142f !important;
     color: #fff !important;
     width: 100%;
     padding: 24px 0px !important;
-    margin-right: 8px !important;
   }
 }
 

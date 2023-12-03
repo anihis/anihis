@@ -1,12 +1,11 @@
 <ng-container *transloco="let t">
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <ng-container *ngFor="let field of formData">
-      <div
-        class="div-left"
-        *ngIf="field.inputType === 'input'"
-        style="font-size: 14px; margin-bottom: 8px"
-      >
-        <mat-form-field appearance="outline">
+    <div class="two-column">
+      <ng-container *ngFor="let field of formData">
+        <mat-form-field
+          *ngIf="field.inputType === 'input'"
+          appearance="outline"
+        >
           <mat-label>{{ t(field.label) }} </mat-label>
           <input
             matInput
@@ -17,9 +16,10 @@
             [required]="field.required"
           />
         </mat-form-field>
-      </div>
-      <div class="div-left" *ngIf="field.inputType === 'select'">
-        <mat-form-field appearance="outline">
+        <mat-form-field
+          *ngIf="field.inputType === 'select'"
+          appearance="outline"
+        >
           <mat-label>{{ t(field.label) }} </mat-label>
 
           <mat-select
@@ -34,9 +34,7 @@
             >
           </mat-select>
         </mat-form-field>
-      </div>
-      <div class="div-left" *ngIf="field.inputType === 'date'">
-        <mat-form-field appearance="outline">
+        <mat-form-field *ngIf="field.inputType === 'date'" appearance="outline">
           <mat-label>{{ t(field.label) }} </mat-label>
 
           <input
@@ -51,34 +49,40 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-      </div>
 
-      <div class="div-left" *ngIf="field.inputType === 'checkbox'">
-        <mat-label style="display: flex; align-items: center; height: 56px"
-          >{{ t(field.label) }}
+        <div *ngIf="field.inputType === 'checkbox'">
+          <mat-label style="display: flex; align-items: center; height: 56px"
+            >{{ t(field.label) }}
 
-          <mat-checkbox
-            formControlName="{{ field.formControlName }}"
-            [required]="field.required"
-          ></mat-checkbox
-        ></mat-label>
-      </div>
-    </ng-container>
+            <mat-checkbox
+              formControlName="{{ field.formControlName }}"
+              [required]="field.required"
+            ></mat-checkbox
+          ></mat-label>
+        </div>
+      </ng-container>
+    </div>
     <div class="button-submit-wrapper">
       <ng-container *ngFor="let button of buttons">
         <ng-container *ngIf="button.functionBtn === 'clear'; else submitBtn">
-          <button mat-button (click)="performAction(button.functionBtn)">
+          <button
+            mat-button
+            (click)="performAction(button.functionBtn)"
+            type="button"
+          >
             {{ t(button.text) }}
           </button>
         </ng-container>
         <ng-template #submitBtn>
-          <button mat-raised-button (click)="performAction(button.functionBtn)">
+          <button
+            mat-raised-button
+            (click)="performAction(button.functionBtn)"
+            type="button"
+          >
             {{ t(button.text) }}
           </button>
         </ng-template>
       </ng-container>
     </div>
-
-    <div></div>
   </form>
 </ng-container>

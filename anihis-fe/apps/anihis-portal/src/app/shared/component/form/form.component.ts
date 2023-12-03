@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -16,7 +9,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
-import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({
   selector: 'anihis-form',
@@ -36,32 +28,15 @@ import { ApplicationStateService } from '../../services/application-state.servic
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   @Input() formData!: any;
   @Input() form!: any;
   @Input() buttons!: any;
   @Output() formDataSubmit = new EventEmitter<any>();
 
-  constructor(private applicationStateService: ApplicationStateService) {}
-
-  ngOnInit(): void {
-    this.form.valueChanges.subscribe((formValue: any) => {
-      formValue?.owner?.length === 0
-        ? this.applicationStateService.setSelectedRowData([])
-        : null;
-    });
-  }
-
   performAction(action: string) {
-    if (action === 'clear') {
-      this.clear();
-    } else if (action === 'submit') {
-      this.submit();
-    } else if (action === 'clearOwner') {
-      this.form.controls.owner.reset();
-    }
+    this.submit(action);
   }
 
   clear() {
@@ -72,7 +47,11 @@ export class FormComponent implements OnInit {
     });
   }
 
-  submit() {
-    this.formDataSubmit.emit(this.form);
+  submit(action?: string) {
+    if (action === 'clear') {
+      this.clear();
+    } else {
+      this.formDataSubmit.emit();
+    }
   }
 }

@@ -1,17 +1,10 @@
-import {
-  Component,
-  HostListener,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { TabsComponentService } from '../shared/services/tabs-component.service';
-import { ApplicationStateService } from '../shared/services/application-state.service';
 
 @Component({
   selector: 'anihis-tab-groups',
   templateUrl: './tab-groups.component.html',
   styleUrls: ['./tab-groups.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class TabGroupsComponent {
   @Input() tabs!: string[];
@@ -28,13 +21,9 @@ export class TabGroupsComponent {
     }
   }
 
-  constructor(
-    private tabsComponentService: TabsComponentService,
-    private applicationStateService: ApplicationStateService
-  ) {}
+  constructor(private tabsComponentService: TabsComponentService) {}
 
   deleteTab(tab: string) {
     this.tabsComponentService.closeTab(tab);
-    this.applicationStateService.setSelectedRowData([]);
   }
 }

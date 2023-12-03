@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface CreateOwnerCommand { 
-    username?: string;
+export interface UpdateOwnerCommand { 
+    ownerUid?: string;
     firstName?: string;
     lastName?: string;
     city?: string;
