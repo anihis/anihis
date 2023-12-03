@@ -14,11 +14,13 @@ public class UpdateOwnerCommandHandler : IRequestHandler<UpdateOwnerCommand>
     public UpdateOwnerCommandHandler
     (
         ICoreDbContext context,
-        IBaseRepository<Owner> ownerRepository
+        IBaseRepository<Owner> ownerRepository,
+        IValidator<UpdateOwnerCommand> validator
     )
     {
         _context = context;
         _ownerRepository = ownerRepository;
+        _validator = validator;
     }
 
     public async Task Handle(UpdateOwnerCommand request, CancellationToken cancellationToken)
@@ -44,6 +46,7 @@ public class UpdateOwnerCommandHandler : IRequestHandler<UpdateOwnerCommand>
         owner.PersonalNumber = request.PersonalNumber;
         owner.PhoneNumber = request.PhoneNumber;
         owner.PostalCode = request.PostalCode;
+        owner.Warning = request.Warning;
         owner.LastModifiedDateTimeUtc = DateTime.UtcNow;
         _ownerRepository.Update(owner);
 

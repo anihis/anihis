@@ -315,6 +315,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("PostalCode")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Warning")
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("Owner");
                 });
 

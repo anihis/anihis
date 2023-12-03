@@ -37,9 +37,10 @@ public class OwnersController : ApiControllerBase
         await Mediator.Send(command);
     }
 
-    [HttpPut]
-    public async Task Update(UpdateOwnerCommand command)
+    [HttpPut("{uid}")]
+    public async Task Update(string uid, UpdateOwnerCommand command)
     {
+        command.OwnerUid = uid;
         await Mediator.Send(command);
     }
 }

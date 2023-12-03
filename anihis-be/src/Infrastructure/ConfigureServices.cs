@@ -33,7 +33,7 @@ public static class ConfigureServices
         services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-            options.AddPolicy("VeterinarianPolicy", policy => policy.RequireRole("Veterinarian"));
+            options.AddPolicy("VeterinarianPolicy", policy => policy.RequireRealmRoles("Veterinarian"));
         });
         services.AddKeycloakAuthorization(configuration);
 

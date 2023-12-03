@@ -66,7 +66,7 @@ namespace anihis.Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
@@ -82,6 +82,7 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     IdCardNumber = table.Column<string>(type: "TEXT", nullable: true),
                     LastModifiedDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     DeleteDateTimeUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Warning = table.Column<string>(type: "TEXT", nullable: true),
                     LicenceNumber = table.Column<string>(type: "TEXT", nullable: true),
                     VeterinaryClinicId = table.Column<int>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true)

@@ -11,7 +11,7 @@ using anihis.Infrastructure.Persistence;
 namespace anihis.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20231118200927_Initial")]
+    [Migration("20231203174214_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -212,7 +212,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -317,6 +316,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PostalCode")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Warning")
                         .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("Owner");

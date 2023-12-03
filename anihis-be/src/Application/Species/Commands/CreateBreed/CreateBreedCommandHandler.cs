@@ -3,7 +3,7 @@ using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
 
-namespace anihis.Application.Breeds.Commands.Create;
+namespace anihis.Application.Species.Commands.CreateBreed;
 public class CreateBreedCommandHandler : IRequestHandler<CreateBreedCommand>
 {
     private readonly ICoreDbContext _context;

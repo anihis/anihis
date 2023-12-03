@@ -4,7 +4,7 @@ using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
 
-namespace anihis.Application.Breeds.Commands.Update;
+namespace anihis.Application.Species.Commands.UpdateBreed;
 public class UpdateBreedCommandHandler : IRequestHandler<UpdateBreedCommand>
 {
     private readonly ICoreDbContext _context;

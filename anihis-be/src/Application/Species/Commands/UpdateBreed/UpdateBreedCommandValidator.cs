@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace anihis.Application.Breeds.Commands.Update;
+namespace anihis.Application.Species.Commands.UpdateBreed;
 public class UpdateBreedCommandValidator : AbstractValidator<UpdateBreedCommand>
 {
     public UpdateBreedCommandValidator()

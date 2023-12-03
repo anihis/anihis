@@ -1,7 +1,11 @@
 ﻿using anihis.Application.Common.Interfaces;
 using anihis.Application.Species.Commands.Create;
+using anihis.Application.Species.Commands.CreateBreed;
 using anihis.Application.Species.Commands.Update;
+using anihis.Application.Species.Commands.UpdateBreed;
 using anihis.Application.Species.Queries;
+using anihis.Application.Species.Queries.GetBreed;
+using anihis.Application.Species.Queries.GetBreeds;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,27 +22,53 @@ public class SpeciesController : ApiControllerBase
     {
     }
 
-    [HttpGet]
-    public async Task<ActionResult<List<GetSpeciesResult>>> Get()
+    [HttpGet("species")]
+    public async Task<ActionResult<List<GetSpeciesResult>>> GetSpecies()
     {
         return await Mediator.Send(new Application.Species.Queries.Get.GetSpeciesQuery());
     }
 
-    [HttpGet("{uid}")]
-    public async Task<ActionResult<GetSpeciesResult>> Get(string uid)
+    [HttpGet("breeds")]
+    public async Task<ActionResult<List<GetBreedsResult>>> GetBreeds()
+    {
+        return await Mediator.Send(new GetBreedsQuery());
+    }
+
+    [HttpGet("species/{uid}")]
+    public async Task<ActionResult<GetSpeciesResult>> GetSpecies(string uid)
     {
         return await Mediator.Send(new Application.Species.Queries.GetSingle.GetSpeciesQuery { SpeciesUid = uid });
     }
 
-    [HttpPost]
-    public async Task Create(CreateSpeciesCommand command)
+    [HttpGet("breeds/{uid}")]
+    public async Task<ActionResult<GetBreedResult>> GetBreed(string uid)
+    {
+        return await Mediator.Send(new GetBreedQuery { BreedUid = uid });
+    }
+
+    [HttpPost("species")]
+    public async Task CreateSpecies(CreateSpeciesCommand command)
     {
         await Mediator.Send(command);
     }
 
-    [HttpPut]
-    public async Task Update(UpdateSpeciesCommand command)
+    [HttpPost("breeds")]
+    public async Task CreateBreed(CreateBreedCommand command)
     {
+        await Mediator.Send(command);
+    }
+
+    [HttpPut("species/{uid}")]
+    public async Task UpdateSpecies(string uid, UpdateSpeciesCommand command)
+    {
+        command.SpeciesUid = uid;
+        await Mediator.Send(command);
+    }
+
+    [HttpPut("breeds/{uid}")]
+    public async Task UpdateBreed(string uid, UpdateBreedCommand command)
+    {
+        command.BreedUid = uid;
         await Mediator.Send(command);
     }
 }

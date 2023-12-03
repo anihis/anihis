@@ -2,7 +2,7 @@
 using anihis.Domain.Entities;
 using MediatR;
 
-namespace anihis.Application.Breeds.Queries.Get;
+namespace anihis.Application.Species.Queries.GetBreeds;
 public class GetBreedsQueryHandler : IRequestHandler<GetBreedsQuery, List<GetBreedsResult>>
 {
     private readonly IBaseRepository<Breed> _breedRepository;

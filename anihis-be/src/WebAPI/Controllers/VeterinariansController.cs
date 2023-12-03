@@ -37,9 +37,10 @@ public class VeterinariansController : ApiControllerBase
         await Mediator.Send(command);
     }
 
-    [HttpPut]
-    public async Task Update(UpdateVeterinarianCommand command)
+    [HttpPut("{uid}")]
+    public async Task Update(string uid, UpdateVeterinarianCommand command)
     {
+        command.VeterinarianUid = uid;
         await Mediator.Send(command);
     }
 }

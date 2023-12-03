@@ -16,4 +16,5 @@ public class UpdateOwnerCommand : IRequest
     public string? PersonalNumber { get; set; }
     public string? PassportNumber { get; set; }
     public string? IdCardNumber { get; set; }
+    public string? Warning { get; set; }
 }

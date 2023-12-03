@@ -30,9 +30,10 @@ public class PaymentsController : ApiControllerBase
         await Mediator.Send(command);
     }
 
-    [HttpPut]
-    public async Task Update(UpdatePaymentCommand command)
+    [HttpPut("{uid}")]
+    public async Task Update(string uid, UpdatePaymentCommand command)
     {
+        command.PaymentUid = uid;
         await Mediator.Send(command);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using anihis.Application.Common.Mappings;
 using anihis.Domain.Entities;
 
-namespace anihis.Application.Breeds.Queries.Get;
-public class GetBreedsResult : IMapFrom<Breed>
+namespace anihis.Application.Species.Queries.GetBreed;
+public class GetBreedResult : IMapFrom<Breed>
 {
     public string BreedUid { get; set; }
     public string Name { get; set; }

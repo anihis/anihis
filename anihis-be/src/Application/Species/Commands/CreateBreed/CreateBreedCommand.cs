@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace anihis.Application.Breeds.Commands.Create;
+namespace anihis.Application.Species.Commands.CreateBreed;
 public class CreateBreedCommand : IRequest
 {
     public string Name { get; set; }

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace anihis.Application.Breeds.Commands.Create;
+namespace anihis.Application.Species.Commands.CreateBreed;
 public class CreateBreedCommandValidator : AbstractValidator<CreateBreedCommand>
 {
     public CreateBreedCommandValidator()

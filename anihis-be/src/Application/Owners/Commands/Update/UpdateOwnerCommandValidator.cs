@@ -7,7 +7,7 @@ public class UpdateOwnerCommandValidator : AbstractValidator<UpdateOwnerCommand>
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
-            .WithMessage("The first name cannot be null or empty.");
+            .WithMessage("The first name cannot be empty.");
 
         RuleFor(x => x.LastName)
             .NotEmpty()

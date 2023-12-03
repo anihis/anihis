@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace anihis.Application.Breeds.Queries.Get;
+namespace anihis.Application.Species.Queries.GetBreeds;
 public class GetBreedsQuery : IRequest<List<GetBreedsResult>>
 {
 }
