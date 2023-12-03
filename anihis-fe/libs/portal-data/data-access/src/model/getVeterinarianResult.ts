@@ -9,19 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { VeterinaryClinic } from './veterinaryClinic';
 
-export interface CreateOwnerCommand { 
+export interface GetVeterinarianResult { 
     username?: string;
     firstName?: string;
     lastName?: string;
-    city?: string;
-    address?: string;
     email?: string;
     phoneNumber?: string;
     mobileNumber?: string;
-    postalCode?: string;
-    country?: string;
-    personalNumber?: string;
-    passportNumber?: string;
-    idCardNumber?: string;
+    licenceNumber?: string;
+    veterinaryClinic?: VeterinaryClinic;
 }

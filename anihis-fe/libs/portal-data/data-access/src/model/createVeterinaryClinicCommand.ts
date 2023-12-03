@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-export interface GetUsersResult { 
-    uid?: string;
+export interface CreateVeterinaryClinicCommand { 
     name?: string;
 }

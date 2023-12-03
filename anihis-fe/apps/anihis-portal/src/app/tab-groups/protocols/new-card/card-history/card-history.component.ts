@@ -8,7 +8,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { PeriodicElement } from '../new-card.component';
 import { CardHistoryService } from './card-history.service';
 import { PreviewCardHistoryComponent } from './preview-card-history/preview-card-history.component';
-import { ApplicationStateService } from 'apps/anihis-portal/src/app/shared/services/application-state.service';
+import { ApplicationStateService } from '../../../../shared/services/application-state.service';
 import { AddEditReportDialogComponent } from '../add-edit-report-dialog/add-edit-report-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 

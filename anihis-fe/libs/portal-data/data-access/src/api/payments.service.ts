@@ -17,17 +17,16 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CreateOwnerCommand } from '../model/createOwnerCommand';
-import { GetOwnerResult } from '../model/getOwnerResult';
-import { GetOwnersResult } from '../model/getOwnersResult';
-import { UpdateOwnerCommand } from '../model/updateOwnerCommand';
+import { CreatePaymentCommand } from '../model/createPaymentCommand';
+import { GetPaymentsResult } from '../model/getPaymentsResult';
+import { UpdatePaymentCommand } from '../model/updatePaymentCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class OwnersService {
+export class PaymentsService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -61,57 +60,14 @@ export class OwnersService {
     /**
      * 
      * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public ownersGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetOwnersResult>>;
-    public ownersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetOwnersResult>>>;
-    public ownersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetOwnersResult>>>;
-    public ownersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<GetOwnersResult>>('get',`${this.basePath}/Owners`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ownersPost(body?: CreateOwnerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public paymentsPost(body?: CreatePaymentCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public paymentsPost(body?: CreatePaymentCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public paymentsPost(body?: CreatePaymentCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public paymentsPost(body?: CreatePaymentCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -140,7 +96,7 @@ export class OwnersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Owners`,
+        return this.httpClient.request<any>('post',`${this.basePath}/Payments`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -158,10 +114,10 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ownersPut(body?: UpdateOwnerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public paymentsPut(body?: UpdatePaymentCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public paymentsPut(body?: UpdatePaymentCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public paymentsPut(body?: UpdatePaymentCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public paymentsPut(body?: UpdatePaymentCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -190,7 +146,7 @@ export class OwnersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/Owners`,
+        return this.httpClient.request<any>('put',`${this.basePath}/Payments`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -208,13 +164,13 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetOwnerResult>;
-    public ownersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOwnerResult>>;
-    public ownersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOwnerResult>>;
-    public ownersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public paymentsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetPaymentsResult>;
+    public paymentsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPaymentsResult>>;
+    public paymentsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPaymentsResult>>;
+    public paymentsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling ownersUidGet.');
+            throw new Error('Required parameter uid was null or undefined when calling paymentsUidGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -239,7 +195,7 @@ export class OwnersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetOwnerResult>('get',`${this.basePath}/Owners/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetPaymentsResult>('get',`${this.basePath}/Payments/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

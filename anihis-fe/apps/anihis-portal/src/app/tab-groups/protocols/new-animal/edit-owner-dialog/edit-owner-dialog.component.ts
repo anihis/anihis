@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { FormBaseComponent } from '../../base-components/form-base.component';
+import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
   selector: 'anihis-edit-owner-dialog',
@@ -12,18 +12,6 @@ import { SharedModule } from '../../shared.module';
   imports: [CommonModule, SharedModule],
 })
 export class EditOwnerDialogComponent extends FormBaseComponent {
-  column = [
-    'Last Name',
-    'First Name',
-    'City',
-    'Address',
-    'Tel',
-    'Mob',
-    'JMBG',
-    'Email',
-    'Warning',
-  ];
-
   constructor(
     public dialogRef: MatDialogRef<EditOwnerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -34,22 +22,27 @@ export class EditOwnerDialogComponent extends FormBaseComponent {
 
   private initializeForm() {
     this.form = this.fb.group({
-      lastName: [this.data.lastName],
       firstName: [this.data.firstName],
+      lastName: [this.data.lastName],
       city: [this.data.city],
       address: [this.data.address],
-      tel: [this.data.tel],
-      mob: [this.data.mob],
-      jmbg: [this.data.jmbg],
       email: [this.data.email],
+      phoneNumber: [this.data.tel],
+      mobileNumber: [this.data.mob],
+      postalCode: [this.data.postalCode],
+      country: [this.data.country],
+      personalNumber: [this.data.personalNumber],
+      passportNumber: [this.data.passportNumber],
+      idCardNumber: [this.data.idCardNumber],
+      ownerUid: [this.data.uid],
       warning: [this.data.warning],
     });
   }
 
+  country = [{ value: 'srb', viewValue: 'Srbija' }];
+
   saveChanges() {
-    console.log(this.form);
-    this.dialogRef.close(this.form);
-    // this.dialogRef.close(this.data);
+    this.dialogRef.close(this.form.getRawValue());
   }
 
   closeDialog(): void {

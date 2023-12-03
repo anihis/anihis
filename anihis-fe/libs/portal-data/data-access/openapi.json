@@ -5,6 +5,260 @@
     "version": "v1"
   },
   "paths": {
+    "/Animals": {
+      "get": {
+        "tags": ["Animals"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAnimalsResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAnimalsResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAnimalsResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Animals"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAnimalCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAnimalCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAnimalCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Animals"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAnimalCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAnimalCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAnimalCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Animals/{uid}": {
+      "get": {
+        "tags": ["Animals"],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAnimalResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAnimalResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAnimalResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Breeds": {
+      "get": {
+        "tags": ["Breeds"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Breeds"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Breeds"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Breeds/{uid}": {
+      "get": {
+        "tags": ["Breeds"],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Owners": {
       "get": {
         "tags": ["Owners"],
@@ -66,6 +320,33 @@
             "description": "Success"
           }
         }
+      },
+      "put": {
+        "tags": ["Owners"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOwnerCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOwnerCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOwnerCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/Owners/{uid}": {
@@ -105,72 +386,9 @@
         }
       }
     },
-    "/Users": {
+    "/Payments/{uid}": {
       "get": {
-        "tags": ["Users"],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetUsersResult"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetUsersResult"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetUsersResult"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["Users"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Users/{uid}": {
-      "get": {
-        "tags": ["Users"],
+        "tags": ["Payments"],
         "parameters": [
           {
             "name": "uid",
@@ -187,20 +405,384 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserResult"
+                  "$ref": "#/components/schemas/GetPaymentsResult"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserResult"
+                  "$ref": "#/components/schemas/GetPaymentsResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserResult"
+                  "$ref": "#/components/schemas/GetPaymentsResult"
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/Payments": {
+      "post": {
+        "tags": ["Payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Species": {
+      "get": {
+        "tags": ["Species"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetSpeciesResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetSpeciesResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetSpeciesResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Species"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Species"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Species/{uid}": {
+      "get": {
+        "tags": ["Species"],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Veterinarians": {
+      "get": {
+        "tags": ["Veterinarians"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinariansResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinariansResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinariansResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Veterinarians"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinarianCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinarianCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinarianCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Veterinarians"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVeterinarianCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVeterinarianCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVeterinarianCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Veterinarians/{uid}": {
+      "get": {
+        "tags": ["Veterinarians"],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinarianResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinarianResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVeterinarianResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/VeterinaryClinicsControllers": {
+      "get": {
+        "tags": ["VeterinaryClinicsControllers"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetVeterinaryClinicsResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetVeterinaryClinicsResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetVeterinaryClinicsResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["VeterinaryClinicsControllers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinaryClinicCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinaryClinicCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVeterinaryClinicCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }
@@ -208,9 +790,75 @@
   },
   "components": {
     "schemas": {
+      "Breed": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAnimalCommand": {
+        "type": "object",
+        "properties": {
+          "personalNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breedUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "warning": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateBreedCommand": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateOwnerCommand": {
         "type": "object",
         "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -262,10 +910,213 @@
         },
         "additionalProperties": false
       },
-      "CreateUserCommand": {
+      "CreatePaymentCommand": {
+        "type": "object",
+        "properties": {
+          "ownerUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinarianUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateSpeciesCommand": {
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateVeterinarianCommand": {
+        "type": "object",
+        "properties": {
+          "licenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinaryClinicUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateVeterinaryClinicCommand": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gender": {
+        "enum": [0, 1],
+        "type": "integer",
+        "format": "int32"
+      },
+      "GetAnimalResult": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "breed": {
+            "$ref": "#/components/schemas/Breed"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "warning": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAnimalsResult": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "breed": {
+            "$ref": "#/components/schemas/Breed"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "warning": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetBreedResult": {
+        "type": "object",
+        "properties": {
+          "breedUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetBreedsResult": {
+        "type": "object",
+        "properties": {
+          "breedUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesUid": {
             "type": "string",
             "nullable": true
           }
@@ -388,7 +1239,84 @@
         },
         "additionalProperties": false
       },
-      "GetUserResult": {
+      "GetPaymentsResult": {
+        "type": "object",
+        "properties": {
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetSpeciesResult": {
+        "type": "object",
+        "properties": {
+          "speciesUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetVeterinarianResult": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinaryClinic": {
+            "$ref": "#/components/schemas/VeterinaryClinic"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetVeterinariansResult": {
+        "type": "object",
+        "properties": {
+          "veterinarians": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Veterinarian"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetVeterinaryClinicsResult": {
         "type": "object",
         "properties": {
           "uid": {
@@ -402,13 +1330,285 @@
         },
         "additionalProperties": false
       },
-      "GetUsersResult": {
+      "Owner": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "paymentUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinarianFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinarianLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentDateTimeUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateAnimalCommand": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breedUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "warning": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateBreedCommand": {
+        "type": "object",
+        "properties": {
+          "breedUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateOwnerCommand": {
+        "type": "object",
+        "properties": {
+          "ownerUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCardNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePaymentCommand": {
+        "type": "object",
+        "properties": {
+          "paymentUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinarianUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateSpeciesCommand": {
+        "type": "object",
+        "properties": {
+          "speciesUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateVeterinarianCommand": {
+        "type": "object",
+        "properties": {
+          "veterinarianUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "veterinaryClinicUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Veterinarian": {
         "type": "object",
         "properties": {
           "uid": {
             "type": "string",
             "nullable": true
           },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenceNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeterinaryClinic": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string",
             "nullable": true

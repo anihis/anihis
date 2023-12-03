@@ -1,19 +1,43 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ViewChild,
+} from '@angular/core';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
-import { NewAnimal } from '../../../shared/interface/new-animal';
-import { Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
-import { NewOwnersComponent } from './new-owners/new-owners.component';
 
-import { NewOwnerDialogComponent } from '../../../shared/component/new-owner-dialog/new-owner-dialog.component';
-import { EditOwnerDialogComponent } from '../../../shared/component/edit-owner-dialog/edit-owner-dialog.component';
+import { NewOwnerDialogComponent } from './new-owner-dialog/new-owner-dialog.component';
+import { EditOwnerDialogComponent } from './edit-owner-dialog/edit-owner-dialog.component';
 import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
-import { tap } from 'rxjs';
-import { ApplicationStateService } from '../../../shared/services/application-state.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingService } from 'libs/shared/util/src/services/loading.service';
+import { MatDialog } from '@angular/material/dialog';
+import { GetOwnersResult } from 'libs/portal-data/data-access/src';
+import { tap } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { NewAnimalService } from './new-animal.service';
+import { AddNewAnimalDialogComponent } from './add-new-animal-dialog/add-new-animal-dialog.component';
+
+export interface Owner {
+  lastName: string;
+  firstName: string;
+  city: string;
+  address: string;
+  phoneNumber: string;
+  mobileNumber: string;
+  personalNumber: string;
+  idCardNumber?: string;
+  email: string;
+  warning: string;
+  postalCode?: string;
+  country?: string;
+  passportNumber: string;
+  ownerUid: string;
+}
 
 @Component({
   selector: 'anihis-new-animal',
@@ -25,272 +49,112 @@ import { LoadingService } from 'libs/shared/util/src/services/loading.service';
     SharedModule,
     NewOwnerDialogComponent,
     EditOwnerDialogComponent,
-    NewOwnersComponent,
     MatProgressSpinnerModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [OwnersService, LoadingService],
+  providers: [OwnersService, LoadingService, NewAnimalService],
 })
-export class NewAnimalComponent extends FormBaseComponent {
-  selectedRowData$ = this.applicationStateService.selectedRowData$.pipe(
-    tap((x) => {
-      if (x.length != 0 && x.length == undefined) {
-        this.form.controls.owner.patchValue(x.firstName + ' ' + x.lastName);
-        this.form.controls.ownerUid.patchValue(x.uid);
-      }
+export class NewAnimalComponent
+  extends FormBaseComponent
+  implements AfterViewInit
+{
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  pageSize = 6;
+  pageIndex = 0;
+  dataSource: MatTableDataSource<GetOwnersResult> =
+    new MatTableDataSource<GetOwnersResult>([]);
+  data$ = this.newAnimal.fetchData().pipe(
+    tap((results: GetOwnersResult[]) => {
+      this.dataSource.data = results;
     })
   );
 
-  formData: NewAnimal[] = [
-    {
-      label: 'Card',
-      formControlName: 'card',
-      type: 'number',
-      readonly: true,
-      value: '12345',
-      inputType: 'input',
-      placeholder: '',
-      required: false,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Name',
-      formControlName: 'name',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: true,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Gender',
-      formControlName: 'gender',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'select',
-      placeholder: 'Select your Gender',
-      required: false,
-      options: [
-        { value: 'male', viewValue: 'Male' },
-        { value: 'female', viewValue: 'Female' },
-      ],
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Type',
-      formControlName: 'type',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'select',
-      placeholder: 'Select your Type',
-      required: true,
-      options: [
-        { value: 'male', viewValue: 'Male' },
-        { value: 'female', viewValue: 'Female' },
-      ],
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Breed',
-      formControlName: 'breed',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'select',
-      placeholder: 'Select your Breed',
-      required: true,
-      options: [
-        { value: 'test', viewValue: 'Test' },
-        { value: 'test2', viewValue: 'Test2' },
-      ],
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Color',
-      formControlName: 'color',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Date of Birth',
-      formControlName: 'dateOfBirth',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'date',
-      placeholder: 'Enter your Date of Birth',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Warning',
-      formControlName: 'warning',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Identification',
-      formControlName: 'identification',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Owner',
-      formControlName: 'owner',
-      type: 'string',
-      readonly: true,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Marking Date',
-      formControlName: 'markingDate',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'date',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Microchip',
-      formControlName: 'microchip',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Pedigree',
-      formControlName: 'pedigree',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-    {
-      label: 'Passport Date',
-      formControlName: 'passportDate',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'VU Issuing Passports',
-      formControlName: 'vuIssuingPassports',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'input',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Sterilized',
-      formControlName: 'sterilized',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'checkbox',
-      placeholder: '',
-      required: false,
-      page: 'NewAnimal',
-    },
-
-    {
-      label: 'Date Of Sterilization',
-      formControlName: 'dateOfSterilization',
-      type: 'string',
-      readonly: false,
-      value: '',
-      inputType: 'date',
-      placeholder: 'Enter your',
-      required: false,
-      page: 'NewAnimal',
-    },
+  displayedColumns: string[] = [
+    'lastName',
+    'firstName',
+    'city',
+    'address',
+    'phoneNumber',
+    'mobileNumber',
+    'personalNumber',
+    'idCardNumber',
+    'email',
+    'warning',
+    'actionOwner',
   ];
-
-  buttons = [
-    { text: 'Clear', functionBtn: 'clear', type: 'mat-button' },
-    { text: 'Clear Owner', functionBtn: 'clearOwner', type: 'mat-button' },
-    {
-      text: 'Add new animal',
-      functionBtn: 'submit',
-    },
-  ];
-
-  override form = this.fb.nonNullable.group({
-    card: [''],
-    name: ['', [Validators.required]],
-    gender: [''],
-    type: ['', [Validators.required]],
-    breed: ['', [Validators.required]],
-    color: [''],
-    dateOfBirth: [''],
-    warning: [''],
-    identification: [''],
-    owner: [''],
-    ownerUid: [''],
-    markingDate: [''],
-    microchip: [''],
-    pedigree: [''],
-    passportDate: [''],
-    vuIssuingPassports: [''],
-    sterilized: [''],
-    dateOfSterilization: [''],
-  });
 
   constructor(
+    private dialog: MatDialog,
     private dateAdapter: DateAdapter<Date>,
-    private applicationStateService: ApplicationStateService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private newAnimal: NewAnimalService
   ) {
     super();
     this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY
   }
 
-  back() {
-    this.applicationStateService.setSelectedRowData([]);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  onPageChange(event: any): void {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getObjectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  applyFilter(event: any, column: string) {
+    const filterValue = event.target.value.trim().toLowerCase();
+    console.log(this.dataSource);
+    // this.dataSource.filterPredicate = (data, filter) => {
+    //   // const value = data[column].toString().toLowerCase();
+    //   return value.includes(filter);
+    // };
+
+    this.dataSource.filter = filterValue;
+  }
+
+  selectedRow(rowData: any) {
+    const dialogRef = this.dialog.open(AddNewAnimalDialogComponent, {
+      width: '465px',
+      data: rowData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.newAnimal.createNewAnimal(result);
+      }
+    });
+  }
+
+  openEditDialog(data: Owner): void {
+    console.log(data);
+    const dialogRef = this.dialog.open(EditOwnerDialogComponent, {
+      width: '600px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.newAnimal.editOwner(result).subscribe();
+      }
+    });
+  }
+
+  openAddNewOwnerDialog() {
+    const dialogRef = this.dialog.open(NewOwnerDialogComponent, {
+      width: '465px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.newAnimal.createNewOwner(result);
+      }
+    });
   }
 
   submit(event: any) {

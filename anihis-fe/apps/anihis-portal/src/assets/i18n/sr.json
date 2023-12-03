@@ -80,7 +80,7 @@
   "Address": "Adresa",
   "Tel": "Telefon",
   "Email": "Email",
-  "Action": "Dodaj izvestaj / Izmeni / Pregled istorije",
+  "Action": "Dodaj izvestaj / Izmeni karton / Pregled istorije",
   "Add new owner": "Dodaj novog vlasnika",
   "Save": "Sacuvaj",
   "Breeds from VetUp": "Rase iz VetUp",
@@ -106,7 +106,7 @@
   "Mob": "Mobilni broj",
   "Jmbg": "JMBG",
   "Id Card Number": "Broj licne karte",
-  "ID Card Number": "Broj licne karte",
+  "ID Card Number": "Broj licne karte ",
   "Clear": "Obrisi",
   "Theme": "Teme",
   "Complete list": "Kompletna lista",
@@ -173,5 +173,9 @@
   "Total for services": "Ukupno za usluge",
   "Total for medicaments": "Ukupno za lekove",
   "Total for other costs": "Ukupno za ostale troskove",
-  "Number of card": "Broj izvestaja"
+  "Number of card": "Broj izvestaja",
+  "Personal Number": "JMBG",
+  "Action Owner": "Dodaj zivotinju / Izmeni vlasnika",
+  "Country": "Drzava",
+  "Postal Code": "Postanski broj"
 }

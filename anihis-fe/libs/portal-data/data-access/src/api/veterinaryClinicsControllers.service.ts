@@ -17,16 +17,15 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CreateUserCommand } from '../model/createUserCommand';
-import { GetUserResult } from '../model/getUserResult';
-import { GetUsersResult } from '../model/getUsersResult';
+import { CreateVeterinaryClinicCommand } from '../model/createVeterinaryClinicCommand';
+import { GetVeterinaryClinicsResult } from '../model/getVeterinaryClinicsResult';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class UsersService {
+export class VeterinaryClinicsControllersService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -63,10 +62,10 @@ export class UsersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public usersGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetUsersResult>>;
-    public usersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetUsersResult>>>;
-    public usersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetUsersResult>>>;
-    public usersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public veterinaryClinicsControllersGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetVeterinaryClinicsResult>>;
+    public veterinaryClinicsControllersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetVeterinaryClinicsResult>>>;
+    public veterinaryClinicsControllersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetVeterinaryClinicsResult>>>;
+    public veterinaryClinicsControllersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -90,7 +89,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<GetUsersResult>>('get',`${this.basePath}/Users`,
+        return this.httpClient.request<Array<GetVeterinaryClinicsResult>>('get',`${this.basePath}/VeterinaryClinicsControllers`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -107,10 +106,10 @@ export class UsersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public usersPost(body?: CreateUserCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public usersPost(body?: CreateUserCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public usersPost(body?: CreateUserCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public usersPost(body?: CreateUserCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public veterinaryClinicsControllersPost(body?: CreateVeterinaryClinicCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public veterinaryClinicsControllersPost(body?: CreateVeterinaryClinicCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public veterinaryClinicsControllersPost(body?: CreateVeterinaryClinicCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public veterinaryClinicsControllersPost(body?: CreateVeterinaryClinicCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -139,57 +138,9 @@ export class UsersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Users`,
+        return this.httpClient.request<any>('post',`${this.basePath}/VeterinaryClinicsControllers`,
             {
                 body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param uid 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public usersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetUserResult>;
-    public usersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetUserResult>>;
-    public usersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetUserResult>>;
-    public usersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling usersUidGet.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GetUserResult>('get',`${this.basePath}/Users/${encodeURIComponent(String(uid))}`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

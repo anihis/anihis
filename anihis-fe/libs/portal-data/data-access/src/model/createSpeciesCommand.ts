@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-export interface GetUserResult { 
-    uid?: string;
+export interface CreateSpeciesCommand { 
     name?: string;
 }

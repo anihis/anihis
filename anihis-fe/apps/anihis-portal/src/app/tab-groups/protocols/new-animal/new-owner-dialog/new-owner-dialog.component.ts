@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBaseComponent } from '../../base-components/form-base.component';
+import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { DateAdapter } from '@angular/material/core';
 import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
   selector: 'anihis-new-owner-dialog',
@@ -32,17 +32,16 @@ export class NewOwnerDialogComponent extends FormBaseComponent {
       address: ['', Validators.required],
       phoneNumber: [''],
       mobileNumber: [''],
-      personalNumber: [''],
+      jmbg: [''],
+      idCardNumber: [undefined],
       passportNumber: [''],
-      idCardNumber: [0],
       email: [''],
     });
   }
 
   saveChanges() {
-    console.log(this.form);
+    if (this.checkFormValidity()) return;
     this.dialogRef.close(this.form.getRawValue());
-    // this.dialogRef.close(this.data);
   }
 
   closeDialog(): void {

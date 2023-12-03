@@ -1,7 +1,4 @@
 main {
-  display: flex;
-  width: 100%;
-  height: 100%;
   justify-content: space-between;
   .back-btn {
     padding: 0px 24px;
@@ -17,7 +14,46 @@ main {
     }
   }
 
-  anihis-new-owners {
-    width: 100%;
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .add-new-owner-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+    button {
+      background: #00142f;
+      color: #fff;
+    }
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 24px;
+  }
+
+  mat-card {
+    margin: unset !important;
+    width: 100% !important;
+    padding: 16px !important;
+  }
+}
+
+.lastName,
+.firstName,
+.city,
+.address,
+.phoneNumber,
+.mobileNumber,
+.personalNumber,
+.idCardNumber,
+.email,
+.warning,
+.actionOwner {
+  width: 9%;
 }

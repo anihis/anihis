@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -66,7 +61,6 @@ export interface PeriodicElement {
     CardHistoryComponent,
   ],
   providers: [NewCardService],
-  encapsulation: ViewEncapsulation.None,
 })
 export class NewCardComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

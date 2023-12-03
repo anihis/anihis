@@ -6,21 +6,6 @@
         <div>
           <div class="row">
             <mat-form-field>
-              <mat-label>{{ t('Time') }}</mat-label>
-              <input matInput formControlName="time" readonly />
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>{{ t('Date') }}</mat-label>
-              <input matInput [matDatepicker]="date" formControlName="date" />
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="date"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #date></mat-datepicker>
-            </mat-form-field>
-
-            <mat-form-field>
               <mat-label>{{ t('Control') }}</mat-label>
               <input
                 matInput

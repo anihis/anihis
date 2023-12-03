@@ -17,17 +17,16 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CreateOwnerCommand } from '../model/createOwnerCommand';
-import { GetOwnerResult } from '../model/getOwnerResult';
-import { GetOwnersResult } from '../model/getOwnersResult';
-import { UpdateOwnerCommand } from '../model/updateOwnerCommand';
+import { CreateSpeciesCommand } from '../model/createSpeciesCommand';
+import { GetSpeciesResult } from '../model/getSpeciesResult';
+import { UpdateSpeciesCommand } from '../model/updateSpeciesCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class OwnersService {
+export class SpeciesService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -64,10 +63,10 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetOwnersResult>>;
-    public ownersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetOwnersResult>>>;
-    public ownersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetOwnersResult>>>;
-    public ownersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public speciesGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetSpeciesResult>>;
+    public speciesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetSpeciesResult>>>;
+    public speciesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetSpeciesResult>>>;
+    public speciesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -91,7 +90,7 @@ export class OwnersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<GetOwnersResult>>('get',`${this.basePath}/Owners`,
+        return this.httpClient.request<Array<GetSpeciesResult>>('get',`${this.basePath}/Species`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -108,10 +107,10 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ownersPost(body?: CreateOwnerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ownersPost(body?: CreateOwnerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public speciesPost(body?: CreateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public speciesPost(body?: CreateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public speciesPost(body?: CreateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public speciesPost(body?: CreateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -140,7 +139,7 @@ export class OwnersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Owners`,
+        return this.httpClient.request<any>('post',`${this.basePath}/Species`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -158,10 +157,10 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ownersPut(body?: UpdateOwnerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ownersPut(body?: UpdateOwnerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public speciesPut(body?: UpdateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public speciesPut(body?: UpdateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public speciesPut(body?: UpdateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public speciesPut(body?: UpdateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -190,7 +189,7 @@ export class OwnersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/Owners`,
+        return this.httpClient.request<any>('put',`${this.basePath}/Species`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -208,13 +207,13 @@ export class OwnersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public ownersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetOwnerResult>;
-    public ownersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOwnerResult>>;
-    public ownersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOwnerResult>>;
-    public ownersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public speciesUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetSpeciesResult>;
+    public speciesUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSpeciesResult>>;
+    public speciesUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSpeciesResult>>;
+    public speciesUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling ownersUidGet.');
+            throw new Error('Required parameter uid was null or undefined when calling speciesUidGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -239,7 +238,7 @@ export class OwnersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetOwnerResult>('get',`${this.basePath}/Owners/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetSpeciesResult>('get',`${this.basePath}/Species/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

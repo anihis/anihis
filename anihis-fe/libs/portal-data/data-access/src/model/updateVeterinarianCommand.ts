@@ -10,18 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface CreateOwnerCommand { 
-    username?: string;
+export interface UpdateVeterinarianCommand { 
+    veterinarianUid?: string;
+    licenceNumber?: string;
     firstName?: string;
     lastName?: string;
-    city?: string;
-    address?: string;
     email?: string;
     phoneNumber?: string;
     mobileNumber?: string;
-    postalCode?: string;
-    country?: string;
-    personalNumber?: string;
-    passportNumber?: string;
-    idCardNumber?: string;
+    veterinaryClinicUid?: string;
 }

@@ -9,19 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Gender } from './gender';
 
-export interface CreateOwnerCommand { 
-    username?: string;
-    firstName?: string;
-    lastName?: string;
-    city?: string;
-    address?: string;
-    email?: string;
-    phoneNumber?: string;
-    mobileNumber?: string;
-    postalCode?: string;
-    country?: string;
+export interface CreateAnimalCommand { 
     personalNumber?: string;
+    name?: string;
+    breedUid?: string;
+    gender?: Gender;
+    birthDateTime?: Date;
     passportNumber?: string;
-    idCardNumber?: string;
+    ownerUid?: string;
+    warning?: string;
 }

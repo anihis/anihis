@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CreateGroupForm } from './diagnoses-group-form';
-import { minArrayLength } from '../../../../../../../../libs/shared/util/src/validators/minArrayLength';
+import { minArrayLength } from 'libs/shared/util/src/validators/minArrayLength';
 
 @Component({
   selector: 'anihis-add-edit-report-dialog',
@@ -29,8 +29,6 @@ export class AddEditReportDialogComponent
     .padStart(2, '0')}:${this.currentMinute.toString().padStart(2, '0')}`;
 
   firstFormGroup = this.fb.group({
-    time: [this.formattedTime, Validators.required],
-    date: [new Date(), Validators.required],
     control: [''],
     temp: [''],
     weight: [''],
