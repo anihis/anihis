@@ -1,0 +1,74 @@
+<anihis-toolbar-admin></anihis-toolbar-admin>
+<ng-container *transloco="let t">
+  <div class="row-add-new-clinic">
+    <button mat-raised-button (click)="openAddAnimalDialog()">
+      {{ t('Add animal') }}
+    </button>
+  </div>
+  <ng-container *ngIf="data$ | async as data">
+    <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container
+          *ngFor="let column of displayedColumns"
+          [matColumnDef]="column"
+        >
+          <th [class]="column" mat-header-cell *matHeaderCellDef>
+            {{ column | nameColumn | titlecase | transloco }}
+          </th>
+          <td
+            [class]="column"
+            mat-cell
+            *matCellDef="let element"
+            style="cursor: pointer"
+          >
+            <ng-container
+              *ngIf="column === 'actionOwner'; else notActionColumn"
+            >
+              <div
+                style="display: flex; gap: 8px; justify-content: space-evenly"
+              >
+                <!-- <mat-icon
+                  class="material-symbols-outlined cursor"
+                  (click)="$event.stopPropagation(); openAddDialog(element)"
+                  >add</mat-icon
+                >
+                <mat-icon
+                  class="material-symbols-outlined cursor"
+                  (click)="$event.stopPropagation(); openEditDialog(element)"
+                  >edit</mat-icon
+                > -->
+              </div>
+            </ng-container>
+            <ng-template #notActionColumn>
+              <div *ngIf="column === 'dateOfBirth'; else idCardNumberBlock">
+                {{ element[column] | date : 'd/M/yy' }}
+              </div>
+              <ng-template #idCardNumberBlock>
+                <div
+                  *ngIf="
+                    element[column] !== undefined && element[column] !== null;
+                    else defaultBlock
+                  "
+                >
+                  {{ element[column] }}
+                </div>
+                <ng-template #defaultBlock>
+                  {{ '/' }}
+                </ng-template>
+              </ng-template>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        #paginator
+        [pageSizeOptions]="[2, 4, 6]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </ng-container>
+</ng-container>

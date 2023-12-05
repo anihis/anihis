@@ -24,4 +24,5 @@ export interface UpdateOwnerCommand {
     personalNumber?: string;
     passportNumber?: string;
     idCardNumber?: string;
+    warning?: string;
 }

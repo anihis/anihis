@@ -11,6 +11,9 @@ import { NewAnimalComponent } from './protocols/new-animal/new-animal.component'
 import { TypesOfDiagnosisComponent } from './coders/types-of-diagnosis/types-of-diagnosis.component';
 import { TypesOfServicesComponent } from './coders/types-of-services/types-of-services.component';
 import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types-of-medicaments.component';
+import { ManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component';
+import { AddManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component';
+import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,8 @@ import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types
     PharmacyComponent,
     CodersComponent,
     ProtocolsComponent,
+    AddManufacturersOfMedicamentsComponent,
+    EditManufacturersOfMedicamentsComponent,
   ],
 
   imports: [
@@ -28,6 +33,7 @@ import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types
     TypesOfDiagnosisComponent,
     TypesOfServicesComponent,
     TypesOfMedicamentsComponent,
+    ManufacturersOfMedicamentsComponent,
   ],
   exports: [TabGroupsComponent, ProtocolsComponent],
 })

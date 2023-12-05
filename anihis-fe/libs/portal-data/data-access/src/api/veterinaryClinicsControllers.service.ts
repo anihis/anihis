@@ -18,7 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { CreateVeterinaryClinicCommand } from '../model/createVeterinaryClinicCommand';
+import { GetVeterinaryClinicResult } from '../model/getVeterinaryClinicResult';
 import { GetVeterinaryClinicsResult } from '../model/getVeterinaryClinicsResult';
+import { UpdateVeterinaryClinicCommand } from '../model/updateVeterinaryClinicCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -139,6 +141,109 @@ export class VeterinaryClinicsControllersService {
         }
 
         return this.httpClient.request<any>('post',`${this.basePath}/VeterinaryClinicsControllers`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public veterinaryClinicsControllersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetVeterinaryClinicResult>;
+    public veterinaryClinicsControllersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetVeterinaryClinicResult>>;
+    public veterinaryClinicsControllersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetVeterinaryClinicResult>>;
+    public veterinaryClinicsControllersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling veterinaryClinicsControllersUidGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetVeterinaryClinicResult>('get',`${this.basePath}/VeterinaryClinicsControllers/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public veterinaryClinicsControllersUidPut(uid: string, body?: UpdateVeterinaryClinicCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public veterinaryClinicsControllersUidPut(uid: string, body?: UpdateVeterinaryClinicCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public veterinaryClinicsControllersUidPut(uid: string, body?: UpdateVeterinaryClinicCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public veterinaryClinicsControllersUidPut(uid: string, body?: UpdateVeterinaryClinicCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling veterinaryClinicsControllersUidPut.');
+        }
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/VeterinaryClinicsControllers/${encodeURIComponent(String(uid))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

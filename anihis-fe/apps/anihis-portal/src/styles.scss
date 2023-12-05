@@ -351,3 +351,12 @@ anihis-types-of-medicaments {
 .mat-mdc-button-touch-target {
   height: unset !important;
 }
+
+anihis-admin {
+  anihis-form.clinic {
+    .two-column {
+      display: grid !important;
+      grid-template-columns: none !important;
+    }
+  }
+}

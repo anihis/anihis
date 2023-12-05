@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBaseComponent } from '../shared/base-components/form-base.component';
 import { Validators } from '@angular/forms';
+import { NavigationService } from '../shared/services/navigation.service';
 
 @Component({
   selector: 'anihis-admin',
@@ -8,7 +9,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent extends FormBaseComponent {
-  formData = [
+  formForAddAnimal = [
     {
       label: 'Breed animal',
       formControlName: 'breed',
@@ -18,10 +19,6 @@ export class AdminComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter the breed of the animal',
       required: true,
-      // options: [
-      //   { value: 'test', viewValue: 'Test' },
-      //   { value: 'test2', viewValue: 'Test2' },
-      // ],
       page: 'admin',
       isFullRow: true,
     },
@@ -34,10 +31,6 @@ export class AdminComponent extends FormBaseComponent {
       inputType: 'input',
       placeholder: 'Enter the type of the animal',
       required: true,
-      // options: [
-      //   { value: 'test', viewValue: 'Test' },
-      //   { value: 'test2', viewValue: 'Test2' },
-      // ],
       page: 'admin',
       isFullRow: true,
     },
@@ -51,12 +44,14 @@ export class AdminComponent extends FormBaseComponent {
     },
   ];
 
-  override form = this.fb.nonNullable.group({
+  formAnimal = this.fb.nonNullable.group({
     breed: ['', [Validators.required]],
     type: ['', [Validators.required]],
   });
 
   submit(event: any) {
+    console.log('SUBMIT');
+
     this.form = event;
     if (this.checkFormValidity()) return;
     console.log(this.form.value);

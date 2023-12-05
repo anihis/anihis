@@ -1,0 +1,16 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Add manufacturers of medicaments') }}</h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+
+  <anihis-form
+    [formData]="formData"
+    [form]="form"
+    [buttons]="buttons"
+    (formDataSubmit)="saveChanges()"
+  ></anihis-form>
+</ng-container>
