@@ -3,4 +3,5 @@
 public interface ICurrentUserService
 {
     string? UserUid { get; }
+    string? Username { get; }
 }
