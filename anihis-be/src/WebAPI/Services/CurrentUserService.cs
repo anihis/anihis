@@ -13,6 +13,7 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string? UserUid => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-    public string? Username => _httpContextAccessor.HttpContext?.User?.FindFirstValue("preferred_username");
+    public string? UserUid => _httpContextAccessor.HttpContext?.User?.FindFirstValue("preferred_username");
+    //public string? UserUid => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+    //public string? Username => _httpContextAccessor.HttpContext?.User?.FindFirstValue("preferred_username");
 }
