@@ -1,7 +1,7 @@
 section {
   display: flex;
   justify-content: center;
-  mat-card {
+  .wrapper {
     width: calc(100% - 48px);
     margin: 40px;
     background: #fff !important;
@@ -23,7 +23,7 @@ section {
   gap: 8px;
   justify-content: space-evenly;
 }
-mat-card {
+.wrapper {
   background: #fff !important;
   margin-left: 0px !important;
   margin-right: 0px !important;

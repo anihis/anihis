@@ -82,7 +82,8 @@ export class NewAnimalService {
 
     return this.refresh$.pipe(
       switchMap(() => {
-        return this.ownersService.ownersPut(command);
+        return [];
+        // this.ownersService.ownersPut(command);
       })
     );
   }

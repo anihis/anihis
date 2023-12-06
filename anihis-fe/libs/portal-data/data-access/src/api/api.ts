@@ -1,7 +1,5 @@
 export * from './animals.service';
 import { AnimalsService } from './animals.service';
-export * from './breeds.service';
-import { BreedsService } from './breeds.service';
 export * from './owners.service';
 import { OwnersService } from './owners.service';
 export * from './payments.service';
@@ -12,4 +10,4 @@ export * from './veterinarians.service';
 import { VeterinariansService } from './veterinarians.service';
 export * from './veterinaryClinicsControllers.service';
 import { VeterinaryClinicsControllersService } from './veterinaryClinicsControllers.service';
-export const APIS = [AnimalsService, BreedsService, OwnersService, PaymentsService, SpeciesService, VeterinariansService, VeterinaryClinicsControllersService];
+export const APIS = [AnimalsService, OwnersService, PaymentsService, SpeciesService, VeterinariansService, VeterinaryClinicsControllersService];

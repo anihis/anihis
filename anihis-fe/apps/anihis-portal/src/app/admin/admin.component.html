@@ -1,16 +1,15 @@
-<ng-container *transloco="let t">
-  <main>
-    <div class="wrapper">
+<anihis-toolbar-admin></anihis-toolbar-admin>
+<router-outlet></router-outlet>
+
+<!-- <div class="wrapper">
       <h2>{{ t('Dodavanje zivotinja') }}</h2>
 
       <section>
         <anihis-form
-          [formData]="formData"
-          [form]="form"
+          [formData]="formForAddAnimal"
+          [form]="formAnimal"
           (formDataSubmit)="submit($event)"
           [buttons]="buttons"
         ></anihis-form>
       </section>
-    </div>
-  </main>
-</ng-container>
+    </div> -->

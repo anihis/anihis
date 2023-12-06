@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
-export type Gender = 0 | 1;
+export type Gender = 0 | 1 | 2;
 
 export const Gender = {
     NUMBER_0: 0 as Gender,
-    NUMBER_1: 1 as Gender
+    NUMBER_1: 1 as Gender,
+    NUMBER_2: 2 as Gender
 };

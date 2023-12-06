@@ -1,5 +1,5 @@
 <section>
-  <mat-card>
+  <div class="wrapper">
     <div
       *ngIf="(isDisplayHistoryCard$ | async) === false; else historyCard"
       class="card-animal"
@@ -92,5 +92,5 @@
     <ng-template #historyCard>
       <anihis-card-history></anihis-card-history>
     </ng-template>
-  </mat-card>
+  </div>
 </section>

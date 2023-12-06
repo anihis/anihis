@@ -63,7 +63,7 @@ export class NewAnimalComponent
   pageIndex = 0;
   dataSource: MatTableDataSource<GetOwnersResult> =
     new MatTableDataSource<GetOwnersResult>([]);
-  data$ = this.newAnimal.fetchData().pipe(
+  data$ = this.newAnimalService.fetchData().pipe(
     tap((results: GetOwnersResult[]) => {
       this.dataSource.data = results;
     })
@@ -87,7 +87,7 @@ export class NewAnimalComponent
     private dialog: MatDialog,
     private dateAdapter: DateAdapter<Date>,
     public loadingService: LoadingService,
-    private newAnimal: NewAnimalService
+    private newAnimalService: NewAnimalService
   ) {
     super();
     this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY
@@ -126,7 +126,7 @@ export class NewAnimalComponent
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.newAnimal.createNewAnimal(result);
+        this.newAnimalService.createNewAnimal(result);
       }
     });
   }
@@ -140,7 +140,7 @@ export class NewAnimalComponent
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.newAnimal.editOwner(result).subscribe();
+        this.newAnimalService.editOwner(result).subscribe();
       }
     });
   }
@@ -152,7 +152,7 @@ export class NewAnimalComponent
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.newAnimal.createNewOwner(result);
+        this.newAnimalService.createNewOwner(result);
       }
     });
   }
