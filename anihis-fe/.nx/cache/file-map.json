@@ -1,0 +1,1716 @@
+{
+  "version": "6.0",
+  "nxVersion": "16.8.1",
+  "deps": {
+    "@angular/animations": "~16.2.0",
+    "@angular/cdk": "^16.2.5",
+    "@angular/common": "~16.2.0",
+    "@angular/compiler": "~16.2.0",
+    "@angular/core": "~16.2.0",
+    "@angular/forms": "~16.2.0",
+    "@angular/material": "^16.2.5",
+    "@angular/material-moment-adapter": "^16.2.11",
+    "@angular/platform-browser": "~16.2.0",
+    "@angular/platform-browser-dynamic": "~16.2.0",
+    "@angular/router": "~16.2.0",
+    "@ng-select/ng-select": "^11.2.0",
+    "@ngneat/transloco": "^4.2.7",
+    "@ngneat/transloco-locale": "^4.1.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@nx/angular": "16.8.1",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "angular-oauth2-oidc": "^15.0.1",
+    "ngx-mat-timepicker": "^16.1.2",
+    "rxjs": "~7.8.0",
+    "subsink": "^1.0.2",
+    "transloco-nx": "github:ngneat/transloco",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.13.0",
+    "@angular-devkit/build-angular": "~16.2.0",
+    "@angular-devkit/core": "~16.2.0",
+    "@angular-devkit/schematics": "~16.2.0",
+    "@angular-eslint/eslint-plugin": "~16.0.0",
+    "@angular-eslint/eslint-plugin-template": "~16.0.0",
+    "@angular-eslint/template-parser": "~16.0.0",
+    "@angular/cli": "~16.2.0",
+    "@angular/compiler-cli": "~16.2.0",
+    "@angular/language-service": "~16.2.0",
+    "@nx/eslint-plugin": "16.8.1",
+    "@nx/jest": "16.8.1",
+    "@nx/js": "16.8.1",
+    "@nx/linter": "16.8.1",
+    "@nx/workspace": "16.8.1",
+    "@schematics/angular": "~16.2.0",
+    "@types/jest": "^29.4.0",
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "~8.46.0",
+    "eslint-config-prettier": "8.1.0",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1",
+    "jest-preset-angular": "~13.1.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "nx": "16.8.1",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.1.3"
+  },
+  "pathMappings": {
+    "@anihis": [
+      "libs/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "projectFileMap": {
+    "shared-util": [
+      {
+        "file": "libs/shared/util/.eslintrc.json",
+        "hash": "6719718809303188415"
+      },
+      {
+        "file": "libs/shared/util/README.md",
+        "hash": "3716584386787259846"
+      },
+      {
+        "file": "libs/shared/util/ng-package.json",
+        "hash": "773529975540757908"
+      },
+      {
+        "file": "libs/shared/util/package.json",
+        "hash": "12395588985415603996",
+        "deps": [
+          "npm:tslib",
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/project.json",
+        "hash": "14722217633805035714"
+      },
+      {
+        "file": "libs/shared/util/src/animations/animations.ts",
+        "hash": "14004646902140115138"
+      },
+      {
+        "file": "libs/shared/util/src/animations/fade-in-out.animation.ts",
+        "hash": "10118101477882264312",
+        "deps": [
+          "npm:@angular/animations"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/animations/slide-in-out.animation.ts",
+        "hash": "3995189014246803312",
+        "deps": [
+          "npm:@angular/animations"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/constants/constants.ts",
+        "hash": "16739774295647776009"
+      },
+      {
+        "file": "libs/shared/util/src/constants/languages.ts",
+        "hash": "16697053049696833884",
+        "deps": [
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/constants/regex-patterns.ts",
+        "hash": "6059063592474672883"
+      },
+      {
+        "file": "libs/shared/util/src/constants/storage-key-constants.ts",
+        "hash": "6582135962206372136"
+      },
+      {
+        "file": "libs/shared/util/src/events/coreEventsHub.ts",
+        "hash": "14344422808306744874",
+        "deps": [
+          "npm:@microsoft/signalr"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/events/events.ts",
+        "hash": "2769633562104077156"
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/interceptors.ts",
+        "hash": "4195649173479205817"
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/loading.interceptor.ts",
+        "hash": "8340052943477596983",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/server-http.interceptor.ts",
+        "hash": "7930027744078452017",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/chat-reply.pipe.ts",
+        "hash": "3518628611532371387",
+        "deps": [
+          "npm:@angular/core",
+          "npm:luxon",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/current-date.pipe.ts",
+        "hash": "18322126661379923251",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/date-passed.pipe.ts",
+        "hash": "13767383447593034893",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/empty-object.pipe.ts",
+        "hash": "1867736603224604272",
+        "deps": [
+          "npm:@angular/core",
+          "npm:lodash"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/enum-formatting.pipe.ts",
+        "hash": "14737695955389404768",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/equipments.pipe.ts",
+        "hash": "17637544093608395999",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/filter-workout-attribute.pipe.ts",
+        "hash": "4894834007541654490",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/group-item-message-time.pipe.ts",
+        "hash": "2150829648528685362",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/group-names-for-chat.pipe.ts",
+        "hash": "16805087868176389577",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/is-array.pipe.ts",
+        "hash": "6616059412446195066",
+        "deps": [
+          "npm:@angular/core",
+          "npm:lodash"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/local-chat-time.pipe.ts",
+        "hash": "3849775507060656574",
+        "deps": [
+          "npm:@angular/core",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/pipes.ts",
+        "hash": "14015502521773745979"
+      },
+      {
+        "file": "libs/shared/util/src/pipes/planes.pipe.ts",
+        "hash": "15230872506991243961",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/primary-muscles.pipe.ts",
+        "hash": "4156829931714646367",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/shorten-text.pipe.ts",
+        "hash": "10312033874403001001",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/time-format.pipe.ts",
+        "hash": "1004512045033818704",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/translate-date.pipe.ts",
+        "hash": "5239990207304754793",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/resize-observable.ts",
+        "hash": "4731502913396731307",
+        "deps": [
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/authentication.service.ts",
+        "hash": "17368036567931794010",
+        "deps": [
+          "npm:@angular/core",
+          "npm:angular-oauth2-oidc",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/error.service.ts",
+        "hash": "12272769196519878899",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/loading.service.ts",
+        "hash": "18158405838958631295",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/translations.service.ts",
+        "hash": "9715740275574540121",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/styles/breakpoints.scss",
+        "hash": "8992770770183056348"
+      },
+      {
+        "file": "libs/shared/util/src/validators/minArrayLength.ts",
+        "hash": "797854378479109225",
+        "deps": [
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "libs/shared/util/tsconfig.json",
+        "hash": "5633773164908297216"
+      },
+      {
+        "file": "libs/shared/util/tsconfig.lib.json",
+        "hash": "7402796496658240124"
+      },
+      {
+        "file": "libs/shared/util/tsconfig.lib.prod.json",
+        "hash": "7800493840273653743"
+      }
+    ],
+    "portal-data-data-access": [
+      {
+        "file": "libs/portal-data/data-access/.eslintrc.json",
+        "hash": "6719718809303188415"
+      },
+      {
+        "file": "libs/portal-data/data-access/README.md",
+        "hash": "4974791539804017294"
+      },
+      {
+        "file": "libs/portal-data/data-access/generate.cmd",
+        "hash": "17701959530432143705"
+      },
+      {
+        "file": "libs/portal-data/data-access/jest.config.ts",
+        "hash": "13710914548784952472"
+      },
+      {
+        "file": "libs/portal-data/data-access/ng-package.json",
+        "hash": "13354856628540774335"
+      },
+      {
+        "file": "libs/portal-data/data-access/openapi.json",
+        "hash": "3202655053656240358"
+      },
+      {
+        "file": "libs/portal-data/data-access/package.json",
+        "hash": "4160568166094669537",
+        "deps": [
+          "npm:tslib",
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/project.json",
+        "hash": "9703080677156407452"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.gitignore",
+        "hash": "14031326617291468971"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.npmignore",
+        "hash": "10294644137156121782"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.swagger-codegen-ignore",
+        "hash": "16478007866802378741"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.swagger-codegen/VERSION",
+        "hash": "4662946734923415995"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api.module.ts",
+        "hash": "3644680865280689530",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/animals.service.ts",
+        "hash": "3673688037424595145",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/api.ts",
+        "hash": "15594369062722701791"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/owners.service.ts",
+        "hash": "13191982707988658096",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/payments.service.ts",
+        "hash": "1132289350824072445",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/species.service.ts",
+        "hash": "2201383283047645548",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/veterinarians.service.ts",
+        "hash": "17351296966123627102",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/veterinaryClinicsControllers.service.ts",
+        "hash": "5305036198786773628",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/configuration.ts",
+        "hash": "13738102873158452644"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/encoder.ts",
+        "hash": "3512585110808526745",
+        "deps": [
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/git_push.sh",
+        "hash": "13543630892486039087"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/index.ts",
+        "hash": "8882130801513074732"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/breed.ts",
+        "hash": "17081740438662109863"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createAnimalCommand.ts",
+        "hash": "3428742040481433555"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createBreedCommand.ts",
+        "hash": "17246992587154185193"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createOwnerCommand.ts",
+        "hash": "7668528171453644022"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createPaymentCommand.ts",
+        "hash": "5139313777627948487"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createSpeciesCommand.ts",
+        "hash": "12346857664309148881"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createVeterinarianCommand.ts",
+        "hash": "13171145849129801848"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createVeterinaryClinicCommand.ts",
+        "hash": "6863387156555244965"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/gender.ts",
+        "hash": "9953666657552196595"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getAnimalResult.ts",
+        "hash": "9813249139289574684"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getAnimalsResult.ts",
+        "hash": "12191449140215764993"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getBreedResult.ts",
+        "hash": "18306349367195503146"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getBreedsResult.ts",
+        "hash": "13894259332323224032"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getOwnerResult.ts",
+        "hash": "9614030369925248573"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getOwnersResult.ts",
+        "hash": "495872049961146527"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getPaymentsResult.ts",
+        "hash": "3346214029422788125"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getSpeciesResult.ts",
+        "hash": "16936436339825561636"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinarianResult.ts",
+        "hash": "9984782706087116004"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinariansResult.ts",
+        "hash": "13268239814657115718"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicResult.ts",
+        "hash": "10950787298120353164"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicsResult.ts",
+        "hash": "11280283327105128421"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/models.ts",
+        "hash": "18374485011583874210"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/owner.ts",
+        "hash": "12508339728906859940"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/payment.ts",
+        "hash": "14114485010200530859"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/species.ts",
+        "hash": "9934319005389358359"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateAnimalCommand.ts",
+        "hash": "8189229542517075651"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateBreedCommand.ts",
+        "hash": "6383564539014277084"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateOwnerCommand.ts",
+        "hash": "4768552836320882942"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updatePaymentCommand.ts",
+        "hash": "17507246366722582387"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateSpeciesCommand.ts",
+        "hash": "5839596756471004127"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateVeterinarianCommand.ts",
+        "hash": "12913024135431521269"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateVeterinaryClinicCommand.ts",
+        "hash": "11326739279950935017"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/veterinarian.ts",
+        "hash": "1936606229545937677"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/veterinaryClinic.ts",
+        "hash": "5906011020165114651"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/ng-package.json",
+        "hash": "3504637599439465225"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/variables.ts",
+        "hash": "8875628982008667018",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.json",
+        "hash": "4036407590883600015"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.lib.json",
+        "hash": "16872731496982739862"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.lib.prod.json",
+        "hash": "7800493840273653743"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.spec.json",
+        "hash": "12933897464779342402"
+      }
+    ],
+    "anihis-portal": [
+      {
+        "file": "apps/anihis-portal/.eslintrc.json",
+        "hash": "7682020259476718085"
+      },
+      {
+        "file": "apps/anihis-portal/jest.config.ts",
+        "hash": "365988091156965646"
+      },
+      {
+        "file": "apps/anihis-portal/project.json",
+        "hash": "16472195350138055257"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/admin-routing.module.ts",
+        "hash": "9023587872077081704",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/admin.component.html",
+        "hash": "8403458779402261842"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/admin.component.scss",
+        "hash": "11649773885612916675"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/admin.component.ts",
+        "hash": "6963596463380751619",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/admin.module.ts",
+        "hash": "15085741980262611498",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/add-new-animal-dialog/add-new-animal-dialog.component.html",
+        "hash": "1681651044954578623"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/add-new-animal-dialog/add-new-animal-dialog.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/add-new-animal-dialog/add-new-animal-dialog.component.ts",
+        "hash": "10679408132559744253",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal-routing.module.ts",
+        "hash": "10065956738233942207",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal.component.html",
+        "hash": "17217106085053353293"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal.component.ts",
+        "hash": "3750019363578712467",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "portal-data-data-access",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal.module.ts",
+        "hash": "3494980019112422738",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/animal/animal.service.ts",
+        "hash": "8566624113304261121",
+        "deps": [
+          "npm:@angular/core",
+          "portal-data-data-access",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic-routing.module.ts",
+        "hash": "6283844967778804400",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic.component.html",
+        "hash": "7077022862361337887"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic.component.scss",
+        "hash": "3397626884089762096"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic.component.ts",
+        "hash": "17603861376671230778",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "portal-data-data-access",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic.module.ts",
+        "hash": "15047116798099275484",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/clinic.service.ts",
+        "hash": "7354879654883338215",
+        "deps": [
+          "npm:@angular/core",
+          "portal-data-data-access",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/edit-clinic-dialog/edit-clinic-dialog.component.html",
+        "hash": "12097473219142700137"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/edit-clinic-dialog/edit-clinic-dialog.component.scss",
+        "hash": "8327006219826212382"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/edit-clinic-dialog/edit-clinic-dialog.component.ts",
+        "hash": "13329918361179281437",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-clinic-dialog/new-clinic-dialog.component.html",
+        "hash": "11357485846774230462"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-clinic-dialog/new-clinic-dialog.component.scss",
+        "hash": "8327006219826212382"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-clinic-dialog/new-clinic-dialog.component.ts",
+        "hash": "16053901255563901754",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-vet-dialog/new-vet-dialog.component.html",
+        "hash": "9620056404027882780"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-vet-dialog/new-vet-dialog.component.scss",
+        "hash": "2592196701674885515"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/admin/clinic/new-vet-dialog/new-vet-dialog.component.ts",
+        "hash": "1673455046348208061",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/app-routing.module.ts",
+        "hash": "724047304471101282",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/app.component.html",
+        "hash": "17385897758380840601"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/app.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/app.component.ts",
+        "hash": "18281171418057840363",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/app.module.ts",
+        "hash": "3754435394668286479",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/platform-browser",
+          "npm:@angular/cdk",
+          "npm:@ngneat/transloco-locale",
+          "npm:@ngneat/transloco",
+          "npm:@angular/common",
+          "npm:@angular/material",
+          "npm:angular-oauth2-oidc",
+          "portal-data-data-access",
+          "shared-util"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/auth.guard.ts",
+        "hash": "12753466908584543982",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/http-loader.ts",
+        "hash": "15347466748806873762",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/nav-tree/nav-tree.component.html",
+        "hash": "5526277254276768953"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/nav-tree/nav-tree.component.scss",
+        "hash": "5204332809939222359"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/nav-tree/nav-tree.component.ts",
+        "hash": "13950283988299668167",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/cdk",
+          "npm:@angular/material",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/nav-tree/nav-tree.module.ts",
+        "hash": "10417935615834550146",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/base-components/base-components.ts",
+        "hash": "10538736522456965618"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/base-components/base.component.ts",
+        "hash": "15416576719309239691",
+        "deps": [
+          "npm:@angular/core",
+          "npm:subsink"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/base-components/dialog-base.component.ts",
+        "hash": "4976573263072284677",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/base-components/form-base.component.ts",
+        "hash": "15934768802868984143",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component.html",
+        "hash": "5675372501547602456"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component.ts",
+        "hash": "14975981156311043412",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/edit-data-dialog/edit-data-dialog.component.html",
+        "hash": "8230558636181819992"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/edit-data-dialog/edit-data-dialog.component.scss",
+        "hash": "2592196701674885515"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/edit-data-dialog/edit-data-dialog.component.ts",
+        "hash": "10883792869998265248",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/form/form.component.html",
+        "hash": "13537276565709227822"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/form/form.component.scss",
+        "hash": "5345260422344223304"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/component/form/form.component.ts",
+        "hash": "10540611412113927813",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms",
+          "npm:@angular/material",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/constants/languages.ts",
+        "hash": "981600939447087890",
+        "deps": [
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/constants/route.constants.ts",
+        "hash": "7497848932636144473"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/constants/storage-key-constants.ts",
+        "hash": "10396074285549010674"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/directive/theme-switch.directive.ts",
+        "hash": "4740799255061603392",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/interface/menu-item.ts",
+        "hash": "12360009703564836166"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/interface/new-animal.ts",
+        "hash": "12260654140004622472"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/pipe/name-column.pipe.ts",
+        "hash": "8895245819346286200",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/application-state.service.ts",
+        "hash": "9312300923366054679",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/auth-lib.service.ts",
+        "hash": "16124588027288080701",
+        "deps": [
+          "npm:@angular/core",
+          "npm:angular-oauth2-oidc"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/navigation.service.ts",
+        "hash": "13436844921996163751",
+        "deps": [
+          "npm:@angular/router",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/tabs-component.service.ts",
+        "hash": "14440845304191705778",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/theme.service.ts",
+        "hash": "8596490967642436868",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/services/translations.service.ts",
+        "hash": "9715740275574540121",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/shared.module.ts",
+        "hash": "6710900468645568195",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/material",
+          "npm:@angular/forms",
+          "npm:@ngneat/transloco",
+          "npm:@angular/material-moment-adapter"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shared/styles/breakpoints.scss",
+        "hash": "8992770770183056348"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shell/print-types-of-diagnosis.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shell/shell.component.html",
+        "hash": "8969142009627851261"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shell/shell.component.scss",
+        "hash": "10272323289687513787"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shell/shell.component.ts",
+        "hash": "778042359715417645",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/cdk",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/shell/shell.module.ts",
+        "hash": "7184260548095427439",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/coders.component.html",
+        "hash": "4079706077272218164"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/coders.component.scss",
+        "hash": "12237247858318146370"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/coders.component.ts",
+        "hash": "14493429131025051944",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component.html",
+        "hash": "9753208978491578790"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component.ts",
+        "hash": "6777090949346486410",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component.html",
+        "hash": "14002323277660573856"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component.ts",
+        "hash": "15217770516510844895",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component.html",
+        "hash": "10062676331898302070"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component.scss",
+        "hash": "14786146528908318353"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component.ts",
+        "hash": "11384140175388653918",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/manufacturers-of-medicaments/manufacturers-of-medicaments.service.ts",
+        "hash": "14211435131393360952",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-diagnosis/types-of-diagnosis.component.html",
+        "hash": "17739161564008926506"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-diagnosis/types-of-diagnosis.component.scss",
+        "hash": "6752670250297372619"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-diagnosis/types-of-diagnosis.component.ts",
+        "hash": "13378255007756480340",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/by-species/by-species.component.html",
+        "hash": "8089847429251188843"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/by-species/by-species.component.scss",
+        "hash": "1750790588987267673"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/by-species/by-species.component.ts",
+        "hash": "12298194985951052279",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/add-new-medicament/add-new-medicament.component.html",
+        "hash": "10465482161943366774"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/add-new-medicament/add-new-medicament.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/add-new-medicament/add-new-medicament.component.ts",
+        "hash": "4816222550482495031",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/complete-list.component.html",
+        "hash": "6947863609409541131"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/complete-list.component.scss",
+        "hash": "3993096982193089147"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/complete-list/complete-list.component.ts",
+        "hash": "4295823156195714861",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@ngneat/transloco",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/types-of-medicaments.component.html",
+        "hash": "11071721940221735897"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/types-of-medicaments.component.scss",
+        "hash": "15036214574332298676"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-medicaments/types-of-medicaments.component.ts",
+        "hash": "1032465047715908367",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-services/types-of-services.component.html",
+        "hash": "13836658907597147854"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-services/types-of-services.component.scss",
+        "hash": "11369185928928134196"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/coders/types-of-services/types-of-services.component.ts",
+        "hash": "7178082657764701674",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/pharmacy/pharmacy.component.html",
+        "hash": "11243213405806632967"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/pharmacy/pharmacy.component.scss",
+        "hash": "12137861160195223373"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/pharmacy/pharmacy.component.ts",
+        "hash": "2653684868587171949",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/add-new-animal-dialog/add-new-animal-dialog.component.html",
+        "hash": "8984314668943182281"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/add-new-animal-dialog/add-new-animal-dialog.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/add-new-animal-dialog/add-new-animal-dialog.component.ts",
+        "hash": "2336720333076424132",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/edit-owner-dialog/edit-owner-dialog.component.html",
+        "hash": "6552392196891168047"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/edit-owner-dialog/edit-owner-dialog.component.scss",
+        "hash": "2592196701674885515"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/edit-owner-dialog/edit-owner-dialog.component.ts",
+        "hash": "10797473933547468495",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-animal.component.html",
+        "hash": "8416162942722646853"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-animal.component.scss",
+        "hash": "15867917936588949482"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-animal.component.ts",
+        "hash": "12826242635583680387",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/common",
+          "portal-data-data-access",
+          "shared-util",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-animal.service.ts",
+        "hash": "12223898455119462118",
+        "deps": [
+          "npm:@angular/core",
+          "portal-data-data-access",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-owner-dialog/new-owner-dialog.component.html",
+        "hash": "7176234511318214416"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-owner-dialog/new-owner-dialog.component.scss",
+        "hash": "2592196701674885515"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-animal/new-owner-dialog/new-owner-dialog.component.ts",
+        "hash": "13908265075111435547",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/forms",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/add-edit-report-dialog/add-edit-report-dialog.component.html",
+        "hash": "7372589136178162457"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/add-edit-report-dialog/add-edit-report-dialog.component.scss",
+        "hash": "7015911733256584717"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/add-edit-report-dialog/add-edit-report-dialog.component.ts",
+        "hash": "8230017386550305409",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:@angular/material",
+          "shared-util"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/add-edit-report-dialog/diagnoses-group-form.ts",
+        "hash": "14184980412304020174",
+        "deps": [
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/card-history.component.html",
+        "hash": "369759518603460401"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/card-history.component.scss",
+        "hash": "7275353613695067016"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/card-history.component.ts",
+        "hash": "5615580438839912046",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/card-history.service.ts",
+        "hash": "15843980954898374582",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/preview-card-history/preview-card-history.component.html",
+        "hash": "7990713082194122995"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/preview-card-history/preview-card-history.component.scss",
+        "hash": "2354794102470561812"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/card-history/preview-card-history/preview-card-history.component.ts",
+        "hash": "14181129630531907817",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/new-card.component.html",
+        "hash": "16168457619229291054"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/new-card.component.scss",
+        "hash": "16593864460699225782"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/new-card.component.ts",
+        "hash": "6490592160661550329",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/material",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/new-card/new-card.service.ts",
+        "hash": "5616429771521575775",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/protocols.component.html",
+        "hash": "4079706077272218164"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/protocols.component.scss",
+        "hash": "2713385795307472462"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/protocols/protocols.component.ts",
+        "hash": "9296183070815506444",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/tab-groups.component.html",
+        "hash": "2343222179274581745"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/tab-groups.component.scss",
+        "hash": "1768833070983223702"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/tab-groups.component.ts",
+        "hash": "679107386525425521",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/tab-groups/tab-groups.module.ts",
+        "hash": "6705541312199194358",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar-admin/toolbar-admin.component.html",
+        "hash": "12595040382273929876"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar-admin/toolbar-admin.component.scss",
+        "hash": "6734393982966270116"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar-admin/toolbar-admin.component.ts",
+        "hash": "3697163738093414348",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/material"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar/toolbar.component.html",
+        "hash": "8490915371165088012"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar/toolbar.component.scss",
+        "hash": "17651309433750380513"
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar/toolbar.component.ts",
+        "hash": "3687988313534643331",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/app/toolbar/toolbar.module.ts",
+        "hash": "17336271330035409882",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/assets/i18n/en.json",
+        "hash": "1808578576984546939"
+      },
+      {
+        "file": "apps/anihis-portal/src/assets/i18n/sr.json",
+        "hash": "7162646788493354348"
+      },
+      {
+        "file": "apps/anihis-portal/src/assets/icons/flag/serbia.png",
+        "hash": "1007162530755196280"
+      },
+      {
+        "file": "apps/anihis-portal/src/assets/icons/flag/united-kingdom.png",
+        "hash": "1920887032265602749"
+      },
+      {
+        "file": "apps/anihis-portal/src/environments/environment.ts",
+        "hash": "7568141244658580884"
+      },
+      {
+        "file": "apps/anihis-portal/src/favicon.ico",
+        "hash": "9303420814833116677"
+      },
+      {
+        "file": "apps/anihis-portal/src/index.html",
+        "hash": "15871259388847147242"
+      },
+      {
+        "file": "apps/anihis-portal/src/main.ts",
+        "hash": "17362317042929630877",
+        "deps": [
+          "npm:@angular/platform-browser-dynamic"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/styles.scss",
+        "hash": "14165572319667574255"
+      },
+      {
+        "file": "apps/anihis-portal/src/test-setup.ts",
+        "hash": "10765977267162271731",
+        "deps": [
+          "npm:jest-preset-angular"
+        ]
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_colors.scss",
+        "hash": "1875467126699192576"
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_customthemes.scss",
+        "hash": "13071292964586182914"
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_font.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_palette.scss",
+        "hash": "12688727010726005871"
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_theme.scss",
+        "hash": "646886096632255416"
+      },
+      {
+        "file": "apps/anihis-portal/src/theme/_typographyt.scss",
+        "hash": "1508511293315043355"
+      },
+      {
+        "file": "apps/anihis-portal/src/web.config",
+        "hash": "16888898657309724967"
+      },
+      {
+        "file": "apps/anihis-portal/tsconfig.app.json",
+        "hash": "15840844869456775012"
+      },
+      {
+        "file": "apps/anihis-portal/tsconfig.editor.json",
+        "hash": "6816855480324741077"
+      },
+      {
+        "file": "apps/anihis-portal/tsconfig.json",
+        "hash": "1135920934816630167"
+      },
+      {
+        "file": "apps/anihis-portal/tsconfig.spec.json",
+        "hash": "1930986853382524452"
+      }
+    ]
+  }
+}
