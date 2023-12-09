@@ -3,6 +3,7 @@ import {
   AnimalsService,
   OwnersService,
   UpdateOwnerCommand,
+  VeterinariansService,
 } from 'libs/portal-data/data-access/src';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 
@@ -13,7 +14,8 @@ export class NewAnimalService {
 
   constructor(
     private ownersService: OwnersService,
-    private animalsService: AnimalsService
+    private animalsService: AnimalsService,
+    private veterinariansService: VeterinariansService
   ) {}
 
   refresh() {
@@ -58,7 +60,11 @@ export class NewAnimalService {
   fetchData() {
     return this.refresh$.pipe(
       switchMap(() => {
-        return this.ownersService.ownersGet();
+        return this.veterinariansService.veterinariansGet().pipe(
+          tap((x) => {
+            console.log(x);
+          })
+        );
       })
     );
   }

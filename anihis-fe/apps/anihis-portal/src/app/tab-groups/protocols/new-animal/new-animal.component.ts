@@ -63,11 +63,7 @@ export class NewAnimalComponent
   pageIndex = 0;
   dataSource: MatTableDataSource<GetOwnersResult> =
     new MatTableDataSource<GetOwnersResult>([]);
-  data$ = this.newAnimalService.fetchData().pipe(
-    tap((results: GetOwnersResult[]) => {
-      this.dataSource.data = results;
-    })
-  );
+  data$ = this.newAnimalService.fetchData();
 
   displayedColumns: string[] = [
     'lastName',
