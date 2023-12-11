@@ -13,17 +13,24 @@
     "@angular/platform-browser": "~16.2.0",
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
+    "@capacitor/core": "^5.0.3",
+    "@capacitor/haptics": "5.0.2",
+    "@capacitor/keyboard": "5.0.2",
+    "@capacitor/status-bar": "5.0.2",
+    "@ionic/angular": "^7.0.0",
     "@ng-select/ng-select": "^11.2.0",
     "@ngneat/transloco": "^4.2.7",
     "@ngneat/transloco-locale": "^4.1.0",
     "@ngx-translate/core": "^15.0.0",
     "@nx/angular": "16.8.1",
+    "@nxext/capacitor": "^16.2.0",
+    "@nxext/ionic-angular": "^16.2.0",
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "angular-oauth2-oidc": "^15.0.1",
+    "ionicons": "^7.0.0",
     "ngx-mat-timepicker": "^16.1.2",
     "rxjs": "~7.8.0",
     "subsink": "^1.0.2",
-    "transloco-nx": "github:ngneat/transloco",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0",
     "@angular-devkit/build-angular": "~16.2.0",
@@ -35,18 +42,25 @@
     "@angular/cli": "~16.2.0",
     "@angular/compiler-cli": "~16.2.0",
     "@angular/language-service": "~16.2.0",
+    "@capacitor/android": "^5.0.3",
+    "@capacitor/cli": "^5.0.3",
+    "@capacitor/ios": "^5.0.3",
+    "@nx/cypress": "16.8.1",
     "@nx/eslint-plugin": "16.8.1",
     "@nx/jest": "16.8.1",
     "@nx/js": "16.8.1",
     "@nx/linter": "16.8.1",
+    "@nx/web": "16.8.1",
     "@nx/workspace": "16.8.1",
     "@schematics/angular": "~16.2.0",
     "@types/jest": "^29.4.0",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "cypress": "^13.0.0",
     "eslint": "~8.46.0",
     "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.13.4",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
@@ -64,606 +78,6 @@
   },
   "nxJsonPlugins": [],
   "projectFileMap": {
-    "shared-util": [
-      {
-        "file": "libs/shared/util/.eslintrc.json",
-        "hash": "6719718809303188415"
-      },
-      {
-        "file": "libs/shared/util/README.md",
-        "hash": "3716584386787259846"
-      },
-      {
-        "file": "libs/shared/util/ng-package.json",
-        "hash": "773529975540757908"
-      },
-      {
-        "file": "libs/shared/util/package.json",
-        "hash": "12395588985415603996",
-        "deps": [
-          "npm:tslib",
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/util/project.json",
-        "hash": "14722217633805035714"
-      },
-      {
-        "file": "libs/shared/util/src/animations/animations.ts",
-        "hash": "14004646902140115138"
-      },
-      {
-        "file": "libs/shared/util/src/animations/fade-in-out.animation.ts",
-        "hash": "10118101477882264312",
-        "deps": [
-          "npm:@angular/animations"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/animations/slide-in-out.animation.ts",
-        "hash": "3995189014246803312",
-        "deps": [
-          "npm:@angular/animations"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/constants/constants.ts",
-        "hash": "16739774295647776009"
-      },
-      {
-        "file": "libs/shared/util/src/constants/languages.ts",
-        "hash": "16697053049696833884",
-        "deps": [
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/constants/regex-patterns.ts",
-        "hash": "6059063592474672883"
-      },
-      {
-        "file": "libs/shared/util/src/constants/storage-key-constants.ts",
-        "hash": "6582135962206372136"
-      },
-      {
-        "file": "libs/shared/util/src/events/coreEventsHub.ts",
-        "hash": "14344422808306744874",
-        "deps": [
-          "npm:@microsoft/signalr"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/events/events.ts",
-        "hash": "2769633562104077156"
-      },
-      {
-        "file": "libs/shared/util/src/interceptors/interceptors.ts",
-        "hash": "4195649173479205817"
-      },
-      {
-        "file": "libs/shared/util/src/interceptors/loading.interceptor.ts",
-        "hash": "8340052943477596983",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/interceptors/server-http.interceptor.ts",
-        "hash": "7930027744078452017",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/chat-reply.pipe.ts",
-        "hash": "3518628611532371387",
-        "deps": [
-          "npm:@angular/core",
-          "npm:luxon",
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/current-date.pipe.ts",
-        "hash": "18322126661379923251",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@ngneat/transloco",
-          "npm:luxon"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/date-passed.pipe.ts",
-        "hash": "13767383447593034893",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/empty-object.pipe.ts",
-        "hash": "1867736603224604272",
-        "deps": [
-          "npm:@angular/core",
-          "npm:lodash"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/enum-formatting.pipe.ts",
-        "hash": "14737695955389404768",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/equipments.pipe.ts",
-        "hash": "17637544093608395999",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@goatsports/core/data-access",
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/filter-workout-attribute.pipe.ts",
-        "hash": "4894834007541654490",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@goatsports/core/data-access"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/group-item-message-time.pipe.ts",
-        "hash": "2150829648528685362",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@ngneat/transloco",
-          "npm:luxon"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/group-names-for-chat.pipe.ts",
-        "hash": "16805087868176389577",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@goatsports/core/data-access",
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/is-array.pipe.ts",
-        "hash": "6616059412446195066",
-        "deps": [
-          "npm:@angular/core",
-          "npm:lodash"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/local-chat-time.pipe.ts",
-        "hash": "3849775507060656574",
-        "deps": [
-          "npm:@angular/core",
-          "npm:luxon"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/pipes.ts",
-        "hash": "14015502521773745979"
-      },
-      {
-        "file": "libs/shared/util/src/pipes/planes.pipe.ts",
-        "hash": "15230872506991243961",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@goatsports/core/data-access",
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/primary-muscles.pipe.ts",
-        "hash": "4156829931714646367",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@goatsports/core/data-access",
-          "npm:@ngneat/transloco"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/shorten-text.pipe.ts",
-        "hash": "10312033874403001001",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/time-format.pipe.ts",
-        "hash": "1004512045033818704",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/pipes/translate-date.pipe.ts",
-        "hash": "5239990207304754793",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@ngneat/transloco",
-          "npm:luxon"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/resize-observable.ts",
-        "hash": "4731502913396731307",
-        "deps": [
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/services/authentication.service.ts",
-        "hash": "17368036567931794010",
-        "deps": [
-          "npm:@angular/core",
-          "npm:angular-oauth2-oidc",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/services/error.service.ts",
-        "hash": "12272769196519878899",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/services/loading.service.ts",
-        "hash": "18158405838958631295",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/services/translations.service.ts",
-        "hash": "9715740275574540121",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@ngneat/transloco",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/util/src/styles/breakpoints.scss",
-        "hash": "8992770770183056348"
-      },
-      {
-        "file": "libs/shared/util/src/validators/minArrayLength.ts",
-        "hash": "797854378479109225",
-        "deps": [
-          "npm:@angular/forms"
-        ]
-      },
-      {
-        "file": "libs/shared/util/tsconfig.json",
-        "hash": "5633773164908297216"
-      },
-      {
-        "file": "libs/shared/util/tsconfig.lib.json",
-        "hash": "7402796496658240124"
-      },
-      {
-        "file": "libs/shared/util/tsconfig.lib.prod.json",
-        "hash": "7800493840273653743"
-      }
-    ],
-    "portal-data-data-access": [
-      {
-        "file": "libs/portal-data/data-access/.eslintrc.json",
-        "hash": "6719718809303188415"
-      },
-      {
-        "file": "libs/portal-data/data-access/README.md",
-        "hash": "4974791539804017294"
-      },
-      {
-        "file": "libs/portal-data/data-access/generate.cmd",
-        "hash": "17701959530432143705"
-      },
-      {
-        "file": "libs/portal-data/data-access/jest.config.ts",
-        "hash": "13710914548784952472"
-      },
-      {
-        "file": "libs/portal-data/data-access/ng-package.json",
-        "hash": "13354856628540774335"
-      },
-      {
-        "file": "libs/portal-data/data-access/openapi.json",
-        "hash": "3202655053656240358"
-      },
-      {
-        "file": "libs/portal-data/data-access/package.json",
-        "hash": "4160568166094669537",
-        "deps": [
-          "npm:tslib",
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/project.json",
-        "hash": "9703080677156407452"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/.gitignore",
-        "hash": "14031326617291468971"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/.npmignore",
-        "hash": "10294644137156121782"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/.swagger-codegen-ignore",
-        "hash": "16478007866802378741"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/.swagger-codegen/VERSION",
-        "hash": "4662946734923415995"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api.module.ts",
-        "hash": "3644680865280689530",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/animals.service.ts",
-        "hash": "3673688037424595145",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/api.ts",
-        "hash": "15594369062722701791"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/owners.service.ts",
-        "hash": "13191982707988658096",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/payments.service.ts",
-        "hash": "1132289350824072445",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/species.service.ts",
-        "hash": "2201383283047645548",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/veterinarians.service.ts",
-        "hash": "17351296966123627102",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/api/veterinaryClinicsControllers.service.ts",
-        "hash": "5305036198786773628",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/configuration.ts",
-        "hash": "13738102873158452644"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/encoder.ts",
-        "hash": "3512585110808526745",
-        "deps": [
-          "npm:@angular/common"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/src/git_push.sh",
-        "hash": "13543630892486039087"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/index.ts",
-        "hash": "8882130801513074732"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/breed.ts",
-        "hash": "17081740438662109863"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createAnimalCommand.ts",
-        "hash": "3428742040481433555"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createBreedCommand.ts",
-        "hash": "17246992587154185193"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createOwnerCommand.ts",
-        "hash": "7668528171453644022"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createPaymentCommand.ts",
-        "hash": "5139313777627948487"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createSpeciesCommand.ts",
-        "hash": "12346857664309148881"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createVeterinarianCommand.ts",
-        "hash": "13171145849129801848"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/createVeterinaryClinicCommand.ts",
-        "hash": "6863387156555244965"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/gender.ts",
-        "hash": "9953666657552196595"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getAnimalResult.ts",
-        "hash": "9813249139289574684"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getAnimalsResult.ts",
-        "hash": "12191449140215764993"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getBreedResult.ts",
-        "hash": "18306349367195503146"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getBreedsResult.ts",
-        "hash": "13894259332323224032"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getOwnerResult.ts",
-        "hash": "9614030369925248573"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getOwnersResult.ts",
-        "hash": "495872049961146527"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getPaymentsResult.ts",
-        "hash": "3346214029422788125"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getSpeciesResult.ts",
-        "hash": "16936436339825561636"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getVeterinarianResult.ts",
-        "hash": "9984782706087116004"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getVeterinariansResult.ts",
-        "hash": "13268239814657115718"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicResult.ts",
-        "hash": "10950787298120353164"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicsResult.ts",
-        "hash": "11280283327105128421"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/models.ts",
-        "hash": "18374485011583874210"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/owner.ts",
-        "hash": "12508339728906859940"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/payment.ts",
-        "hash": "14114485010200530859"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/species.ts",
-        "hash": "9934319005389358359"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateAnimalCommand.ts",
-        "hash": "8189229542517075651"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateBreedCommand.ts",
-        "hash": "6383564539014277084"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateOwnerCommand.ts",
-        "hash": "4768552836320882942"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updatePaymentCommand.ts",
-        "hash": "17507246366722582387"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateSpeciesCommand.ts",
-        "hash": "5839596756471004127"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateVeterinarianCommand.ts",
-        "hash": "12913024135431521269"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/updateVeterinaryClinicCommand.ts",
-        "hash": "11326739279950935017"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/veterinarian.ts",
-        "hash": "1936606229545937677"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/model/veterinaryClinic.ts",
-        "hash": "5906011020165114651"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/ng-package.json",
-        "hash": "3504637599439465225"
-      },
-      {
-        "file": "libs/portal-data/data-access/src/variables.ts",
-        "hash": "8875628982008667018",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/portal-data/data-access/tsconfig.json",
-        "hash": "4036407590883600015"
-      },
-      {
-        "file": "libs/portal-data/data-access/tsconfig.lib.json",
-        "hash": "16872731496982739862"
-      },
-      {
-        "file": "libs/portal-data/data-access/tsconfig.lib.prod.json",
-        "hash": "7800493840273653743"
-      },
-      {
-        "file": "libs/portal-data/data-access/tsconfig.spec.json",
-        "hash": "12933897464779342402"
-      }
-    ],
     "anihis-portal": [
       {
         "file": "apps/anihis-portal/.eslintrc.json",
@@ -1710,6 +1124,923 @@
       {
         "file": "apps/anihis-portal/tsconfig.spec.json",
         "hash": "1930986853382524452"
+      }
+    ],
+    "portal-data-data-access": [
+      {
+        "file": "libs/portal-data/data-access/.eslintrc.json",
+        "hash": "6719718809303188415"
+      },
+      {
+        "file": "libs/portal-data/data-access/README.md",
+        "hash": "4974791539804017294"
+      },
+      {
+        "file": "libs/portal-data/data-access/generate.cmd",
+        "hash": "17701959530432143705"
+      },
+      {
+        "file": "libs/portal-data/data-access/jest.config.ts",
+        "hash": "13710914548784952472"
+      },
+      {
+        "file": "libs/portal-data/data-access/ng-package.json",
+        "hash": "13354856628540774335"
+      },
+      {
+        "file": "libs/portal-data/data-access/openapi.json",
+        "hash": "3202655053656240358"
+      },
+      {
+        "file": "libs/portal-data/data-access/package.json",
+        "hash": "4160568166094669537",
+        "deps": [
+          "npm:tslib",
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/project.json",
+        "hash": "9703080677156407452"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.gitignore",
+        "hash": "14031326617291468971"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.npmignore",
+        "hash": "10294644137156121782"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.swagger-codegen-ignore",
+        "hash": "16478007866802378741"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/.swagger-codegen/VERSION",
+        "hash": "4662946734923415995"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api.module.ts",
+        "hash": "3644680865280689530",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/animals.service.ts",
+        "hash": "3673688037424595145",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/api.ts",
+        "hash": "15594369062722701791"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/owners.service.ts",
+        "hash": "13191982707988658096",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/payments.service.ts",
+        "hash": "1132289350824072445",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/species.service.ts",
+        "hash": "2201383283047645548",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/veterinarians.service.ts",
+        "hash": "17351296966123627102",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/api/veterinaryClinicsControllers.service.ts",
+        "hash": "5305036198786773628",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/configuration.ts",
+        "hash": "13738102873158452644"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/encoder.ts",
+        "hash": "3512585110808526745",
+        "deps": [
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/src/git_push.sh",
+        "hash": "13543630892486039087"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/index.ts",
+        "hash": "8882130801513074732"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/breed.ts",
+        "hash": "17081740438662109863"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createAnimalCommand.ts",
+        "hash": "3428742040481433555"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createBreedCommand.ts",
+        "hash": "17246992587154185193"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createOwnerCommand.ts",
+        "hash": "7668528171453644022"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createPaymentCommand.ts",
+        "hash": "5139313777627948487"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createSpeciesCommand.ts",
+        "hash": "12346857664309148881"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createVeterinarianCommand.ts",
+        "hash": "13171145849129801848"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/createVeterinaryClinicCommand.ts",
+        "hash": "6863387156555244965"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/gender.ts",
+        "hash": "9953666657552196595"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getAnimalResult.ts",
+        "hash": "9813249139289574684"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getAnimalsResult.ts",
+        "hash": "12191449140215764993"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getBreedResult.ts",
+        "hash": "18306349367195503146"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getBreedsResult.ts",
+        "hash": "13894259332323224032"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getOwnerResult.ts",
+        "hash": "9614030369925248573"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getOwnersResult.ts",
+        "hash": "495872049961146527"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getPaymentsResult.ts",
+        "hash": "3346214029422788125"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getSpeciesResult.ts",
+        "hash": "16936436339825561636"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinarianResult.ts",
+        "hash": "9984782706087116004"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinariansResult.ts",
+        "hash": "13268239814657115718"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicResult.ts",
+        "hash": "10950787298120353164"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/getVeterinaryClinicsResult.ts",
+        "hash": "11280283327105128421"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/models.ts",
+        "hash": "18374485011583874210"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/owner.ts",
+        "hash": "12508339728906859940"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/payment.ts",
+        "hash": "14114485010200530859"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/species.ts",
+        "hash": "9934319005389358359"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateAnimalCommand.ts",
+        "hash": "8189229542517075651"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateBreedCommand.ts",
+        "hash": "6383564539014277084"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateOwnerCommand.ts",
+        "hash": "4768552836320882942"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updatePaymentCommand.ts",
+        "hash": "17507246366722582387"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateSpeciesCommand.ts",
+        "hash": "5839596756471004127"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateVeterinarianCommand.ts",
+        "hash": "12913024135431521269"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/updateVeterinaryClinicCommand.ts",
+        "hash": "11326739279950935017"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/veterinarian.ts",
+        "hash": "1936606229545937677"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/model/veterinaryClinic.ts",
+        "hash": "5906011020165114651"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/ng-package.json",
+        "hash": "3504637599439465225"
+      },
+      {
+        "file": "libs/portal-data/data-access/src/variables.ts",
+        "hash": "8875628982008667018",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.json",
+        "hash": "4036407590883600015"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.lib.json",
+        "hash": "16872731496982739862"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.lib.prod.json",
+        "hash": "7800493840273653743"
+      },
+      {
+        "file": "libs/portal-data/data-access/tsconfig.spec.json",
+        "hash": "12933897464779342402"
+      }
+    ],
+    "client-app": [
+      {
+        "file": "apps/client-app/.eslintrc.json",
+        "hash": "3907015677655214228"
+      },
+      {
+        "file": "apps/client-app/.gitignore",
+        "hash": "13537870046176692662"
+      },
+      {
+        "file": "apps/client-app/capacitor.config.ts",
+        "hash": "5948942869658967181",
+        "deps": [
+          "npm:@capacitor/cli"
+        ]
+      },
+      {
+        "file": "apps/client-app/ionic.config.json",
+        "hash": "15434816201715608364"
+      },
+      {
+        "file": "apps/client-app/package.json",
+        "hash": "7862542110169667787",
+        "deps": [
+          "npm:@capacitor/cli",
+          "npm:@capacitor/ios",
+          "npm:@capacitor/android"
+        ]
+      },
+      {
+        "file": "apps/client-app/project.json",
+        "hash": "8586575589938591824"
+      },
+      {
+        "file": "apps/client-app/src/app/app-routing.module.ts",
+        "hash": "740901135046839309",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/app.component.html",
+        "hash": "12139992690072916112"
+      },
+      {
+        "file": "apps/client-app/src/app/app.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/app/app.component.ts",
+        "hash": "16370123406191619784",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/app.module.ts",
+        "hash": "17195997832060172707",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/platform-browser",
+          "npm:@angular/router",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/app.routes.ts",
+        "hash": "6185150965714414910",
+        "deps": [
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/explore-container/explore-container.component.html",
+        "hash": "11276277544007458628"
+      },
+      {
+        "file": "apps/client-app/src/app/explore-container/explore-container.component.scss",
+        "hash": "9850713161433335837"
+      },
+      {
+        "file": "apps/client-app/src/app/explore-container/explore-container.component.spec.ts",
+        "hash": "15766616042051102631",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/explore-container/explore-container.component.ts",
+        "hash": "2911720480123253753",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/explore-container/explore-container.module.ts",
+        "hash": "7448581666870428995",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1-routing.module.ts",
+        "hash": "5398978705944594167",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1.module.ts",
+        "hash": "1068469877223851341",
+        "deps": [
+          "npm:@ionic/angular",
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1.page.html",
+        "hash": "10560959354605232396"
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1.page.spec.ts",
+        "hash": "3405772171463657653",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab1/tab1.page.ts",
+        "hash": "4990507300379051213",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2-routing.module.ts",
+        "hash": "15272374723371276462",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2.module.ts",
+        "hash": "14736305826956839816",
+        "deps": [
+          "npm:@ionic/angular",
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2.page.html",
+        "hash": "11426933194951073790"
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2.page.spec.ts",
+        "hash": "5900610954567046783",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab2/tab2.page.ts",
+        "hash": "2149568786853142883",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3-routing.module.ts",
+        "hash": "4435586542434873407",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3.module.ts",
+        "hash": "7898094016850959407",
+        "deps": [
+          "npm:@ionic/angular",
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3.page.html",
+        "hash": "17584071796537324538"
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3.page.spec.ts",
+        "hash": "7780752870987738181",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ionic/angular"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tab3/tab3.page.ts",
+        "hash": "5361495937341095269",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs-routing.module.ts",
+        "hash": "8966036911723864072",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs.module.ts",
+        "hash": "7210476146290145433",
+        "deps": [
+          "npm:@ionic/angular",
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs.page.html",
+        "hash": "14272795930632264053"
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs.page.spec.ts",
+        "hash": "8782813055802113365",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/app/tabs/tabs.page.ts",
+        "hash": "13604838938673594530",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/client-app/src/assets/icon/favicon.png",
+        "hash": "17482944836898362639"
+      },
+      {
+        "file": "apps/client-app/src/assets/shapes.svg",
+        "hash": "4708889011185296100"
+      },
+      {
+        "file": "apps/client-app/src/index.html",
+        "hash": "12546712588507496506"
+      },
+      {
+        "file": "apps/client-app/src/main.ts",
+        "hash": "14191774545949582757",
+        "deps": [
+          "npm:@angular/platform-browser-dynamic"
+        ]
+      },
+      {
+        "file": "apps/client-app/src/styles.scss",
+        "hash": "571879085447405395"
+      },
+      {
+        "file": "apps/client-app/src/theme/variables.scss",
+        "hash": "5389894176645609056"
+      },
+      {
+        "file": "apps/client-app/tsconfig.app.json",
+        "hash": "8365644956319658761"
+      },
+      {
+        "file": "apps/client-app/tsconfig.editor.json",
+        "hash": "12999705351854551917"
+      },
+      {
+        "file": "apps/client-app/tsconfig.json",
+        "hash": "574449181837130873"
+      },
+      {
+        "file": "apps/client-app/yarn.lock",
+        "hash": "8223300270938841241"
+      }
+    ],
+    "shared-util": [
+      {
+        "file": "libs/shared/util/.eslintrc.json",
+        "hash": "6719718809303188415"
+      },
+      {
+        "file": "libs/shared/util/README.md",
+        "hash": "3716584386787259846"
+      },
+      {
+        "file": "libs/shared/util/ng-package.json",
+        "hash": "773529975540757908"
+      },
+      {
+        "file": "libs/shared/util/package.json",
+        "hash": "12395588985415603996",
+        "deps": [
+          "npm:tslib",
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/project.json",
+        "hash": "14722217633805035714"
+      },
+      {
+        "file": "libs/shared/util/src/animations/animations.ts",
+        "hash": "14004646902140115138"
+      },
+      {
+        "file": "libs/shared/util/src/animations/fade-in-out.animation.ts",
+        "hash": "10118101477882264312",
+        "deps": [
+          "npm:@angular/animations"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/animations/slide-in-out.animation.ts",
+        "hash": "3995189014246803312",
+        "deps": [
+          "npm:@angular/animations"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/constants/constants.ts",
+        "hash": "16739774295647776009"
+      },
+      {
+        "file": "libs/shared/util/src/constants/languages.ts",
+        "hash": "16697053049696833884",
+        "deps": [
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/constants/regex-patterns.ts",
+        "hash": "6059063592474672883"
+      },
+      {
+        "file": "libs/shared/util/src/constants/storage-key-constants.ts",
+        "hash": "6582135962206372136"
+      },
+      {
+        "file": "libs/shared/util/src/events/coreEventsHub.ts",
+        "hash": "14344422808306744874",
+        "deps": [
+          "npm:@microsoft/signalr"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/events/events.ts",
+        "hash": "2769633562104077156"
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/interceptors.ts",
+        "hash": "4195649173479205817"
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/loading.interceptor.ts",
+        "hash": "8340052943477596983",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/interceptors/server-http.interceptor.ts",
+        "hash": "7930027744078452017",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/chat-reply.pipe.ts",
+        "hash": "3518628611532371387",
+        "deps": [
+          "npm:@angular/core",
+          "npm:luxon",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/current-date.pipe.ts",
+        "hash": "18322126661379923251",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/date-passed.pipe.ts",
+        "hash": "13767383447593034893",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/empty-object.pipe.ts",
+        "hash": "1867736603224604272",
+        "deps": [
+          "npm:@angular/core",
+          "npm:lodash"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/enum-formatting.pipe.ts",
+        "hash": "14737695955389404768",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/equipments.pipe.ts",
+        "hash": "17637544093608395999",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/filter-workout-attribute.pipe.ts",
+        "hash": "4894834007541654490",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/group-item-message-time.pipe.ts",
+        "hash": "2150829648528685362",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/group-names-for-chat.pipe.ts",
+        "hash": "16805087868176389577",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/is-array.pipe.ts",
+        "hash": "6616059412446195066",
+        "deps": [
+          "npm:@angular/core",
+          "npm:lodash"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/local-chat-time.pipe.ts",
+        "hash": "3849775507060656574",
+        "deps": [
+          "npm:@angular/core",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/pipes.ts",
+        "hash": "14015502521773745979"
+      },
+      {
+        "file": "libs/shared/util/src/pipes/planes.pipe.ts",
+        "hash": "15230872506991243961",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/primary-muscles.pipe.ts",
+        "hash": "4156829931714646367",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@goatsports/core/data-access",
+          "npm:@ngneat/transloco"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/shorten-text.pipe.ts",
+        "hash": "10312033874403001001",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/time-format.pipe.ts",
+        "hash": "1004512045033818704",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/pipes/translate-date.pipe.ts",
+        "hash": "5239990207304754793",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:luxon"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/resize-observable.ts",
+        "hash": "4731502913396731307",
+        "deps": [
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/authentication.service.ts",
+        "hash": "17368036567931794010",
+        "deps": [
+          "npm:@angular/core",
+          "npm:angular-oauth2-oidc",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/error.service.ts",
+        "hash": "12272769196519878899",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/loading.service.ts",
+        "hash": "18158405838958631295",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/services/translations.service.ts",
+        "hash": "9715740275574540121",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@ngneat/transloco",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/util/src/styles/breakpoints.scss",
+        "hash": "8992770770183056348"
+      },
+      {
+        "file": "libs/shared/util/src/validators/minArrayLength.ts",
+        "hash": "797854378479109225",
+        "deps": [
+          "npm:@angular/forms"
+        ]
+      },
+      {
+        "file": "libs/shared/util/tsconfig.json",
+        "hash": "5633773164908297216"
+      },
+      {
+        "file": "libs/shared/util/tsconfig.lib.json",
+        "hash": "7402796496658240124"
+      },
+      {
+        "file": "libs/shared/util/tsconfig.lib.prod.json",
+        "hash": "7800493840273653743"
       }
     ]
   }

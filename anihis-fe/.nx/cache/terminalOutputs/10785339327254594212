@@ -1,0 +1,17 @@
+[2K[1G[33mwarning[39m package.json: No license field
+[2K[1G[94minfo[39m No lockfile found.
+[2K[1G[33mwarning[39m client-app: No license field
+[2K[1G[2m[1/4][22m Resolving packages...
+[2K[1G[2m[2/4][22m Fetching packages...
+[2K[1G[2m[3/4][22m Linking dependencies...
+[2K[1G[33mwarning[39m " > @capacitor/ios@5.5.1" has unmet peer dependency "@capacitor/core@^5.5.0".
+[2K[1G[33mwarning[39m " > @capacitor/android@5.5.1" has unmet peer dependency "@capacitor/core@^5.5.0".
+[2K[1G[2m[4/4][22m Building fresh packages...
+[2K[1G[32msuccess[39m Saved lockfile.
+npm WARN exec The following package was not found and will be installed: @capacitor/cli@5.0.3
+[warn] The bundledWebRuntime configuration option has been deprecated. Can be safely deleted.
+[error] android platform has not been added yet.
+        See the docs for adding the android platform: https://capacitorjs.com/docs/android#adding-the-android-platform
+Warning: run-commands command "npx --package=@capacitor/cli@5.0.3 cap sync android" exited with non-zero status code
+
+Removing node_modules from project root...
