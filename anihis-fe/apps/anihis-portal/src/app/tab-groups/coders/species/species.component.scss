@@ -1,0 +1,61 @@
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+  .wrapper {
+    margin: 40px;
+    background: #fff !important;
+
+    .mat-mdc-table {
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+    }
+  }
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-icons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-evenly;
+}
+.wrapper {
+  background: #fff !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.card {
+  padding: 16px;
+}
+
+.mat-column-email-tel {
+  white-space: nowrap !important;
+}
+
+.action-column {
+  width: 180px;
+}
+
+td {
+  word-break: break-all;
+}
+
+.actionSpecies {
+  width: 10%;
+}
+
+.add-new-species-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+  button {
+    background: #00142f;
+    color: #fff;
+  }
+}
