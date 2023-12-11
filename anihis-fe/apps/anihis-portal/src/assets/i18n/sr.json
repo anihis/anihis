@@ -179,5 +179,8 @@
   "Country": "Drzava",
   "Postal Code": "Postanski broj",
   "Add new clinic": "Dodaj novu ambulantu",
-  "Action Manufacturers Of Medicaments": "Izmeni / Obrisi"
+  "Action Manufacturers Of Medicaments": "Izmeni / Obrisi",
+  "Action Clinic": "Izmeni",
+  "Name clinic": "Ime ambulante",
+  "Edit clinic": "Izmeni ambulantu"
 }

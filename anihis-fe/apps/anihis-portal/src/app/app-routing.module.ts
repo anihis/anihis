@@ -18,11 +18,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./admin/clinic/clinic.module').then((m) => m.ClinicModule),
       },
-      {
-        path: 'animal',
-        loadChildren: () =>
-          import('./admin/animal/animal.module').then((m) => m.AnimalModule),
-      },
     ],
   },
   {

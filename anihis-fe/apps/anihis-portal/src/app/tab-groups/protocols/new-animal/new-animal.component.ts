@@ -9,35 +9,16 @@ import { DateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { NewOwnerDialogComponent } from './new-owner-dialog/new-owner-dialog.component';
-import { EditOwnerDialogComponent } from './edit-owner-dialog/edit-owner-dialog.component';
 import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingService } from 'libs/shared/util/src/services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GetOwnersResult } from 'libs/portal-data/data-access/src';
-import { tap } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { NewAnimalService } from './new-animal.service';
+import { AddEditOwnerDialogComponent } from './add-edit-owner-dialog/add-edit-owner-dialog.component';
 import { AddNewAnimalDialogComponent } from './add-new-animal-dialog/add-new-animal-dialog.component';
-
-export interface Owner {
-  lastName: string;
-  firstName: string;
-  city: string;
-  address: string;
-  phoneNumber: string;
-  mobileNumber: string;
-  personalNumber: string;
-  idCardNumber?: string;
-  email: string;
-  warning: string;
-  postalCode?: string;
-  country?: string;
-  passportNumber: string;
-  ownerUid: string;
-}
 
 @Component({
   selector: 'anihis-new-animal',
@@ -47,9 +28,8 @@ export interface Owner {
   imports: [
     CommonModule,
     SharedModule,
-    NewOwnerDialogComponent,
-    EditOwnerDialogComponent,
     MatProgressSpinnerModule,
+    AddEditOwnerDialogComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [OwnersService, LoadingService, NewAnimalService],
@@ -61,8 +41,7 @@ export class NewAnimalComponent
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageSize = 6;
   pageIndex = 0;
-  dataSource: MatTableDataSource<GetOwnersResult> =
-    new MatTableDataSource<GetOwnersResult>([]);
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   data$ = this.newAnimalService.fetchData();
 
   displayedColumns: string[] = [
@@ -127,11 +106,10 @@ export class NewAnimalComponent
     });
   }
 
-  openEditDialog(data: Owner): void {
-    console.log(data);
-    const dialogRef = this.dialog.open(EditOwnerDialogComponent, {
+  openEditDialog(data: GetOwnersResult): void {
+    const dialogRef = this.dialog.open(AddEditOwnerDialogComponent, {
       width: '600px',
-      data: { ...data },
+      data: { ...data, isEdit: true },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -142,7 +120,7 @@ export class NewAnimalComponent
   }
 
   openAddNewOwnerDialog() {
-    const dialogRef = this.dialog.open(NewOwnerDialogComponent, {
+    const dialogRef = this.dialog.open(AddEditOwnerDialogComponent, {
       width: '465px',
     });
 
