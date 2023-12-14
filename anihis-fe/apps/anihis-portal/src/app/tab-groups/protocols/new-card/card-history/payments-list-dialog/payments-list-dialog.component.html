@@ -1,0 +1,40 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>
+      {{ t('Payments list') }}
+    </h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+  <div style="display: flex; margin: 24px 16px; flex-direction: column">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container
+        *ngFor="let column of displayedColumns"
+        [matColumnDef]="column"
+      >
+        <th [class]="column" mat-header-cell *matHeaderCellDef>
+          {{ column | nameColumn | titlecase | transloco }}
+        </th>
+        <td [class]="column" mat-cell *matCellDef="let element">
+          <div>
+            {{
+              column === 'paymentDateTimeUtc'
+                ? (element['paymentDateTimeUtc'] | date : 'd/M/yy')
+                : element[column]
+            }}
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[2, 4, 6]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</ng-container>

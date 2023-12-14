@@ -36,7 +36,7 @@ export class ProtocolsComponent {
           action: 'F8',
           icon: 'pets',
         },
-        // { name: 'Admission form', action: '', icon: 'pets' },
+
         { name: 'Animal from VetUp-a', action: '', icon: 'pets' },
         { name: 'Excellent vaccinations', action: '', icon: 'pets' },
         { name: 'Black list', action: '', icon: 'pets' },

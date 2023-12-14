@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormsModule, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -213,7 +213,6 @@ export class AddEditReportDialogComponent
   }
 
   saveChanges() {
-    console.log(this.form);
     this.dialogRef.close(this.form);
     // this.dialogRef.close(this.data);
   }
