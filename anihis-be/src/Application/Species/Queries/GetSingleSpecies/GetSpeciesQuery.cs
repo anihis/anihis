@@ -1,7 +1,8 @@
-﻿using MediatR;
+﻿using anihis.Application.Species.Queries.GetSingleSpecies;
+using MediatR;
 
-namespace anihis.Application.Species.Queries.GetSingle;
-public class GetSpeciesQuery : IRequest<GetSpeciesResult>
+namespace anihis.Application.Species.Queries.GetSingleSpecies;
+public class GetSpeciesQuery : IRequest<GetSingleSpeciesResult>
 {
     public string SpeciesUid { get; set; }
 }

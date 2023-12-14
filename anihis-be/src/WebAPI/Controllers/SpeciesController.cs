@@ -3,9 +3,10 @@ using anihis.Application.Species.Commands.Create;
 using anihis.Application.Species.Commands.CreateBreed;
 using anihis.Application.Species.Commands.Update;
 using anihis.Application.Species.Commands.UpdateBreed;
-using anihis.Application.Species.Queries;
 using anihis.Application.Species.Queries.GetBreed;
 using anihis.Application.Species.Queries.GetBreeds;
+using anihis.Application.Species.Queries.GetSingleSpecies;
+using anihis.Application.Species.Queries.GetSpecies;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,9 @@ public class SpeciesController : ApiControllerBase
     }
 
     [HttpGet("species")]
-    public async Task<ActionResult<List<GetSpeciesResult>>> GetSpecies()
+    public async Task<ActionResult<GetSpeciesResult>> GetSpecies()
     {
-        return await Mediator.Send(new Application.Species.Queries.Get.GetSpeciesQuery());
+        return await Mediator.Send(new Application.Species.Queries.GetSpecies.GetSpeciesQuery());
     }
 
     [HttpGet("breeds")]
@@ -35,9 +36,9 @@ public class SpeciesController : ApiControllerBase
     }
 
     [HttpGet("species/{uid}")]
-    public async Task<ActionResult<GetSpeciesResult>> GetSpecies(string uid)
+    public async Task<ActionResult<GetSingleSpeciesResult>> GetSpecies(string uid)
     {
-        return await Mediator.Send(new Application.Species.Queries.GetSingle.GetSpeciesQuery { SpeciesUid = uid });
+        return await Mediator.Send(new Application.Species.Queries.GetSingleSpecies.GetSpeciesQuery { SpeciesUid = uid });
     }
 
     [HttpGet("breeds/{uid}")]

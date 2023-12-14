@@ -1,6 +1,4 @@
 ﻿using anihis.Application.Common.Interfaces;
-using anihis.Application.Veterinarians.Commands.Update;
-using anihis.Application.Veterinarians.Queries.GetSingle;
 using anihis.Application.VeterinaryClinics.Commands.Create;
 using anihis.Application.VeterinaryClinics.Commands.Update;
 using anihis.Application.VeterinaryClinics.Queries.Get;
@@ -10,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace anihis.WebAPI.Controllers;
 
+//[Authorize(Policy = "VeterinarianPolicy")]
 public class VeterinaryClinicsControllers : ApiControllerBase
 {
     public VeterinaryClinicsControllers
