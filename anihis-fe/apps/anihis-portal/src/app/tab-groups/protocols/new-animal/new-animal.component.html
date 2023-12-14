@@ -1,6 +1,6 @@
 <main>
   <ng-container *transloco="let t">
-    <ng-container *ngIf="data$ | async as data">
+    <ng-container *ngIf="data$ | async as vm; else loading">
       <section>
         <div class="add-new-owner-wrapper">
           <button mat-raised-button (click)="openAddNewOwnerDialog()">
@@ -30,7 +30,7 @@
           </ng-container>
         </div>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="vm" class="mat-elevation-z8">
           <ng-container
             *ngFor="let column of displayedColumns"
             [matColumnDef]="column"
@@ -95,4 +95,16 @@
       </section>
     </ng-container>
   </ng-container>
+  <ng-template #loading>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      "
+    >
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 </main>

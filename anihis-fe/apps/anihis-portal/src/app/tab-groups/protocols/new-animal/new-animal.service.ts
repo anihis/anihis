@@ -20,21 +20,21 @@ export class NewAnimalService {
     this._refresh.next();
   }
 
-  createNewOwner(result: any) {
+  createNewOwner(value: any) {
     this.ownersService
       .ownersPost({
-        firstName: result.firstName || undefined,
-        lastName: result.lastName || undefined,
-        city: result.city || undefined,
-        address: result.address || undefined,
-        email: result.email || undefined,
-        phoneNumber: result.phoneNumber || undefined,
-        mobileNumber: result.mobileNumber || undefined,
-        postalCode: result.postalCode || undefined,
-        country: result.country || undefined,
-        personalNumber: result.personalNumber || undefined,
-        passportNumber: result.passportNumber || undefined,
-        idCardNumber: result.idCardNumber || undefined,
+        firstName: value.form.firstName ?? '',
+        lastName: value.form.lastName ?? '',
+        city: value.form.city ?? '',
+        address: value.form.address ?? '',
+        email: value.form.email ?? '',
+        phoneNumber: value.form.phoneNumber ?? '',
+        mobileNumber: value.form.mobileNumber ?? '',
+        postalCode: value.form.postalCode ?? '',
+        country: value.form.country ?? '',
+        personalNumber: value.form.jmbg.toString() ?? '',
+        passportNumber: value.form.passportNumber ?? '',
+        idCardNumber: value.form.idCardNumber.toString() ?? '',
       })
       .pipe(
         tap(() => {
@@ -58,32 +58,35 @@ export class NewAnimalService {
   fetchData() {
     return this.refresh$.pipe(
       switchMap(() => {
-        return this.ownersService.ownersGet();
+        return this.ownersService.ownersGet().pipe(
+          tap((x) => {
+            console.log(x);
+          })
+        );
       })
     );
   }
 
   editOwner(value: any) {
     const command: UpdateOwnerCommand = {
-      ownerUid: value.ownerUid,
-      firstName: value.firstName,
-      lastName: value.lastName,
-      city: value.city,
-      address: value.address,
-      email: value.email,
-      phoneNumber: value.phoneNumber,
-      mobileNumber: value.mobileNumber,
-      postalCode: value.postalCode,
-      country: value.country,
-      personalNumber: value.personalNumber,
-      passportNumber: value.passportNumber,
-      idCardNumber: value.idCardNumber,
+      firstName: value.form.firstName ?? '',
+      lastName: value.form.lastName ?? '',
+      city: value.form.city ?? '',
+      address: value.form.address ?? '',
+      email: value.form.email ?? '',
+      phoneNumber: value.form.phoneNumber ?? '',
+      mobileNumber: value.form.mobileNumber ?? '',
+      postalCode: value.form.postalCode ?? '',
+      country: value.form.country ?? '',
+      personalNumber: value.form.jmbg.toString() ?? '',
+      passportNumber: value.form.passportNumber ?? '',
+      idCardNumber: value.form.idCardNumber.toString() ?? '',
+      warning: value.form.warning ?? '',
     };
 
-    return this.refresh$.pipe(
-      switchMap(() => {
-        return [];
-        // this.ownersService.ownersPut(command);
+    return this.ownersService.ownersUidPut(value.ownerUid, command).pipe(
+      tap(() => {
+        this.refresh();
       })
     );
   }

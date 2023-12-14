@@ -161,10 +161,6 @@ export class NewCardComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  getObjectKeys(obj: any): string[] {
-    return Object.keys(obj);
-  }
-
   getType(column: string): string {
     return column === 'numberCard' || column === 'microchip'
       ? 'number'

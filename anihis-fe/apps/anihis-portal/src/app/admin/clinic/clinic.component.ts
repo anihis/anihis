@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBaseComponent } from '../../shared/base-components/form-base.component';
 import { MatDialog } from '@angular/material/dialog';
-import { NewClinicDialogComponent } from './new-clinic-dialog/new-clinic-dialog.component';
+import { AddEditClinicDialogComponent } from './add-edit-clinic-dialog/add-edit-clinic-dialog.component';
 import { ClinicService } from './clinic.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetOwnersResult } from 'libs/portal-data/data-access/src';
 import { tap } from 'rxjs';
 import { NewVetDialogComponent } from './new-vet-dialog/new-vet-dialog.component';
-import { EditClinicDialogComponent } from './edit-clinic-dialog/edit-clinic-dialog.component';
 
 @Component({
   selector: 'anihis-clinic',
@@ -27,14 +26,14 @@ export class ClinicComponent extends FormBaseComponent {
     })
   );
 
-  displayedColumns: string[] = ['name'];
+  displayedColumns: string[] = ['name', 'actionClinic'];
 
   constructor(private dialog: MatDialog, private clinicService: ClinicService) {
     super();
   }
 
   openAddClinicDialog() {
-    const dialogRef = this.dialog.open(NewClinicDialogComponent, {
+    const dialogRef = this.dialog.open(AddEditClinicDialogComponent, {
       width: '465px',
     });
 
@@ -58,9 +57,9 @@ export class ClinicComponent extends FormBaseComponent {
   }
 
   openEditDialog(data: any): void {
-    const dialogRef = this.dialog.open(EditClinicDialogComponent, {
+    const dialogRef = this.dialog.open(AddEditClinicDialogComponent, {
       width: '465px',
-      data: { ...data },
+      data: { ...data, isEdit: true },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

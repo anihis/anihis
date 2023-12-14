@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  UpdateVeterinaryClinicCommand,
   VeterinariansService,
   VeterinaryClinicsControllersService,
 } from 'libs/portal-data/data-access/src';
@@ -50,9 +51,13 @@ export class ClinicService {
   }
 
   editClinic(value: any) {
-    // TODO : izmeni end point
-    this.veterinariansService
-      .veterinariansPost()
+    const command: UpdateVeterinaryClinicCommand = {
+      name: value.form.clinicName,
+      veterinaryClinicUid: value.clinicUid,
+    };
+
+    this.veterinaryClinicsControllers
+      .veterinaryClinicsControllersUidPut(value?.clinicUid, command)
       .pipe(
         tap(() => {
           this.refresh();

@@ -26,11 +26,8 @@ export class CodersComponent {
     {
       categoryName: 'Basic',
       data: [
-        { name: 'New Animal', action: '', icon: 'pets', br: this.br },
         { name: 'Breeds', action: '', icon: 'pets' },
         { name: 'Breeds from VetUp', action: '', icon: 'pets' },
-        { name: 'Animal', action: '', icon: 'pets' },
-        { name: 'Places', action: '', icon: 'pets' },
         { name: 'Manufacturers of medicaments', action: '', icon: 'pets' },
       ],
     },
@@ -44,14 +41,6 @@ export class CodersComponent {
           action: '',
           icon: 'pets',
         },
-      ],
-    },
-    {
-      categoryName: 'Administrative',
-      data: [
-        { name: 'Administration user', action: '', icon: 'pets', br: this.br },
-
-        { name: 'Pharmacies', action: '', icon: 'pets' },
       ],
     },
   ];

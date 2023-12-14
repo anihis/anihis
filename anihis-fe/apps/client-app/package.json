@@ -1,0 +1,18 @@
+{
+  "name": "client-app",
+  "devDependencies": {
+    "@capacitor/android": "5.5.1",
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/ios": "../../node_modules/@capacitor/ios"
+  },
+  "dependencies": {
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/browser": "^5.1.0",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/keyboard": "^5.0.6",
+    "@capacitor/preferences": "^5.0.6",
+    "@capacitor/push-notifications": "^5.1.0",
+    "@capacitor/splash-screen": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6"
+  }
+}

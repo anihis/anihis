@@ -14,6 +14,8 @@ import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types
 import { ManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component';
 import { AddManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component';
 import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component';
+import { SpeciesComponent } from './coders/species/species.component';
+import { AddEditBreedComponent } from './coders/species/add-edit-breed/add-edit-breed.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-
     ProtocolsComponent,
     AddManufacturersOfMedicamentsComponent,
     EditManufacturersOfMedicamentsComponent,
+    AddEditBreedComponent,
   ],
 
   imports: [
@@ -34,6 +37,7 @@ import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-
     TypesOfServicesComponent,
     TypesOfMedicamentsComponent,
     ManufacturersOfMedicamentsComponent,
+    SpeciesComponent,
   ],
   exports: [TabGroupsComponent, ProtocolsComponent],
 })

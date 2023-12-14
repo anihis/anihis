@@ -181,5 +181,8 @@
   "Country": "Country",
   "Postal Code": "Postal Code",
   "Add new clinic": "Add new clinic",
-  "Action Manufacturers Of Medicaments": "Action"
+  "Action Manufacturers Of Medicaments": "Action",
+  "Action Clinic": "Action",
+  "Name clinic": "Name clinic",
+  "Edit clinic": "Edit clinic"
 }
