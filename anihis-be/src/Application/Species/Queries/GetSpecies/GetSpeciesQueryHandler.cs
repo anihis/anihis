@@ -21,7 +21,7 @@ public class GetSpeciesQueryHandler : IRequestHandler<GetSpeciesQuery, GetSpecie
 
     public async Task<GetSpeciesResult> Handle(GetSpeciesQuery request, CancellationToken cancellationToken)
     {
-        GetSpeciesResult result = new GetSpeciesResult();
+        List<Common.Models.Species> result = new();
         var species = _speciesRepository.StartQuery();
 
         foreach (var s in species)
@@ -31,7 +31,7 @@ public class GetSpeciesQueryHandler : IRequestHandler<GetSpeciesQuery, GetSpecie
                 .Where(x => x.Species == s)
                 .ToListAsync(cancellationToken);
 
-            result.Species.Add(new Common.Models.Species
+            result.Add(new Common.Models.Species
             {
                 Breeds = breeds.Select(breed => new Common.Models.Breed
                 {
@@ -43,6 +43,9 @@ public class GetSpeciesQueryHandler : IRequestHandler<GetSpeciesQuery, GetSpecie
             });
         }
 
-        return result;
+        return new GetSpeciesResult
+        { 
+            Species = result
+        };
     }
 }
