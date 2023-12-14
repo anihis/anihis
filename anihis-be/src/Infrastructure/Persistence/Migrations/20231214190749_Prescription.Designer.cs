@@ -11,7 +11,7 @@ using anihis.Infrastructure.Persistence;
 namespace anihis.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20231214182336_Prescription")]
+    [Migration("20231214190749_Prescription")]
     partial class Prescription
     {
         /// <inheritdoc />
@@ -127,6 +127,42 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.ToTable("HealthRecords");
                 });
 
+            modelBuilder.Entity("anihis.Domain.Entities.Manufacturer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("BankAccount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Manufacturers");
+                });
+
             modelBuilder.Entity("anihis.Domain.Entities.Payment", b =>
                 {
                     b.Property<int>("Id")
@@ -161,6 +197,50 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.HasIndex("VeterinaryClinicId");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Prescription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AlternateName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("JM")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MainPrice")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ManufacturerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PrescriptionType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecondPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Species", b =>
@@ -420,6 +500,17 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Navigation("Veterinarian");
 
                     b.Navigation("VeterinaryClinic");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Prescription", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.Manufacturer", "Manufacturer")
+                        .WithMany()
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manufacturer");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Vaccination", b =>
