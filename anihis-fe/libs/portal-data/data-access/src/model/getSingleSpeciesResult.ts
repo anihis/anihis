@@ -9,8 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Species } from './species';
+import { Breed } from './breed';
 
-export interface GetSpeciesResult { 
-    species?: Array<Species>;
+export interface GetSingleSpeciesResult { 
+    uid?: string;
+    name?: string;
+    breeds?: Array<Breed>;
 }

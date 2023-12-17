@@ -16,7 +16,16 @@
         <input matInput formControlName="name" />
       </mat-form-field>
     </div>
-
+    <div style="margin: 0px 16px" *ngIf="data?.isEdit">
+      <h3>{{ 'Select breed for edit' }}</h3>
+      <div
+        style="margin-left: 16px"
+        *ngFor="let breed of data.data.breeds; last as l"
+      >
+        <p (click)="editSelectBreed(breed)">{{ breed.name }}</p>
+        <hr *ngIf="!l" />
+      </div>
+    </div>
     <div class="btn-save-wrapper">
       <button mat-raised-button (click)="saveChanges()">
         {{ t('Save') }}

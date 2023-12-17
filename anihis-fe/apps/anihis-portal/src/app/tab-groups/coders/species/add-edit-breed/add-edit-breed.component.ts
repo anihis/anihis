@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBaseComponent } from 'apps/anihis-portal/src/app/shared/base-components/form-base.component';
+import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 
 @Component({
   selector: 'anihis-add-edit-breed',
@@ -13,7 +13,6 @@ export class AddEditBreedComponent extends FormBaseComponent {
     public dialogRef: MatDialogRef<AddEditBreedComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
     super();
     this.initializeForm(data);
   }
@@ -21,19 +20,29 @@ export class AddEditBreedComponent extends FormBaseComponent {
   private initializeForm(data: any) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
+      uid: [''],
     });
+  }
+
+  editSelectBreed(breed: any) {
+    this.form.controls['name'].setValue(breed.name);
+    this.form.controls['uid'].setValue(breed.uid);
   }
 
   saveChanges() {
     if (this.checkFormValidity()) return;
-    if (this.data?.speciesUid) {
+    if (!this.data.isEdit) {
       this.dialogRef.close({
-        form: this.form.getRawValue(),
-        speciesUid: this.data.speciesUid ?? '',
+        name: this.form.controls['name'].getRawValue(),
+        uid: this.data.data.uid,
+        isEdit: false,
       });
     } else {
       this.dialogRef.close({
-        form: this.form.getRawValue(),
+        name: this.form.controls['name'].getRawValue(),
+        uid: this.form.controls['uid'].getRawValue(),
+        speciesUid: this.data.data.uid,
+        isEdit: true,
       });
     }
   }

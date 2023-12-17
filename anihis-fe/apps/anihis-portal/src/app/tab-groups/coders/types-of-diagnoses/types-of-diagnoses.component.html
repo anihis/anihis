@@ -2,8 +2,8 @@
   <div class="print-wrapper">
     <button mat-raised-button (click)="printPage()">Print Page</button>
   </div>
-  <div class="typesOfDiagnosis">
-    <mat-accordion *ngFor="let type of typesOfDiagnosis; let i = index">
+  <div class="typesOfDiagnoses">
+    <mat-accordion *ngFor="let type of typesOfDiagnoses; let i = index">
       <mat-expansion-panel
         (opened)="
           isEmptyArray(type) ? addItem(type) : null; panelOpenStates[i] = true

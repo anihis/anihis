@@ -60,9 +60,12 @@
         <mat-label>{{ t('Email') }} </mat-label>
         <input matInput formControlName="email" type="email" />
       </mat-form-field>
-    </div>
-    <div *ngIf="data?.isEdit">
+
       <mat-form-field appearance="outline">
+        <mat-label>{{ t('Discount') }} </mat-label>
+        <input matInput formControlName="discount" type="number" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="data?.isEdit">
         <mat-label>{{ t('Warning') }}</mat-label>
         <textarea
           matInput

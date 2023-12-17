@@ -17,21 +17,21 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CreateBreedCommand } from '../model/createBreedCommand';
-import { CreateSpeciesCommand } from '../model/createSpeciesCommand';
-import { GetBreedResult } from '../model/getBreedResult';
-import { GetBreedsResult } from '../model/getBreedsResult';
-import { GetSingleSpeciesResult } from '../model/getSingleSpeciesResult';
-import { GetSpeciesResult } from '../model/getSpeciesResult';
-import { UpdateBreedCommand } from '../model/updateBreedCommand';
-import { UpdateSpeciesCommand } from '../model/updateSpeciesCommand';
+import { CreateManufacturerCommand } from '../model/createManufacturerCommand';
+import { CreatePrescriptionCommand } from '../model/createPrescriptionCommand';
+import { GetManufacturerResult } from '../model/getManufacturerResult';
+import { GetManufacturersResult } from '../model/getManufacturersResult';
+import { GetPrescriptionResult } from '../model/getPrescriptionResult';
+import { GetPrescriptionsResult } from '../model/getPrescriptionsResult';
+import { UpdateManufacturerCommand } from '../model/updateManufacturerCommand';
+import { UpdatePrescriptionCommand } from '../model/updatePrescriptionCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class SpeciesService {
+export class PrescriptionsService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -68,10 +68,10 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesBreedsGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetBreedsResult>>;
-    public speciesBreedsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetBreedsResult>>>;
-    public speciesBreedsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetBreedsResult>>>;
-    public speciesBreedsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsManufacturersGet(observe?: 'body', reportProgress?: boolean): Observable<GetManufacturersResult>;
+    public prescriptionsManufacturersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetManufacturersResult>>;
+    public prescriptionsManufacturersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetManufacturersResult>>;
+    public prescriptionsManufacturersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -95,7 +95,7 @@ export class SpeciesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<GetBreedsResult>>('get',`${this.basePath}/Species/breeds`,
+        return this.httpClient.request<GetManufacturersResult>('get',`${this.basePath}/Prescriptions/manufacturers`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -112,10 +112,10 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesBreedsPost(body?: CreateBreedCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public speciesBreedsPost(body?: CreateBreedCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public speciesBreedsPost(body?: CreateBreedCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public speciesBreedsPost(body?: CreateBreedCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -144,7 +144,7 @@ export class SpeciesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Species/breeds`,
+        return this.httpClient.request<any>('post',`${this.basePath}/Prescriptions/manufacturers`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -162,13 +162,58 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesBreedsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetBreedResult>;
-    public speciesBreedsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetBreedResult>>;
-    public speciesBreedsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetBreedResult>>;
-    public speciesBreedsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsManufacturersUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling speciesBreedsUidGet.');
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidDelete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public prescriptionsManufacturersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetManufacturerResult>;
+    public prescriptionsManufacturersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetManufacturerResult>>;
+    public prescriptionsManufacturersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetManufacturerResult>>;
+    public prescriptionsManufacturersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -193,7 +238,7 @@ export class SpeciesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetBreedResult>('get',`${this.basePath}/Species/breeds/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetManufacturerResult>('get',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -211,13 +256,13 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public speciesBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public speciesBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public speciesBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling speciesBreedsUidPut.');
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidPut.');
         }
 
 
@@ -247,7 +292,7 @@ export class SpeciesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/Species/breeds/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<any>('put',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -264,10 +309,10 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesSpeciesGet(observe?: 'body', reportProgress?: boolean): Observable<GetSpeciesResult>;
-    public speciesSpeciesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSpeciesResult>>;
-    public speciesSpeciesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSpeciesResult>>;
-    public speciesSpeciesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsPrescriptionsGet(observe?: 'body', reportProgress?: boolean): Observable<GetPrescriptionsResult>;
+    public prescriptionsPrescriptionsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPrescriptionsResult>>;
+    public prescriptionsPrescriptionsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPrescriptionsResult>>;
+    public prescriptionsPrescriptionsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -291,7 +336,7 @@ export class SpeciesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetSpeciesResult>('get',`${this.basePath}/Species/species`,
+        return this.httpClient.request<GetPrescriptionsResult>('get',`${this.basePath}/Prescriptions/prescriptions`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -308,10 +353,10 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesSpeciesPost(body?: CreateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public speciesSpeciesPost(body?: CreateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public speciesSpeciesPost(body?: CreateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public speciesSpeciesPost(body?: CreateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsPrescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsPrescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsPrescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsPrescriptionsPost(body?: CreatePrescriptionCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -340,7 +385,7 @@ export class SpeciesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Species/species`,
+        return this.httpClient.request<any>('post',`${this.basePath}/Prescriptions/prescriptions`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -358,13 +403,58 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesSpeciesUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetSingleSpeciesResult>;
-    public speciesSpeciesUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSingleSpeciesResult>>;
-    public speciesSpeciesUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSingleSpeciesResult>>;
-    public speciesSpeciesUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsPrescriptionsUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsPrescriptionsUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsPrescriptionsUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsPrescriptionsUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling speciesSpeciesUidGet.');
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsPrescriptionsUidDelete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}/Prescriptions/prescriptions/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public prescriptionsPrescriptionsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetPrescriptionResult>;
+    public prescriptionsPrescriptionsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPrescriptionResult>>;
+    public prescriptionsPrescriptionsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPrescriptionResult>>;
+    public prescriptionsPrescriptionsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsPrescriptionsUidGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -389,7 +479,7 @@ export class SpeciesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetSingleSpeciesResult>('get',`${this.basePath}/Species/species/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetPrescriptionResult>('get',`${this.basePath}/Prescriptions/prescriptions/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -407,13 +497,13 @@ export class SpeciesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public speciesSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public speciesSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public speciesSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public speciesSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public prescriptionsPrescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public prescriptionsPrescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public prescriptionsPrescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public prescriptionsPrescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling speciesSpeciesUidPut.');
+            throw new Error('Required parameter uid was null or undefined when calling prescriptionsPrescriptionsUidPut.');
         }
 
 
@@ -443,7 +533,7 @@ export class SpeciesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/Species/species/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<any>('put',`${this.basePath}/Prescriptions/prescriptions/${encodeURIComponent(String(uid))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

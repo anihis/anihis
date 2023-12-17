@@ -13,9 +13,9 @@ interface ItemType {
 }
 
 @Component({
-  selector: 'anihis-types-of-diagnosis',
-  templateUrl: './types-of-diagnosis.component.html',
-  styleUrls: ['./types-of-diagnosis.component.scss'],
+  selector: 'anihis-types-of-diagnoses',
+  templateUrl: './types-of-diagnoses.component.html',
+  styleUrls: ['./types-of-diagnoses.component.scss'],
   standalone: true,
   imports: [CommonModule, SharedModule, MatTableModule, MatExpansionModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +23,7 @@ interface ItemType {
 export class TypesOfDiagnosisComponent extends FormBaseComponent {
   panelOpenStates: boolean[] = [];
   menu = [];
-  typesOfDiagnosis = [
+  typesOfDiagnoses = [
     'otology',
     'ophthalmology',
     'respiratory system',

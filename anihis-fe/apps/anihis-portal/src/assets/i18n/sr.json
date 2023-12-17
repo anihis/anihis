@@ -18,7 +18,7 @@
   "Owners": "Vlasnici",
   "Manufacturers of medicaments": "Proizvodjaci lekova",
   "Press documents": "Dokumenti stampe",
-  "Types of diagnosis": "Vrste dijagnoze",
+  "Types of diagnoses": "Vrste dijagnoze",
   "Types of services": "Vrste usluga",
   "Types of medicaments": "Vrste lekova",
   "Diagnoses": "Dijagnoze",
@@ -138,7 +138,7 @@
   "Note": "Napomena",
   "Therapy": "Terapija",
   "Next": "Dalje",
-  "Diagnosis, Services, Medicaments": "Dijagnoze, Usluge, Lekovi",
+  "Diagnoses, Services, Medicaments": "Dijagnoze, Usluge, Lekovi",
   "Select Diagnoses": "Izaberi dijagnozu",
   "Diagnosis": "Dijagnoze",
   "Select Services": "Izaberi Usluge",
@@ -183,5 +183,7 @@
   "Action Clinic": "Izmeni",
   "Name clinic": "Ime ambulante",
   "Edit clinic": "Izmeni ambulantu",
-  "Payments list": "Lista naplata"
+  "Payments list": "Lista naplata",
+  "Add new species": "Dodaj novu vrstu",
+  "Action Species": "Dodaj / Izmeni rasu "
 }

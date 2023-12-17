@@ -11,5 +11,6 @@
  */
 
 export interface Breed { 
+    uid?: string;
     name?: string;
 }

@@ -13,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddEditSpeciesDialogComponent } from './add-edit-species-dialog/add-edit-species-dialog.component';
 import { ClientSpeciesService } from './species.service';
 import { tap } from 'rxjs';
-import { GetSpeciesResult } from 'libs/portal-data/data-access/src';
 import { AddEditBreedComponent } from './add-edit-breed/add-edit-breed.component';
 
 @Component({
@@ -38,27 +37,31 @@ import { AddEditBreedComponent } from './add-edit-breed/add-edit-breed.component
 })
 export class SpeciesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  pageSize = 6;
-  pageIndex = 0;
 
-  data$ = this.clientSpeciesService.fetchData().pipe(
-    tap((results: GetSpeciesResult[]) => {
-      this.dataSource.data = results;
-    })
-  );
+  data$ = this.clientSpeciesService
+    .fetchData()
+    .pipe(tap((results) => this.prepareDataSource(results)));
 
-  dataSource = new MatTableDataSource<any>();
-
-  displayedColumns: string[] = ['Species', 'breed', 'actionSpecies'];
-
+  dataSource = new MatTableDataSource<any>([]);
+  displayedColumns: string[] = ['Species', 'Breed', 'ActionSpecies'];
+  pageSize!: number;
+  pageIndex!: number;
   constructor(
     private dialog: MatDialog,
     private clientSpeciesService: ClientSpeciesService
   ) {}
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource<any>();
     this.dataSource.paginator = this.paginator;
+  }
+
+  prepareDataSource(speciesData: any) {
+    const formattedData = speciesData.map((species: any) => ({
+      name: species.name,
+      uid: species.uid,
+      breeds: species.breeds.map((breed: any) => breed.name).join(', '),
+    }));
+    this.dataSource.data = formattedData;
   }
 
   onPageChange(event: any): void {
@@ -78,26 +81,18 @@ export class SpeciesComponent implements AfterViewInit {
     });
   }
 
-  openAddBreedDialog(data: any) {
-    const dialogRef = this.dialog.open(AddEditBreedComponent, {
-      width: '465px',
-      data: { ...data },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.clientSpeciesService.addBreed(result);
-      }
-    });
-  }
+  openAddEditBreedDialog(element: any, data: any, isEdit?: boolean): void {
+    const dataBreed = data.filter((x: any) => x.uid === element.uid)[0];
 
-  openEditBreedDialog(data: any): void {
     const dialogRef = this.dialog.open(AddEditBreedComponent, {
       width: '465px',
-      data: { ...data, isEdit: true },
+      data: { ...{ data: dataBreed }, isEdit },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result.isEdit) {
         this.clientSpeciesService.editBreed(result);
+      } else {
+        this.clientSpeciesService.addBreed(result);
       }
     });
   }

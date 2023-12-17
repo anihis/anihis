@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   SpeciesService,
-  UpdateSpeciesCommand,
+  UpdateBreedCommand,
 } from 'libs/portal-data/data-access/src';
-import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap, map } from 'rxjs';
 
 @Injectable()
 export class ClientSpeciesService {
@@ -19,7 +19,9 @@ export class ClientSpeciesService {
   fetchData() {
     return this.refresh$.pipe(
       switchMap(() => {
-        return this.speciesService.speciesSpeciesGet();
+        return this.speciesService
+          .speciesSpeciesGet()
+          .pipe(map((x) => x.species));
       })
     );
   }
@@ -36,10 +38,12 @@ export class ClientSpeciesService {
   }
 
   addBreed(value: any) {
+    console.log(value);
+
     this.speciesService
       .speciesBreedsPost({
-        name: value.form.name ?? '',
-        speciesUid: value.speciesUid,
+        name: value.name ?? '',
+        speciesUid: value.uid,
       })
       .pipe(
         tap(() => {
@@ -50,18 +54,18 @@ export class ClientSpeciesService {
   }
 
   editBreed(value: any) {
-    //TODO IZMENI PODATKE
-    // const command: UpdateSpeciesCommand = {
-    //   name: value.form.name,
-    //   speciesUid: value.speciesUid,
-    // };
-    // this.speciesService
-    //   .speciesBreedsUidPut(value?.speciesUid, command)
-    //   .pipe(
-    //     tap(() => {
-    //       this.refresh();
-    //     })
-    //   )
-    //   .subscribe();
+    const command: UpdateBreedCommand = {
+      name: value.name,
+      breedUid: value.uid,
+    };
+
+    this.speciesService
+      .speciesBreedsUidPut(value?.speciesUid, command)
+      .pipe(
+        tap(() => {
+          this.refresh();
+        })
+      )
+      .subscribe();
   }
 }

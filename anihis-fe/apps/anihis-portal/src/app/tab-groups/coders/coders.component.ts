@@ -34,7 +34,7 @@ export class CodersComponent {
     {
       categoryName: 'Diagnoses, Services and Medicaments',
       data: [
-        { name: 'Types of diagnosis', action: '', icon: 'pets' },
+        { name: 'Types of diagnoses', action: '', icon: 'pets' },
         { name: 'Types of services', action: '', icon: 'pets' },
         {
           name: 'Types of medicaments',

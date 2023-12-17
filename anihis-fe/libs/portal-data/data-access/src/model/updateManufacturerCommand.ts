@@ -9,8 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Species } from './species';
 
-export interface GetSpeciesResult { 
-    species?: Array<Species>;
+export interface UpdateManufacturerCommand { 
+    manufacturerUid?: string;
+    name?: string;
+    city?: string;
+    address?: string;
+    phoneNumber?: string;
+    mobileNumber?: string;
+    bankAccount?: string;
+    contactPerson?: string;
 }

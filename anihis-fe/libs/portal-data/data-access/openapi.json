@@ -404,6 +404,318 @@
         }
       }
     },
+    "/Prescriptions/prescriptions": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionsResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionsResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionsResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePrescriptionCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePrescriptionCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePrescriptionCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Prescriptions/manufacturers": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturersResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturersResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturersResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateManufacturerCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateManufacturerCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateManufacturerCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Prescriptions/prescriptions/{uid}": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrescriptionResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrescriptionCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrescriptionCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrescriptionCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Prescriptions/manufacturers/{uid}": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturerResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturerResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetManufacturerResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateManufacturerCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateManufacturerCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateManufacturerCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Species/species": {
       "get": {
         "tags": [
@@ -415,26 +727,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetSpeciesResult"
-                  }
+                  "$ref": "#/components/schemas/GetSpeciesResult"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetSpeciesResult"
-                  }
+                  "$ref": "#/components/schemas/GetSpeciesResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetSpeciesResult"
-                  }
+                  "$ref": "#/components/schemas/GetSpeciesResult"
                 }
               }
             }
@@ -559,17 +862,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
                 }
               }
             }
@@ -981,6 +1284,10 @@
       "Breed": {
         "type": "object",
         "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -1034,6 +1341,40 @@
             "nullable": true
           },
           "speciesUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateManufacturerCommand": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPerson": {
             "type": "string",
             "nullable": true
           }
@@ -1110,6 +1451,44 @@
             "nullable": true
           },
           "veterinarianUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePrescriptionCommand": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "jm": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturerUid": {
             "type": "string",
             "nullable": true
           }
@@ -1315,6 +1694,57 @@
         },
         "additionalProperties": false
       },
+      "GetManufacturerResult": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPerson": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetManufacturersResult": {
+        "type": "object",
+        "properties": {
+          "manufacturers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Manufacturer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GetOwnerResult": {
         "type": "object",
         "properties": {
@@ -1444,15 +1874,90 @@
         },
         "additionalProperties": false
       },
-      "GetSpeciesResult": {
+      "GetPrescriptionResult": {
         "type": "object",
         "properties": {
-          "speciesUid": {
+          "uid": {
             "type": "string",
             "nullable": true
           },
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "jm": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturerName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPrescriptionsResult": {
+        "type": "object",
+        "properties": {
+          "prescriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prescription"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetSingleSpeciesResult": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breeds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Breed"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetSpeciesResult": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            },
             "nullable": true
           }
         },
@@ -1536,6 +2041,44 @@
         },
         "additionalProperties": false
       },
+      "Manufacturer": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPerson": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Owner": {
         "type": "object",
         "properties": {
@@ -1580,11 +2123,60 @@
         },
         "additionalProperties": false
       },
-      "Species": {
+      "Prescription": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "jm": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturerName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breeds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Breed"
+            },
             "nullable": true
           }
         },
@@ -1640,6 +2232,44 @@
             "nullable": true
           },
           "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateManufacturerCommand": {
+        "type": "object",
+        "properties": {
+          "manufacturerUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPerson": {
             "type": "string",
             "nullable": true
           }
@@ -1720,6 +2350,48 @@
             "nullable": true
           },
           "veterinarianUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePrescriptionCommand": {
+        "type": "object",
+        "properties": {
+          "prescriptionUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "jm": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturerUid": {
             "type": "string",
             "nullable": true
           }

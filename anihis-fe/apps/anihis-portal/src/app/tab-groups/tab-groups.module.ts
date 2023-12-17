@@ -8,7 +8,7 @@ import { CodersComponent } from './coders/coders.component';
 import { ProtocolsComponent } from './protocols/protocols.component';
 import { NewCardComponent } from './protocols/new-card/new-card.component';
 import { NewAnimalComponent } from './protocols/new-animal/new-animal.component';
-import { TypesOfDiagnosisComponent } from './coders/types-of-diagnosis/types-of-diagnosis.component';
+import { TypesOfDiagnosisComponent } from './coders/types-of-diagnoses/types-of-diagnoses.component';
 import { TypesOfServicesComponent } from './coders/types-of-services/types-of-services.component';
 import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types-of-medicaments.component';
 import { ManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component';

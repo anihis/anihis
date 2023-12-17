@@ -141,7 +141,7 @@
   "Note": "Note",
   "Therapy": "Therapy",
   "Next": "Next",
-  "Diagnosis, Services, Medicaments": "Diagnosis, Services, Medicaments",
+  "Diagnoses, Services, Medicaments": "Diagnoses, Services, Medicaments",
   "Select Diagnoses": "Select Diagnoses",
   "Diagnosis": "Diagnosis",
   "Select Services": "Select Services",
@@ -185,5 +185,7 @@
   "Action Clinic": "Action",
   "Name clinic": "Name clinic",
   "Edit clinic": "Edit clinic",
-  "Payments list": "Payments list"
+  "Payments list": "Payments list",
+  "Add new species": "Add new species",
+  "Action Species": "Add / Edit Breed"
 }

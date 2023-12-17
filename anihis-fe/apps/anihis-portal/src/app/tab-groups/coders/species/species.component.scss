@@ -22,7 +22,7 @@ section {
 .action-icons {
   display: flex;
   gap: 8px;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .wrapper {
   background: #fff !important;
@@ -58,4 +58,16 @@ td {
     background: #00142f;
     color: #fff;
   }
+}
+
+.species-column {
+  width: 10%;
+}
+
+.breed-column {
+  width: 80%;
+}
+
+.action-species-column {
+  width: 10%;
 }

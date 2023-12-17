@@ -178,7 +178,7 @@ export class NavTreeComponent {
           {
             name: 'Diagnoses, Services and Medicaments',
             children: [
-              { name: 'Types of diagnosis', action: '', icon: 'pets' },
+              { name: 'Types of diagnoses', action: '', icon: 'pets' },
               { name: 'Types of services', action: '', icon: 'pets' },
               {
                 name: 'Types of medicaments',

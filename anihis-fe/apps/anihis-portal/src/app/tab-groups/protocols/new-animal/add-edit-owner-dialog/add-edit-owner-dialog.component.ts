@@ -47,6 +47,7 @@ export class AddEditOwnerDialogComponent extends FormBaseComponent {
       passportNumber: [data?.passportNumber ?? ''],
       email: [data?.email ?? ''],
       warning: [data?.warning ?? ''],
+      discount: [data?.discount ?? ''],
     });
   }
 

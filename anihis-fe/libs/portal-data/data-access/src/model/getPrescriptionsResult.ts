@@ -9,8 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Species } from './species';
+import { Prescription } from './prescription';
 
-export interface GetSpeciesResult { 
-    species?: Array<Species>;
+export interface GetPrescriptionsResult { 
+    prescriptions?: Array<Prescription>;
 }
