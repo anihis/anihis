@@ -23,9 +23,7 @@ import {
   ApiModule as CoreApiModule,
   Configuration as CoreConfiguration,
 } from 'libs/portal-data/data-access/src';
-import { ErrorService } from 'libs/shared/util/src/services/error.service';
 import { ServerHttpInterceptor } from 'libs/shared/util/src/interceptors/server-http.interceptor';
-import { LoadingInterceptor } from 'libs/shared/util/src/interceptors/loading.interceptor';
 
 function configureTranslations(translationsService: TranslationsService) {
   return () => {
@@ -62,7 +60,7 @@ function configureAuth(authenticationService: AuthenticationService) {
     }),
     OAuthModule.forRoot({
       resourceServer: {
-        // allowedUrls: [environment.apiUrl],
+        allowedUrls: [environment.apiUrl],
         sendAccessToken: true,
       },
     }),
@@ -79,24 +77,19 @@ function configureAuth(authenticationService: AuthenticationService) {
         defaultLang: Languages.availableLanguages[0].id,
       } as TranslocoConfig,
     },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: configureTranslations,
-      multi: true,
-      deps: [TranslationsService],
-    },
+  
     // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ServerHttpInterceptor,
+    //   provide: APP_INITIALIZER,
+    //   useFactory: configureTranslations,
     //   multi: true,
-    //   deps: [ErrorService, AuthenticationService],
+    //   deps: [TranslationsService],
     // },
-
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
+      useClass: ServerHttpInterceptor,
       multi: true,
     },
+
     {
       provide: APP_INITIALIZER,
       useFactory: configureAuth,

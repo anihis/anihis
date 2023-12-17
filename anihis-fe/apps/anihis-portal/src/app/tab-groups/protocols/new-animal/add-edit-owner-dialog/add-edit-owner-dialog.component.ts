@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 import { DateAdapter } from '@angular/material/core';
@@ -12,6 +12,7 @@ import { SharedModule } from '../../../../shared/shared.module';
   styleUrls: ['./add-edit-owner-dialog.component.scss'],
   standalone: true,
   imports: [CommonModule, SharedModule],
+  encapsulation:ViewEncapsulation.None
 })
 export class AddEditOwnerDialogComponent extends FormBaseComponent {
   constructor(

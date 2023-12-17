@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.libsAuth?.loadDiscoveryDocumentAndLogin();
+    const isAuth=  this.libsAuth?.loadDiscoveryDocumentAndLogin();
+    console.log(isAuth);
+    
   }
 }

@@ -7,7 +7,7 @@ import { TabsComponentService } from '../shared/services/tabs-component.service'
   styleUrls: ['./tab-groups.component.scss'],
 })
 export class TabGroupsComponent {
-  @Input() tabs!: string[];
+  @Input() tabs!: any[];
   @Input() isShall!: boolean;
 
   @HostListener('document:keydown', ['$event'])
