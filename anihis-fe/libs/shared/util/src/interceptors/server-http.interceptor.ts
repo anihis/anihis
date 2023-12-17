@@ -6,28 +6,38 @@ import {
   HttpErrorResponse,
   HttpEvent,
 } from '@angular/common/http';
-import { Observable, throwError, catchError, take, delay, forkJoin, mergeMap, of, retryWhen, fromEvent, mapTo, merge, distinctUntilChanged } from 'rxjs';
+import {
+  Observable,
+  throwError,
+  catchError,
+  take,
+  delay,
+  forkJoin,
+  mergeMap,
+  of,
+  retryWhen,
+  fromEvent,
+  mapTo,
+  merge,
+  distinctUntilChanged,
+} from 'rxjs';
 import { ErrorService } from '../services/error.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { SnackbarComponent } from 'apps/anihis-portal/src/app/shared/component/snackbar/snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StorageKeyConstants } from '../constants/storage-key-constants';
 
-
 @Injectable({ providedIn: 'root' })
 export class ServerHttpInterceptor implements HttpInterceptor {
-
   constructor(
     private errorService: ErrorService,
     private authenticationService: AuthenticationService,
-    private snackBar: MatSnackBar,
-  ) {
-
-  }
+    private snackBar: MatSnackBar
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const language = localStorage.getItem(StorageKeyConstants.LANGUAGE_KEY);
     if (language) {
@@ -39,8 +49,7 @@ export class ServerHttpInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         this.errorService.clearServerErrors();
         switch (error.status) {
-          case 401:
-         {
+          case 401: {
             this.authenticationService.logout();
             break;
           }
@@ -53,26 +62,35 @@ export class ServerHttpInterceptor implements HttpInterceptor {
                 validationErrors.push(value);
               }
             }
-            this.showRetrySnackbar(request, next, error.error.errors.Name[0] ? error.error.errors.Name[0]: error.error.title);
+            this.showRetrySnackbar(
+              request,
+              next,
+              error.error.errors.Name[0]
+                ? error.error.errors.Name[0]
+                : error.error.title
+            );
             this.errorService.publishValidationServerErrors(validationErrors);
             break;
           }
           case 404: {
             this.showRetrySnackbar(request, next, error.error.title);
             this.errorService.publishNotFoundServerError(
-              error.error?.title ?? error.message,
+              error.error?.title ?? error.message
             );
             break;
           }
           case 500: {
-
-            this.showRetrySnackbar(request, next, 'Ops... Something went wrong!');
+            this.showRetrySnackbar(
+              request,
+              next,
+              'Ops... Something went wrong!'
+            );
             this.errorService.publishInternalServerError(
-              error.error?.title ?? error.message,
+              error.error?.title ?? error.message
             );
             break;
           }
-          case 504:{
+          case 504: {
             break;
           }
           default: {
@@ -82,16 +100,14 @@ export class ServerHttpInterceptor implements HttpInterceptor {
           }
         }
         return throwError(() => error);
-      }),
+      })
     );
   }
-  
-
 
   private showRetrySnackbar(
     request: HttpRequest<any>,
     next: HttpHandler,
-    message: string,
+    message: string
   ) {
     const snackBarRef = this.snackBar.openFromComponent(SnackbarComponent, {
       data: {
@@ -99,29 +115,31 @@ export class ServerHttpInterceptor implements HttpInterceptor {
         buttonType: 'retry',
         message: message,
       },
+      panelClass: ['error-snackbar'],
     });
-  
+
     snackBarRef.onAction().subscribe(() => {
-      this.retryRequest(request, next).pipe(take(1)).subscribe(
-        (response) => {
-          // handle successful response
-          console.log('Request succeeded:', response);
-        },
-        (error) => {
-          // handle final error after all retries
-          console.error('All retry attempts failed:', error);
-        }
-      );
+      this.retryRequest(request, next)
+        .pipe(take(1))
+        .subscribe(
+          (response) => {
+            // handle successful response
+            console.log('Request succeeded:', response);
+          },
+          (error) => {
+            // handle final error after all retries
+            console.error('All retry attempts failed:', error);
+          }
+        );
     });
   }
-  
- 
+
   private retryRequest(
     request: HttpRequest<any>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let retries = 0;
-  
+
     return forkJoin(
       of(null as unknown as HttpEvent<any>), // Use "of(null)" to ensure at least one item in the array
       this.intercept(request, next)

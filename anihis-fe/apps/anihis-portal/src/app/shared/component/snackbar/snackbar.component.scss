@@ -1,18 +1,21 @@
-  .sb__container {
-    display: flex;
-    flex-direction: row;
-    align-items: center
-  }
+.sb__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  .sb__message {
-    white-space: no-wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: flex;
-    align-items: start;
-  }
+.sb__message {
+  white-space: no-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: start;
+}
 
-  .sb__close {
-    cursor: pointer;
-  }
+.sb__close {
+  cursor: pointer;
+}
 
+.sb__action {
+  color: #eee !important;
+}

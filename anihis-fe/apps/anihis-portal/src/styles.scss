@@ -375,3 +375,22 @@ anihis-admin {
     font-weight: 700;
   }
 }
+
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.error-snackbar {
+  div {
+    background-color: #dd2526 !important;
+  }
+}
+
+.success-snackbar {
+  div {
+    background-color: #31a34a !important;
+  }
+}
