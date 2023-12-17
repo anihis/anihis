@@ -25,7 +25,10 @@ const routes: Routes = [
     component: ShellComponent,
     // canActivate: [AuthGuard],
   },
-
+//  {
+//   path:'protocols',
+//   loadChildren:()=>import('./tab-groups/protocols/protocols.module').then((m)=>m.ProtcolsModule)
+//  },
   {
     path: '**',
     redirectTo: '/' + RouteConstants.NEW_CARDS_ROUTE,

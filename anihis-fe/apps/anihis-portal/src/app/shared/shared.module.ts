@@ -24,6 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { SnackbarModule } from './component/snackbar/snackbar.module';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ThemeSwitchDirective],
@@ -53,6 +55,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatProgressSpinnerModule,
     MatStepperModule,
     MatMomentDateModule,
+    SnackbarModule
   ],
   exports: [
     ThemeSwitchDirective,

@@ -1,0 +1,18 @@
+<span class="sb__container" aria-label="snackbar" role="alert">
+  <span matSnackBarLabel class="sb__message" aria-label="snackbar message">
+    {{ data.message }}
+  </span>
+
+  <span *ngFor="let buttonAction of data?.action" matSnackBarActions>
+    <button
+      (click)="onActionClick(buttonAction)"
+      matSnackBarAction
+      mat-button
+      color="primary"
+      class="sb__action"
+      [ariaLabel]="buttonAction"
+    >
+      {{ buttonAction }}
+    </button>
+  </span>
+</span>

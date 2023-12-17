@@ -1,6 +1,6 @@
 .two-column {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  // grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
   margin: 24px 24px 16px 24px;
 }

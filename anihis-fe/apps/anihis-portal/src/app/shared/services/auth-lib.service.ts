@@ -1,30 +1,26 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../../../environments/environment';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private readonly unsubscribe$ = new Subject<void>();
+
   constructor(private oauthService: OAuthService) {}
 
-  async loadDiscoveryDocumentAndLogin() {
-    const isAuthenticated =
-      await this.oauthService?.loadDiscoveryDocumentAndLogin();
+  loadDiscoveryDocumentAndLogin() {
+    const isAuthenticated = this.oauthService?.loadDiscoveryDocumentAndLogin();
     this.oauthService.setupAutomaticSilentRefresh();
-    // console.log(isAuthenticated);
 
     return isAuthenticated;
   }
-  getName() {
-    return this.oauthService.getIdentityClaims()['preferred_username'];
-  }
-  getEmail() {
-    return this.oauthService.getIdentityClaims()['email'];
-  }
+
   logout() {
-    // localStorage.clear()
-    this.oauthService.revokeTokenAndLogout();
+    // localStorage.clear();
+     this.oauthService.revokeTokenAndLogout();
   }
 
   getAccessToken() {
@@ -36,10 +32,11 @@ export class AuthenticationService {
       showDebugInformation: isDevMode(),
       // Url of the Identity Provider
       issuer: environment.authorityUrl,
+      // TODO: requireHttps should depend on environment
       requireHttps: false,
 
       // URL of the SPA to redirect the user to after login
-      redirectUri: environment.portalUrl,
+      redirectUri: location.origin,
       postLogoutRedirectUri: environment.portalUrl,
 
       // The SPA's id. The SPA is registerd with this id at the auth-server
@@ -56,13 +53,18 @@ export class AuthenticationService {
       // OAuth2-based access_token
       //this.oauthService.oidc = true; // ID_Token
 
-      // customQueryParams: {
-      //   ClientTenant: 'portal',
-      // },
+      customQueryParams: {
+        ClientTenant: 'portal',
+      },
       // revocationEndpoint: `${authorityApiUrl}`,
       // logoutUrl: `${authorityApiUrl}`,
       silentRefreshTimeout: 60 * 1,
+      preserveRequestedRoute: true,
     });
     this.oauthService.setStorage(localStorage);
+  }
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

@@ -25,7 +25,7 @@ export class ShellComponent implements OnDestroy, OnInit {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
-  tabsName$ = this.tabsComponentService.openTabs$;
+  tabs=JSON.parse(localStorage.getItem('tabs') || '[]') ;
 
   printPage$ = this.applicationStateService.printPage$.subscribe((res) => {
     this.printPage();
@@ -35,7 +35,14 @@ export class ShellComponent implements OnDestroy, OnInit {
     private breakpointObserver: BreakpointObserver,
     private applicationStateService: ApplicationStateService,
     private tabsComponentService: TabsComponentService
-  ) {}
+  ) {
+    this.tabsComponentService.openTabs$.subscribe((res:any)=>{
+      if(res){
+        this.tabs=JSON.parse(localStorage.getItem('tabs') || '[]') ;
+      }
+      
+    })
+  }
 
   ngOnInit() {
     this.breakpointObserver

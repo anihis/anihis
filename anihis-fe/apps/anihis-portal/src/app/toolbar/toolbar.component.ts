@@ -62,7 +62,7 @@ export class ToolbarComponent {
     this.navigationService.navigateTo(route);
   }
 
-  async logOut() {
-    await this.authenticationService.logout();
+   logOut() {
+     this.authenticationService.logout();
   }
 }
