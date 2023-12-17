@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
-export class NewCardService {
+export class CardsService {
   private _isOpenHistoryCard = new BehaviorSubject<boolean>(false);
   isOpenHistoryCard$ = this._isOpenHistoryCard.asObservable();
 

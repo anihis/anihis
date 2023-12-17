@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { NewCardService } from '../new-card.service';
+import { CardsService } from '../cards.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from '../../../../shared/shared.module';
-import { PeriodicElement } from '../new-card.component';
+import { PeriodicElement } from '../cards.component';
 import { CardHistoryService } from './card-history.service';
 import { PreviewCardHistoryComponent } from './preview-card-history/preview-card-history.component';
 import { ApplicationStateService } from '../../../../shared/services/application-state.service';
@@ -83,7 +83,7 @@ export class CardHistoryComponent implements AfterViewInit {
   ];
 
   constructor(
-    private newCardService: NewCardService,
+    private cardsService: CardsService,
     private cardHistoryService: CardHistoryService,
     private applicationStateService: ApplicationStateService,
     private dialog: MatDialog
@@ -162,6 +162,6 @@ export class CardHistoryComponent implements AfterViewInit {
   }
 
   back() {
-    this.newCardService.isOpenHistory(false);
+    this.cardsService.isOpenHistory(false);
   }
 }

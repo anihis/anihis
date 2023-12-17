@@ -15,7 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { CardHistoryComponent } from './card-history/card-history.component';
-import { NewCardService } from './new-card.service';
+import { CardsService } from './cards.service';
 import { AddEditReportDialogComponent } from './add-edit-report-dialog/add-edit-report-dialog.component';
 
 export interface PeriodicElement {
@@ -40,9 +40,9 @@ export interface PeriodicElement {
 
 @Component({
   standalone: true,
-  selector: 'anihis-new-card',
-  templateUrl: './new-card.component.html',
-  styleUrls: ['./new-card.component.scss'],
+  selector: 'anihis-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.scss'],
   imports: [
     CommonModule,
     SharedModule,
@@ -60,13 +60,13 @@ export interface PeriodicElement {
     MatTableModule,
     CardHistoryComponent,
   ],
-  providers: [NewCardService],
+  providers: [CardsService],
 })
-export class NewCardComponent implements AfterViewInit {
+export class CardsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageSize = 6;
   pageIndex = 0;
-  isDisplayHistoryCard$ = this.newCardService.isOpenHistoryCard$;
+  isDisplayHistoryCard$ = this.cardsService.isOpenHistoryCard$;
   tableDate: PeriodicElement[] = [
     {
       uid: '1',
@@ -145,10 +145,7 @@ export class NewCardComponent implements AfterViewInit {
     'action',
   ];
 
-  constructor(
-    private dialog: MatDialog,
-    private newCardService: NewCardService
-  ) {}
+  constructor(private dialog: MatDialog, private cardsService: CardsService) {}
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource<any>(this.tableDate);
@@ -191,7 +188,7 @@ export class NewCardComponent implements AfterViewInit {
   // }
 
   toggleHistoryCard() {
-    this.newCardService.isOpenHistory(true);
+    this.cardsService.isOpenHistory(true);
   }
 
   openAddReportDialog(data: any) {

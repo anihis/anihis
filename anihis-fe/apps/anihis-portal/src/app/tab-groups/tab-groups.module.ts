@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { CodersComponent } from './coders/coders.component';
 import { ProtocolsComponent } from './protocols/protocols.component';
-import { NewCardComponent } from './protocols/new-card/new-card.component';
 import { NewAnimalComponent } from './protocols/new-animal/new-animal.component';
 import { TypesOfDiagnosisComponent } from './coders/types-of-diagnoses/types-of-diagnoses.component';
 import { TypesOfServicesComponent } from './coders/types-of-services/types-of-services.component';
@@ -16,6 +15,7 @@ import { AddManufacturersOfMedicamentsComponent } from './coders/manufacturers-o
 import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component';
 import { SpeciesComponent } from './coders/species/species.component';
 import { AddEditBreedComponent } from './coders/species/add-edit-breed/add-edit-breed.component';
+import { CardsComponent } from './protocols/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { AddEditBreedComponent } from './coders/species/add-edit-breed/add-edit-
   imports: [
     CommonModule,
     SharedModule,
-    NewCardComponent,
+    CardsComponent,
     NewAnimalComponent,
     TypesOfDiagnosisComponent,
     TypesOfServicesComponent,
