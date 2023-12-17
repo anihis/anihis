@@ -11,6 +11,8 @@ import { PreviewCardHistoryComponent } from './preview-card-history/preview-card
 import { ApplicationStateService } from '../../../../shared/services/application-state.service';
 import { AddEditReportDialogComponent } from '../add-edit-report-dialog/add-edit-report-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PaymentsListDialogComponent } from './payments-list-dialog/payments-list-dialog.component';
+import { AddNewPaymentDialogComponent } from './add-new-payment-dialog/add-new-payment-dialog.component';
 
 @Component({
   selector: 'anihis-card-history',
@@ -92,12 +94,6 @@ export class CardHistoryComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  onPageChange(event: any): void {
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
-    this.dataSource.paginator = this.paginator;
-  }
-
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
   }
@@ -117,6 +113,33 @@ export class CardHistoryComponent implements AfterViewInit {
       width: '1286px',
       height: '728px',
       data: { ...element },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Spremljeno:', result);
+      }
+    });
+  }
+
+  openPaymentsDialog() {
+    const dialogRef = this.dialog.open(PaymentsListDialogComponent, {
+      width: '1286px',
+      height: '728px',
+      // data: { ...element },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Spremljeno:', result);
+      }
+    });
+  }
+
+  openAddNewPaymentDialog() {
+    const dialogRef = this.dialog.open(AddNewPaymentDialogComponent, {
+      width: '465px',
+      // data: { ...element },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

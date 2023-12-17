@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿using anihis.Application.Species.Queries.GetSpecies;
+using MediatR;
 
-namespace anihis.Application.Species.Queries.Get;
-public class GetSpeciesQuery : IRequest<List<GetSpeciesResult>>
+namespace anihis.Application.Species.Queries.GetSpecies;
+public class GetSpeciesQuery : IRequest<GetSpeciesResult>
 {
 }
