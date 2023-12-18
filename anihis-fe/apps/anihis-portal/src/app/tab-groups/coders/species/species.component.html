@@ -47,12 +47,14 @@
                     (click)="openAddEditBreedDialog(element, data)"
                     >add</mat-icon
                   >
-
-                  <mat-icon
-                    class="material-symbols-outlined cursor"
-                    (click)="openAddEditBreedDialog(element, data, true)"
-                    >edit</mat-icon
-                  >
+                  <div style="width: 24px">
+                    <mat-icon
+                      *ngIf="element.breeds.length > 0"
+                      class="material-symbols-outlined cursor"
+                      (click)="openAddEditBreedDialog(element, data, true)"
+                      >edit</mat-icon
+                    >
+                  </div>
                 </div>
               </td>
             </ng-container>

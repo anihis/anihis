@@ -9,6 +9,8 @@ import { FormBaseComponent } from '../../../../shared/base-components/form-base.
   styleUrls: ['./add-edit-breed.component.scss'],
 })
 export class AddEditBreedComponent extends FormBaseComponent {
+  selectedBreed: any;
+
   constructor(
     public dialogRef: MatDialogRef<AddEditBreedComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

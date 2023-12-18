@@ -18,13 +18,26 @@
     </div>
     <div style="margin: 0px 16px" *ngIf="data?.isEdit">
       <h3>{{ 'Select breed for edit' }}</h3>
-      <div
+      <!-- <div
         style="margin-left: 16px"
         *ngFor="let breed of data.data.breeds; last as l"
       >
         <p (click)="editSelectBreed(breed)">{{ breed.name }}</p>
         <hr *ngIf="!l" />
-      </div>
+      </div> -->
+
+      <mat-form-field>
+        <mat-label>Izaberite rasu</mat-label>
+        <mat-select name="breed">
+          <mat-option
+            *ngFor="let breed of data.data.breeds"
+            [value]="breed"
+            (click)="editSelectBreed(breed)"
+          >
+            {{ breed.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="btn-save-wrapper">
       <button mat-raised-button (click)="saveChanges()">

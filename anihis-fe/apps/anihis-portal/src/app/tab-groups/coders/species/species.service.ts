@@ -42,8 +42,8 @@ export class ClientSpeciesService {
 
     this.speciesService
       .speciesBreedsPost({
-        name: value.name ?? '',
-        speciesUid: value.uid,
+        name: value?.name ?? '',
+        speciesUid: value?.uid,
       })
       .pipe(
         tap(() => {
@@ -55,8 +55,8 @@ export class ClientSpeciesService {
 
   editBreed(value: any) {
     const command: UpdateBreedCommand = {
-      name: value.name,
-      breedUid: value.uid,
+      name: value?.name,
+      breedUid: value?.uid,
     };
 
     this.speciesService

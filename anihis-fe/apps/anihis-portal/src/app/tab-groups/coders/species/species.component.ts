@@ -89,9 +89,9 @@ export class SpeciesComponent implements AfterViewInit {
       data: { ...{ data: dataBreed }, isEdit },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.isEdit) {
+      if (result && result?.isEdit) {
         this.clientSpeciesService.editBreed(result);
-      } else {
+      } else if (result) {
         this.clientSpeciesService.addBreed(result);
       }
     });
