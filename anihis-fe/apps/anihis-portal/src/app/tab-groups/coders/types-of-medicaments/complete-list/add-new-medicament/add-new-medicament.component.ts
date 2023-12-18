@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Validators } from '@angular/forms';
-import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBaseComponent } from '../../../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../../../shared/shared.module';
@@ -16,12 +15,10 @@ import { SharedModule } from '../../../../../shared/shared.module';
 export class AddNewMedicamentComponent extends FormBaseComponent {
   constructor(
     public dialogRef: MatDialogRef<AddNewMedicamentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dateAdapter: DateAdapter<Date>
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super();
     this.initializeForm();
-    this.dateAdapter.setLocale('en-GB'); // Format calendara DD/MM/YYYY
   }
 
   private initializeForm() {
@@ -41,10 +38,8 @@ export class AddNewMedicamentComponent extends FormBaseComponent {
     console.log(this.form.value);
 
     if (this.checkFormValidity()) return;
-    console.log(this.form.value);
 
     this.dialogRef.close(this.form.getRawValue());
-    // this.dialogRef.close(this.data);
   }
 
   closeDialog(): void {

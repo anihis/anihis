@@ -11,6 +11,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { OwnersService } from 'libs/portal-data/data-access/src/api/owners.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { LoadingService } from 'libs/shared/util/src/services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GetOwnersResult } from 'libs/portal-data/data-access/src';

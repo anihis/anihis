@@ -38,19 +38,7 @@ export interface ManufacturersElement {
   templateUrl: './manufacturers-of-medicaments.component.html',
   styleUrls: ['./manufacturers-of-medicaments.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    SharedModule,
-    MatCardModule,
-    NameColumnPipe,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatTableModule,
-  ],
+  imports: [CommonModule, SharedModule],
   providers: [ManufacturersOfMedicamentsService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -102,14 +90,6 @@ export class ManufacturersOfMedicamentsComponent implements AfterViewInit {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.dataSource.paginator = this.paginator;
-  }
-
-  getObjectKeys(obj: any): string[] {
-    return Object.keys(obj);
-  }
-
-  getType(column: string): string {
-    return column === 'tel' ? 'number' : 'string';
   }
 
   openDeleteConfirmationDialog(element: any): void {

@@ -7,7 +7,7 @@ import { ProtocolsRoutingModule } from './protocols.routing';
 @NgModule({
   declarations: [ProtocolsComponent],
   imports: [CommonModule, SharedModule, ProtocolsRoutingModule],
-  exports: [ProtocolsComponent,SharedModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  exports: [ProtocolsComponent, SharedModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProtcolsModule {}
