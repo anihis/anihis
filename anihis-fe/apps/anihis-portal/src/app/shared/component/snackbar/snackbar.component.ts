@@ -17,7 +17,7 @@ export class SnackbarComponent {
   ) {}
 
   onActionClick(type: string) {
-    switch (type.toLowerCase()) {
+    switch (type?.toLowerCase()) {
       case 'close':
       case 'x': {
         this.snackBarRef.dismiss();

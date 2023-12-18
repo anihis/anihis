@@ -11,11 +11,10 @@ import { TypesOfDiagnosisComponent } from './coders/types-of-diagnoses/types-of-
 import { TypesOfServicesComponent } from './coders/types-of-services/types-of-services.component';
 import { TypesOfMedicamentsComponent } from './coders/types-of-medicaments/types-of-medicaments.component';
 import { ManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/manufacturers-of-medicaments.component';
-import { AddManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component';
-import { EditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component';
 import { SpeciesComponent } from './coders/species/species.component';
 import { AddEditBreedComponent } from './coders/species/add-edit-breed/add-edit-breed.component';
 import { CardsComponent } from './protocols/cards/cards.component';
+import { AddEditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { CardsComponent } from './protocols/cards/cards.component';
     PharmacyComponent,
     CodersComponent,
     ProtocolsComponent,
-    AddManufacturersOfMedicamentsComponent,
-    EditManufacturersOfMedicamentsComponent,
+    AddEditManufacturersOfMedicamentsComponent,
     AddEditBreedComponent,
   ],
 

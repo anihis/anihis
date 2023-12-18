@@ -187,5 +187,7 @@
   "Edit clinic": "Edit clinic",
   "Payments list": "Payments list",
   "Add new species": "Add new species",
-  "Action Species": "Add / Edit Breed"
+  "Action Species": "Add / Edit Breed",
+  "actionManufacturersOfMedicaments": "Edit/Delete",
+  "Are you sure you want to delete?": "Are you sure you want to delete?"
 }

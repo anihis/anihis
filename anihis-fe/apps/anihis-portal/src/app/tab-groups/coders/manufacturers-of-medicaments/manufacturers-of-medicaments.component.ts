@@ -17,8 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { DeleteConfirmationDialogComponent } from '../../../shared/component/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { AddManufacturersOfMedicamentsComponent } from './add-manufacturers-of-medicaments/add-manufacturers-of-medicaments.component';
-import { EditManufacturersOfMedicamentsComponent } from './edit-manufacturers-of-medicaments/edit-manufacturers-of-medicaments.component';
+import { AddEditManufacturersOfMedicamentsComponent } from './add-edit-manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments.component';
+import { ManufacturersOfMedicamentsService } from './manufacturers-of-medicaments.service';
+import { tap } from 'rxjs';
+import { Manufacturer } from 'libs/portal-data/data-access/src';
+import { translate } from '@ngneat/transloco';
 
 export interface ManufacturersElement {
   uid: string;
@@ -45,44 +48,54 @@ export interface ManufacturersElement {
     MatInputModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSelectModule,
     MatButtonModule,
     MatTableModule,
   ],
+  providers: [ManufacturersOfMedicamentsService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManufacturersOfMedicamentsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  pageSize = 6;
-  pageIndex = 0;
-  tableDate: ManufacturersElement[] = [
-    {
-      uid: 'dsadh098890ihjdosa',
-      manufacturerOfSupplier: 'Velvet',
-      place: 'Nis',
-      address: 'Test adresa',
-      tel: 123545,
-      giroAccount: '4884844-444888-74878',
-      contactPerson: 'Dusan',
-    },
-  ];
-  dataSource = new MatTableDataSource<any>(this.tableDate);
+  data$ = this.manufacturersOfMedicamentsService
+    .fetchData()
+    .pipe(tap((results) => this.prepareDataSource(results)));
 
   displayedColumns: string[] = [
     'manufacturerOfSupplier',
-    'place',
+    'city',
     'address',
-    'tel',
-    'giroAccount',
+    'phoneNumber',
+    'mobileNumber',
+    'bankAccount',
     'contactPerson',
     'actionManufacturersOfMedicaments',
   ];
+  dataSource = new MatTableDataSource<Manufacturer[]>([]);
 
-  constructor(private dialog: MatDialog) {}
+  pageSize!: number;
+  pageIndex!: number;
+
+  constructor(
+    private dialog: MatDialog,
+    private manufacturersOfMedicamentsService: ManufacturersOfMedicamentsService
+  ) {}
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource<any>(this.tableDate);
     this.dataSource.paginator = this.paginator;
+  }
+
+  prepareDataSource(manufacturers: any) {
+    const formattedData = manufacturers.map((manufacturer: any) => ({
+      uid: manufacturer.uid,
+      name: manufacturer.name,
+      city: manufacturer.city,
+      address: manufacturer.address,
+      phoneNumber: manufacturer.phoneNumber,
+      mobileNumber: manufacturer.mobileNumber,
+      bankAccount: manufacturer.bankAccount,
+      contactPerson: manufacturer.contactPerson,
+    }));
+    this.dataSource.data = formattedData;
   }
 
   onPageChange(event: any): void {
@@ -99,69 +112,51 @@ export class ManufacturersOfMedicamentsComponent implements AfterViewInit {
     return column === 'tel' ? 'number' : 'string';
   }
 
-  applyFilter(event: any, column: string) {
-    const filterValue = event.target.value.trim().toLowerCase();
-    this.dataSource.filterPredicate = (data, filter) => {
-      const value = data[column].toString().toLowerCase();
-      return value.includes(filter);
-    };
-
-    this.dataSource.filter = filterValue;
-  }
-
-  openDeleteConfirmationDialog(): void {
+  openDeleteConfirmationDialog(element: any): void {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: '465px',
-      data: 'Da li ste sigurni da želite da obrišete?',
+      data: translate('Are you sure you want to delete?'),
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
-        console.log('Obrisano');
+        this.manufacturersOfMedicamentsService.deleteManufacturerOfMedicaments(
+          element.uid
+        );
       }
     });
   }
 
-  // toggleHistoryCard() {
-  //   this.newCardService.isOpenHistory(true);
-  // }
-
-  openAddReportDialog(data: any) {
-    // const dialogRef = this.dialog.open(AddEditReportDialogComponent, {
-    //   width: '1286px',
-    //   height: '728px',
-    //   data: { ...data },
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     console.log('Spremljeno:', result);
-    //   }
-    // });
-  }
-
-  openEditDialog(data: any) {
+  openEditManufacturersOfMedicamentsDialog(data: any) {
     const dialogRef = this.dialog.open(
-      EditManufacturersOfMedicamentsComponent,
+      AddEditManufacturersOfMedicamentsComponent,
       {
         width: '600px',
-        // data: { ...data },
+        data: { ...data, isEdit: true },
       }
     );
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Spremljeno:', result);
+        this.manufacturersOfMedicamentsService.editManufacturerOfMedicaments(
+          result
+        );
       }
     });
   }
 
   openAddManufacturersOfMedicamentsDialog() {
-    const dialogRef = this.dialog.open(AddManufacturersOfMedicamentsComponent, {
-      width: '600px',
-      // data: { ...data },
-    });
+    const dialogRef = this.dialog.open(
+      AddEditManufacturersOfMedicamentsComponent,
+      {
+        width: '600px',
+        data: { isEdit: false },
+      }
+    );
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Spremljeno:', result);
+        this.manufacturersOfMedicamentsService.addManufacturerOfMedicaments(
+          result.form
+        );
       }
     });
   }

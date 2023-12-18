@@ -4,13 +4,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBaseComponent } from '../../../../shared/base-components/form-base.component';
 
 @Component({
-  selector: 'anihis-add-manufacturers-of-medicaments',
-  templateUrl: './add-manufacturers-of-medicaments.component.html',
-  styleUrls: ['./add-manufacturers-of-medicaments.component.scss'],
+  selector: 'anihis-add-edit-manufacturers-of-medicaments',
+  templateUrl: './add-edit-manufacturers-of-medicaments.component.html',
+  styleUrls: ['./add-edit-manufacturers-of-medicaments.component.scss'],
 })
-export class AddManufacturersOfMedicamentsComponent extends FormBaseComponent {
+export class AddEditManufacturersOfMedicamentsComponent extends FormBaseComponent {
   constructor(
-    public dialogRef: MatDialogRef<AddManufacturersOfMedicamentsComponent>,
+    public dialogRef: MatDialogRef<AddEditManufacturersOfMedicamentsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super();
@@ -18,8 +18,8 @@ export class AddManufacturersOfMedicamentsComponent extends FormBaseComponent {
 
   formData = [
     {
-      label: 'Manufacturer Of Supplier',
-      formControlName: 'manufacturerOfSupplier',
+      label: 'Name Manufacturer Of Supplier',
+      formControlName: 'name',
       type: 'string',
       readonly: false,
       value: '',
@@ -29,13 +29,13 @@ export class AddManufacturersOfMedicamentsComponent extends FormBaseComponent {
       page: 'ManufacturersOfMedicamentsComponent',
     },
     {
-      label: 'Place',
-      formControlName: 'place',
+      label: 'City',
+      formControlName: 'city',
       type: 'string',
       readonly: false,
       value: '',
       inputType: 'input',
-      placeholder: 'Enter your place',
+      placeholder: 'Enter your city',
       required: true,
       page: 'ManufacturersOfMedicamentsComponent',
     },
@@ -51,26 +51,38 @@ export class AddManufacturersOfMedicamentsComponent extends FormBaseComponent {
       page: 'ManufacturersOfMedicamentsComponent',
     },
     {
-      label: 'Tel',
-      formControlName: 'tel',
+      label: 'Phone Number',
+      formControlName: 'phoneNumber',
       type: 'string',
       readonly: false,
       value: '',
       inputType: 'input',
-      placeholder: 'Enter your tel',
+      placeholder: 'Enter your phone number',
       required: true,
       page: 'ManufacturersOfMedicamentsComponent',
     },
 
     {
-      label: 'Giro Account',
-      formControlName: 'giroAccount',
+      label: 'Mobile Number',
+      formControlName: 'mobileNumber',
       type: 'string',
       readonly: false,
       value: '',
       inputType: 'input',
-      placeholder: 'Enter your giro account',
-      required: false,
+      placeholder: 'Enter your mobile number',
+      required: true,
+      page: 'ManufacturersOfMedicamentsComponent',
+    },
+
+    {
+      label: 'Bank Account',
+      formControlName: 'bankAccount',
+      type: 'string',
+      readonly: false,
+      value: '',
+      inputType: 'input',
+      placeholder: 'Enter your bank account',
+      required: true,
       page: 'ManufacturersOfMedicamentsComponent',
     },
 
@@ -90,23 +102,29 @@ export class AddManufacturersOfMedicamentsComponent extends FormBaseComponent {
   buttons = [
     { text: 'Clear', functionBtn: 'clear', type: 'mat-button' },
     {
-      text: 'Add new manufacturers of medicaments',
+      text: this.data.isEdit
+        ? 'Edit new manufacturers of medicaments'
+        : 'Add new manufacturers of medicaments',
       functionBtn: 'submit',
     },
   ];
 
   override form = this.fb.nonNullable.group({
-    manufacturerOfSupplier: ['', [Validators.required]],
-    place: [''],
-    address: ['', [Validators.required]],
-    tel: ['', [Validators.required]],
-    giroAccount: [''],
-    contactPerson: [''],
+    name: [this.data.name ?? '', [Validators.required]],
+    city: [this.data.city ?? ''],
+    address: [this.data.address ?? '', [Validators.required]],
+    phoneNumber: [this.data.phoneNumber ?? '', [Validators.required]],
+    mobileNumber: [this.data.mobileNumber ?? '', [Validators.required]],
+    bankAccount: [this.data.bankAccount ?? ''],
+    contactPerson: [this.data.contactPerson ?? ''],
   });
 
   saveChanges() {
     if (this.checkFormValidity()) return;
-    this.dialogRef.close(this.form.getRawValue());
+    this.dialogRef.close({
+      form: this.form.getRawValue(),
+      uid: this.data.uid ?? '',
+    });
   }
 
   closeDialog(): void {

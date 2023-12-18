@@ -2,82 +2,53 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
+  .row-add {
+    display: flex;
+    justify-content: flex-end;
+    margin: 24px 24px 24px 0px;
+  }
+
   .wrapper {
     margin-bottom: 40px;
     background: #fff !important;
-
+    display: flex;
+    justify-content: center;
     .mat-mdc-table {
       box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
     }
+
+    .card {
+      width: 90%;
+    }
+
+    .manufacturerOfSupplier,
+    .city,
+    .address,
+    .phoneNumber,
+    .mobileNumber,
+    .bankAccount,
+    .contactPerson,
+    .action {
+      width: 10% !important;
+    }
+
+    .action {
+      width: 10% !important;
+    }
+
+    th:last-child {
+      text-align: center !important;
+    }
+
+    td {
+      word-break: break-all;
+    }
+
+    .action-icons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
   }
-}
-
-.filter-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.action-icons {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-.wrapper {
-  background: #fff !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  display: flex;
-  justify-content: center;
-}
-
-.card-animal {
-  padding: 16px;
-  width: 90%;
-}
-
-.mat-column-email-tel {
-  white-space: nowrap !important;
-}
-
-.action-column {
-  width: 180px;
-}
-
-td {
-  word-break: break-all;
-}
-
-.manufacturerOfSupplier {
-  width: 15% !important;
-}
-.place {
-  width: 15% !important;
-}
-.address {
-  width: 15% !important;
-}
-.tel {
-  width: 15% !important;
-}
-.giroAccount {
-  width: 15% !important;
-}
-
-.contactPerson {
-  width: 15% !important;
-}
-
-.action {
-  width: 10% !important;
-}
-
-th:last-child {
-  text-align: center !important;
-}
-
-.row-add {
-  display: flex;
-  justify-content: end;
-  margin: 24px 24px 24px 0px;
 }

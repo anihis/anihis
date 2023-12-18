@@ -185,5 +185,7 @@
   "Edit clinic": "Izmeni ambulantu",
   "Payments list": "Lista naplata",
   "Add new species": "Dodaj novu vrstu",
-  "Action Species": "Dodaj / Izmeni rasu "
+  "Action Species": "Dodaj / Izmeni rasu ",
+  "actionManufacturersOfMedicaments": "Izmeni / Obrisi",
+  "Are you sure you want to delete?": "Da li ste sigurni da želite da obrišete?"
 }
