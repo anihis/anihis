@@ -23,6 +23,17 @@ import { CardOwnerComponent } from './protocols/card-owner/card-owner.component'
 import { HealthRecordAnimalsComponent } from './protocols/health-record-animals/health-record-animals.component';
 import { SerialNumberConfirmationComponent } from './protocols/serial-number-confirmation/serial-number-confirmation.component';
 import { PricesAtConfirmationsComponent } from './protocols/prices-at-confirmations/prices-at-confirmations.component';
+import { StatePharmacyComponent } from './pharmacy/state-pharmacy/state-pharmacy.component';
+import { SpendingMedicamentsGroupsComponent } from './pharmacy/spending-medicaments-groups/spending-medicaments-groups.component';
+import { SpendingMedicamentsComponent } from './pharmacy/spending-medicaments/spending-medicaments.component';
+import { ProcurementComponent } from './pharmacy/procurement/procurement.component';
+import { PriceListMedicamentsComponent } from './pharmacy/price-list-medicaments/price-list-medicaments.component';
+import { OptimalLagerComponent } from './pharmacy/optimal-lager/optimal-lager.component';
+import { ObligationOfThePharmacyComponent } from './pharmacy/obligation-of-the-pharmacy/obligation-of-the-pharmacy.component';
+import { MinimalLagerComponent } from './pharmacy/minimal-lager/minimal-lager.component';
+import { MedicamentsOutputComponent } from './pharmacy/medicaments-output/medicaments-output.component';
+import { DissolutionOfThePharmacyComponent } from './pharmacy/dissolution-of-the-pharmacy/dissolution-of-the-pharmacy.component';
+import { CardMedicamentComponent } from './pharmacy/card-medicament/card-medicament.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +63,17 @@ import { PricesAtConfirmationsComponent } from './protocols/prices-at-confirmati
     HealthRecordAnimalsComponent,
     SerialNumberConfirmationComponent,
     PricesAtConfirmationsComponent,
+    StatePharmacyComponent,
+    SpendingMedicamentsGroupsComponent,
+    SpendingMedicamentsComponent,
+    ProcurementComponent,
+    PriceListMedicamentsComponent,
+    OptimalLagerComponent,
+    ObligationOfThePharmacyComponent,
+    MinimalLagerComponent,
+    MedicamentsOutputComponent,
+    DissolutionOfThePharmacyComponent,
+    CardMedicamentComponent,
   ],
 
   exports: [TabGroupsComponent],
