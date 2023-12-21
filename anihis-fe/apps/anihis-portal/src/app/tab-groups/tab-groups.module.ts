@@ -19,6 +19,7 @@ import { ExcellentVaccinationsComponent } from './protocols/excellent-vaccinatio
 import { DailyReportsComponent } from './protocols/daily-reports/daily-reports.component';
 import { BlackListComponent } from './protocols/black-list/black-list.component';
 import { DebtorsComponent } from './protocols/debtors/debtors.component';
+import { CardOwnerComponent } from './protocols/card-owner/card-owner.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DebtorsComponent } from './protocols/debtors/debtors.component';
     DailyReportsComponent,
     BlackListComponent,
     DebtorsComponent,
+    CardOwnerComponent,
   ],
 
   exports: [TabGroupsComponent, ProtocolsComponent],

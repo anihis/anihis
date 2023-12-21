@@ -201,5 +201,7 @@
   "medicationOtherExpenses": "Medication other expenses",
   "total": "Total",
   "paid": "Paid",
-  "actionBlackList": "Delete"
+  "actionBlackList": "Delete",
+  "code": "Code",
+  "actionCardOwner": "Preview"
 }
