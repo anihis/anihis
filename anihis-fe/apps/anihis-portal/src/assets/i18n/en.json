@@ -189,5 +189,16 @@
   "Add new species": "Add new species",
   "Action Species": "Add / Edit Breed",
   "actionManufacturersOfMedicaments": "Edit/Delete",
-  "Are you sure you want to delete?": "Are you sure you want to delete?"
+  "Are you sure you want to delete?": "Are you sure you want to delete?",
+  "record": "Record",
+  "serialNumberOfOwner": "Serial number of the owner",
+  "speciesBreeds": "Species / Breeds",
+  "name": "Name",
+  "card": "Card",
+  "Protocol": "protocol",
+  "vet": "Vet",
+  "services": "Services",
+  "medicationOtherExpenses": "Medication other expenses",
+  "total": "Total",
+  "paid": "Paid"
 }

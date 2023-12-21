@@ -16,6 +16,7 @@ import { AddEditBreedComponent } from './coders/species/add-edit-breed/add-edit-
 import { CardsComponent } from './protocols/cards/cards.component';
 import { AddEditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments.component';
 import { ExcellentVaccinationsComponent } from './protocols/excellent-vaccinations/excellent-vaccinations.component';
+import { DailyReportsComponent } from './protocols/daily-reports/daily-reports.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { ExcellentVaccinationsComponent } from './protocols/excellent-vaccinatio
     ManufacturersOfMedicamentsComponent,
     SpeciesComponent,
     ExcellentVaccinationsComponent,
+    DailyReportsComponent,
   ],
+
   exports: [TabGroupsComponent, ProtocolsComponent],
 })
 export class TabGroupsModule {}

@@ -187,5 +187,16 @@
   "Add new species": "Dodaj novu vrstu",
   "Action Species": "Dodaj / Izmeni rasu ",
   "actionManufacturersOfMedicaments": "Izmeni / Obrisi",
-  "Are you sure you want to delete?": "Da li ste sigurni da želite da obrišete?"
+  "Are you sure you want to delete?": "Da li ste sigurni da želite da obrišete?",
+  "record": "Evid",
+  "serialNumberOfOwner": "R. br. Vlasnika",
+  "speciesBreeds": "Vrsta / rasa",
+  "name": "Ime",
+  "card": "Karton",
+  "Protocol": "Protokol",
+  "vet": "Veterinar",
+  "services": "Usluga",
+  "medicationOtherExpenses": "Lek i ostali troskovi",
+  "total": "Ukupno",
+  "paid": "Uplaceno"
 }
