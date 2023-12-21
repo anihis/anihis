@@ -72,7 +72,6 @@ export abstract class FormBaseComponent<
     return false;
   }
 
-  //TODO: Refactor across all projects
   /* async submit(): Promise<void> {
     this.onBeforeSubmit();
     await this.onSubmit();

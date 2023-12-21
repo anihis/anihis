@@ -1,14 +1,7 @@
 <ng-container *transloco="let t">
-  <div
-    style="
-      margin-top: 24px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    "
-  >
-    <form [formGroup]="form" style="width: 90%">
-      <div class="row" style="gap: 16px">
+  <div class="form-container">
+    <form [formGroup]="form" class="form-width">
+      <div class="row row-gap">
         <mat-form-field appearance="outline">
           <mat-label>{{ t('First name') }} </mat-label>
           <input matInput formControlName="firstName" />

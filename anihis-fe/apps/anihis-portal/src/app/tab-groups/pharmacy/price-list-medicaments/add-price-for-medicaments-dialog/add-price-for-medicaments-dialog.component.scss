@@ -1,0 +1,21 @@
+.form-row-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 16px 16px 0px 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.form-row-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.button-margin {
+  margin-bottom: 22px;
+}

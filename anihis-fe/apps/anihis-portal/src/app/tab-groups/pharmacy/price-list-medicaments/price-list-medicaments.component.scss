@@ -1,0 +1,54 @@
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  margin-top: 24px;
+  .row-add {
+    display: flex;
+    justify-content: flex-end;
+    margin: 24px 24px 24px 0px;
+  }
+
+  .wrapper {
+    margin-bottom: 40px;
+    background: #fff !important;
+    display: flex;
+    justify-content: center;
+    .mat-mdc-table {
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px !important;
+    }
+
+    .card {
+      width: 90%;
+    }
+
+    .owner,
+    .address,
+    .mobileNumber,
+    .personalNumber {
+      width: 10% !important;
+    }
+    .note {
+      width: 60% !important;
+    }
+
+    .action {
+      width: 10% !important;
+    }
+
+    td {
+      word-break: break-all;
+    }
+
+    .action-icons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+  }
+}
+
+.red {
+  color: red;
+}

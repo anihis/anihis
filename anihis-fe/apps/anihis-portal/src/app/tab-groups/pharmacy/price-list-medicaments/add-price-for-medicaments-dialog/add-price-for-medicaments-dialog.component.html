@@ -1,0 +1,51 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Add price') }}</h2>
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="form-row-container" formArrayName="medicamentListPrice">
+      <div
+        class="form-row"
+        *ngFor="let row of medicamentListPrice.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="form-row-fields">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Name') }}</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Price') }}</mat-label>
+            <input matInput formControlName="price" />
+          </mat-form-field>
+        </div>
+
+        <button
+          mat-raised-button
+          class="button-margin"
+          (click)="removeRow(i)"
+          *ngIf="medicamentListPrice.length > 1"
+        >
+          {{ t('Remove row') }}
+        </button>
+
+        <button
+          mat-raised-button
+          class="button-margin"
+          (click)="addRow()"
+          [disabled]="i !== medicamentListPrice.length - 1 || !isRowFilled(i)"
+        >
+          {{ t('Add new medicaments') }}
+        </button>
+      </div>
+    </div>
+    <div class="btn-save-wrapper">
+      <button mat-raised-button (click)="saveChanges()">{{ t('Save') }}</button>
+    </div>
+  </form>
+</ng-container>

@@ -1,6 +1,4 @@
 <ng-container *transloco="let t">
-  <!-- TODO sirina kolona  -->
-
   <div
     style="
       margin-top: 24px;
@@ -53,10 +51,10 @@
       <div class="card">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
           <ng-container matColumnDef="card">
-            <th mat-header-cell *matHeaderCellDef class="card">
+            <th mat-header-cell *matHeaderCellDef class="cards">
               {{ t('card') }}
             </th>
-            <td mat-cell *matCellDef="let element" class="card">
+            <td mat-cell *matCellDef="let element" class="cards">
               {{ element.card }}
             </td>
           </ng-container>
