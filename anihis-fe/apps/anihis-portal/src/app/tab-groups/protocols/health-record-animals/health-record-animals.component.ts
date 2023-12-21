@@ -5,23 +5,22 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PreviewHealthRecordAnimalsDialogComponent } from './preview-health-record-animals-dialog/preview-health-record-animals-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { translate } from '@ngneat/transloco';
-import { PreviewCardOwnerDialogComponent } from './preview-card-owner-dialog/preview-card-owner-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
-  selector: 'anihis-card-owner',
+  selector: 'anihis-health-record-animals',
   standalone: true,
   imports: [CommonModule, SharedModule],
-  templateUrl: './card-owner.component.html',
-  styleUrls: ['./card-owner.component.scss'],
+  templateUrl: './health-record-animals.component.html',
+  styleUrls: ['./health-record-animals.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardOwnerComponent
+export class HealthRecordAnimalsComponent
   extends FormBaseComponent
   implements AfterViewInit
 {
@@ -31,28 +30,29 @@ export class CardOwnerComponent
   //   .fetchData()
 
   displayedColumns: string[] = [
-    'code',
-    'firstName',
+    'card',
+    'nameAnimal',
+    'breed',
+    'dateOfBirth',
     'lastName',
+    'firstName',
     'address',
     'city',
-    'phoneNumber',
-    'mobileNumber',
-    'warning',
-    'actionCardOwner',
+    'actionHealthRecordAnimals',
   ];
   dataSource = new MatTableDataSource<any[]>([]);
 
   pageSize!: number;
   pageIndex!: number;
   override form = this.fb.group({
-    firstName: [''],
+    card: [''],
+    nameAnimal: [''],
+    breed: [''],
+    dateOfBirth: [''],
     lastName: [''],
+    firstName: [''],
     address: [''],
     city: [''],
-    phoneNumber: [''],
-    mobileNumber: [''],
-    warning: [''],
   });
 
   constructor(private dialog: MatDialog) {
@@ -71,10 +71,13 @@ export class CardOwnerComponent
   }
 
   openPreviewDialog() {
-    const dialogRef = this.dialog.open(PreviewCardOwnerDialogComponent, {
-      width: '600px',
-      // data: translate('Da li ste sigurni da želite da obrišete?'),
-    });
+    const dialogRef = this.dialog.open(
+      PreviewHealthRecordAnimalsDialogComponent,
+      {
+        width: '600px',
+        // data: translate('Da li ste sigurni da želite da obrišete?'),
+      }
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       // if (result === 'yes') {

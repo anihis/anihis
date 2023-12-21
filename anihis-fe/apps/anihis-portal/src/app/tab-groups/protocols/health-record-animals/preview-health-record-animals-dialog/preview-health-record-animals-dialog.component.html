@@ -1,0 +1,107 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>
+      {{ t('Preview card owner') }}
+    </h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+
+  <div class="wrapper">
+    <div class="card">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="date">
+            {{ t('Date') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="date">
+            {{ element.date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="record">
+          <th mat-header-cell *matHeaderCellDef class="record">
+            {{ t('Record') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="record">
+            {{ element.record }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ordinalNumberAnamnesis">
+          <th mat-header-cell *matHeaderCellDef class="ordinalNumberAnamnesis">
+            {{ t('Ordinal number anamnesis') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="ordinalNumberAnamnesis">
+            {{ element.ordinalNumberAnamnesis }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="clinicalFinding">
+          <th mat-header-cell *matHeaderCellDef class="clinicalFinding">
+            {{ t('Clinical finding') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="clinicalFinding">
+            {{ element.clinicalFinding }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recommendation">
+          <th mat-header-cell *matHeaderCellDef class="recommendation">
+            {{ t('Recommendation') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="recommendation">
+            {{ element.recommendation }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="invoiced">
+          <th mat-header-cell *matHeaderCellDef class="invoiced">
+            {{ t('Invoiced') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="invoiced">
+            {{ element.invoiced }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paid">
+          <th mat-header-cell *matHeaderCellDef class="paid">
+            {{ t('Paid') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="paid">
+            {{ element.paid }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="difference">
+          <th mat-header-cell *matHeaderCellDef class="difference">
+            {{ t('Difference') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="difference">
+            {{ element.invoiced }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vet">
+          <th mat-header-cell *matHeaderCellDef class="vet">
+            {{ t('vet') }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="vet">
+            {{ element.vet }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        #paginator
+        [pageSizeOptions]="[4, 6, 8]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</ng-container>

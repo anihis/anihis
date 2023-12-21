@@ -212,6 +212,8 @@ export class AddEditReportDialogComponent
   }
 
   saveChanges() {
+    if (this.checkFormValidity()) return;
+
     this.dialogRef.close(this.form);
     // this.dialogRef.close(this.data);
   }

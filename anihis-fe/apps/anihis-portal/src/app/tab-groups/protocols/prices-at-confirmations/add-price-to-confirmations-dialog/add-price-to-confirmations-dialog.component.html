@@ -1,0 +1,38 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>
+      {{ data?.isEdit ? t('Edit price') : t('Add price') }}
+    </h2>
+
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+    <div
+      style="display: flex; flex-direction: column; padding: 16px 16px 0px 16px"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Scenario') }} </mat-label>
+        <input matInput formControlName="scenario" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Price') }} </mat-label>
+        <input matInput formControlName="price" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Price 2') }} </mat-label>
+        <input matInput formControlName="price2" />
+      </mat-form-field>
+    </div>
+
+    <div class="btn-save-wrapper">
+      <button mat-raised-button (click)="saveChanges()">
+        {{ t('Save') }}
+      </button>
+    </div>
+  </form>
+</ng-container>

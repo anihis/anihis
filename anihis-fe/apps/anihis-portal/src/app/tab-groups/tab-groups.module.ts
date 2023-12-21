@@ -20,6 +20,9 @@ import { DailyReportsComponent } from './protocols/daily-reports/daily-reports.c
 import { BlackListComponent } from './protocols/black-list/black-list.component';
 import { DebtorsComponent } from './protocols/debtors/debtors.component';
 import { CardOwnerComponent } from './protocols/card-owner/card-owner.component';
+import { HealthRecordAnimalsComponent } from './protocols/health-record-animals/health-record-animals.component';
+import { SerialNumberConfirmationComponent } from './protocols/serial-number-confirmation/serial-number-confirmation.component';
+import { PricesAtConfirmationsComponent } from './protocols/prices-at-confirmations/prices-at-confirmations.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +49,11 @@ import { CardOwnerComponent } from './protocols/card-owner/card-owner.component'
     BlackListComponent,
     DebtorsComponent,
     CardOwnerComponent,
+    HealthRecordAnimalsComponent,
+    SerialNumberConfirmationComponent,
+    PricesAtConfirmationsComponent,
   ],
 
-  exports: [TabGroupsComponent, ProtocolsComponent],
+  exports: [TabGroupsComponent],
 })
 export class TabGroupsModule {}
