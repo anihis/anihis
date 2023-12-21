@@ -9,7 +9,6 @@ import { SharedModule } from '../../../shared/shared.module';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { tap } from 'rxjs';
 import { ExcellentVaccinationsService } from './excellent-vaccinations.service';
 
 @Component({
@@ -50,6 +49,11 @@ export class ExcellentVaccinationsComponent
 
   pageSize!: number;
   pageIndex!: number;
+  override form = this.fb.group({
+    date: [''],
+    dateTo: [''],
+    typeOfVaccine: [''],
+  });
 
   constructor(
     private excellentVaccinationsService: ExcellentVaccinationsService

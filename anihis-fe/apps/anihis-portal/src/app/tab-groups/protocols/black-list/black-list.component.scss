@@ -23,23 +23,18 @@ section {
       width: 90%;
     }
 
-    .manufacturerOfSupplier,
-    .city,
+    .owner,
     .address,
-    .phoneNumber,
     .mobileNumber,
-    .bankAccount,
-    .contactPerson,
-    .action {
+    .personalNumber {
       width: 10% !important;
+    }
+    .note {
+      width: 60% !important;
     }
 
     .action {
       width: 10% !important;
-    }
-
-    th:last-child {
-      text-align: center !important;
     }
 
     td {

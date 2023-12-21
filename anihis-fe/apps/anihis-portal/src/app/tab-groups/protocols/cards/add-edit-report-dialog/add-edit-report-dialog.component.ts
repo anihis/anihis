@@ -32,7 +32,6 @@ export class AddEditReportDialogComponent
     control: [''],
     temp: [''],
     weight: [''],
-    vet: ['', Validators.required],
     anamnesis: ['', Validators.required],
     clinicalExamination: ['', Validators.required],
     recommendation: [''],

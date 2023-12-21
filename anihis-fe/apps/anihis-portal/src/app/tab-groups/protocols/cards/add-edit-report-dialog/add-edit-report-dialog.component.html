@@ -18,8 +18,7 @@
               ></mat-datepicker-toggle>
               <mat-datepicker #control></mat-datepicker>
             </mat-form-field>
-          </div>
-          <div class="row">
+
             <mat-form-field>
               <mat-label>{{ t('Temp') }}</mat-label>
               <input matInput placeholder="Temp" formControlName="temp" />
@@ -28,19 +27,7 @@
               <mat-label>{{ t('Weight') }}</mat-label>
               <input matInput placeholder="Weight" formControlName="weight" />
             </mat-form-field>
-            <mat-form-field>
-              <mat-label>{{ t('Vet') }}</mat-label>
-              <input
-                matInput
-                placeholder="Vet"
-                formControlName="vet"
-                required
-              />
-            </mat-form-field>
           </div>
-        </div>
-
-        <div>
           <div class="row">
             <mat-form-field>
               <mat-label>{{ t('Anamnesis') }}</mat-label>
@@ -78,7 +65,9 @@
               ></textarea>
             </mat-form-field>
           </div>
+        </div>
 
+        <div>
           <div class="row">
             <mat-form-field>
               <mat-label>{{ t('Other Findings') }}</mat-label>

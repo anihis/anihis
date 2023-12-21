@@ -17,6 +17,8 @@ import { CardsComponent } from './protocols/cards/cards.component';
 import { AddEditManufacturersOfMedicamentsComponent } from './coders/manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments/add-edit-manufacturers-of-medicaments.component';
 import { ExcellentVaccinationsComponent } from './protocols/excellent-vaccinations/excellent-vaccinations.component';
 import { DailyReportsComponent } from './protocols/daily-reports/daily-reports.component';
+import { BlackListComponent } from './protocols/black-list/black-list.component';
+import { DebtorsComponent } from './protocols/debtors/debtors.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { DailyReportsComponent } from './protocols/daily-reports/daily-reports.c
     SpeciesComponent,
     ExcellentVaccinationsComponent,
     DailyReportsComponent,
+    BlackListComponent,
+    DebtorsComponent,
   ],
 
   exports: [TabGroupsComponent, ProtocolsComponent],

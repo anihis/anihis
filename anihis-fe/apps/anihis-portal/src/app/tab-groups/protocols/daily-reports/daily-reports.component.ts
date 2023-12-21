@@ -49,6 +49,11 @@ export class DailyReportsComponent
   pageSize!: number;
   pageIndex!: number;
 
+  override form = this.fb.group({
+    date: [''],
+    dateTo: [''],
+  });
+
   constructor(private dailyReportsService: DailyReportsService) {
     super();
   }

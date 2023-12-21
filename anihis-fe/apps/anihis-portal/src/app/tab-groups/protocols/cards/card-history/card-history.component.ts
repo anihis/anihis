@@ -124,8 +124,7 @@ export class CardHistoryComponent implements AfterViewInit {
 
   openPaymentsDialog() {
     const dialogRef = this.dialog.open(PaymentsListDialogComponent, {
-      width: '1286px',
-      height: '728px',
+      width: '465px',
       // data: { ...element },
     });
 

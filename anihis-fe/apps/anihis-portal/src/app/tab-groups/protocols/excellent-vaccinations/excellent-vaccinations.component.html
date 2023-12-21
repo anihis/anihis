@@ -1,4 +1,29 @@
 <ng-container *transloco="let t">
+  <div
+    style="
+      margin-top: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    "
+  >
+    <form [formGroup]="form" style="width: 90%">
+      <div class="row" style="gap: 16px">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('Date') }} </mat-label>
+          <input matInput formControlName="date" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('Date To') }} </mat-label>
+          <input matInput formControlName="dateTo" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('Type of vaccine') }} </mat-label>
+          <input matInput formControlName="typeOfVaccine" />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
   <section>
     <div class="wrapper">
       <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->

@@ -1,0 +1,97 @@
+<ng-container *transloco="let t">
+  <div
+    style="
+      display: flex;
+      margin-top: 24px;
+      justify-content: flex-end;
+      margin-right: 5%;
+    "
+  >
+    <button mat-raised-button (click)="openAddToBlackListDialog()">
+      {{ t('Add to black list') }}
+    </button>
+  </div>
+
+  <section>
+    <div class="wrapper">
+      <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->
+      <div class="card">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="owner">
+            <th mat-header-cell *matHeaderCellDef class="owner">
+              {{ t('Owner') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="owner">
+              {{ element.owner }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef class="address">
+              {{ t('Address') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="address">
+              {{ element.address }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="mobileNumber">
+            <th mat-header-cell *matHeaderCellDef class="mobileNumber">
+              {{ t('Mobile Number') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mobileNumber">
+              {{ element.mobileNumber }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="personalNumber">
+            <th mat-header-cell *matHeaderCellDef class="personalNumber">
+              {{ t('Personal Number') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="personalNumber">
+              {{ element.personalNumber }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="note">
+            <th mat-header-cell *matHeaderCellDef class="note">
+              {{ t('Note') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="note">
+              {{ element.note }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actionBlackList">
+            <th mat-header-cell *matHeaderCellDef class="actionBlackList">
+              {{ t('actionBlackList') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="actionBlackList">
+              <mat-icon
+                class="material-symbols-outlined cursor"
+                (click)="$event.stopPropagation(); openDeleteDialog()"
+                >edit</mat-icon
+              >
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[4, 6, 8]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+      <!-- </ng-container> -->
+
+      <ng-template #loading>
+        <div class="loading-wrapper">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</ng-container>

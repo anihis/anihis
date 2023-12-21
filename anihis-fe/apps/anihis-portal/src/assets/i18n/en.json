@@ -200,5 +200,6 @@
   "services": "Services",
   "medicationOtherExpenses": "Medication other expenses",
   "total": "Total",
-  "paid": "Paid"
+  "paid": "Paid",
+  "actionBlackList": "Delete"
 }
