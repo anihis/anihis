@@ -1,0 +1,33 @@
+.button-container {
+    display: flex;
+    margin-top: 24px;
+    justify-content: flex-end;
+    margin-right: 5%;
+    margin-bottom: 24px;
+  }
+  
+  .wrapper {
+    margin-bottom: 40px;
+    background: #fff !important;
+    display: flex;
+    justify-content: center;
+  
+    .card {
+      width: 90%;
+    }
+  
+    .owner,
+    .address,
+    .mobileNumber,
+    .personalNumber {
+      width: 10% !important;
+    }
+    .note {
+      width: 60% !important;
+    }
+  
+    td {
+      word-break: break-all;
+    }
+  }
+  

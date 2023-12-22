@@ -1,71 +1,80 @@
 <ng-container *transloco="let t">
   <div class="header-wrapper-dialog">
-    <h2 mat-dialog-title>{{ t('Add new medicament') }}</h2>
-
+    <h2 mat-dialog-title>{{ t('Add price') }}</h2>
     <button mat-button (click)="closeDialog()">
       <span class="material-symbols-outlined"> close </span>
     </button>
   </div>
 
   <form [formGroup]="form">
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Medicament') }} </mat-label>
-        <input matInput formControlName="medicament" />
-      </mat-form-field>
-    </div>
+    <div class="form-row-container" formArrayName="medicamentListPrice">
+      <div
+        class="form-row"
+        *ngFor="let row of medicamentListPrice.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="form-row-fields">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Medicament') }}</mat-label>
+            <input matInput formControlName="medicament" />
+          </mat-form-field>
 
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Alternative Name') }} </mat-label>
-        <input matInput formControlName="altName" />
-      </mat-form-field>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Alternative Name') }}</mat-label>
+            <input matInput formControlName="altName" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Label') }}</mat-label>
+            <input matInput formControlName="label" type="number" />
+          </mat-form-field>
 
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Label') }} </mat-label>
-        <input matInput formControlName="label" type="number" />
-      </mat-form-field>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Type medicament') }}</mat-label>
+            <input matInput formControlName="typeMedicament" />
+          </mat-form-field>
 
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Type Medicament') }} </mat-label>
-        <input matInput formControlName="typeMedicament" />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Only Measure') }} </mat-label>
-        <input matInput formControlName="onlyM" />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Price') }} </mat-label>
-        <input matInput formControlName="price" type="number" />
-      </mat-form-field>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Only measure') }}</mat-label>
+            <input matInput formControlName="onlyM" />
+          </mat-form-field>
 
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Price 2') }} </mat-label>
-        <input matInput formControlName="price2" type="number" />
-      </mat-form-field>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Price') }}</mat-label>
+            <input matInput formControlName="price" type="number" />
+          </mat-form-field>
 
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('VAT') }} </mat-label>
-        <input matInput formControlName="vat" type="number" />
-      </mat-form-field>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('Price 2') }}</mat-label>
+            <input matInput formControlName="price2" type="number" />
+          </mat-form-field>
 
+          <mat-form-field appearance="outline">
+            <mat-label>{{ t('VAT') }}</mat-label>
+            <input matInput formControlName="vat" type="number" />
+          </mat-form-field>
+        </div>
+
+        <button
+          mat-raised-button
+          class="button-margin"
+          (click)="removeRow(i)"
+          *ngIf="medicamentListPrice.length > 1"
+        >
+          {{ t('Remove row') }}
+        </button>
+
+        <button
+          mat-raised-button
+          class="button-margin"
+          (click)="addRow()"
+          [disabled]="i !== medicamentListPrice.length - 1 || !isRowFilled(i)"
+        >
+          {{ t('Add new medicaments') }}
+        </button>
+      </div>
+    </div>
     <div class="btn-save-wrapper">
-      <button mat-raised-button (click)="saveChanges()">
-        {{ t('Save') }}
-      </button>
+      <button mat-raised-button (click)="saveChanges()">{{ t('Save') }}</button>
     </div>
   </form>
 </ng-container>

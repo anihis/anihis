@@ -203,5 +203,7 @@
   "paid": "Paid",
   "actionBlackList": "Delete",
   "code": "Code",
-  "actionCardOwner": "Preview"
+  "actionCardOwner": "Preview",
+  "actionProcurement": "Preview",
+  "Procurement Vat": "Procurement Vat"
 }

@@ -1,32 +1,43 @@
 <ng-container *transloco="let t">
-  <div
-    style="
-      margin-top: 24px;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-    "
-  >
-    <button
-      style="margin-right: 5%"
-      mat-raised-button
-      (click)="addPriceForMedicamentsDialog()"
-    >
-      {{ t('Add price for medicaments') }}
-    </button>
-  </div>
   <!-- TODO KOLONE TREBA DA SE ZAMENE  -->
   <section>
     <div class="wrapper">
       <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->
       <div class="card">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="scenario">
-            <th mat-header-cell *matHeaderCellDef class="scenario">
-              {{ t('Scenario') }}
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef class="code">
+              {{ t('Code') }}
             </th>
-            <td mat-cell *matCellDef="let element" class="scenario">
-              {{ element.scenario }}
+            <td mat-cell *matCellDef="let element" class="code">
+              {{ element.code }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="medicament">
+            <th mat-header-cell *matHeaderCellDef class="medicament">
+              {{ t('Medicament') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="medicament">
+              {{ element.medicament }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="onlyMeasure">
+            <th mat-header-cell *matHeaderCellDef class="onlyMeasure">
+              {{ t('Only measure') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="onlyMeasure">
+              {{ element.onlyMeasure }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="warehouse">
+            <th mat-header-cell *matHeaderCellDef class="warehouse">
+              {{ t('Warehouse') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="warehouse">
+              {{ element.warehouse }}
             </td>
           </ng-container>
 
@@ -39,21 +50,39 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="price2">
-            <th mat-header-cell *matHeaderCellDef class="price2">
-              {{ t('Price 2') }}
+          <ng-container matColumnDef="vat">
+            <th mat-header-cell *matHeaderCellDef class="vat">
+              {{ t('VAT') }}
             </th>
-            <td mat-cell *matCellDef="let element" class="price2">
-              {{ element.price2 }}
+            <td mat-cell *matCellDef="let element" class="vat">
+              {{ element.vat }}
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="total">
-            <th mat-header-cell *matHeaderCellDef class="total">
-              {{ t('total') }}
+          <ng-container matColumnDef="purchasePrice">
+            <th mat-header-cell *matHeaderCellDef class="purchasePrice">
+              {{ t('Purchase price') }}
             </th>
-            <td mat-cell *matCellDef="let element" class="total">
-              {{ element.total }}
+            <td mat-cell *matCellDef="let element" class="purchasePrice">
+              {{ element.purchasePrice }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="purchaseVat">
+            <th mat-header-cell *matHeaderCellDef class="purchaseVat">
+              {{ t('Purchase vat') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="purchaseVat">
+              {{ element.purchaseVat }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="minAmount">
+            <th mat-header-cell *matHeaderCellDef class="minAmount">
+              {{ t('Min amount') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="minAmount">
+              {{ element.minAmount }}
             </td>
           </ng-container>
 

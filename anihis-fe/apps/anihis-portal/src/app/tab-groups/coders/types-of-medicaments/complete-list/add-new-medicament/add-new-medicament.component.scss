@@ -1,0 +1,25 @@
+.form-row-container {
+  max-height: 495px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap; /* Omogućava prelazak u novi red */
+}
+
+.form-row-fields {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap; /* Omogućava prelazak u novi red */
+}
+
+.button-margin {
+  margin-bottom: 22px;
+}

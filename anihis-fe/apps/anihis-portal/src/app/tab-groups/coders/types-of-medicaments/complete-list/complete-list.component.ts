@@ -21,7 +21,6 @@ interface ItemType {
     purchasePrice: string;
     purchaseVat: string;
     minAmount: string;
-    noPrint: boolean;
   }[];
 }
 
@@ -62,7 +61,6 @@ export class CompleteListComponent extends FormBaseComponent {
           purchasePrice: '',
           purchaseVat: '',
           minAmount: '',
-          noPrint: false,
         }),
       ]),
     });
@@ -97,7 +95,7 @@ export class CompleteListComponent extends FormBaseComponent {
 
   addNewMedicament() {
     const dialogRef = this.dialog.open(AddNewMedicamentComponent, {
-      width: '465px',
+      width: '928px',
     });
 
     // dialogRef.afterClosed().subscribe((result) => {

@@ -4,7 +4,6 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { AddPriceForMedicamentsDialogComponent } from './add-price-for-medicaments-dialog/add-price-for-medicaments-dialog.component';
 
 @Component({
   selector: 'anihis-price-list-medicaments',
@@ -20,7 +19,17 @@ export class PriceListMedicamentsComponent {
   // data$ = this.excellentVaccinationsService
   //   .fetchData()
 
-  displayedColumns: string[] = ['scenario', 'price', 'price2', 'total'];
+  displayedColumns: string[] = [
+    'code',
+    'medicament',
+    'onlyMeasure',
+    'warehouse',
+    'price',
+    'vat',
+    'purchasePrice',
+    'purchaseVat',
+    'minAmount',
+  ];
   dataSource = new MatTableDataSource<any[]>([]);
 
   pageSize!: number;
@@ -38,17 +47,5 @@ export class PriceListMedicamentsComponent {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.dataSource.paginator = this.paginator;
-  }
-
-  addPriceForMedicamentsDialog() {
-    const dialogRef = this.dialog.open(AddPriceForMedicamentsDialogComponent, {
-      width: '900px',
-      // data: data,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // this.clinicService.createNewVet(result);
-      }
-    });
   }
 }

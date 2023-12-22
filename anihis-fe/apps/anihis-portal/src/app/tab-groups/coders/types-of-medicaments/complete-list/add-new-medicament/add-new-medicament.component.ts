@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Validators } from '@angular/forms';
+import { FormArray, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBaseComponent } from '../../../../../shared/base-components/form-base.component';
 import { SharedModule } from '../../../../../shared/shared.module';
@@ -18,11 +18,31 @@ export class AddNewMedicamentComponent extends FormBaseComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super();
-    this.initializeForm();
+    this.initializeForm(data);
   }
 
-  private initializeForm() {
+  private initializeForm(data: any) {
     this.form = this.fb.group({
+      medicamentListPrice: this.fb.array([]),
+    });
+    this.addRow();
+  }
+
+  get medicamentListPrice() {
+    return this.form.get('medicamentListPrice') as FormArray;
+  }
+
+  isRowFilled(index: number): boolean {
+    const currentRow = this.medicamentListPrice.at(index) as FormGroup;
+    return currentRow.valid;
+  }
+
+  removeRow(index: number): void {
+    this.medicamentListPrice.removeAt(index);
+  }
+
+  addRow() {
+    const row = this.fb.group({
       medicament: ['', Validators.required],
       altName: [''],
       label: ['', Validators.required],
@@ -30,8 +50,10 @@ export class AddNewMedicamentComponent extends FormBaseComponent {
       onlyM: ['', Validators.required],
       price: ['', Validators.required],
       price2: [''],
-      vat: ['', Validators.required],
+      vat: [''],
     });
+
+    this.medicamentListPrice.push(row);
   }
 
   saveChanges() {

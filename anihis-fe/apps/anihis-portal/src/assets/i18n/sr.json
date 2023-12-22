@@ -201,5 +201,7 @@
   "paid": "Uplaceno",
   "actionBlackList": "Izbrisi",
   "code": "Sifra",
-  "actionCardOwner": "Prikaz"
+  "actionCardOwner": "Prikaz",
+  "actionProcurement": "Prikaz",
+  "Procurement Vat": "Nabavna + PDV"
 }

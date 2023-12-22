@@ -1,1 +1,99 @@
-<p>procurement works!</p>
+<ng-container *transloco="let t">
+  <div class="button-container">
+    <button mat-raised-button (click)="openNewInvoiceDialog()">
+      {{ t('New invoice') }}
+    </button>
+  </div>
+
+  <section>
+    <div class="wrapper">
+      <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->
+      <div class="card">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef class="number">
+              {{ t('Number') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="number">
+              {{ element.number }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef class="date">
+              {{ t('Date') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="date">
+              {{ element.date }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef class="supplier">
+              {{ t('Supplier') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="supplier">
+              {{ element.supplier }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="bill">
+            <th mat-header-cell *matHeaderCellDef class="bill">
+              {{ t('Bill') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="bill">
+              {{ element.bill }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef class="stock">
+              {{ t('Stock') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="stock">
+              {{ element.stock }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="registered">
+            <th mat-header-cell *matHeaderCellDef class="registered">
+              {{ t('Registered') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="registered">
+              {{ element.registered }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actionBlackList">
+            <th mat-header-cell *matHeaderCellDef class="actionBlackList">
+              {{ t('actionProcurement') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="actionBlackList">
+              <mat-icon
+                class="material-symbols-outlined cursor"
+                (click)="$event.stopPropagation(); openPreviewDialog()"
+                >visibility</mat-icon
+              >
+            </td>
+          </ng-container>
+          <!-- TODO dodati preview dialog -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[4, 6, 8]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+      <!-- </ng-container> -->
+
+      <ng-template #loading>
+        <div class="loading-wrapper">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</ng-container>
