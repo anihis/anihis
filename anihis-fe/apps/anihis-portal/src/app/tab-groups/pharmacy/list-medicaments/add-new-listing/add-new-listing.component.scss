@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+  button {
+    text-align: center;
+    margin-top: 32px; /* Dodajte dodatni razmak između forme i dugmeta za čuvanje */
+  }
+}

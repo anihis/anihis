@@ -1,0 +1,50 @@
+<ng-container *transloco="let t">
+  <div class="header-wrapper-dialog">
+    <h2 mat-dialog-title>{{ t('Add new listing') }}</h2>
+    <button mat-button (click)="closeDialog()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+  <div>
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Number') }} </mat-label>
+        <input matInput formControlName="number" type="number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'List for' }} </mat-label>
+        <mat-select formControlName="listingFor">
+          <mat-option
+            *ngFor="let option of listOptions"
+            [value]="option.value"
+            >{{ option.viewValue }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'Warehouse' }} </mat-label>
+        <mat-select formControlName="warehouse">
+          <mat-option
+            *ngFor="let option of warehouseOptions"
+            [value]="option.value"
+            >{{ option.viewValue }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Date') }} </mat-label>
+        <input matInput formControlName="date" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ t('Description') }} </mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+      <button mat-raised-button (click)="saveChanges()">
+        {{ t('Save') }}
+      </button>
+    </form>
+  </div>
+</ng-container>

@@ -34,6 +34,8 @@ import { MinimalLagerComponent } from './pharmacy/minimal-lager/minimal-lager.co
 import { MedicamentsOutputComponent } from './pharmacy/medicaments-output/medicaments-output.component';
 import { DissolutionOfThePharmacyComponent } from './pharmacy/dissolution-of-the-pharmacy/dissolution-of-the-pharmacy.component';
 import { CardMedicamentComponent } from './pharmacy/card-medicament/card-medicament.component';
+import { ListMedicamentsComponent } from './pharmacy/list-medicaments/list-medicaments.component';
+import { CensusDifferencesAndBookkeepingComponent } from './pharmacy/census-differences-and-bookkeeping/census-differences-and-bookkeeping.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { CardMedicamentComponent } from './pharmacy/card-medicament/card-medicam
     MedicamentsOutputComponent,
     DissolutionOfThePharmacyComponent,
     CardMedicamentComponent,
+    ListMedicamentsComponent,
+    CensusDifferencesAndBookkeepingComponent,
   ],
 
   exports: [TabGroupsComponent],

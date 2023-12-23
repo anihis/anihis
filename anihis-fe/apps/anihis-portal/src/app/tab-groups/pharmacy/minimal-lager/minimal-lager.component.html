@@ -1,1 +1,151 @@
-<p>minimal-lager works!</p>
+<ng-container *transloco="let t">
+  <div
+    style="
+      margin-top: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    "
+  >
+    <form [formGroup]="form" style="width: 90%">
+      <div class="row" style="gap: 16px; justify-content: unset">
+        <mat-form-field style="width: 30%">
+          <mat-label>{{ t('For pharmacy') }}</mat-label>
+          <mat-select formControlName="pharmacy">
+            <mat-option
+              *ngFor="let pharmacy of pharmacies"
+              [value]="pharmacy.value"
+            >
+              {{ pharmacy.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p>{{ t('Total') + ':' }}</p>
+      </div>
+    </form>
+  </div>
+  <section>
+    <div class="wrapper">
+      <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->
+      <div class="card">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="medicament">
+            <th mat-header-cell *matHeaderCellDef class="medicament">
+              {{ t('Medicament') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="medicament">
+              {{ element.medicament }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="species">
+            <th mat-header-cell *matHeaderCellDef class="species">
+              {{ t('Species') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="species">
+              {{ element.species }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="label">
+            <th mat-header-cell *matHeaderCellDef class="label">
+              {{ t('Label') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="label">
+              {{ element.label }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitOfMeasure">
+            <th mat-header-cell *matHeaderCellDef class="unitOfMeasure">
+              {{ t('Unit of measure') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="unitOfMeasure">
+              {{ element.unitOfMeasure }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="sellingPrice">
+            <th mat-header-cell *matHeaderCellDef class="sellingPrice">
+              {{ t('Selling price') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="sellingPrice">
+              {{ element.sellingPrice }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="purchasePrice">
+            <th mat-header-cell *matHeaderCellDef class="purchasePrice">
+              {{ t('Purchase price') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="purchasePrice">
+              {{ element.purchasePrice }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalInput">
+            <th mat-header-cell *matHeaderCellDef class="totalInput">
+              {{ t('Total input') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="totalInput">
+              {{ element.totalInput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalOutput">
+            <th mat-header-cell *matHeaderCellDef class="totalOutput">
+              {{ t('Total output') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="totalOutput">
+              {{ element.totalOutput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef class="state">
+              {{ t('State') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="state">
+              {{ element.state }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="minimal">
+            <th mat-header-cell *matHeaderCellDef class="minimal">
+              {{ t('Minimal') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="minimal">
+              {{ element.minimal }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="amount">
+              {{ t('Amount') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="amount">
+              {{ element.amount }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[4, 6, 8]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+      <!-- </ng-container> -->
+
+      <ng-template #loading>
+        <div class="loading-wrapper">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</ng-container>

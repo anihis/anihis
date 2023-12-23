@@ -1,3 +1,32 @@
+.form-container {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .form {
+    width: 90%;
+
+    .form-row {
+      gap: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .form-field {
+        width: 30%;
+      }
+
+      .form-button {
+        .add-button {
+          width: 100%;
+          margin-bottom: 22px;
+        }
+      }
+    }
+  }
+}
+
 section {
   display: flex;
   justify-content: center;
@@ -23,39 +52,8 @@ section {
       width: 90%;
     }
 
-    .manufacturerOfSupplier,
-    .city,
-    .address,
-    .phoneNumber,
-    .mobileNumber,
-    .bankAccount,
-    .contactPerson,
-    .action {
-      width: 10% !important;
-    }
-
-    .action {
-      width: 10% !important;
-    }
-
-    th:last-child {
-      text-align: center !important;
-    }
-
     td {
       word-break: break-all;
     }
-
-    .action-icons {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-    }
-  }
-}
-
-form {
-  .row {
-    width: 45% !important;
   }
 }

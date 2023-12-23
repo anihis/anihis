@@ -9,16 +9,18 @@ import { SharedModule } from '../../../shared/shared.module';
 import { FormBaseComponent } from '../../../shared/base-components/form-base.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AddNewListingComponent } from './add-new-listing/add-new-listing.component';
 
 @Component({
-  selector: 'anihis-optimal-lager',
+  selector: 'anihis-list-medicaments',
   standalone: true,
   imports: [CommonModule, SharedModule],
-  templateUrl: './optimal-lager.component.html',
-  styleUrls: ['./optimal-lager.component.scss'],
+  templateUrl: './list-medicaments.component.html',
+  styleUrls: ['./list-medicaments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OptimalLagerComponent
+export class ListMedicamentsComponent
   extends FormBaseComponent
   implements AfterViewInit
 {
@@ -28,30 +30,23 @@ export class OptimalLagerComponent
   //   .fetchData()
   //   .pipe(tap((results) => this.prepareDataSource(results)));
 
-  pharmacies: any = [];
+  lists: any = [];
 
   displayedColumns: string[] = [
     'medicament',
-    'species',
-    'label',
-    'unitOfMeasure',
-    'sellingPrice',
-    'purchasePrice',
-    'totalInput',
-    'totalOutput',
-    'state',
-    'optimal',
-    'amount',
+    'initialState',
+    'expenditure',
+    'currentSituation',
   ];
   dataSource = new MatTableDataSource<any[]>([]);
 
   pageSize!: number;
   pageIndex!: number;
   override form = this.fb.group({
-    pharmacy: [''],
+    list: [''],
   });
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     // private excellentVaccinationsService: ExcellentVaccinationsService
     super();
   }
@@ -78,6 +73,17 @@ export class OptimalLagerComponent
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.dataSource.paginator = this.paginator;
+  }
+
+  openNewInvoiceDialog() {
+    const dialogRef = this.dialog.open(AddNewListingComponent, {
+      width: '465px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.clientSpeciesService.addSpecies(result);
+      }
+    });
   }
 
   saveChanges() {}
