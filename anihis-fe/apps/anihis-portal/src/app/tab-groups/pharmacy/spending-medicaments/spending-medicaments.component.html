@@ -1,1 +1,127 @@
-<p>spending-medicaments works!</p>
+<ng-container *transloco="let t">
+  <div
+    style="
+      margin-top: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    "
+  >
+    <form [formGroup]="form" style="width: 90%">
+      <div class="row" style="gap: 16px">
+        <mat-form-field>
+          <mat-label>{{ t('For pharmacy') }}</mat-label>
+          <mat-select formControlName="pharmacy">
+            <mat-option
+              *ngFor="let pharmacy of pharmacies"
+              [value]="pharmacy.value"
+            >
+              {{ pharmacy.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('Date') }} </mat-label>
+          <input matInput formControlName="date" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('Date to') }} </mat-label>
+          <input matInput formControlName="dateTo" />
+        </mat-form-field>
+
+        <button mat-raised-button (click)="saveChanges()">
+          {{ t('Expenditure') }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <section>
+    <div class="wrapper">
+      <!-- <ng-container *ngIf="data$ | async as data; else loading"> -->
+      <div class="card">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="medicament">
+            <th mat-header-cell *matHeaderCellDef class="medicament">
+              {{ t('medicament') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="medicament">
+              {{ element.medicament }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalInput">
+            <th mat-header-cell *matHeaderCellDef class="totalInput">
+              {{ t('Total input') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="totalInput">
+              {{ element.totalInput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalOutput">
+            <th mat-header-cell *matHeaderCellDef class="totalOutput">
+              {{ t('Total output') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="totalOutput">
+              {{ element.totalOutput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef class="state">
+              {{ t('State') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="state">
+              {{ element.state }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceInput">
+            <th mat-header-cell *matHeaderCellDef class="priceInput">
+              {{ t('Price input') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="priceInput">
+              {{ element.priceInput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceOutput">
+            <th mat-header-cell *matHeaderCellDef class="priceOutput">
+              {{ t('Price output') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="priceOutput">
+              {{ element.priceOutput }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef class="balance">
+              {{ t('Balance') }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="balance">
+              {{ element.balance }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[4, 6, 8]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+      <!-- </ng-container> -->
+
+      <ng-template #loading>
+        <div class="loading-wrapper">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</ng-container>
