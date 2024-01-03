@@ -11,8 +11,8 @@ public class CreatePrescriptionCommandValidator : AbstractValidator<CreatePrescr
         RuleFor(x => x.ManufacturerUid)
             .NotEmpty();
 
-        RuleFor(x => x.SerialNumber)
-            .NotEmpty();
+        //RuleFor(x => x.SerialNumber)
+        //    .NotEmpty();
 
         RuleFor(x => x.PrescriptionType)
             .NotEmpty();

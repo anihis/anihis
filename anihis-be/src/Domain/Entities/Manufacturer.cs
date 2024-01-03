@@ -8,4 +8,5 @@ public class Manufacturer : BaseEntity
     public string? MobileNumber { get; set; }
     public string? BankAccount { get; set; }
     public string? ContactPerson { get; set; }
+    public VeterinaryClinic VeterinaryClinic { get; set; }
 }

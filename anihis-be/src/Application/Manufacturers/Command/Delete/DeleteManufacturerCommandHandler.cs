@@ -1,5 +1,4 @@
-﻿using anihis.Application.Common.Exceptions;
-using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using MediatR;
 
@@ -22,10 +21,6 @@ public class DeleteManufacturerCommandHandler : IRequestHandler<DeleteManufactur
     public async Task Handle(DeleteManufacturerCommand request, CancellationToken cancellationToken)
     {
         var manufacturer = await _manufacturerRepository.GetByUidOrThrowAsync(request.ManufacturerUid, cancellationToken);
-        if (manufacturer == null)
-        {
-            throw new NotFoundException();
-        }
 
         _manufacturerRepository.Delete(manufacturer);
         await _context.SaveChangesAsync(cancellationToken);

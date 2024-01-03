@@ -22,7 +22,6 @@ public class GetAnimalQueryHandler : IRequestHandler<GetAnimalQuery, GetAnimalRe
         var animal = await _animalRepository.StartQuery()
             .Include(x => x.Owner)
             .Include(x => x.Breed)
-            .Include(x => x.Species)
             .Where(x => x.Uid == request.AnimalUid)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -35,14 +34,21 @@ public class GetAnimalQueryHandler : IRequestHandler<GetAnimalQuery, GetAnimalRe
         {
             AnimalUid = animal.Uid,
             BirthDateTime = animal.BirthDateTime,
-            Breed = new Common.Models.Breed { Name = animal.Breed?.Name },
+            Breed = animal.Breed?.Name,
+            Color = animal.Color,
             Gender = animal.Gender,
+            Identification = animal.Identification,
             LastModifiedDateTimeUtc = animal.LastModifiedDateTimeUtc,
+            MarkingDateTimeUtc = animal.MarkingDateTimeUtc,
             Name = animal.Name,
             Owner = new Common.Models.Owner { Uid = animal.Owner.Uid },
+            Pedigree = animal.Pedigree,
             PassportNumber = animal.PassportNumber,
             PersonalNumber = animal.PersonalNumber,
-            Species = new Common.Models.Species { Name = animal.Species.Name },
+            Sterilized = animal.Sterilized,
+            SterilizedDateTimeUtc = animal.SterilizedDateTimeUtc,
+            Species = animal.Breed?.Species.Name,
+            VIIssuesAPassport = animal.VIIssuesAPassport,
             Warning = animal.Warning
         };
     }

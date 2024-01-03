@@ -1,5 +1,4 @@
-﻿using anihis.Application.Common.Exceptions;
-using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using MediatR;
 
@@ -22,10 +21,6 @@ public class DeletePrescriptionCommandHandler : IRequestHandler<DeletePrescripti
     public async Task Handle(DeletePrescriptionCommand request, CancellationToken cancellationToken)
     {
         var prescription = await _prescriptionRepository.GetByUidOrThrowAsync(request.PrescriptionUid, cancellationToken);
-        if (prescription == null)
-        {
-            throw new NotFoundException();
-        }
 
         _prescriptionRepository.Delete(prescription);
         await _context.SaveChangesAsync(cancellationToken);

@@ -30,10 +30,17 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
+        await _ownerRepository.ThrowIfConflict(x =>
+            x.FirstName.ToLower() == request.FirstName.ToLower() && 
+            x.LastName.ToLower() == request.LastName.ToLower() &&
+            x.City.ToLower() == request.City.ToLower() &&
+            x.Address.ToLower() == request.Address.ToLower(),
+            cancellationToken);
+
         _ownerRepository.Insert(new Owner
         {
             Uid = Guid.NewGuid().ToString(),
-            Username = request.Username,
+            //Username = request.Username,
             Address = request.Address,
             City = request.City,
             Country = request.Country,
@@ -46,6 +53,7 @@ public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand>
             PersonalNumber = request.PersonalNumber,
             PhoneNumber = request.PhoneNumber,
             PostalCode = request.PostalCode,
+            UnpaidExpenses = 0,
             LastModifiedDateTimeUtc = DateTime.UtcNow
         });
 

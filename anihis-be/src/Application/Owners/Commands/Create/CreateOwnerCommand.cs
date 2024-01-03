@@ -3,7 +3,7 @@
 namespace anihis.Application.Owners.Commands.Create;
 public class CreateOwnerCommand : IRequest
 {
-    public string Username { get; set; }
+    //public string Username { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string City { get; set; }

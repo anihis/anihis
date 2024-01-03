@@ -13,11 +13,16 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IBaseRepository<Animal>, BaseRepository<ICoreDbContext, Animal>>();
 builder.Services.AddScoped<IBaseRepository<Breed>, BaseRepository<ICoreDbContext, Breed>>();
+builder.Services.AddScoped<IBaseRepository<Diagnosis>, BaseRepository<ICoreDbContext, Diagnosis>>();
 builder.Services.AddScoped<IBaseRepository<HealthRecord>, BaseRepository<ICoreDbContext, HealthRecord>>();
+builder.Services.AddScoped<IBaseRepository<HealthRecordDiagnosis>, BaseRepository<ICoreDbContext, HealthRecordDiagnosis>>();
+builder.Services.AddScoped<IBaseRepository<HealthRecordPrescription>, BaseRepository<ICoreDbContext, HealthRecordPrescription>>();
+builder.Services.AddScoped<IBaseRepository<HealthRecordService>, BaseRepository<ICoreDbContext, HealthRecordService>>();
 builder.Services.AddScoped<IBaseRepository<Manufacturer>, BaseRepository<ICoreDbContext, Manufacturer>>();
 builder.Services.AddScoped<IBaseRepository<Owner>, BaseRepository<ICoreDbContext, Owner>>();
 builder.Services.AddScoped<IBaseRepository<Payment>, BaseRepository<ICoreDbContext, Payment>>();
 builder.Services.AddScoped<IBaseRepository<Prescription>, BaseRepository<ICoreDbContext, Prescription>>();
+builder.Services.AddScoped<IBaseRepository<Service>, BaseRepository<ICoreDbContext, Service>>();
 builder.Services.AddScoped<IBaseRepository<Species>, BaseRepository<ICoreDbContext, Species>>();
 builder.Services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
 builder.Services.AddScoped<IBaseRepository<Vaccination>, BaseRepository<ICoreDbContext, Vaccination>>();

@@ -29,13 +29,20 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<int?>("BreedId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DeleteDateTimeUtc")
+                    b.Property<string>("Color")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Gender")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Identification")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("LastModifiedDateTimeUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("MarkingDateTimeUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -48,13 +55,22 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("PassportNumber")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Pedigree")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PersonalNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SpeciesId")
+                    b.Property<bool?>("Sterilized")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("SterilizedDateTimeUtc")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VIIssuesAPassport")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Warning")
@@ -65,8 +81,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.HasIndex("BreedId");
 
                     b.HasIndex("OwnerId");
-
-                    b.HasIndex("SpeciesId");
 
                     b.ToTable("Animals");
                 });
@@ -94,19 +108,74 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.ToTable("Breeds");
                 });
 
+            modelBuilder.Entity("anihis.Domain.Entities.Diagnosis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DiagnosisType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VeterinaryClinicId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VeterinaryClinicId");
+
+                    b.ToTable("Diagnoses");
+                });
+
             modelBuilder.Entity("anihis.Domain.Entities.HealthRecord", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Anamnesis")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("AnimalId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClinicalExamination")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("Control")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreateDateTimeUtc")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("LastModifiedDateTimeUtc")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Report")
+                    b.Property<string>("Note")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherFindings")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Recommendation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Temperature")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Therapy")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Uid")
@@ -115,6 +184,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<int>("VeterinarianId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Weight")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnimalId");
@@ -122,6 +194,108 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.HasIndex("VeterinarianId");
 
                     b.ToTable("HealthRecords");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordDiagnosis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DiagnosisId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DiagnosisNote")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("HealthRecordId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiagnosisId");
+
+                    b.HasIndex("HealthRecordId");
+
+                    b.ToTable("HealthRecordDiagnoses");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordPrescription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("HealthRecordId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PrescriptionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PrescriptionNote")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PrescriptionPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PrescriptionQuantity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PrescriptionTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PrescriptionVAT")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HealthRecordId");
+
+                    b.HasIndex("PrescriptionId");
+
+                    b.ToTable("HealthRecordPrescriptions");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("HealthRecordId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ServicePrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServiceQuantity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServiceTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServiceVAT")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HealthRecordId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("HealthRecordServices");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Manufacturer", b =>
@@ -155,7 +329,12 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("VeterinaryClinicId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VeterinaryClinicId");
 
                     b.ToTable("Manufacturers");
                 });
@@ -175,9 +354,8 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Value")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("VeterinarianId")
                         .HasColumnType("INTEGER");
@@ -205,6 +383,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("AlternateName")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Code")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("JM")
                         .HasColumnType("TEXT");
 
@@ -226,18 +407,45 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("SecondPrice")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SerialNumber")
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VeterinaryClinicId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("VeterinaryClinicId");
+
+                    b.ToTable("Prescriptions");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("VeterinaryClinicId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ManufacturerId");
+                    b.HasIndex("VeterinaryClinicId");
 
-                    b.ToTable("Prescriptions");
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Species", b =>
@@ -309,9 +517,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<int>("AnimalId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -336,8 +541,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AnimalId");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("VeterinarianId");
 
@@ -377,9 +580,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("DeleteDateTimeUtc")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("IdCardNumber")
                         .HasColumnType("TEXT");
 
@@ -394,6 +594,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("PostalCode")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("UnpaidExpenses")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Warning")
                         .HasColumnType("TEXT");
@@ -429,17 +632,9 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("anihis.Domain.Entities.Species", "Species")
-                        .WithMany()
-                        .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Breed");
 
                     b.Navigation("Owner");
-
-                    b.Navigation("Species");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Breed", b =>
@@ -451,6 +646,17 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Species");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Diagnosis", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
+                        .WithMany()
+                        .HasForeignKey("VeterinaryClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VeterinaryClinic");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.HealthRecord", b =>
@@ -470,6 +676,74 @@ namespace anihis.Infrastructure.Persistence.Migrations
                     b.Navigation("Animal");
 
                     b.Navigation("Veterinarian");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordDiagnosis", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.Diagnosis", "Diagnosis")
+                        .WithMany()
+                        .HasForeignKey("DiagnosisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.HealthRecord", "HealthRecord")
+                        .WithMany()
+                        .HasForeignKey("HealthRecordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Diagnosis");
+
+                    b.Navigation("HealthRecord");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordPrescription", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.HealthRecord", "HealthRecord")
+                        .WithMany()
+                        .HasForeignKey("HealthRecordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.Prescription", "Prescription")
+                        .WithMany()
+                        .HasForeignKey("PrescriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HealthRecord");
+
+                    b.Navigation("Prescription");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.HealthRecordService", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.HealthRecord", "HealthRecord")
+                        .WithMany()
+                        .HasForeignKey("HealthRecordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("anihis.Domain.Entities.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HealthRecord");
+
+                    b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Manufacturer", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
+                        .WithMany()
+                        .HasForeignKey("VeterinaryClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VeterinaryClinic");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Payment", b =>
@@ -507,7 +781,26 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
+                        .WithMany()
+                        .HasForeignKey("VeterinaryClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Manufacturer");
+
+                    b.Navigation("VeterinaryClinic");
+                });
+
+            modelBuilder.Entity("anihis.Domain.Entities.Service", b =>
+                {
+                    b.HasOne("anihis.Domain.Entities.VeterinaryClinic", "VeterinaryClinic")
+                        .WithMany()
+                        .HasForeignKey("VeterinaryClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VeterinaryClinic");
                 });
 
             modelBuilder.Entity("anihis.Domain.Entities.Vaccination", b =>
@@ -518,12 +811,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("anihis.Domain.Entities.Owner", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("anihis.Domain.Entities.Veterinarian", "Veterinarian")
                         .WithMany()
                         .HasForeignKey("VeterinarianId")
@@ -531,8 +818,6 @@ namespace anihis.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Animal");
-
-                    b.Navigation("Owner");
 
                     b.Navigation("Veterinarian");
                 });

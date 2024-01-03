@@ -35,10 +35,17 @@ public class UpdateAnimalCommandHandler : IRequestHandler<UpdateAnimalCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
+        var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
+
+        await _animalRepository.ThrowIfConflict(x =>
+            x.Name.ToLower() == request.Name.ToLower() && x.Owner == owner ||
+            x.PersonalNumber == request.PersonalNumber ||
+            x.PassportNumber == request.PassportNumber,
+            cancellationToken);
+
         var animal = await _animalRepository.StartQuery()
             .Include(x => x.Owner)
             .Include(x => x.Breed)
-            .Include(x => x.Species)
             .Where(x => x.Uid == request.AnimalUid)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -47,21 +54,23 @@ public class UpdateAnimalCommandHandler : IRequestHandler<UpdateAnimalCommand>
             throw new NotFoundException();
         }
 
-        var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
-        var breed = await _breedRepository.StartQuery()
-            .Include(x => x.Species)
-            .Where(x => x.Uid == request.BreedUid)
-            .SingleOrDefaultAsync(cancellationToken);
+        var breed = await _breedRepository.GetByUidOrThrowAsync(request.BreedUid, cancellationToken);
 
         animal.BirthDateTime = request.BirthDateTime;
         animal.Breed = breed == null ? animal.Breed : breed;
+        animal.Color = request.Color;
         animal.Gender = request.Gender;
+        animal.Identification = request.Identification;
         animal.LastModifiedDateTimeUtc = DateTime.UtcNow;
+        animal.MarkingDateTimeUtc = request.MarkingDateTimeUtc;
         animal.Name = string.IsNullOrEmpty(request.Name) ? animal.Name : request.Name;
         animal.Owner = owner == null ? animal.Owner : owner;
         animal.PassportNumber = request.PassportNumber;
+        animal.Pedigree = request.Pedigree;
         animal.PersonalNumber = request.PersonalNumber;
-        animal.Species = breed?.Species == null ? animal.Species : breed.Species;
+        animal.Sterilized = request.Sterilized;
+        animal.SterilizedDateTimeUtc = request.SterilizedDateTimeUtc;
+        animal.VIIssuesAPassport = request.VIIssuesAPassport;
         animal.Warning = request.Warning;
         _animalRepository.Update(animal);
 

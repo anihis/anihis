@@ -1,5 +1,4 @@
-﻿using anihis.Application.Common.Exceptions;
-using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -28,11 +27,14 @@ public class UpdateOwnerCommandHandler : IRequestHandler<UpdateOwnerCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
+        await _ownerRepository.ThrowIfConflict(x =>
+            x.FirstName.ToLower() == request.FirstName.ToLower() &&
+            x.LastName.ToLower() == request.LastName.ToLower() &&
+            x.City.ToLower() == request.City.ToLower() &&
+            x.Address.ToLower() == request.Address.ToLower(),
+            cancellationToken);
+
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
-        if (owner is null)
-        {
-            throw new NotFoundException();
-        }
 
         owner.Address = string.IsNullOrEmpty(request.Address) ? owner.Address : request.Address;
         owner.City = string.IsNullOrEmpty(request.City) ? owner.City : request.City;

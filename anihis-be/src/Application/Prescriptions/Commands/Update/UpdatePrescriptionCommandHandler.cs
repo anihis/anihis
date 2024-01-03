@@ -1,8 +1,6 @@
-﻿using anihis.Application.Common.Exceptions;
-using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 
 namespace anihis.Application.Prescriptions.Commands.Update;
@@ -33,22 +31,10 @@ public class UpdatePrescriptionCommandHandler : IRequestHandler<UpdatePrescripti
         result.ThrowIfNotValid();
 
         var prescription = await _prescriptionRepository.GetByUidOrThrowAsync(request.PrescriptionUid, cancellationToken);
-        if (prescription == null)
-        {
-            throw new NotFoundException();
-        }
 
-        if (prescription.Name == request.Name)
-        {
-            var validationFailure = new ValidationFailure
-            {
-                ErrorMessage = "A prescription with the same name already exists."
-            };
-
-            IEnumerable<ValidationFailure> validationFailures = new List<ValidationFailure> { validationFailure };
-
-            throw new Common.Exceptions.ValidationException(validationFailures);
-        }
+        await _prescriptionRepository.ThrowIfConflict(x =>
+            x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == prescription.VeterinaryClinic,
+            cancellationToken);
 
         var manufacturer = await _manufacturerRepository.GetByUidOrThrowAsync(request.ManufacturerUid, cancellationToken);
 
@@ -59,7 +45,7 @@ public class UpdatePrescriptionCommandHandler : IRequestHandler<UpdatePrescripti
         prescription.Name = string.IsNullOrEmpty(request.Name) ? prescription.Name : request.Name;
         prescription.PrescriptionType = prescription.PrescriptionType;
         prescription.SecondPrice = prescription.SecondPrice;
-        prescription.SerialNumber = prescription.SerialNumber;
+        prescription.Code = prescription.Code;
         _prescriptionRepository.Update(prescription);
 
         await _context.SaveChangesAsync(cancellationToken);

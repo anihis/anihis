@@ -3,6 +3,9 @@ using anihis.Application.Owners.Commands.Create;
 using anihis.Application.Owners.Commands.Update;
 using anihis.Application.Owners.Queries.Get;
 using anihis.Application.Owners.Queries.GetSingle;
+using anihis.Application.Payments.Commands.Create;
+using anihis.Application.Payments.Commands.Update;
+using anihis.Application.Payments.Queries.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,9 +29,15 @@ public class OwnersController : ApiControllerBase
     }
 
     [HttpGet("{uid}")]
-    public async Task<ActionResult<GetOwnerResult>> Get(string uid)
+    public async Task<ActionResult<GetOwnerResult>> GetOwner(string uid)
     {
         return await Mediator.Send(new GetOwnerQuery { Uid = uid });
+    }
+
+    [HttpGet("{uid}/payment")]
+    public async Task<ActionResult<GetPaymentsResult>> GetPayment(string uid)
+    {
+        return await Mediator.Send(new GetPaymentsQuery { OwnerUid = uid });
     }
 
     [HttpPost]
@@ -37,10 +46,23 @@ public class OwnersController : ApiControllerBase
         await Mediator.Send(command);
     }
 
+    [HttpPost("payment")]
+    public async Task Create(CreatePaymentCommand command)
+    {
+        await Mediator.Send(command);
+    }
+
     [HttpPut("{uid}")]
     public async Task Update(string uid, UpdateOwnerCommand command)
     {
         command.OwnerUid = uid;
+        await Mediator.Send(command);
+    }
+
+    [HttpPut("{uid}/payment")]
+    public async Task Update(string uid, UpdatePaymentCommand command)
+    {
+        command.PaymentUid = uid;
         await Mediator.Send(command);
     }
 }

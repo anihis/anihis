@@ -24,18 +24,12 @@ public class GetPaymentsQueryHandler : IRequestHandler<GetPaymentsQuery, GetPaym
 
     public async Task<GetPaymentsResult> Handle(GetPaymentsQuery request, CancellationToken cancellationToken)
     {
-        //var veterinarian = await _veterinarianRepository.GetByUidOrThrowAsync(_currentUserService.UserUid, cancellationToken);
-
-        //TODO: uncomment code above and delete code below
-        var veterinarian = await _veterinarianRepository.StartQuery()
-            .Include(x => x.VeterinaryClinic)
-            .Where(x => x.Uid == request.VeterinarianUid)
-            .SingleOrDefaultAsync(cancellationToken);
+        var veterinarian = await _veterinarianRepository.GetByUidOrThrowAsync(_currentUserService.UserUid, cancellationToken);
 
         var payments = await _paymentRepository.StartQuery()
             .Include(x => x.Owner)
             .Include(x => x.VeterinaryClinic)
-            .Where(x => x.VeterinaryClinic == veterinarian.VeterinaryClinic)
+            .Where(x => x.Owner.Uid == request.OwnerUid && x.VeterinaryClinic == veterinarian.VeterinaryClinic)
             .ToListAsync(cancellationToken);
 
         return new GetPaymentsResult

@@ -31,23 +31,16 @@ public class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand>
 
     public async Task Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
     {
-        //var veterinarian = await _veterinarianRepository.StartQuery()
-        //    .Include(x => x.User)
-        //    .Include(x => x.VeterinaryClinic)
-        //    .Where(x => x.User.Uid == _currentUserService.UserUid)
-        //    .SingleOrDefaultAsync(cancellationToken);
-
-        //TODO: uncomment code above and delete code below
         var veterinarian = await _veterinarianRepository.StartQuery()
             .Include(x => x.VeterinaryClinic)
-            .Where(x => x.Uid == request.VeterinarianUid)
+            .Where(x => x.Uid == _currentUserService.UserUid)
             .SingleOrDefaultAsync(cancellationToken);
 
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
 
-        if (owner is null)
+        if (owner.UnpaidExpenses <= 0)
         {
-            throw new NotFoundException();
+            throw new ValidationException();
         }
 
         _paymentRepository.Insert(new Payment
@@ -59,6 +52,9 @@ public class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand>
             Veterinarian = veterinarian,
             VeterinaryClinic = veterinarian.VeterinaryClinic
         });
+
+        owner.UnpaidExpenses -= request.Value;
+        _ownerRepository.Update(owner);
 
         await _context.SaveChangesAsync(cancellationToken);
     }

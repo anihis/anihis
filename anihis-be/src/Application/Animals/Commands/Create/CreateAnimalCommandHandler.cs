@@ -1,9 +1,7 @@
 ﻿using anihis.Application.Common.Interfaces;
-using anihis.Application.Veterinarians.Commands.Create;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace anihis.Application.Animals.Commands.Create;
 public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
@@ -36,22 +34,32 @@ public class CreateAnimalCommandHandler : IRequestHandler<CreateAnimalCommand>
         result.ThrowIfNotValid();
 
         var owner = await _ownerRepository.GetByUidOrThrowAsync(request.OwnerUid, cancellationToken);
-        var breed = await _breedRepository.StartQuery()
-            .Include(x => x.Species)
-            .Where(x => x.Uid == request.BreedUid)
-            .SingleOrDefaultAsync(cancellationToken);
+
+        await _animalRepository.ThrowIfConflict(x =>
+            x.Name.ToLower() == request.Name.ToLower() && x.Owner == owner ||
+            x.PersonalNumber == request.PersonalNumber ||
+            x.PassportNumber == request.PassportNumber,
+            cancellationToken);
+
+        var breed = await _breedRepository.GetByUidOrThrowAsync(request.BreedUid, cancellationToken);
 
         _animalRepository.Insert(new Animal
         {
             Uid = Guid.NewGuid().ToString(),
             BirthDateTime = request.BirthDateTime,
             Breed = breed,
+            Color = request.Color,
             Gender = request.Gender,
+            Identification = request.Identification,
+            MarkingDateTimeUtc = request.MarkingDateTimeUtc,
             Name = request.Name,
             Owner = owner,
             PassportNumber = request.PassportNumber,
+            Pedigree = request.Pedigree,
             PersonalNumber = request.PersonalNumber,
-            Species = breed.Species,
+            Sterilized = request.Sterilized,
+            SterilizedDateTimeUtc = request.SterilizedDateTimeUtc,
+            VIIssuesAPassport = request.VIIssuesAPassport,
             Warning = request.Warning,
             LastModifiedDateTimeUtc = DateTime.UtcNow
         });

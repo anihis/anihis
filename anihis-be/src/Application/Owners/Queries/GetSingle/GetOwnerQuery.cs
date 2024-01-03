@@ -3,5 +3,5 @@
 namespace anihis.Application.Owners.Queries.GetSingle;
 public class GetOwnerQuery : IRequest<GetOwnerResult>
 {
-    public string? Uid { get; set; }
+    public string Uid { get; set; }
 }

@@ -27,13 +27,13 @@ public class GetPrescriptionsQueryHandler : IRequestHandler<GetPrescriptionsQuer
             Prescriptions = prescriptions.Select(prescription => new Models.Prescription
             {
                 AlternateName = prescription.AlternateName,
+                Code = prescription.Code,
                 JM = prescription.JM,
                 MainPrice = prescription.MainPrice,
                 ManufacturerName = prescription.Manufacturer.Name,
                 Name = prescription.Name,
                 PrescriptionType = prescription.PrescriptionType,
-                SecondPrice = prescription.SecondPrice,
-                SerialNumber = prescription.SerialNumber
+                SecondPrice = prescription.SecondPrice
             }).ToList()
         };
     }

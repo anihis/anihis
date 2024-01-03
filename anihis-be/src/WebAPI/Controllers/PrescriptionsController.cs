@@ -25,7 +25,7 @@ public class PrescriptionsController : ApiControllerBase
     {
     }
 
-    [HttpGet("prescriptions")]
+    [HttpGet]
     public async Task<ActionResult<GetPrescriptionsResult>> GetPrescriptions()
     {
         return await Mediator.Send(new GetPrescriptionsQuery());
@@ -37,7 +37,7 @@ public class PrescriptionsController : ApiControllerBase
         return await Mediator.Send(new GetManufacturersQuery());
     }
 
-    [HttpGet("prescriptions/{uid}")]
+    [HttpGet("{uid}")]
     public async Task<ActionResult<GetPrescriptionResult>> GetPrescription(string uid)
     {
         return await Mediator.Send(new GetPrescriptionQuery { PrescriptionUid = uid });
@@ -49,7 +49,7 @@ public class PrescriptionsController : ApiControllerBase
         return await Mediator.Send(new GetManufacturerQuery { ManufacturerUid = uid });
     }
 
-    [HttpPost("prescriptions")]
+    [HttpPost]
     public async Task CreatePrescription(CreatePrescriptionCommand command)
     {
         await Mediator.Send(command);
@@ -61,7 +61,7 @@ public class PrescriptionsController : ApiControllerBase
         await Mediator.Send(command);
     }
 
-    [HttpPut("prescriptions/{uid}")]
+    [HttpPut("{uid}")]
     public async Task UpdatePrescription(string uid, UpdatePrescriptionCommand command)
     {
         command.PrescriptionUid = uid;
@@ -75,7 +75,7 @@ public class PrescriptionsController : ApiControllerBase
         await Mediator.Send(command);
     }
 
-    [HttpDelete("prescriptions/{uid}")]
+    [HttpDelete("{uid}")]
     public async Task DeletePrescription(string uid)
     {
         await Mediator.Send(new DeletePrescriptionCommand { PrescriptionUid = uid });

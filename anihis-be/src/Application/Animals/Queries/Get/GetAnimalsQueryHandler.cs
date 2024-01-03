@@ -20,22 +20,17 @@ public class GetAnimalsQueryHandler : IRequestHandler<GetAnimalsQuery, List<GetA
     {
         var animals = _animalRepository.StartQuery()
            .Include(x => x.Owner)
-           .Include(x => x.Breed)
-           .Include(x => x.Species);
-           //.ToListAsync(cancellationToken);
+           .Include(x => x.Breed);
 
         return animals.Select(animal => new GetAnimalsResult
         {
             AnimalUid = animal.Uid,
-            BirthDateTime = animal.BirthDateTime,
-            Breed = new Common.Models.Breed { Name = animal.Breed.Name },
+            Breed = animal.Breed.Name,
             Gender = animal.Gender,
-            LastModifiedDateTimeUtc = animal.LastModifiedDateTimeUtc,
             Name = animal.Name,
             Owner = new Common.Models.Owner { Uid = animal.Owner.Uid },
-            PassportNumber = animal.PassportNumber,
             PersonalNumber = animal.PersonalNumber,
-            Species = new Common.Models.Species { Name = animal.Species.Name },
+            Species = animal.Breed.Species.Name,
             Warning = animal.Warning
         }).ToList();
     }

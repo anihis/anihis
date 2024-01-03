@@ -29,7 +29,9 @@ public class GetOwnerQueryHandler : IRequestHandler<GetOwnerQuery, GetOwnerResul
             PersonalNumber = owner.PersonalNumber,
             PhoneNumber = owner.PhoneNumber,
             PostalCode = owner.PostalCode,
-            Uid = owner.Uid
+            Uid = owner.Uid,
+            UnpaidExpenses = owner.UnpaidExpenses,
+            Warning = owner.Warning
         };
     }
 }

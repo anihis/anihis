@@ -5,5 +5,5 @@ public class Payment : BaseEntity
     public Veterinarian Veterinarian { get; set; }
     public VeterinaryClinic VeterinaryClinic { get; set; }
     public DateTime PaymentDateTimeUtc { get; set; }
-    public string Value { get; set; }
+    public int Value { get; set; }
 }

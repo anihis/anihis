@@ -18,5 +18,10 @@ public class ValidationException : Exception
             .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
     }
 
+    public ValidationException(ValidationFailure failure) : this()
+    {
+        Errors.Add(failure.PropertyName, new string[] { failure.ErrorMessage });
+    }
+
     public IDictionary<string, string[]> Errors { get; }
 }

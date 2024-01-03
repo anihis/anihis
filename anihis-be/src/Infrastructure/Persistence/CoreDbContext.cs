@@ -24,15 +24,20 @@ public class CoreDbContext : DbContext, ICoreDbContext
 
     public DbSet<Animal> Animals => Set<Animal>();
     public DbSet<Breed> Breeds => Set<Breed>();
+    public DbSet<Diagnosis> Diagnoses => Set<Diagnosis>();
     public DbSet<HealthRecord> HealthRecords => Set<HealthRecord>();
+    public DbSet<HealthRecordDiagnosis> HealthRecordDiagnoses => Set<HealthRecordDiagnosis>();
+    public DbSet<HealthRecordPrescription> HealthRecordPrescriptions => Set<HealthRecordPrescription>();
+    public DbSet<HealthRecordService> HealthRecordServices => Set<HealthRecordService>();
     public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
-    public DbSet<Owner> Owners => Set<Owner>();
+    //public DbSet<Owner> Owners => Set<Owner>();
     public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<Prescription> Prescriptions => Set<Prescription>();
+    public DbSet<Service> Services => Set<Service>();
     public DbSet<Species> Species => Set<Species>();
     public DbSet<User> Users => Set<User>();
     public DbSet<Vaccination> Vaccinations => Set<Vaccination>();
-    public DbSet<Veterinarian> Veterinarians => Set<Veterinarian>();
+    //public DbSet<Veterinarian> Veterinarians => Set<Veterinarian>();
     public DbSet<VeterinaryClinic> VeterinaryClinics => Set<VeterinaryClinic>();
 
     protected override void OnModelCreating(ModelBuilder builder)

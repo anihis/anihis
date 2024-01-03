@@ -17,18 +17,9 @@ public class GetOwnersQueryHandler : IRequestHandler<GetOwnersQuery, List<GetOwn
         var owners = _ownerRepository.StartQuery();
         return owners.Select(owner => new GetOwnersResult
         {
-            Address = owner.Address,
-            City = owner.City,
-            Country = owner.Country,
             Email = owner.Email,
             FirstName = owner.FirstName,
             LastName = owner.LastName,
-            IdCardNumber = owner.IdCardNumber,
-            MobileNumber = owner.MobileNumber,
-            PassportNumber = owner.PassportNumber,
-            PersonalNumber = owner.PersonalNumber,
-            PhoneNumber = owner.PhoneNumber,
-            PostalCode = owner.PostalCode,
             Uid = owner.Uid
         }).ToList();
     }

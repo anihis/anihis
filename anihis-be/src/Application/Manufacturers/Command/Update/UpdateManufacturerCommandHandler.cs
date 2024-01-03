@@ -1,8 +1,6 @@
-﻿using anihis.Application.Common.Exceptions;
-using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 
 namespace anihis.Application.Manufacturers.Command.Update;
@@ -30,22 +28,10 @@ public class UpdateManufacturerCommandHandler : IRequestHandler<UpdateManufactur
         result.ThrowIfNotValid();
 
         var manufacturer = await _manufacturerRepository.GetByUidOrThrowAsync(request.ManufacturerUid, cancellationToken);
-        if (manufacturer == null)
-        {
-            throw new NotFoundException();
-        }
 
-        if (manufacturer.Name == request.Name)
-        {
-            var validationFailure = new ValidationFailure
-            {
-                ErrorMessage = "A manufacturer with the same name already exists."
-            };
-
-            IEnumerable<ValidationFailure> validationFailures = new List<ValidationFailure> { validationFailure };
-
-            throw new Common.Exceptions.ValidationException(validationFailures);
-        }
+        await _manufacturerRepository.ThrowIfConflict(x =>
+            x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == manufacturer.VeterinaryClinic,
+            cancellationToken);
 
         manufacturer.Address = request.Address;
         manufacturer.BankAccount = request.BankAccount;
