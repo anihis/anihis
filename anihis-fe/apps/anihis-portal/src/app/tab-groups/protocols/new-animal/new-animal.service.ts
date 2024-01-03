@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   AnimalsService,
+  CreateOwnerCommand,
   OwnersService,
   UpdateOwnerCommand,
 } from 'libs/portal-data/data-access/src';
@@ -21,21 +22,24 @@ export class NewAnimalService {
   }
 
   createNewOwner(value: any) {
+    console.log(value);
+
+    const command: CreateOwnerCommand = {
+      firstName: value.form.firstName ?? '',
+      lastName: value.form.lastName ?? '',
+      city: value.form.city ?? '',
+      address: value.form.address ?? '',
+      email: value.form.email ?? '',
+      phoneNumber: value.form.phoneNumber ?? '',
+      mobileNumber: value.form.mobileNumber ?? '',
+      postalCode: value.form.postalCode ?? '',
+      country: value.form.country ?? '',
+      personalNumber: value.form.jmbg.toString() ?? '',
+      passportNumber: value.form.passportNumber ?? '',
+      idCardNumber: value.form.idCardNumber.toString() ?? '',
+    };
     this.ownersService
-      .ownersPost({
-        firstName: value.form.firstName ?? '',
-        lastName: value.form.lastName ?? '',
-        city: value.form.city ?? '',
-        address: value.form.address ?? '',
-        email: value.form.email ?? '',
-        phoneNumber: value.form.phoneNumber ?? '',
-        mobileNumber: value.form.mobileNumber ?? '',
-        postalCode: value.form.postalCode ?? '',
-        country: value.form.country ?? '',
-        personalNumber: value.form.jmbg.toString() ?? '',
-        passportNumber: value.form.passportNumber ?? '',
-        idCardNumber: value.form.idCardNumber.toString() ?? '',
-      })
+      .ownersPost(command)
       .pipe(
         tap(() => {
           this.refresh();

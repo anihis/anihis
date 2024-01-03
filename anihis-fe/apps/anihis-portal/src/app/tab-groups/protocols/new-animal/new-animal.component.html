@@ -2,32 +2,18 @@
   <ng-container *transloco="let t">
     <ng-container *ngIf="data$ | async as vm; else loading">
       <section>
-        <div class="add-new-owner-wrapper">
-          <button mat-raised-button (click)="openAddNewOwnerDialog()">
-            {{ t('Add new owner') }}
-          </button>
-        </div>
         <div class="filter-container">
-          <ng-container
-            *ngFor="let column of displayedColumns"
-            [matColumnDef]="column"
-          >
-            <ng-container *ngIf="column !== 'actionOwner'; else action">
-              <mat-form-field [class]="column" appearance="outline">
-                <mat-label
-                  >{{ column | nameColumn | titlecase | transloco }}
-                </mat-label>
-                <input
-                  matInput
-                  autocomplete="on"
-                  (keyup)="applyFilter($event, column)"
-                />
-              </mat-form-field>
-            </ng-container>
-            <ng-template #action>
-              <div class="actionOwner"></div>
-            </ng-template>
+          <ng-container>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ t('Search') }} </mat-label>
+              <input matInput autocomplete="on" (keyup)="applyFilter($event)" />
+            </mat-form-field>
           </ng-container>
+          <div class="add-new-owner-wrapper">
+            <button mat-raised-button (click)="openAddNewOwnerDialog()">
+              {{ t('Add new owner') }}
+            </button>
+          </div>
         </div>
 
         <table mat-table [dataSource]="vm" class="mat-elevation-z8">

@@ -185,7 +185,7 @@
   "Edit clinic": "Izmeni ambulantu",
   "Payments list": "Lista naplata",
   "Add new species": "Dodaj novu vrstu",
-  "Action Species": "Dodaj / Izmeni rasu ",
+  "Action Species": "Izmeni",
   "actionManufacturersOfMedicaments": "Izmeni / Obrisi",
   "Are you sure you want to delete?": "Da li ste sigurni da želite da obrišete?",
   "record": "Evid",
@@ -204,5 +204,7 @@
   "actionCardOwner": "Prikaz",
   "actionProcurement": "Prikaz",
   "Procurement Vat": "Nabavna + PDV",
-  "Add new list": "Dodaj novi popis"
+  "Add new list": "Dodaj novi popis",
+  "Add new breed": "Dodaj novu rasu",
+  "Edit breed": "Izmeni rasu"
 }

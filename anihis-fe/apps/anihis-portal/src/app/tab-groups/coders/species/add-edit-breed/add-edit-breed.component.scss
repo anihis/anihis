@@ -1,0 +1,9 @@
+.form-row-container {
+  max-height: 390px;
+  overflow: auto;
+  .form-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+}

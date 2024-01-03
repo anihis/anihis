@@ -83,14 +83,12 @@ export class NewAnimalComponent
     return Object.keys(obj);
   }
 
-  applyFilter(event: any, column: string) {
+  applyFilter(event: any) {
     const filterValue = event.target.value.trim().toLowerCase();
-    console.log(this.dataSource);
-    // this.dataSource.filterPredicate = (data, filter) => {
-    //   // const value = data[column].toString().toLowerCase();
-    //   return value.includes(filter);
-    // };
-
+    this.dataSource.filterPredicate = (data, filter) => {
+      const value = data.toString().toLowerCase();
+      return value.includes(filter);
+    };
     this.dataSource.filter = filterValue;
   }
 

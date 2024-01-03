@@ -10,7 +10,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { AddEditSpeciesDialogComponent } from './add-edit-species-dialog/add-edit-species-dialog.component';
 import { ClientSpeciesService } from './species.service';
 import { tap } from 'rxjs';
 import { AddEditBreedComponent } from './add-edit-breed/add-edit-breed.component';
@@ -71,22 +70,24 @@ export class SpeciesComponent implements AfterViewInit {
   }
 
   openAddSpeciesDialog() {
-    const dialogRef = this.dialog.open(AddEditSpeciesDialogComponent, {
-      width: '465px',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.clientSpeciesService.addSpecies(result);
-      }
-    });
+    // const dialogRef = this.dialog.open(AddEditSpeciesDialogComponent, {
+    //   width: '465px',
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.clientSpeciesService.addSpecies(result);
+    //   }
+    // });
   }
 
-  openAddEditBreedDialog(element: any, data: any, isEdit?: boolean): void {
-    const dataBreed = data.filter((x: any) => x.uid === element.uid)[0];
+  openAddEditSpeciesBreedDialog(element?: any, data?: any): void {
+    const dataBreed = data
+      ? data.filter((x: any) => x.uid === element.uid)[0]
+      : null;
 
     const dialogRef = this.dialog.open(AddEditBreedComponent, {
-      width: '465px',
-      data: { ...{ data: dataBreed }, isEdit },
+      width: '600px',
+      data: { ...{ data: dataBreed } },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result?.isEdit) {

@@ -12,7 +12,7 @@ import { SharedModule } from '../../../../shared/shared.module';
   styleUrls: ['./add-edit-owner-dialog.component.scss'],
   standalone: true,
   imports: [CommonModule, SharedModule],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddEditOwnerDialogComponent extends FormBaseComponent {
   constructor(
@@ -54,7 +54,6 @@ export class AddEditOwnerDialogComponent extends FormBaseComponent {
 
   saveChanges() {
     if (this.checkFormValidity()) return;
-
     if (this.data?.uid) {
       this.dialogRef.close({
         form: this.form.getRawValue(),

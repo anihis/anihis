@@ -19,7 +19,9 @@ export class ClientSpeciesService {
   fetchData() {
     return this.refresh$.pipe(
       switchMap(() => {
-        return this.animalsService.animalsSpeciesGet().pipe(map((x) => x));
+        return this.animalsService
+          .animalsSpeciesGet()
+          .pipe(map((x) => x.species));
       })
     );
   }
