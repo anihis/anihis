@@ -10,14 +10,6 @@
  * Do not edit the class manually.
  */
 
-export interface GetPrescriptionResult { 
-    uid?: string;
+export interface CreateServiceCommand { 
     name?: string;
-    alternateName?: string;
-    code?: number;
-    prescriptionType?: string;
-    jm?: string;
-    mainPrice?: string;
-    secondPrice?: string;
-    manufacturerName?: string;
 }

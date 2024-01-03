@@ -8,10 +8,9 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { AnimalsService } from './api/animals.service';
+import { HealthRecordsService } from './api/healthRecords.service';
 import { OwnersService } from './api/owners.service';
-import { PaymentsService } from './api/payments.service';
 import { PrescriptionsService } from './api/prescriptions.service';
-import { SpeciesService } from './api/species.service';
 import { VeterinariansService } from './api/veterinarians.service';
 import { VeterinaryClinicsControllersService } from './api/veterinaryClinicsControllers.service';
 
@@ -21,10 +20,9 @@ import { VeterinaryClinicsControllersService } from './api/veterinaryClinicsCont
   exports: [],
   providers: [
     AnimalsService,
+    HealthRecordsService,
     OwnersService,
-    PaymentsService,
     PrescriptionsService,
-    SpeciesService,
     VeterinariansService,
     VeterinaryClinicsControllersService,
   ],

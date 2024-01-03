@@ -11,17 +11,8 @@
  */
 
 export interface GetOwnersResult { 
+    uid?: string;
     firstName?: string;
     lastName?: string;
-    city?: string;
-    address?: string;
     email?: string;
-    phoneNumber?: string;
-    mobileNumber?: string;
-    postalCode?: string;
-    country?: string;
-    personalNumber?: string;
-    passportNumber?: string;
-    idCardNumber?: string;
-    uid?: string;
 }

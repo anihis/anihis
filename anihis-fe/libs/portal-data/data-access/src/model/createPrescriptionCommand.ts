@@ -13,7 +13,6 @@
 export interface CreatePrescriptionCommand { 
     name?: string;
     alternateName?: string;
-    serialNumber?: string;
     prescriptionType?: string;
     jm?: string;
     mainPrice?: string;

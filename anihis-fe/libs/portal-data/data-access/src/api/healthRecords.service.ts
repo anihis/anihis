@@ -17,21 +17,23 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CreateManufacturerCommand } from '../model/createManufacturerCommand';
-import { CreatePrescriptionCommand } from '../model/createPrescriptionCommand';
-import { GetManufacturerResult } from '../model/getManufacturerResult';
-import { GetManufacturersResult } from '../model/getManufacturersResult';
-import { GetPrescriptionResult } from '../model/getPrescriptionResult';
-import { GetPrescriptionsResult } from '../model/getPrescriptionsResult';
-import { UpdateManufacturerCommand } from '../model/updateManufacturerCommand';
-import { UpdatePrescriptionCommand } from '../model/updatePrescriptionCommand';
+import { CreateDiagnosisCommand } from '../model/createDiagnosisCommand';
+import { CreateHealthRecordCommand } from '../model/createHealthRecordCommand';
+import { CreateServiceCommand } from '../model/createServiceCommand';
+import { GetDiagnosesResult } from '../model/getDiagnosesResult';
+import { GetHealthRecordResult } from '../model/getHealthRecordResult';
+import { GetHealthRecordsResult } from '../model/getHealthRecordsResult';
+import { GetServicesResult } from '../model/getServicesResult';
+import { UpdateDiagnosisCommand } from '../model/updateDiagnosisCommand';
+import { UpdateHealthRecordCommand } from '../model/updateHealthRecordCommand';
+import { UpdateServiceCommand } from '../model/updateServiceCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class PrescriptionsService {
+export class HealthRecordsService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -68,10 +70,10 @@ export class PrescriptionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public prescriptionsGet(observe?: 'body', reportProgress?: boolean): Observable<GetPrescriptionsResult>;
-    public prescriptionsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPrescriptionsResult>>;
-    public prescriptionsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPrescriptionsResult>>;
-    public prescriptionsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public healthRecordsDiagnosisGet(observe?: 'body', reportProgress?: boolean): Observable<GetDiagnosesResult>;
+    public healthRecordsDiagnosisGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetDiagnosesResult>>;
+    public healthRecordsDiagnosisGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetDiagnosesResult>>;
+    public healthRecordsDiagnosisGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -95,50 +97,7 @@ export class PrescriptionsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetPrescriptionsResult>('get',`${this.basePath}/Prescriptions`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public prescriptionsManufacturersGet(observe?: 'body', reportProgress?: boolean): Observable<GetManufacturersResult>;
-    public prescriptionsManufacturersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetManufacturersResult>>;
-    public prescriptionsManufacturersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetManufacturersResult>>;
-    public prescriptionsManufacturersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GetManufacturersResult>('get',`${this.basePath}/Prescriptions/manufacturers`,
+        return this.httpClient.request<GetDiagnosesResult>('get',`${this.basePath}/HealthRecords/Diagnosis`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -155,10 +114,10 @@ export class PrescriptionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsManufacturersPost(body?: CreateManufacturerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public healthRecordsDiagnosisPost(body?: CreateDiagnosisCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsDiagnosisPost(body?: CreateDiagnosisCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsDiagnosisPost(body?: CreateDiagnosisCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsDiagnosisPost(body?: CreateDiagnosisCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -187,7 +146,7 @@ export class PrescriptionsService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/Prescriptions/manufacturers`,
+        return this.httpClient.request<any>('post',`${this.basePath}/HealthRecords/Diagnosis`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -205,13 +164,13 @@ export class PrescriptionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsManufacturersUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsManufacturersUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public healthRecordsDiagnosisUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsDiagnosisUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsDiagnosisUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsDiagnosisUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidDelete.');
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsDiagnosisUidDelete.');
         }
 
         let headers = this.defaultHeaders;
@@ -233,8 +192,249 @@ export class PrescriptionsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('delete',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<any>('delete',`${this.basePath}/HealthRecords/Diagnosis/${encodeURIComponent(String(uid))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsDiagnosisUidPut(uid: string, body?: UpdateDiagnosisCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsDiagnosisUidPut(uid: string, body?: UpdateDiagnosisCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsDiagnosisUidPut(uid: string, body?: UpdateDiagnosisCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsDiagnosisUidPut(uid: string, body?: UpdateDiagnosisCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsDiagnosisUidPut.');
+        }
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/HealthRecords/Diagnosis/${encodeURIComponent(String(uid))}`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsGet(observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordsResult>;
+    public healthRecordsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordsResult>>;
+    public healthRecordsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordsResult>>;
+    public healthRecordsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetHealthRecordsResult>('get',`${this.basePath}/HealthRecords`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsPost(body?: CreateHealthRecordCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsPost(body?: CreateHealthRecordCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsPost(body?: CreateHealthRecordCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsPost(body?: CreateHealthRecordCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/HealthRecords`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsServiceGet(observe?: 'body', reportProgress?: boolean): Observable<GetServicesResult>;
+    public healthRecordsServiceGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetServicesResult>>;
+    public healthRecordsServiceGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetServicesResult>>;
+    public healthRecordsServiceGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetServicesResult>('get',`${this.basePath}/HealthRecords/Service`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsServicePost(body?: CreateServiceCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsServicePost(body?: CreateServiceCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsServicePost(body?: CreateServiceCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsServicePost(body?: CreateServiceCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/HealthRecords/Service`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -250,13 +450,113 @@ export class PrescriptionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public prescriptionsManufacturersUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetManufacturerResult>;
-    public prescriptionsManufacturersUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetManufacturerResult>>;
-    public prescriptionsManufacturersUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetManufacturerResult>>;
-    public prescriptionsManufacturersUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public healthRecordsServiceUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsServiceUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsServiceUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsServiceUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidGet.');
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsServiceUidDelete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}/HealthRecords/Service/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsServiceUidPut(uid: string, body?: UpdateServiceCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsServiceUidPut(uid: string, body?: UpdateServiceCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsServiceUidPut(uid: string, body?: UpdateServiceCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsServiceUidPut(uid: string, body?: UpdateServiceCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsServiceUidPut.');
+        }
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/HealthRecords/Service/${encodeURIComponent(String(uid))}`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordResult>;
+    public healthRecordsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordResult>>;
+    public healthRecordsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordResult>>;
+    public healthRecordsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsUidGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -281,7 +581,7 @@ export class PrescriptionsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetManufacturerResult>('get',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetHealthRecordResult>('get',`${this.basePath}/HealthRecords/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -299,13 +599,13 @@ export class PrescriptionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsManufacturersUidPut(uid: string, body?: UpdateManufacturerCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public healthRecordsUidPut(uid: string, body?: UpdateHealthRecordCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public healthRecordsUidPut(uid: string, body?: UpdateHealthRecordCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public healthRecordsUidPut(uid: string, body?: UpdateHealthRecordCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public healthRecordsUidPut(uid: string, body?: UpdateHealthRecordCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsManufacturersUidPut.');
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsUidPut.');
         }
 
 
@@ -335,205 +635,7 @@ export class PrescriptionsService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/Prescriptions/manufacturers/${encodeURIComponent(String(uid))}`,
-            {
-                body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public prescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsPost(body?: CreatePrescriptionCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsPost(body?: CreatePrescriptionCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json',
-            'text/json',
-            'application/_*+json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.request<any>('post',`${this.basePath}/Prescriptions`,
-            {
-                body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param uid 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public prescriptionsUidDelete(uid: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsUidDelete(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsUidDelete(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsUidDelete(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsUidDelete.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('delete',`${this.basePath}/Prescriptions/${encodeURIComponent(String(uid))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param uid 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public prescriptionsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetPrescriptionResult>;
-    public prescriptionsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPrescriptionResult>>;
-    public prescriptionsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPrescriptionResult>>;
-    public prescriptionsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsUidGet.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GetPrescriptionResult>('get',`${this.basePath}/Prescriptions/${encodeURIComponent(String(uid))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param uid 
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public prescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public prescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public prescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public prescriptionsUidPut(uid: string, body?: UpdatePrescriptionCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling prescriptionsUidPut.');
-        }
-
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json',
-            'text/json',
-            'application/_*+json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.request<any>('put',`${this.basePath}/Prescriptions/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<any>('put',`${this.basePath}/HealthRecords/${encodeURIComponent(String(uid))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

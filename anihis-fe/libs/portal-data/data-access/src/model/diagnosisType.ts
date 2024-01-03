@@ -10,14 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface GetPrescriptionResult { 
-    uid?: string;
-    name?: string;
-    alternateName?: string;
-    code?: number;
-    prescriptionType?: string;
-    jm?: string;
-    mainPrice?: string;
-    secondPrice?: string;
-    manufacturerName?: string;
-}
+export type DiagnosisType = 0;
+
+export const DiagnosisType = {
+    NUMBER_0: 0 as DiagnosisType
+};

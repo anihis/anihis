@@ -12,6 +12,5 @@
 
 export interface UpdatePaymentCommand { 
     paymentUid?: string;
-    value?: string;
-    veterinarianUid?: string;
+    value?: number;
 }

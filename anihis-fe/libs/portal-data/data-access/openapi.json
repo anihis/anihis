@@ -72,6 +72,131 @@
         }
       }
     },
+    "/Animals/Species": {
+      "get": {
+        "tags": [
+          "Animals"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSpeciesResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Animals"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeciesCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Animals/Breeds": {
+      "get": {
+        "tags": [
+          "Animals"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetBreedsResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Animals"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Animals/{uid}": {
       "get": {
         "tags": [
@@ -143,6 +268,536 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Animals/Species/{uid}": {
+      "get": {
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpeciesCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Animals/Breeds/{uid}": {
+      "get": {
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBreedResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBreedCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords": {
+      "get": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordsResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordsResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordsResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords/Diagnosis": {
+      "get": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDiagnosesResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDiagnosesResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDiagnosesResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDiagnosisCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDiagnosisCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDiagnosisCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords/Service": {
+      "get": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetServicesResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetServicesResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetServicesResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords/{uid}": {
+      "get": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHealthRecordResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords/Diagnosis/{uid}": {
+      "put": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDiagnosisCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDiagnosisCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDiagnosisCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/HealthRecords/Service/{uid}": {
+      "put": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -295,10 +950,10 @@
         }
       }
     },
-    "/Payments/{uid}": {
+    "/Owners/{uid}/payment": {
       "get": {
         "tags": [
-          "Payments"
+          "Owners"
         ],
         "parameters": [
           {
@@ -335,7 +990,7 @@
       },
       "put": {
         "tags": [
-          "Payments"
+          "Owners"
         ],
         "parameters": [
           {
@@ -373,10 +1028,10 @@
         }
       }
     },
-    "/Payments": {
+    "/Owners/payment": {
       "post": {
         "tags": [
-          "Payments"
+          "Owners"
         ],
         "requestBody": {
           "content": {
@@ -404,7 +1059,7 @@
         }
       }
     },
-    "/Prescriptions/prescriptions": {
+    "/Prescriptions": {
       "get": {
         "tags": [
           "Prescriptions"
@@ -520,7 +1175,7 @@
         }
       }
     },
-    "/Prescriptions/prescriptions/{uid}": {
+    "/Prescriptions/{uid}": {
       "get": {
         "tags": [
           "Prescriptions"
@@ -709,287 +1364,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Species/species": {
-      "get": {
-        "tags": [
-          "Species"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSpeciesResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Species"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSpeciesCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSpeciesCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSpeciesCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Species/breeds": {
-      "get": {
-        "tags": [
-          "Species"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Species"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Species/species/{uid}": {
-      "get": {
-        "tags": [
-          "Species"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetSingleSpeciesResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Species"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSpeciesCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSpeciesCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSpeciesCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Species/breeds/{uid}": {
-      "get": {
-        "tags": [
-          "Species"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Species"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateBreedCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateBreedCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateBreedCommand"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success"
@@ -1281,6 +1655,29 @@
   },
   "components": {
     "schemas": {
+      "Animal": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Breed": {
         "type": "object",
         "properties": {
@@ -1313,6 +1710,10 @@
           "gender": {
             "$ref": "#/components/schemas/Gender"
           },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
           "birthDateTime": {
             "type": "string",
             "format": "date-time",
@@ -1322,12 +1723,43 @@
             "type": "string",
             "nullable": true
           },
+          "viIssuesAPassport": {
+            "type": "string",
+            "nullable": true
+          },
           "ownerUid": {
             "type": "string",
             "nullable": true
           },
           "warning": {
             "type": "string",
+            "nullable": true
+          },
+          "identification": {
+            "type": "string",
+            "nullable": true
+          },
+          "markingDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pedigree": {
+            "type": "string",
+            "nullable": true
+          },
+          "sterilized": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sterilizedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModifiedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
@@ -1342,6 +1774,87 @@
           },
           "speciesUid": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDiagnosisCommand": {
+        "type": "object",
+        "properties": {
+          "diagnosisType": {
+            "$ref": "#/components/schemas/DiagnosisType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateHealthRecordCommand": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "control": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "string",
+            "nullable": true
+          },
+          "anamnesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "clinicalExamination": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherFindings": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "therapy": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnoses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedDiagnosis"
+            },
+            "nullable": true
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedService"
+            },
+            "nullable": true
+          },
+          "prescriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedPrescription"
+            },
             "nullable": true
           }
         },
@@ -1384,10 +1897,6 @@
       "CreateOwnerCommand": {
         "type": "object",
         "properties": {
-          "username": {
-            "type": "string",
-            "nullable": true
-          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -1447,12 +1956,8 @@
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
-          },
-          "veterinarianUid": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1465,10 +1970,6 @@
             "nullable": true
           },
           "alternateName": {
-            "type": "string",
-            "nullable": true
-          },
-          "serialNumber": {
             "type": "string",
             "nullable": true
           },
@@ -1489,6 +1990,16 @@
             "nullable": true
           },
           "manufacturerUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateServiceCommand": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           }
@@ -1553,6 +2064,34 @@
         },
         "additionalProperties": false
       },
+      "Diagnosis": {
+        "type": "object",
+        "properties": {
+          "diagnosisUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosisType": {
+            "$ref": "#/components/schemas/DiagnosisType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiagnosisType": {
+        "enum": [
+          0
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "Gender": {
         "enum": [
           0,
@@ -1578,13 +2117,19 @@
             "nullable": true
           },
           "species": {
-            "$ref": "#/components/schemas/Species"
+            "type": "string",
+            "nullable": true
           },
           "breed": {
-            "$ref": "#/components/schemas/Breed"
+            "type": "string",
+            "nullable": true
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
           },
           "birthDateTime": {
             "type": "string",
@@ -1595,11 +2140,37 @@
             "type": "string",
             "nullable": true
           },
+          "viIssuesAPassport": {
+            "type": "string",
+            "nullable": true
+          },
           "owner": {
             "$ref": "#/components/schemas/Owner"
           },
           "warning": {
             "type": "string",
+            "nullable": true
+          },
+          "identification": {
+            "type": "string",
+            "nullable": true
+          },
+          "markingDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pedigree": {
+            "type": "string",
+            "nullable": true
+          },
+          "sterilized": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sterilizedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           },
           "lastModifiedDateTimeUtc": {
@@ -1626,33 +2197,21 @@
             "nullable": true
           },
           "species": {
-            "$ref": "#/components/schemas/Species"
+            "type": "string",
+            "nullable": true
           },
           "breed": {
-            "$ref": "#/components/schemas/Breed"
+            "type": "string",
+            "nullable": true
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
-          },
-          "birthDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "passportNumber": {
-            "type": "string",
-            "nullable": true
           },
           "owner": {
             "$ref": "#/components/schemas/Owner"
           },
           "warning": {
             "type": "string",
-            "nullable": true
-          },
-          "lastModifiedDateTimeUtc": {
-            "type": "string",
-            "format": "date-time",
             "nullable": true
           }
         },
@@ -1689,6 +2248,100 @@
           },
           "speciesUid": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDiagnosesResult": {
+        "type": "object",
+        "properties": {
+          "diagnoses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Diagnosis"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetHealthRecordResult": {
+        "type": "object",
+        "properties": {
+          "animalUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "control": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "string",
+            "nullable": true
+          },
+          "anamnesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "clinicalExamination": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "nullable": true
+          },
+          "otherFindings": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "therapy": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnoses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedDiagnosis"
+            },
+            "nullable": true
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedService"
+            },
+            "nullable": true
+          },
+          "prescriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedPrescription"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetHealthRecordsResult": {
+        "type": "object",
+        "properties": {
+          "healthRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HealthRecord"
+            },
             "nullable": true
           }
         },
@@ -1748,19 +2401,15 @@
       "GetOwnerResult": {
         "type": "object",
         "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
           "firstName": {
             "type": "string",
             "nullable": true
           },
           "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
             "type": "string",
             "nullable": true
           },
@@ -1773,6 +2422,14 @@
             "nullable": true
           },
           "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
             "type": "string",
             "nullable": true
           },
@@ -1796,8 +2453,13 @@
             "type": "string",
             "nullable": true
           },
-          "uid": {
+          "warning": {
             "type": "string",
+            "nullable": true
+          },
+          "unpaidExpenses": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },
@@ -1806,6 +2468,10 @@
       "GetOwnersResult": {
         "type": "object",
         "properties": {
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -1814,47 +2480,7 @@
             "type": "string",
             "nullable": true
           },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
           "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "mobileNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "postalCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "personalNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "passportNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "idCardNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "uid": {
             "type": "string",
             "nullable": true
           }
@@ -1889,9 +2515,9 @@
             "type": "string",
             "nullable": true
           },
-          "serialNumber": {
-            "type": "string",
-            "nullable": true
+          "code": {
+            "type": "integer",
+            "format": "int32"
           },
           "prescriptionType": {
             "type": "string",
@@ -1923,6 +2549,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Prescription"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetServicesResult": {
+        "type": "object",
+        "properties": {
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Service"
             },
             "nullable": true
           }
@@ -2041,6 +2680,22 @@
         },
         "additionalProperties": false
       },
+      "HealthRecord": {
+        "type": "object",
+        "properties": {
+          "healthRecordUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "animal": {
+            "$ref": "#/components/schemas/Animal"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          }
+        },
+        "additionalProperties": false
+      },
       "Manufacturer": {
         "type": "object",
         "properties": {
@@ -2085,6 +2740,22 @@
           "uid": {
             "type": "string",
             "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2117,8 +2788,8 @@
             "format": "date-time"
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2134,9 +2805,9 @@
             "type": "string",
             "nullable": true
           },
-          "serialNumber": {
-            "type": "string",
-            "nullable": true
+          "code": {
+            "type": "integer",
+            "format": "int32"
           },
           "prescriptionType": {
             "type": "string",
@@ -2157,6 +2828,94 @@
           "manufacturerName": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectedDiagnosis": {
+        "type": "object",
+        "properties": {
+          "diagnosisUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosisNote": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectedPrescription": {
+        "type": "object",
+        "properties": {
+          "prescriptionUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionQuantity": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionVAT": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescriptionTotal": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectedService": {
+        "type": "object",
+        "properties": {
+          "serviceUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceQuantity": {
+            "type": "string",
+            "nullable": true
+          },
+          "servicePrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceVAT": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceTotal": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "serviceUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2204,6 +2963,10 @@
           "gender": {
             "$ref": "#/components/schemas/Gender"
           },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
           "birthDateTime": {
             "type": "string",
             "format": "date-time",
@@ -2213,12 +2976,43 @@
             "type": "string",
             "nullable": true
           },
+          "viIssuesAPassport": {
+            "type": "string",
+            "nullable": true
+          },
           "ownerUid": {
             "type": "string",
             "nullable": true
           },
           "warning": {
             "type": "string",
+            "nullable": true
+          },
+          "identification": {
+            "type": "string",
+            "nullable": true
+          },
+          "markingDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pedigree": {
+            "type": "string",
+            "nullable": true
+          },
+          "sterilized": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sterilizedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModifiedDateTimeUtc": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
@@ -2236,6 +3030,24 @@
             "nullable": true
           }
         },
+        "additionalProperties": false
+      },
+      "UpdateDiagnosisCommand": {
+        "type": "object",
+        "properties": {
+          "diagnosisUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateHealthRecordCommand": {
+        "type": "object",
         "additionalProperties": false
       },
       "UpdateManufacturerCommand": {
@@ -2346,12 +3158,8 @@
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
-          },
-          "veterinarianUid": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2392,6 +3200,20 @@
             "nullable": true
           },
           "manufacturerUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateServiceCommand": {
+        "type": "object",
+        "properties": {
+          "serviceUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
             "type": "string",
             "nullable": true
           }

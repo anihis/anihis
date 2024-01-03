@@ -10,14 +10,10 @@
  * Do not edit the class manually.
  */
 
-export interface GetPrescriptionResult { 
-    uid?: string;
-    name?: string;
-    alternateName?: string;
-    code?: number;
-    prescriptionType?: string;
-    jm?: string;
-    mainPrice?: string;
-    secondPrice?: string;
-    manufacturerName?: string;
+export interface SelectedService { 
+    serviceUid?: string;
+    serviceQuantity?: string;
+    servicePrice?: string;
+    serviceVAT?: string;
+    serviceTotal?: string;
 }

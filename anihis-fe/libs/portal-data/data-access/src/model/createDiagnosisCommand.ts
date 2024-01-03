@@ -9,15 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { DiagnosisType } from './diagnosisType';
 
-export interface GetPrescriptionResult { 
-    uid?: string;
+export interface CreateDiagnosisCommand { 
+    diagnosisType?: DiagnosisType;
     name?: string;
-    alternateName?: string;
-    code?: number;
-    prescriptionType?: string;
-    jm?: string;
-    mainPrice?: string;
-    secondPrice?: string;
-    manufacturerName?: string;
 }

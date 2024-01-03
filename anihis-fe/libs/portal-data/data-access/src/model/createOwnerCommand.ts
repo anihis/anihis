@@ -11,7 +11,6 @@
  */
 
 export interface CreateOwnerCommand { 
-    username?: string;
     firstName?: string;
     lastName?: string;
     city?: string;

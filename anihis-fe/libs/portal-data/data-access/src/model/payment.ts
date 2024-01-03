@@ -17,5 +17,5 @@ export interface Payment {
     veterinarianFirstName?: string;
     veterinarianLastName?: string;
     paymentDateTimeUtc?: Date;
-    value?: string;
+    value?: number;
 }
