@@ -1,84 +1,116 @@
-<main *transloco="let t">
-  <ng-container *ngIf="(isPreviewCard$ | async) === false; else isPreviewCard">
-    <div
-      style="display: flex; align-items: center; justify-content: space-between"
+<main>
+  <ng-container *transloco="let t">
+    <ng-container
+      *ngIf="(isPreviewCard$ | async) === false; else isPreviewCard"
     >
-      <div style="display: flex; align-items: center; gap: 16px">
-        <mat-icon class="material-symbols-outlined cursor" (click)="back()"
-          >arrow_back</mat-icon
-        >
-        <h2>
-          {{ t('Overview of card history') }} {{ tableDate[0].numberCard }}
-        </h2>
-      </div>
+      <section>
+        <div class="filter-container back-row">
+          <div class="back">
+            <mat-icon class="material-symbols-outlined cursor" (click)="back()"
+              >arrow_back</mat-icon
+            >
+            <h2>
+              {{ t('Overview of card history') }} {{ tableDate[0].numberCard }}
+            </h2>
+          </div>
 
-      <div style="display: flex; gap: 16px">
-        <button mat-raised-button (click)="openPaymentsDialog()">
-          {{ t('Payments') }}
-        </button>
+          <div style="display: flex; gap: 16px">
+            <button mat-raised-button (click)="openPaymentsDialog()">
+              {{ t('Payments') }}
+            </button>
 
-        <button mat-raised-button (click)="openAddNewPaymentDialog()">
-          {{ t('Add new payment') }}
-        </button>
-      </div>
-    </div>
+            <button mat-raised-button (click)="openAddNewPaymentDialog()">
+              {{ t('Add new payment') }}
+            </button>
+          </div>
+        </div>
 
-    <div class="filter-container">
-      <mat-form-field appearance="outline">
-        <mat-label>{{
-          'dateOfEdit' | nameColumn | titlecase | transloco
-        }}</mat-label>
-        <input
-          matInput
-          autocomplete="on"
-          (keyup)="applyFilter($event, 'dateOfEdit')"
-        />
-      </mat-form-field>
-    </div>
+        <div class="filter-container">
+          <mat-form-field appearance="outline">
+            <mat-label>{{
+              'dateOfEdit' | nameColumn | titlecase | transloco
+            }}</mat-label>
+            <input
+              matInput
+              autocomplete="on"
+              (keyup)="applyFilter($event, 'dateOfEdit')"
+            />
+          </mat-form-field>
+        </div>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container
-        *ngFor="let column of displayedColumns"
-        [matColumnDef]="column"
-      >
-        <th [class]="column" mat-header-cell *matHeaderCellDef>
-          {{ column | nameColumn | titlecase | transloco }}
-        </th>
-        <td [class]="column" mat-cell *matCellDef="let element">
-          <ng-container
-            *ngIf="column === 'actionHistoryCard'; else notActionColumn"
-          >
-            <div class="action-icons">
-              <mat-icon
-                class="material-symbols-outlined cursor"
-                (click)="openEditDialog(element)"
-                >edit</mat-icon
-              >
-              <mat-icon
-                class="material-symbols-outlined cursor"
-                (click)="togglePreviewCard(element.uid)"
-                >visibility</mat-icon
-              >
-            </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Number Card Column -->
+          <ng-container matColumnDef="numberCard">
+            <th mat-header-cell *matHeaderCellDef class="numberCard">
+              {{ 'Number Card' | titlecase | transloco }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="numberCard">
+              {{ element.numberCard }}
+            </td>
           </ng-container>
-          <ng-template #notActionColumn>
-            {{
-              column === 'dateOfBirth' || column === 'dateOfEdit'
-                ? (element[column] | date : 'd/M/yy')
-                : element[column]
-            }}
-          </ng-template>
-        </td>
-      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator
-      #paginator
-      [pageSizeOptions]="[2, 4, 6]"
-      showFirstLastButtons
-    ></mat-paginator>
+          <!-- Name Of Clinic Column -->
+          <ng-container matColumnDef="nameOfClinic">
+            <th mat-header-cell *matHeaderCellDef class="nameOfClinic">
+              {{ 'Name Of Clinic' | titlecase | transloco }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="nameOfClinic">
+              {{ element.nameOfClinic }}
+            </td>
+          </ng-container>
+
+          <!-- License Number Column -->
+          <ng-container matColumnDef="licenseNumber">
+            <th mat-header-cell *matHeaderCellDef class="licenseNumber">
+              {{ 'License Number' | titlecase | transloco }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="licenseNumber">
+              {{ element.licenseNumber }}
+            </td>
+          </ng-container>
+
+          <!-- Date Of Edit Column -->
+          <ng-container matColumnDef="dateOfEdit">
+            <th mat-header-cell *matHeaderCellDef class="dateOfEdit">
+              {{ 'Date Of Edit' | titlecase | transloco }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="dateOfEdit">
+              {{ element.dateOfEdit | date : 'd/M/yy' }}
+            </td>
+          </ng-container>
+
+          <!-- Action History Card Column -->
+          <ng-container matColumnDef="actionHistoryCard">
+            <th mat-header-cell *matHeaderCellDef class="actionHistoryCard">
+              {{ 'ActionCardHistory' | titlecase | transloco }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="actionHistoryCard">
+              <div class="action-icons">
+                <mat-icon
+                  class="material-symbols-outlined cursor"
+                  (click)="openEditDialog(element)"
+                  >edit</mat-icon
+                >
+                <mat-icon
+                  class="material-symbols-outlined cursor"
+                  (click)="togglePreviewCard(element.uid)"
+                  >visibility</mat-icon
+                >
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="[2, 4, 6]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </section>
+    </ng-container>
   </ng-container>
   <ng-template #isPreviewCard>
     <mat-icon
