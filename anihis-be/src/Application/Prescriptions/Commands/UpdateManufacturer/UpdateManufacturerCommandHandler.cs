@@ -1,9 +1,11 @@
-﻿using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Exceptions;
+using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-namespace anihis.Application.Manufacturers.Command.Update;
+namespace anihis.Application.Prescriptions.Commands.UpdateManufacturer;
 public class UpdateManufacturerCommandHandler : IRequestHandler<UpdateManufacturerCommand>
 {
     private readonly ICoreDbContext _context;
@@ -27,7 +29,15 @@ public class UpdateManufacturerCommandHandler : IRequestHandler<UpdateManufactur
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        var manufacturer = await _manufacturerRepository.GetByUidOrThrowAsync(request.ManufacturerUid, cancellationToken);
+        var manufacturer = await _manufacturerRepository.StartQuery()
+            .Include(x => x.VeterinaryClinic)
+            .Where(x => x.Uid == request.ManufacturerUid)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (manufacturer is null)
+        {
+            throw new NotFoundException();
+        }
 
         await _manufacturerRepository.ThrowIfConflict(x =>
             x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == manufacturer.VeterinaryClinic,

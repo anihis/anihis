@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace anihis.Application.Manufacturers.Queries.Get;
+namespace anihis.Application.Prescriptions.Queries.GetManufacturers;
 public class GetManufacturersQuery : IRequest<GetManufacturersResult>
 {
 }

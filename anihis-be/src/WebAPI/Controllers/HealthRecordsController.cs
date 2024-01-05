@@ -27,10 +27,10 @@ public class HealthRecordsController : ApiControllerBase
     {
     }
 
-    [HttpGet]
-    public async Task<ActionResult<GetHealthRecordsResult>> GetHealthRecords()
+    [HttpGet("{uid}")]
+    public async Task<ActionResult<GetHealthRecordsResult>> GetHealthRecords(string uid)
     {
-        return await Mediator.Send(new GetHealthRecordsQuery());
+        return await Mediator.Send(new GetHealthRecordsQuery { AnimalUid = uid });
     }
 
     [HttpGet("Diagnosis")]
@@ -45,7 +45,7 @@ public class HealthRecordsController : ApiControllerBase
         return await Mediator.Send(new GetServicesQuery());
     }
 
-    [HttpGet("{uid}")]
+    [HttpGet("Single/{uid}")]
     public async Task<ActionResult<GetHealthRecordResult>> GetHealthRecord(string uid)
     {
         return await Mediator.Send(new GetHealthRecordQuery { HealthRecordUid = uid });

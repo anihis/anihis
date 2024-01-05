@@ -1,7 +1,9 @@
-﻿using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Exceptions;
+using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace anihis.Application.HealthRecords.Commands.UpdateDiagnosis;
 public class UpdateDiagnosisCommandHandler : IRequestHandler<UpdateDiagnosisCommand>
@@ -27,7 +29,15 @@ public class UpdateDiagnosisCommandHandler : IRequestHandler<UpdateDiagnosisComm
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        var diagnosis = await _diagnosisRepository.GetByUidOrThrowAsync(request.DiagnosisUid, cancellationToken);
+        var diagnosis = await _diagnosisRepository.StartQuery()
+            .Include(x => x.VeterinaryClinic)
+            .Where(x => x.Uid == request.DiagnosisUid)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (diagnosis is null)
+        {
+            throw new NotFoundException();
+        }
 
         await _diagnosisRepository.ThrowIfConflict(x =>
             x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == diagnosis.VeterinaryClinic,

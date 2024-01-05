@@ -8,14 +8,14 @@ public class CreateBreedCommandHandler : IRequestHandler<CreateBreedCommand>
 {
     private readonly ICoreDbContext _context;
     private readonly IBaseRepository<Breed> _breedRepository;
-    private readonly IBaseRepository<Domain.Entities.Species> _speciesRepository;
+    private readonly IBaseRepository<Species> _speciesRepository;
     private readonly IValidator<CreateBreedCommand> _validator;
 
     public CreateBreedCommandHandler
     (
         ICoreDbContext context,
         IBaseRepository<Breed> breedRepository,
-        IBaseRepository<Domain.Entities.Species> speciesRepository,
+        IBaseRepository<Species> speciesRepository,
         IValidator<CreateBreedCommand> validator
     )
     {
@@ -30,11 +30,11 @@ public class CreateBreedCommandHandler : IRequestHandler<CreateBreedCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        await _breedRepository.ThrowIfConflict(x =>
-            x.Name.ToLower() == request.Name.ToLower(),
-            cancellationToken);
-
         var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
+
+        await _breedRepository.ThrowIfConflict(x =>
+            x.Name.ToLower() == request.Name.ToLower() && x.Species == species,
+            cancellationToken);
 
         _breedRepository.Insert(new Breed
         {
@@ -45,4 +45,27 @@ public class CreateBreedCommandHandler : IRequestHandler<CreateBreedCommand>
 
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    //public async Task Handle(CreateBreedCommand request, CancellationToken cancellationToken)
+    //{
+    //    var result = await _validator.ValidateAsync(request);
+    //    result.ThrowIfNotValid();
+
+    //    var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
+
+    //    foreach (var name in request.Names)
+    //    {
+    //        await _breedRepository.ThrowIfConflict(x =>
+    //            x.Name.ToLower() == name.ToLower() && x.Species == species,
+    //            cancellationToken);
+
+    //        _breedRepository.Insert(new Breed
+    //        {
+    //            Uid = Guid.NewGuid().ToString(),
+    //            Name = name,
+    //            Species = species
+    //        });
+    //    }
+    //    await _context.SaveChangesAsync(cancellationToken);
+    //}
 }

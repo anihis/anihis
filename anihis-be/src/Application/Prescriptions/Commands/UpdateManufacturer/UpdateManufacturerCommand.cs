@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace anihis.Application.Manufacturers.Command.Update;
+namespace anihis.Application.Prescriptions.Commands.UpdateManufacturer;
 public class UpdateManufacturerCommand : IRequest
 {
     public string ManufacturerUid { get; set; }

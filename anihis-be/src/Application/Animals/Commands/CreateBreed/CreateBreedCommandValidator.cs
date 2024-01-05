@@ -13,4 +13,15 @@ public class CreateBreedCommandValidator : AbstractValidator<CreateBreedCommand>
             .NotEmpty()
             .WithMessage("The name cannot be empty.");
     }
+
+    //public CreateBreedCommandValidator()
+    //{
+    //    RuleFor(x => x.SpeciesUid)
+    //        .NotEmpty()
+    //        .WithMessage("Species uid is required.");
+
+    //    RuleForEach(x => x.Names)
+    //        .NotEmpty()
+    //        .WithMessage("The name cannot be empty.");
+    //}
 }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace anihis.Application.Manufacturers.Command.Create;
+namespace anihis.Application.Prescriptions.Commands.CreateManufacturer;
 public class CreateManufacturerCommand : IRequest
 {
     public string Name { get; set; }

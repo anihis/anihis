@@ -2,7 +2,7 @@
 using anihis.Domain.Entities;
 using MediatR;
 
-namespace anihis.Application.Manufacturers.Queries.Get;
+namespace anihis.Application.Prescriptions.Queries.GetManufacturers;
 public class GetManufacturersQueryHandler : IRequestHandler<GetManufacturersQuery, GetManufacturersResult>
 {
     private readonly IBaseRepository<Manufacturer> _manufacturerRepository;

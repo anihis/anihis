@@ -2,7 +2,7 @@
 using anihis.Domain.Entities;
 using MediatR;
 
-namespace anihis.Application.Manufacturers.Command.Delete;
+namespace anihis.Application.Prescriptions.Commands.DeleteManufacturer;
 public class DeleteManufacturerCommandHandler : IRequestHandler<DeleteManufacturerCommand>
 {
     private readonly ICoreDbContext _context;

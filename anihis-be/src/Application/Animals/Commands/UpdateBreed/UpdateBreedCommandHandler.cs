@@ -38,4 +38,25 @@ public class UpdateBreedCommandHandler : IRequestHandler<UpdateBreedCommand>
 
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    //public async Task Handle(UpdateBreedCommand request, CancellationToken cancellationToken)
+    //{
+    //    var result = await _validator.ValidateAsync(request);
+    //    result.ThrowIfNotValid();
+
+    //    var species = await _speciesRepository.GetByUidOrThrowAsync(request.SpeciesUid, cancellationToken);
+
+    //    foreach (var b in request.Breeds)
+    //    {
+    //        await _breedRepository.ThrowIfConflict(x =>
+    //            x.Name.ToLower() == b.Name.ToLower() && x.Species == species,
+    //            cancellationToken);
+
+    //        var breed = await _breedRepository.GetByUidOrThrowAsync(b.Uid, cancellationToken);
+
+    //        breed.Name = b.Name;
+    //        _breedRepository.Update(breed);
+    //    }
+    //    await _context.SaveChangesAsync(cancellationToken);
+    //}
 }

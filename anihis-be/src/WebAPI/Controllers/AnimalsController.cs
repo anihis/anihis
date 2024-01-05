@@ -39,11 +39,11 @@ public class AnimalsController : ApiControllerBase
         return await Mediator.Send(new GetSpeciesQuery());
     }
 
-    [HttpGet("Breeds")]
-    public async Task<ActionResult<List<GetBreedsResult>>> GetBreeds()
-    {
-        return await Mediator.Send(new GetBreedsQuery());
-    }
+    //[HttpGet("Breeds")]
+    //public async Task<ActionResult<List<GetBreedsResult>>> GetBreeds()
+    //{
+    //    return await Mediator.Send(new GetBreedsQuery());
+    //}
 
     [HttpGet("{uid}")]
     public async Task<ActionResult<GetAnimalResult>> Get(string uid)
@@ -57,11 +57,11 @@ public class AnimalsController : ApiControllerBase
         return await Mediator.Send(new GetSingleSpeciesQuery { SpeciesUid = uid });
     }
 
-    [HttpGet("Breeds/{uid}")]
-    public async Task<ActionResult<GetBreedResult>> GetBreed(string uid)
-    {
-        return await Mediator.Send(new GetBreedQuery { BreedUid = uid });
-    }
+    //[HttpGet("Breeds/{uid}")]
+    //public async Task<ActionResult<GetBreedResult>> GetBreed(string uid)
+    //{
+    //    return await Mediator.Send(new GetBreedQuery { BreedUid = uid });
+    //}
 
     [HttpPost]
     public async Task Create(CreateAnimalCommand command)

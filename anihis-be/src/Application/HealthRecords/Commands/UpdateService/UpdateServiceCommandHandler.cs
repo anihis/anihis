@@ -1,7 +1,9 @@
-﻿using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Exceptions;
+using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace anihis.Application.HealthRecords.Commands.UpdateService;
 public class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceCommand>
@@ -27,7 +29,15 @@ public class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceCommand>
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        var service = await _serviceRepository.GetByUidOrThrowAsync(request.ServiceUid, cancellationToken);
+        var service = await _serviceRepository.StartQuery()
+            .Include(x => x.VeterinaryClinic)
+            .Where(x => x.Uid == request.ServiceUid)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (service is null)
+        {
+            throw new NotFoundException();
+        }
 
         await _serviceRepository.ThrowIfConflict(x =>
             x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == service.VeterinaryClinic,

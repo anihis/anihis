@@ -54,6 +54,7 @@ public class CreatePrescriptionCommandHandler : IRequestHandler<CreatePrescripti
             x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == veterinarian.VeterinaryClinic,
             cancellationToken);
 
+        //TODO: move to extensions
         var diagnosesNumber = _diagnosisRepository.StartQuery()
             .Where(x => x.VeterinaryClinic == veterinarian.VeterinaryClinic).Count();
 

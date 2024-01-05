@@ -1,4 +1,4 @@
-﻿namespace anihis.Application.Manufacturers.Models;
+﻿namespace anihis.Application.Prescriptions.Models;
 public class Manufacturer
 {
     public string Uid { get; set; }

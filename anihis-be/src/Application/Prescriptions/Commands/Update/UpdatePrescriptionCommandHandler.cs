@@ -1,7 +1,9 @@
-﻿using anihis.Application.Common.Interfaces;
+﻿using anihis.Application.Common.Exceptions;
+using anihis.Application.Common.Interfaces;
 using anihis.Domain.Entities;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace anihis.Application.Prescriptions.Commands.Update;
 public class UpdatePrescriptionCommandHandler : IRequestHandler<UpdatePrescriptionCommand>
@@ -30,7 +32,15 @@ public class UpdatePrescriptionCommandHandler : IRequestHandler<UpdatePrescripti
         var result = await _validator.ValidateAsync(request);
         result.ThrowIfNotValid();
 
-        var prescription = await _prescriptionRepository.GetByUidOrThrowAsync(request.PrescriptionUid, cancellationToken);
+        var prescription = await _prescriptionRepository.StartQuery()
+            .Include(x => x.VeterinaryClinic)
+            .Where(x => x.Uid == request.PrescriptionUid)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (prescription is null)
+        {
+            throw new NotFoundException();
+        }
 
         await _prescriptionRepository.ThrowIfConflict(x =>
             x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == prescription.VeterinaryClinic,

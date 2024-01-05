@@ -22,6 +22,7 @@ public class GetHealthRecordsQueryHandler : IRequestHandler<GetHealthRecordsQuer
             .Include(x => x.Animal)
             .Include(x => x.Animal.Breed)
             .Include(x => x.Animal.Owner)
+            .Where(x => x.Animal.Uid == request.AnimalUid)
             .Select(x => new Models.HealthRecord
             {
                 HealthRecordUid = x.Uid,

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace anihis.Application.Manufacturers.Command.Update;
+namespace anihis.Application.Prescriptions.Commands.UpdateManufacturer;
 public class UpdateManufacturerCommandValidator : AbstractValidator<UpdateManufacturerCommand>
 {
     public UpdateManufacturerCommandValidator()

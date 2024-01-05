@@ -4,7 +4,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace anihis.Application.Manufacturers.Command.Create;
+namespace anihis.Application.Prescriptions.Commands.CreateManufacturer;
 public class CreateManufacturerCommandHandler : IRequestHandler<CreateManufacturerCommand>
 {
     private readonly ICoreDbContext _context;

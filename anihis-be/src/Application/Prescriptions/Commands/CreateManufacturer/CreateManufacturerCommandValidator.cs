@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace anihis.Application.Manufacturers.Command.Create;
+namespace anihis.Application.Prescriptions.Commands.CreateManufacturer;
 public class CreateManufacturerCommandValidator : AbstractValidator<CreateManufacturerCommand>
 {
     public CreateManufacturerCommandValidator()
