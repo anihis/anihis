@@ -13,7 +13,7 @@
 export interface Prescription { 
     name?: string;
     alternateName?: string;
-    serialNumber?: string;
+    code?: number;
     prescriptionType?: string;
     jm?: string;
     mainPrice?: string;

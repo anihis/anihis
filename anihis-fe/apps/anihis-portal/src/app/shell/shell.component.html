@@ -1,11 +1,12 @@
 <ng-container *transloco="let t">
   <anihis-toolbar [currentScreenSize]="currentScreenSize"></anihis-toolbar>
-  <anihis-tab-groups
-    *ngIf="currentScreenSize === 'XLarge'"
-    [tabs]="[t('Protocols'), t('Pharmacy'), t('Coders')]"
-    [isShall]="true"
-    class="shell-tab"
-  ></anihis-tab-groups>
+  <ng-container *ngIf="currentScreenSize === 'XLarge'">
+    <anihis-tab-groups
+      [tabs]="[t('Protocols'), t('Pharmacy'), t('Coders')]"
+      [isShall]="true"
+      class="shell-tab"
+    ></anihis-tab-groups>
+  </ng-container>
 
   <ng-container>
     <ng-template #smallView>

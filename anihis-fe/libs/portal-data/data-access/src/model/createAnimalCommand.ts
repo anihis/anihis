@@ -16,8 +16,16 @@ export interface CreateAnimalCommand {
     name?: string;
     breedUid?: string;
     gender?: Gender;
+    color?: string;
     birthDateTime?: Date;
     passportNumber?: string;
+    viIssuesAPassport?: string;
     ownerUid?: string;
     warning?: string;
+    identification?: string;
+    markingDateTimeUtc?: Date;
+    pedigree?: string;
+    sterilized?: boolean;
+    sterilizedDateTimeUtc?: Date;
+    lastModifiedDateTimeUtc?: Date;
 }

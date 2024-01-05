@@ -1,7 +1,7 @@
 <ng-container *transloco="let t">
   <section>
     <div class="add-new-species-wrapper">
-      <button mat-raised-button (click)="openAddSpeciesDialog()">
+      <button mat-raised-button (click)="openAddEditSpeciesBreedDialog()">
         {{ t('Add new species') }}
       </button>
     </div>
@@ -42,16 +42,11 @@
                 class="action-species-column"
               >
                 <div class="action-icons">
-                  <mat-icon
-                    class="material-symbols-outlined cursor"
-                    (click)="openAddEditBreedDialog(element, data)"
-                    >add</mat-icon
-                  >
                   <div style="width: 24px">
                     <mat-icon
                       *ngIf="element.breeds.length > 0"
                       class="material-symbols-outlined cursor"
-                      (click)="openAddEditBreedDialog(element, data, true)"
+                      (click)="openAddEditSpeciesBreedDialog(element, data)"
                       >edit</mat-icon
                     >
                   </div>

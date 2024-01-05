@@ -187,7 +187,7 @@
   "Edit clinic": "Edit clinic",
   "Payments list": "Payments list",
   "Add new species": "Add new species",
-  "Action Species": "Add / Edit Breed",
+  "Action Species": "Edit",
   "actionManufacturersOfMedicaments": "Edit/Delete",
   "Are you sure you want to delete?": "Are you sure you want to delete?",
   "record": "Record",
@@ -206,5 +206,7 @@
   "actionCardOwner": "Preview",
   "actionProcurement": "Preview",
   "Procurement Vat": "Procurement Vat",
-  "Add new list": "Add new list"
+  "Add new list": "Add new list",
+  "Add new breed": "Add new breed",
+  "Edit breed": "Edit breed"
 }

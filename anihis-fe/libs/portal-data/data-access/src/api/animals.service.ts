@@ -18,9 +18,17 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { CreateAnimalCommand } from '../model/createAnimalCommand';
+import { CreateBreedCommand } from '../model/createBreedCommand';
+import { CreateSpeciesCommand } from '../model/createSpeciesCommand';
 import { GetAnimalResult } from '../model/getAnimalResult';
 import { GetAnimalsResult } from '../model/getAnimalsResult';
+import { GetBreedResult } from '../model/getBreedResult';
+import { GetBreedsResult } from '../model/getBreedsResult';
+import { GetSingleSpeciesResult } from '../model/getSingleSpeciesResult';
+import { GetSpeciesResult } from '../model/getSpeciesResult';
 import { UpdateAnimalCommand } from '../model/updateAnimalCommand';
+import { UpdateBreedCommand } from '../model/updateBreedCommand';
+import { UpdateSpeciesCommand } from '../model/updateSpeciesCommand';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -57,6 +65,202 @@ export class AnimalsService {
         return false;
     }
 
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsBreedsGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetBreedsResult>>;
+    public animalsBreedsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetBreedsResult>>>;
+    public animalsBreedsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetBreedsResult>>>;
+    public animalsBreedsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<GetBreedsResult>>('get',`${this.basePath}/Animals/Breeds`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsBreedsPost(body?: CreateBreedCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public animalsBreedsPost(body?: CreateBreedCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public animalsBreedsPost(body?: CreateBreedCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public animalsBreedsPost(body?: CreateBreedCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/Animals/Breeds`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsBreedsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetBreedResult>;
+    public animalsBreedsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetBreedResult>>;
+    public animalsBreedsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetBreedResult>>;
+    public animalsBreedsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling animalsBreedsUidGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetBreedResult>('get',`${this.basePath}/Animals/Breeds/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public animalsBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public animalsBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public animalsBreedsUidPut(uid: string, body?: UpdateBreedCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling animalsBreedsUidPut.');
+        }
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/Animals/Breeds/${encodeURIComponent(String(uid))}`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * 
@@ -141,6 +345,202 @@ export class AnimalsService {
         }
 
         return this.httpClient.request<any>('post',`${this.basePath}/Animals`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsSpeciesGet(observe?: 'body', reportProgress?: boolean): Observable<GetSpeciesResult>;
+    public animalsSpeciesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSpeciesResult>>;
+    public animalsSpeciesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSpeciesResult>>;
+    public animalsSpeciesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetSpeciesResult>('get',`${this.basePath}/Animals/Species`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsSpeciesPost(body?: CreateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public animalsSpeciesPost(body?: CreateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public animalsSpeciesPost(body?: CreateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public animalsSpeciesPost(body?: CreateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/Animals/Species`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsSpeciesUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetSingleSpeciesResult>;
+    public animalsSpeciesUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSingleSpeciesResult>>;
+    public animalsSpeciesUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSingleSpeciesResult>>;
+    public animalsSpeciesUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling animalsSpeciesUidGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetSingleSpeciesResult>('get',`${this.basePath}/Animals/Species/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public animalsSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public animalsSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public animalsSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public animalsSpeciesUidPut(uid: string, body?: UpdateSpeciesCommand, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling animalsSpeciesUidPut.');
+        }
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/Animals/Species/${encodeURIComponent(String(uid))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

@@ -9,21 +9,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Breed } from './breed';
 import { Gender } from './gender';
 import { Owner } from './owner';
-import { Species } from './species';
 
 export interface GetAnimalResult { 
     animalUid?: string;
     personalNumber?: string;
     name?: string;
-    species?: Species;
-    breed?: Breed;
+    species?: string;
+    breed?: string;
     gender?: Gender;
+    color?: string;
     birthDateTime?: Date;
     passportNumber?: string;
+    viIssuesAPassport?: string;
     owner?: Owner;
     warning?: string;
+    identification?: string;
+    markingDateTimeUtc?: Date;
+    pedigree?: string;
+    sterilized?: boolean;
+    sterilizedDateTimeUtc?: Date;
     lastModifiedDateTimeUtc?: Date;
 }

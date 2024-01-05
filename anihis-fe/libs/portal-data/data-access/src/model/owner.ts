@@ -12,4 +12,8 @@
 
 export interface Owner { 
     uid?: string;
+    firstName?: string;
+    lastName?: string;
+    city?: string;
+    address?: string;
 }

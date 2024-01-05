@@ -10,14 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface GetPrescriptionResult { 
-    uid?: string;
+export interface Animal { 
+    animalUid?: string;
     name?: string;
-    alternateName?: string;
-    code?: number;
-    prescriptionType?: string;
-    jm?: string;
-    mainPrice?: string;
-    secondPrice?: string;
-    manufacturerName?: string;
+    breedName?: string;
+    birthDateTime?: Date;
 }

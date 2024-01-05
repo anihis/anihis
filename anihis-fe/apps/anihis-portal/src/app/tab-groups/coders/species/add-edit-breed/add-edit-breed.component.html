@@ -1,48 +1,81 @@
 <ng-container *transloco="let t">
-  <div class="header-wrapper-dialog">
-    <h2 mat-dialog-title>
-      {{ data?.isEdit ? t('Edit breed') : t('Add new breed') }}
-    </h2>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="speciesForm">
+      <form [formGroup]="speciesForm">
+        <ng-template matStepLabel>{{ t('Species') }}</ng-template>
+        <div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>{{ t('Name Species') }}</mat-label>
+              <input
+                matInput
+                placeholder="Name Species"
+                formControlName="name"
+              />
+            </mat-form-field>
+          </div>
+        </div>
 
-    <button mat-button (click)="closeDialog()">
-      <span class="material-symbols-outlined"> close </span>
-    </button>
-  </div>
+        <div>
+          <button mat-button matStepperNext>{{ t('Next') }}</button>
+        </div>
+      </form>
+    </mat-step>
 
-  <form [formGroup]="form">
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ t('Name breed') }} </mat-label>
-        <input matInput formControlName="name" />
-      </mat-form-field>
-    </div>
-    <div style="margin: 0px 16px" *ngIf="data?.isEdit">
-      <h3>{{ 'Select breed for edit' }}</h3>
-      <!-- <div
-        style="margin-left: 16px"
-        *ngFor="let breed of data.data.breeds; last as l"
-      >
-        <p (click)="editSelectBreed(breed)">{{ breed.name }}</p>
-        <hr *ngIf="!l" />
-      </div> -->
-
-      <mat-form-field>
-        <mat-label>Izaberite rasu</mat-label>
-        <mat-select name="breed">
-          <mat-option
-            *ngFor="let breed of data.data.breeds"
-            [value]="breed"
-            (click)="editSelectBreed(breed)"
+    <mat-step [stepControl]="formBreeds" [label]="t('Breeds')">
+      <div [formGroup]="formBreeds">
+        <div
+          #scrollContainer
+          class="form-row-container"
+          formArrayName="breedsList"
+        >
+          <div
+            class="form-row"
+            *ngFor="let row of breedsList.controls; let i = index"
+            [formGroupName]="i"
           >
-            {{ breed.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="btn-save-wrapper">
-      <button mat-raised-button (click)="saveChanges()">
-        {{ t('Save') }}
-      </button>
-    </div>
-  </form>
+            <div class="form-row-fields">
+              <mat-form-field>
+                <mat-label>{{ t('Name Breed') }}</mat-label>
+                <input
+                  matInput
+                  placeholder="Name Breed"
+                  formControlName="name"
+                />
+              </mat-form-field>
+            </div>
+            <div style="display: flex; gap: 16px">
+              <button
+                mat-raised-button
+                class="button-margin"
+                (click)="removeRow(i)"
+                *ngIf="breedsList.length > 1"
+              >
+                {{ t('Remove row') }}
+              </button>
+
+              <button
+                mat-raised-button
+                class="button-margin"
+                (click)="addRow()"
+                [disabled]="i !== breedsList.length - 1 || !isRowFilled(i)"
+              >
+                {{
+                  data && data.data && data.data.breeds
+                    ? t('Edit breed')
+                    : t('Add new breed')
+                }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>{{ t('Back') }}</button>
+          <button mat-button (click)="saveChanges()">
+            {{ t('Done') }}
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </ng-container>

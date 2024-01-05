@@ -12,6 +12,5 @@
 
 export interface CreatePaymentCommand { 
     ownerUid?: string;
-    value?: string;
-    veterinarianUid?: string;
+    value?: number;
 }
