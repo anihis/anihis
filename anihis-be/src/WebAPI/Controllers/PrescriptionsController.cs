@@ -7,7 +7,6 @@ using anihis.Application.Prescriptions.Commands.Update;
 using anihis.Application.Prescriptions.Commands.UpdateManufacturer;
 using anihis.Application.Prescriptions.Queries.Get;
 using anihis.Application.Prescriptions.Queries.GetManufacturers;
-using anihis.Application.Prescriptions.Queries.GetSIngle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,12 +33,6 @@ public class PrescriptionsController : ApiControllerBase
     public async Task<ActionResult<GetManufacturersResult>> GetManufacturers()
     {
         return await Mediator.Send(new GetManufacturersQuery());
-    }
-
-    [HttpGet("{uid}")]
-    public async Task<ActionResult<GetPrescriptionResult>> GetPrescription(string uid)
-    {
-        return await Mediator.Send(new GetPrescriptionQuery { PrescriptionUid = uid });
     }
 
     [HttpPost]

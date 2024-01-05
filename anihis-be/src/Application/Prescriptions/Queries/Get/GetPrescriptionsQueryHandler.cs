@@ -6,20 +6,32 @@ using Microsoft.EntityFrameworkCore;
 namespace anihis.Application.Prescriptions.Queries.Get;
 public class GetPrescriptionsQueryHandler : IRequestHandler<GetPrescriptionsQuery, GetPrescriptionsResult>
 {
+    private readonly ICurrentUserService _currentUserService;
     private readonly IBaseRepository<Prescription> _prescriptionRepository;
+    private readonly IBaseRepository<Veterinarian> _veterinarianRepository;
 
     public GetPrescriptionsQueryHandler
     (
-        IBaseRepository<Prescription> prescriptionRepository
+        ICurrentUserService currentUserService,
+        IBaseRepository<Prescription> prescriptionRepository,
+        IBaseRepository<Veterinarian> veterinarianRepository
     )
     {
+        _currentUserService = currentUserService;
         _prescriptionRepository = prescriptionRepository;
+        _veterinarianRepository = veterinarianRepository;
     }
 
     public async Task<GetPrescriptionsResult> Handle(GetPrescriptionsQuery request, CancellationToken cancellationToken)
     {
+        var veterinarian = await _veterinarianRepository.StartQuery()
+            .Include(x => x.VeterinaryClinic)
+            .Where(x => x.Uid == _currentUserService.UserUid)
+            .SingleOrDefaultAsync(cancellationToken);
+
         var prescriptions = await _prescriptionRepository.StartQuery()
             .Include(x => x.Manufacturer)
+            .Where(x => x.VeterinaryClinic == veterinarian.VeterinaryClinic)
             .ToListAsync(cancellationToken);
 
         return new GetPrescriptionsResult

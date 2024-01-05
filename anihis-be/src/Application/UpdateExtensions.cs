@@ -26,16 +26,18 @@ public static class UpdateExtensions
     //{
     //    var entity = await repository.StartQuery()
     //        .Include(x => x.VeterinaryClinic)
-    //        .Where(x => x.Uid == request.ManufacturerUid)
+    //        .Where(x => x.Uid == uid)
     //        .SingleOrDefaultAsync(cancellationToken);
 
-    //    if (manufacturer is null)
+    //    if (entity is null)
     //    {
     //        throw new NotFoundException();
     //    }
 
-    //    await _manufacturerRepository.ThrowIfConflict(x =>
-    //        x.Name.ToLower() == request.Name.ToLower() && x.VeterinaryClinic == manufacturer.VeterinaryClinic,
+    //    await repository.ThrowIfConflict(x =>
+    //        x.Name.ToLower() == name.ToLower() && x.VeterinaryClinic == entity.VeterinaryClinic,
     //        cancellationToken);
+
+    //    return entity;
     //}
 }
