@@ -22,8 +22,6 @@ import { CreateBreedCommand } from '../model/createBreedCommand';
 import { CreateSpeciesCommand } from '../model/createSpeciesCommand';
 import { GetAnimalResult } from '../model/getAnimalResult';
 import { GetAnimalsResult } from '../model/getAnimalsResult';
-import { GetBreedResult } from '../model/getBreedResult';
-import { GetBreedsResult } from '../model/getBreedsResult';
 import { GetSingleSpeciesResult } from '../model/getSingleSpeciesResult';
 import { GetSpeciesResult } from '../model/getSpeciesResult';
 import { UpdateAnimalCommand } from '../model/updateAnimalCommand';
@@ -69,49 +67,6 @@ export class AnimalsService {
     /**
      * 
      * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public animalsBreedsGet(observe?: 'body', reportProgress?: boolean): Observable<Array<GetBreedsResult>>;
-    public animalsBreedsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetBreedsResult>>>;
-    public animalsBreedsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetBreedsResult>>>;
-    public animalsBreedsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<GetBreedsResult>>('get',`${this.basePath}/Animals/Breeds`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -151,54 +106,6 @@ export class AnimalsService {
         return this.httpClient.request<any>('post',`${this.basePath}/Animals/Breeds`,
             {
                 body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param uid 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public animalsBreedsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetBreedResult>;
-    public animalsBreedsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetBreedResult>>;
-    public animalsBreedsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetBreedResult>>;
-    public animalsBreedsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (uid === null || uid === undefined) {
-            throw new Error('Required parameter uid was null or undefined when calling animalsBreedsUidGet.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GetBreedResult>('get',`${this.basePath}/Animals/Breeds/${encodeURIComponent(String(uid))}`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -260,49 +260,6 @@ export class HealthRecordsService {
     /**
      * 
      * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public healthRecordsGet(observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordsResult>;
-    public healthRecordsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordsResult>>;
-    public healthRecordsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordsResult>>;
-    public healthRecordsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'text/plain',
-            'application/json',
-            'text/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GetHealthRecordsResult>('get',`${this.basePath}/HealthRecords`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -550,9 +507,57 @@ export class HealthRecordsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public healthRecordsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordResult>;
-    public healthRecordsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordResult>>;
-    public healthRecordsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordResult>>;
+    public healthRecordsSingleUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordResult>;
+    public healthRecordsSingleUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordResult>>;
+    public healthRecordsSingleUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordResult>>;
+    public healthRecordsSingleUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uid === null || uid === undefined) {
+            throw new Error('Required parameter uid was null or undefined when calling healthRecordsSingleUidGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GetHealthRecordResult>('get',`${this.basePath}/HealthRecords/Single/${encodeURIComponent(String(uid))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param uid 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public healthRecordsUidGet(uid: string, observe?: 'body', reportProgress?: boolean): Observable<GetHealthRecordsResult>;
+    public healthRecordsUidGet(uid: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetHealthRecordsResult>>;
+    public healthRecordsUidGet(uid: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetHealthRecordsResult>>;
     public healthRecordsUidGet(uid: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (uid === null || uid === undefined) {
@@ -581,7 +586,7 @@ export class HealthRecordsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GetHealthRecordResult>('get',`${this.basePath}/HealthRecords/${encodeURIComponent(String(uid))}`,
+        return this.httpClient.request<GetHealthRecordsResult>('get',`${this.basePath}/HealthRecords/${encodeURIComponent(String(uid))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
