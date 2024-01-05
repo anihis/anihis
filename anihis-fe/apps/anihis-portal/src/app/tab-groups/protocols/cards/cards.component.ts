@@ -164,13 +164,12 @@ export class CardsComponent implements AfterViewInit {
       : 'string';
   }
 
-  applyFilter(event: any, column: string) {
+  applyFilter(event: any) {
     const filterValue = event.target.value.trim().toLowerCase();
     this.dataSource.filterPredicate = (data, filter) => {
-      const value = data[column].toString().toLowerCase();
+      const value = data.toString().toLowerCase();
       return value.includes(filter);
     };
-
     this.dataSource.filter = filterValue;
   }
 

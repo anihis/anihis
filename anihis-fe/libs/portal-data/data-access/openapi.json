@@ -130,73 +130,6 @@
         }
       }
     },
-    "/Animals/Breeds": {
-      "get": {
-        "tags": [
-          "Animals"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetBreedsResult"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Animals"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBreedCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
     "/Animals/{uid}": {
       "get": {
         "tags": [
@@ -353,44 +286,38 @@
         }
       }
     },
-    "/Animals/Breeds/{uid}": {
-      "get": {
+    "/Animals/Breeds": {
+      "post": {
         "tags": [
           "Animals"
         ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetBreedResult"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBreedCommand"
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
         }
-      },
+      }
+    },
+    "/Animals/Breeds/{uid}": {
       "put": {
         "tags": [
           "Animals"
@@ -431,10 +358,20 @@
         }
       }
     },
-    "/HealthRecords": {
+    "/HealthRecords/{uid}": {
       "get": {
         "tags": [
           "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -459,25 +396,35 @@
           }
         }
       },
-      "post": {
+      "put": {
         "tags": [
           "HealthRecords"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHealthRecordCommand"
+                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
               }
             }
           }
@@ -605,7 +552,7 @@
         }
       }
     },
-    "/HealthRecords/{uid}": {
+    "/HealthRecords/Single/{uid}": {
       "get": {
         "tags": [
           "HealthRecords"
@@ -642,36 +589,28 @@
             }
           }
         }
-      },
-      "put": {
+      }
+    },
+    "/HealthRecords": {
+      "post": {
         "tags": [
           "HealthRecords"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateHealthRecordCommand"
+                "$ref": "#/components/schemas/CreateHealthRecordCommand"
               }
             }
           }
@@ -1274,43 +1213,6 @@
       }
     },
     "/Prescriptions/manufacturers/{uid}": {
-      "get": {
-        "tags": [
-          "Prescriptions"
-        ],
-        "parameters": [
-          {
-            "name": "uid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetManufacturerResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetManufacturerResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetManufacturerResult"
-                }
-              }
-            }
-          }
-        }
-      },
       "put": {
         "tags": [
           "Prescriptions"
@@ -2217,42 +2119,6 @@
         },
         "additionalProperties": false
       },
-      "GetBreedResult": {
-        "type": "object",
-        "properties": {
-          "breedUid": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "speciesUid": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "GetBreedsResult": {
-        "type": "object",
-        "properties": {
-          "breedUid": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "speciesUid": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "GetDiagnosesResult": {
         "type": "object",
         "properties": {
@@ -2342,44 +2208,6 @@
             "items": {
               "$ref": "#/components/schemas/HealthRecord"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "GetManufacturerResult": {
-        "type": "object",
-        "properties": {
-          "uid": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "mobileNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "bankAccount": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactPerson": {
-            "type": "string",
             "nullable": true
           }
         },

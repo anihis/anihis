@@ -11,13 +11,12 @@
 
   <div class="wrapper">
     <div class="row">
-      <!-- TODO -->
-      <p>Cena rada ukupno :</p>
-      <p>Cena leka ukupno :</p>
-      <p>Cena ostalih troskova ukupno :</p>
-      <p>Fakturisano ukupno :</p>
-      <p>Uplaceno ukupno :</p>
-      <b>UKUPNO:</b>
+      <p>{{ t('Total labor cost') + ':' }}</p>
+      <p>{{ t('The total cost of the medicine') + ':' }}</p>
+      <p>{{ t('The price of other costs in total') + ':' }}</p>
+      <p>{{ t('Invoiced total') + ':' }}</p>
+      <p>{{ t('Paid in total') + ':' }}</p>
+      <b>{{ t('IN TOTAL') + ':' }}</b>
     </div>
     <div class="card">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -104,7 +103,7 @@
 
         <ng-container matColumnDef="difference">
           <th mat-header-cell *matHeaderCellDef class="difference">
-            {{ t('difference') }}
+            {{ t('Difference') }}
           </th>
           <td mat-cell *matCellDef="let element" class="difference">
             {{ element.difference }}
